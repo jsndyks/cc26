@@ -1,4 +1,4 @@
-## CreativeCoding 2026 : Page Index
+## CreativeCoding 2026 : Page Index [CC26]
 
 |session|title|pages|
 |-:|-|:-|

@@ -1,6 +1,6 @@
 # cc26
 
-Resources for Creative Coding activity for Computer Science at City St George's, University of London
+Resources for **Creative Coding** activity for **Computer Science** at _City St George's, University of London._
 
 Derived from [cityBootCamp](https://github.com/jsndyks/cityBootCamp/tree/master)
 
