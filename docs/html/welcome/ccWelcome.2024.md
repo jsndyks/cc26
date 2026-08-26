@@ -6,52 +6,37 @@ figure img {border:dashed #e0e0e0 1px; padding:4px}
 figcaption {width:90%; text-align:center; color:#909090; padding-top:0.5em; font-size:90%}
 </style>
 
-<!--div style="float:left;">
-<img src="https://jsndyks.github.io/cityCreativeCoding/images/logo/ccLogo.original.jpg" width=100 height=100 style="margin:0.25em; margin-right:1em"/>
-</div-->
-
-<!--p>Our <code>#CreativeCoding</code> activity begins ...<br/>&nbsp;&nbsp;&nbsp;&nbsp;on <b>Tuesday, 1st October at 9am</b> in <b>A132, The Great Hall</b>.</p-->
+<p>
+The <code>#CreativeCoding</code> activity is a term-long experience in code, data collection, colours on canvas and core concepts from Computer Science.</p>
 
 <p>
-The <code>#CreativeCoding</code> activity is a term-long programming experience designed for both completely new and experienced programmers.<br/>
-We will start from the very basics of programming and gradually move into interesting, applied programming such as digital art and data visualization.
+It runs as an introduction to <i>Java Programming</i> and is  designed for both completely new and experienced programmers.<br/>
+We will start from the very basics of programming and quickly develop capabilities for creating expressive content including digital art and data visualization.
 </p>
 
-<p>Lectures and subsequent practical classes take place in weeks 01, 02, 07 and 08, with <i>Personal Tutorial</i> sessions scheduled to help you use the activity to get to know, and receive support from your personal tutors.</p>
+<p>Lectures and associated practical classes take place throughout term as shown on <a href="https://mytimetable.city.ac.uk/">MyTimeTable</a>.</p>
 
-<!-- <figure></figure> -->
-
-<!-- <a href="https://jsndyks.github.io/cityCreativeCoding/html/tutors/img/creativeCoding.2024.schedule.v6.png"> -->
-<div style="padding:1em"><img src="https://jsndyks.github.io/cityCreativeCoding/html/tutors/img/creativeCoding.2024.schedule.v61.png" width="80%" style="margin-left:10%; margin-right:10%"/></div>
-<!-- </a> -->
-
-<!--  -->
-<!---figcaption><code>#CreativeCoding</code> Schedule for Autumn 2024, with Hijacking of existing modules in weeks 01, 02, 07 &amp; 08 and Personal Tutorial schedule.</figcaption--->
-
-<p>Use <a href="https://mytimetable.city.ac.uk/">MyTimetable</a> to find the rooms in which <code>#CreativeCoding</code> lectures and tutorial sessions take place as we <i>Hijack!</i> some of your regular Year one modules!</p>
 
 <hr/>
 
-<img style="display: block; margin-left: auto; margin-right: auto; width:95%" src="https://jsndyks.github.io/cityCreativeCoding/images/ccLogos/ccLogosx5.row1.png"/>
+<div style="padding:1em"><img src="https://jsndyks.github.io/cc26/images/ccLogos/cc26.logosx8.moodle.1200.png" width="80%" style="margin-left:10%; margin-right:10%"/></div>
 
-<p>Remember your <i><b>Fib Friend Badge</b></i> - find a couple of people with the same code and share something meaningful about yourself with them ... and talk about University, <code>CreativeCoding</code> and fun stuff.</p>
+<p>Remember your <i><b>Fib Friend Badge</b></i>.
+There are many different versions.
+Your mission is to find as many others as you can with the same design as yours.
+Collect their names (in your notebook) and share something meaningful about yourself with them ... and talk about University, <code>#CreativeCoding</code> and fun stuff.</p>
 
 <hr/>
 
-<p>In <code>#CreativeCoding</code> we will essentially learn <i>Java</i>, and this is a great introduction to the language, But we will rely on an environment called <b>Processing</b> – that will introduce key programming concepts and enable you to create interactive, graphical, animated applications with much less effort than regular Java.</p>
+<p>In <code>#CreativeCoding</code> we will essentially learn <i>Java</i>, and this is a great introduction to the language and its concepts. But we will rely on an environment called <i>Processing</i> – that will introduce key programming concepts and enable you to create interactive, graphical, animated applications with much less effort than regular Java.</p>
 
-<p><code>#CreativeCoding</code> is <b>not assessed</b>.
-But engaging fully will give you experience, knowledge and skills that will provide important grounding and contribute to your future studies.
-As you start life at University, we want to give you some freedom to experiment and play with programming and show you the cool stuff it lets you do in a zero risk environment.
-We also want you get to know us and your colleagues, and get used to University life through this activity.
-Most importantly, we want you to <b>have some fun</b> with a shared data and coding experience in your first term.</p>
+<p><code>#CreativeCoding</code> is assessed through two assignments, that together will account for 50% of your Term 1 mark for <i>Java Programming</i>.
 
-<p>At the end of term, your tutors will provide a short report on your <code>#CreativeCoding</code> activity that they may use in subsequent reference writing: a <b>Creative Coding Commentary</b> that will report on your initiative, participation, creativity, group-work capability in <code>#CreativeCoding</code> and the tutorials </p>
 <hr/>
-<p><b>Important:</b> We plan to hit the ground running.</p>
+<p><b>Important:</b> we plan to hit the ground running.</p>
 
 <ul>
-<li>We expect you to bring <b>charged laptops</b> to lectures with <i>Processing</i> installed.</li>
-<li>We expect you to have <b>completed the preparation</b> beforehand - the <code>#CreativeCoding</code> Preparation Activities, the Dear Data Diaries work and the GitHub setup are essential preparation</li>
+<li>We expect you to bring <b>charged laptops</b> to lectures with <i>Processing</i> installed - you will be coding.</li>
+<li>We expect you to have <b>completed the preparation</b> beforehand - the <i><code>#CreativeCoding</code> Preparation Activities</i>, the <i>Dear Data</i> work and the <i>GitHub setup</i> are essential preparation.</li>
 </ul>
 <p>Details follow ...</p>
