@@ -2,6 +2,7 @@
 
 |session|title|pages|
 |-:|-|:-|
+|||
 |00|**CC Home**|[homeIntroduction.html](home/homeIntroduction.html)<br/>[homeGuidance.html](home/homeGuidance.html)<br/>[homeObjectives.html](home/homeObjectives.html)<br/>
 |||
 |00|**Preparation**|[ccTenTasks.html](preparation/ccTenTasks.html)<br/>[sound.html](preparation/sound.html)<br/>[induction.html](preparation/induction.html)<br/><br/>[induction.html](preparation/dropIn.html)
@@ -23,12 +24,14 @@
 |14|**3D Graphics**|[ccGraphics.html](3d/ccGraphics.html)<br/>[ccGraphics.extra.html](3d/ccGraphics.extra.html)<br/>[ccGraphics.game.html](3d/ccGraphics.game.html)<br/>[ccGraphics.gameTemplate.html](3d/ccGraphics.gameTemplate.html)
 |15|**Computational Thinking**|[ccThinking.html](data/ccThinking.html)
 |16|**Dear Data Denouementuement**|[ccDenouement.html](denouement/ccDenouement.html)<br/>[ccObservationTable.html](denouement/ccObservationTable.html)<br/>[ccQandA.html](denouement/ccQandA.html)
-|plus|**DearData**|[ccDearData.html](dearData/ccDearData.html)<br/>[ccDearData100.html](dearData/ccDearData100.html)<br/>[ccDataCollection.html](dearData/ccDataCollection.html)
 |||
+|plus|**DearData**|[ccDearData.html](dearData/ccDearData.html)<br/>[ccDearData100.html](dearData/ccDearData100.html)<br/>[ccDataCollection.html](dearData/ccDataCollection.html)
 
 <div style="align:right; text-align:right; padding-right:4rem">
+
 **Jason DYKES**<br/>
 02/09/26
+
 </div>
 
 <style>
