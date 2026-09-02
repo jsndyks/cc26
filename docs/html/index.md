@@ -5,7 +5,7 @@
 |||
 |00|**CC Home**|[homeIntroduction.html](home/homeIntroduction.html)<br/>[homeGuidance.html](home/homeGuidance.html)<br/>[homeObjectives.html](home/homeObjectives.html)<br/>
 |||
-|00|**Preparation**|[ccTenTasks.html](preparation/ccTenTasks.html)<br/>[sound.html](preparation/sound.html)<br/>[induction.html](preparation/induction.html)<br/><br/>[induction.html](preparation/dropIn.html)
+|00|**Preparation**|[ccTenTasks.html](preparation/ccTenTasks.html)<br/>[ccSoundCheck.html](preparation/ccSoundCheck.html)<br/>[ccInduction.html](preparation/ccInduction.html)<br/><br/>[ccDropIn.html](preparation/ccDropIn.html)
 |||
 |01|**Sketches**|[ccSketch.html](sketch/ccSketch.html)<br/>[ccSketch.extra.html](sketch/ccSketch.extra.html)
 |02|**Variables**|[ccVar.html](variables/ccVar.html)<br/>[ccVar.extra.html](variables/ccVar.extra.html)
