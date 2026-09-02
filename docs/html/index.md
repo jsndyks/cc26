@@ -2,6 +2,10 @@
 
 |session|title|pages|
 |-:|-|:-|
+|00|**Introduction**|[introWelcome.html](introduction/introWelcome.html)<br/>[introWelcome.html](introduction/introGuidance.html)<br/>[introObjectives.html](introduction/inPreparation.html)<br/>
+|||
+|00|**Preparation**|[tenStaps.html](introduction/introWelcome.html)<br/>[sound.html](introduction/introGuidance.html)<br/>[induction.html](introduction/inPreparation.html)<br/><br/>[induction.html](taDropIn/inPreparation.html)
+|||
 |01|**Sketches**|[ccSketch.html](sketch/ccSketch.html)<br/>[ccSketch.extra.html](sketch/ccSketch.extra.html)
 |02|**Variables**|[ccVar.html](variables/ccVar.html)<br/>[ccVar.extra.html](variables/ccVar.extra.html)
 |03|**Interaction**|[ccInt.html](interaction/ccInt.html)<br/>[ccInt.extra.html](interaction/ccInt.extra.html)
@@ -19,8 +23,8 @@
 |14|**3D Graphics**|[ccGraphics.html](3d/ccGraphics.html)<br/>[ccGraphics.extra.html](3d/ccGraphics.extra.html)<br/>[ccGraphics.game.html](3d/ccGraphics.game.html)<br/>[ccGraphics.gameTemplate.html](3d/ccGraphics.gameTemplate.html)
 |15|**Computational Thinking**|[ccThinking.html](data/ccThinking.html)
 |16|**Dear Data Denouementuement**|[ccDenouement.html](denouement/ccDenouement.html)<br/>[ccObservationTable.html](denouement/ccObservationTable.html)<br/>[ccQandA.html](denouement/ccQandA.html)
-|||
 |plus|**DearData**|[ccDearData.html](dearData/ccDearData.html)<br/>[ccDearData100.html](dearData/ccDearData100.html)<br/>[ccDataCollection.html](dearData/ccDataCollection.html)
+|||
 
 <div style="align:right; text-align:right; padding-right:4rem">
 **Jason DYKES**<br/>
