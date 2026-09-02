@@ -2,7 +2,7 @@
 
 |session|title|pages|
 |-:|-|:-|
-|01|**Introduction to Processing**|[ccIntro.html](intro/ccIntro.html)<br/>[ccIntro.extra.html](intro/ccIntro.extra.html)
+|01|**Sketches**|[ccSketch.html](sketch/ccSketch.html)<br/>[ccSketch.extra.html](sketch/ccSketch.extra.html)
 |02|**Variables**|[ccVar.html](variables/ccVar.html)<br/>[ccVar.extra.html](variables/ccVar.extra.html)
 |03|**Interaction**|[ccInt.html](interaction/ccInt.html)<br/>[ccInt.extra.html](interaction/ccInt.extra.html)
 |04|**Loops**|[ccLoops.html](loops/ccLoops.html)<br/>[ccLoops.extra.html](loops/ccLoops.extra.html)
@@ -22,7 +22,13 @@
 |||
 |plus|**DearData**|[ccDearData.html](dearData/ccDearData.html)<br/>[ccDearData100.html](dearData/ccDearData100.html)<br/>[ccDataCollection.html](dearData/ccDataCollection.html)
 
+<div style="align:right; text-align:right; padding-right:4rem">
+**Jason DYKES**<br/>
+02/09/26
+</div>
+
 <style>
-    td {vertical-align:top}
+    tr, table {border:solid 0px}
+    td {vertical-align:top; border:solid 0px}
     .footer, h1 {display:none}
     </style>
