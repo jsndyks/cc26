@@ -27,7 +27,7 @@ Spend **an hour** working your way through _Dan Shiffman's_ impressively enthusi
 
 - https://hello.processing.org/
 
-Dan is high energy, inspiring and one of the crestiv and educational forces behind _Processing_.
+Dan is high energy, inspiring and one of the creative and educational forces behind _Processing_.
 
 ##### 3. Dear Data Reading and Tasks
 
