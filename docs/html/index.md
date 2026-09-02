@@ -2,9 +2,9 @@
 
 |session|title|pages|
 |-:|-|:-|
-|00|**Introduction**|[introWelcome.html](introduction/introWelcome.html)<br/>[introWelcome.html](introduction/introGuidance.html)<br/>[introObjectives.html](introduction/inPreparation.html)<br/>
+|00|**CC Home**|[homeIntroduction.html](home/homeIntroduction.html)<br/>[homeGuidance.html](home/homeGuidance.html)<br/>[homeObjectives.html](home/homeObjectives.html)<br/>
 |||
-|00|**Preparation**|[tenSteps.html](introduction/introWelcome.html)<br/>[sound.html](introduction/introGuidance.html)<br/>[induction.html](introduction/inPreparation.html)<br/><br/>[induction.html](taDropIn/inPreparation.html)
+|00|**Preparation**|[ccTenTasks.html](preparation/ccTenTasks.html)<br/>[sound.html](preparation/sound.html)<br/>[induction.html](preparation/induction.html)<br/><br/>[induction.html](preparation/dropIn.html)
 |||
 |01|**Sketches**|[ccSketch.html](sketch/ccSketch.html)<br/>[ccSketch.extra.html](sketch/ccSketch.extra.html)
 |02|**Variables**|[ccVar.html](variables/ccVar.html)<br/>[ccVar.extra.html](variables/ccVar.extra.html)
