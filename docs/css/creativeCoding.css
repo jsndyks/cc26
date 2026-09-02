@@ -248,3 +248,44 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
   margin-right: -0.6em;
 }
 
+/**
+ ** blockquote
+ **
+ **/
+ blockquote {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 2rem 3rem;
+
+  background: #f3f3f3;
+  color: #555;
+  border-radius: 6px;
+
+  font-size: 95%;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+blockquote::before,
+blockquote::after {
+  position: absolute;
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #c5c5c5;
+}
+
+/* Opening quote — level with top of text */
+blockquote::before {
+  content: "\201C";
+  top: 2rem;
+  left: 1rem;
+}
+
+/* Closing quote — dropped to the bottom of the final line */
+blockquote::after {
+  content: "\201D";
+  right: 1rem;
+  bottom: 2rem;
+  transform: translateY(0.65em);
+}
