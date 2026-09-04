@@ -51,21 +51,18 @@
 	<div class="intro">
 
 		<p>
-			This session introduces <i>Processing</i> : a coding platform for creating graphical and interactive
-			applications. This is a great environment for learning to code and developing your programming skills.
+			This session introduces <i>Processing</i> : a coding platform for creating graphical and interactive applications known as <b>Sketches</b>.
+			<i>Processing</i> is a great environment for learning to code and developing your programming skills and you will usew these pages to create a <i>sketchbook</i> of <b>Sketches</b> throughout the term.
 		</p>
 
 		<p><strong>Having worked through these notes and participated in the in-person lecture you should be able to:</strong></p>
 
 		<ul class="objectives">
 			<li>run and save <i>Processing</i> sketches on your computer;</li>
-			<li>use <i>Processing</i> commands to draw and colour simple shapes such as rectangles and circles;</li>
-			<li>organise your program instructions into two special methods <code>setup()</code> and
-				<code>draw()</code>;
-			</li>
+			<li>use <i>Processing</i> commands to create sketches that draw and colour simple shapes such as rectangles and circles;</li>
+			<li>organise the instructions in your sketches into two special methods <code>setup()</code> and <code>draw()</code>;</li>
 			<li>create simple sketches that change in response to mouse movement;</li>
-			<li>use Processing's <a href="https://processing.org/reference" target="_blank">reference pages</a> to
-				find out more about the <i>Processing</i> language.</li>
+			<li>use Processing's <a href="https://processing.org/reference" target="_blank">reference pages</a> to find out more about the <i>Processing</i> language, environment and resources.</li>
 		</ul>
 
 	</div> <!-- End of intro section -->
@@ -82,24 +79,27 @@
 			<h3>1. How to use these pages</h3>
 			<p>
 				Before we get going, here are a few guidelines that will help you get the most of out these pages
-				during <code>#CreativeCoding</code>. They contain a mixture of information, theory and practical tasks.
-				The tasks are probably the most important bit - <code>#CreativeCoding</code> is mostly about <i>doing</i> rather than just
-				reading.
+				during <code>#CreativeCoding</code>.
+				They are the core of your learning and you need to work through them all.Each contains a mixture of information, theory and practical tasks.
+				The tasks are probably the most important bit - <code>#CreativeCoding</code> is mostly about <i>doing</i> rather than just reading.
 				If you want to be a good coder, you need to code!
 				And the more you practice the easier it gets.
+				But there is some reading too!
 			</p>
 
 			<h4>Coding tasks</h4>
 
 			<div class="codeTask">
 				<p>
-				Anything that looks like this is a 'coding task'. This is your chance to have a go doing something
-				rather than just reading about it. Usually you should have a go doing the task at that point in the
+				Anything that looks like this is a 'coding task' - a thing to do, a sketch to produce.
+				
+				This is your chance to have a go doing something
+				rather than just reading about it.
+				Usually you should have a go doing the task at that point in the
 				page before continuing to read further.</p>
 				<p>Use '<a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967974">PAROT Talk</a>' (🦜) as an approach to learning by doing.</p>
-				<p>Sometimes we will do these tasks together in the lecture room, but mostly you will do them in the
-				lab classes or in your own time before the next lecture.</p>
-				<p>Remember, don't just persuade yourself that you <i>could</i> do the task; actually do it.
+				<p>Sometimes we will do these tasks together in the lecture room, but mostly you will do them in the lab classes or in your own time before the next lecture.</p>
+				<p>Remember, don't just persuade yourself that you <i>could</i> do the task; actually do it.</p>
 				<pre>// Coding is how you learn to code; there is no other way.</pre>
 				<p>Your teachers and the TAs have spent many hundreds and thousands of hours coding, and made many hundreds and thousands (perhaps millions) of mistakes!
 				They still make them - but they have learned plenty through practice, particularly what to do when they make a mistake or get stuck.</p>
@@ -109,16 +109,19 @@
 			<h4>Core tasks</h4>
 			<div class="coreTask">
 				<p>
-				These are 'core tasks' that are not necessarily to do with coding, but are set to directly develop and test the core skills introduced in each session.
-				It is easy to skip over them, but we set them because we think it's very important that you complete these tasks.
-				During the labs, and as you plan your work, you should prioritise completion of the core tasks and make sure you have completed them before finishing a topic.
+				These are 'core tasks' that are not necessarily to do with coding, but are set to directly develop and test the core skills introduced in each session.</p>
+				<p>
+					It is easy to skip over them, but we set them because we think it's very important for your learning that you complete these tasks.
+				During the labs, and as you plan your work, you should prioritise working on the core tasks and make sure you have completed them before finishing a topic.
 			</p>
 			<p>
-				You have widely differing backgrounds and skills.
+				As a class, you have widely differing backgrounds and skills.
 				Some of you might race through all the exercises in a lab, but most of you will still have some work left to do at the end of a lab class.
-				After the labs, we strongly encourage you to finish <i>all core tasks</i> in your own time as homework.
-				University education involves lots of homework, directed learning at your own pace. 
+				After the labs, we strongly encourage you to finish <i>all core tasks</i> in your own time as homework. This is also preparation as subsequent classes depend upon their predecessors. 
+				University education involves lots of homework and prepartion. 
+				This is directed learning that you complete at your own pace. 
 				You will receive lots of homework and tasks to complete under your own steam, and you have plenty of time in your weekly schedule to do this work.
+				It's what the gaps in your timetable are for.
 			</p>
 			</div>
 
@@ -166,10 +169,7 @@
 
 			<p>
 				The programs you will be writing with <i>Processing</i> are known as <i>Sketches</i>. In the lecture notes
-				you will often see sketch code like that below. You can usually copy the code straight from these
-				pages into <i>Processing</i> by selecting the code then using the <code>Edit-&gt;Copy</code> option (or
-				<code>Ctrl-C</code>) from your browser and <code>Edit-&gt;Paste</code> (or <code>Ctrl-V</code>) in
-				<i>Processing</i>.
+				you will often see sketch code looking like this. 
 			</p>
 
 		</div>
@@ -195,7 +195,10 @@ void draw()
   text("Hello Creative Coders",mouseX,mouseY+40);
   circle(mouseX,mouseY,35);
 }</pre>
-				
+			<p>
+				You can usually copy the code straight from these pages into <i>Processing</i> by selecting the code then using the <code>Edit-&gt;Copy</code> option (or
+				<code>Ctrl-C</code>) from your browser and <code>Edit-&gt;Paste</code> (or <code>Ctrl-V</code>) in
+				<i>Processing</i>.			</p>
 
 			<p>
 				We've made it as easy as possible to copy code from these pages directly into <i>Processing</i> so you can
@@ -235,7 +238,7 @@ void draw()
 			</div>
 
 			<p>
-				By the end of <code>#CreativeCoding</code> you will be producing exciting apps including simple games, interactive graphics and data visualizations with <i>Processing</i>.
+				By the end of <code>#CreativeCoding</code> we hope that you will be producing impressive interactive apps including simple games, interactive graphics and data visualizations with <i>Processing</i>.
 				These apps are known as 'sketches' and over the course of this term you will be encouraged to produce a sketchbook full of your own.<br/>
 				But first let's start with something simple.
 			</p>
@@ -276,27 +279,24 @@ rect(20,30,70,35);
 				This is hardly the most exciting sketch but it does demonstrate the first important idea behind coding:<br/>
 				<i>A computer program is a set
 				of precise instructions that gets the machine to do stuff</i></b>.</p>
-				<p>In <i>Processing</i> (and in the
-				Java and many other languages) those instructions are generally <b>ordered</b> and tell
-				the computer how to achieve certain tasks. In this case our simple program consists of a single
-				instruction that tells <i>Processing</i> to draw a rectangle (<code>rect</code>) positioned at coordinates
-				(20,30) with a width of 70 pixels and a height of 35 pixels.
+				<p>
+					If you want the machine to do things you usually have to break this down into a series of instructions (a program) that are structured in a systematic way that the machine can interpret (a program).  
+				</p>
+				<p>In <i>Processing</i> (and in the Java and many other languages) those instructions are generally <b>ordered</b> and tell the computer how to achieve certain tasks. In this case our simple program consists of a single
+				instruction that tells <i>Processing</i> to draw a rectangle (<code>rect</code>) positioned at coordinates (20,30) with a width of 70 pixels and a height of 35 pixels.
 			</p>
 
 			<p>
 				Notice the instructions also include brackets '<code>(</code>' and '<code>)</code>' as well as a
-				semicolon '<code>;</code>' at the end. Unlike the English language, punctuation such as brackets and
-				semicolons in a computer programming language is critical. If you forget them (and you will at
-				some stage), your program will not work. Such errors that are about how the program is written
-				(missing punctuation, incorrect word order) are called syntax errors. <b><i>The code you write
-				must be free of syntax errors before the computer can understand and run it. </i></b>
+				semicolon '<code>;</code>' at the end. Unlike the English language, punctuation such as brackets and semicolons in a computer programming language is critical. If you forget them (and you will at some stage), your program will not work. Such errors that are about how the program is written
+				(missing punctuation, incorrect word order) are called syntax errors. <b><i>The code you write must be free of syntax errors before the computer can understand and run it. </i></b>
 			</p>
 
-			<p>In <i>Processing</i> brackets mean <code>(</code> these things are related <code>)</code>. In that sentence, in which I used the <i>English Language</i>, the spaces meant that the four words were separate. In <i>Processing</i> and many other languages used in Computer Science, the spaces do not have that meaning. In <i<>Processing</p> we tend to use commas <code>,</code> to separate most things that are part of an instruction like the one above, and semicolons <code>;</code> to separate instructions. So, <code>(</code> these<code>,</code>things<code>,</code>are<code>,</code>separate <code>)</code>.
+			<p>In <i>Processing</i> brackets mean <code>(</code> these things are related <code>)</code>. In that sentence, in which I used the <i>English Language</i>, the spaces meant that the four words were separate. In <i>Processing</i> and many other languages used in Computer Science, the spaces do not have that meaning. In <i<>Processing</p> we tend to use commas <code>,</code> to separate most things that are part of an instruction like the one above, and semicolons <code>;</code> to separate instructions. So, <code>(</code> these<code>,</code>things<code>,</code>are<code>,</code>separate <code>);</code>.
 
 			<p>We are interested in creativity.
 				Let's vary these instructions to create a rectangle that you think will be <i>unique in the class</i>.
-				Have a think, and then enter 4 arguments to the <code>rect()</code> command, that will produce a unique rectangle.
+				Have a think, and then enter 4 arguments (numbers separated by commas) to the <code>rect()</code> command, that will produce a unique rectangle.
 			</p>
 
 			<div class="codeTask">
@@ -421,9 +421,8 @@ circle(62,60,40);</pre>
 
 			<h3>3. The graphical coordinate system</h3>
 			<p>
-				Our sketches so far have been rather small and unexciting. We can set the size of a sketch with
-				another <i>Processing</i> command called, you've guessed it, <code>size</code>. Adding this as the first
-				line of our sketch:
+				Our sketches so far have been rather small and lacked functionality and ambition. We can set the size of a sketch with
+				another <i>Processing</i> command called, you've guessed it, <code>size</code>. Adding this as the first line of our sketch:
 			</p>
 
 		</div>
@@ -437,7 +436,7 @@ circle(62,60,40);</pre>
 				These three commands draw exactly the same circle and rectangle of the same size, but this time on a larger 'canvas' that is 260 pixels wide and 200 tall.
 				We can think of the canvas as the area in which you can add visual elements (shapes and colours) to your sketch, and <code>size</code> determines how big it is.
 				The <code>size</code> command is issued once, at the start of your sketch
-				since its size would not normally change during its lifetime.
+				since the size of a sketch would not normally change during its lifetime.
 			</p>
 
 		</div> <!-- End of left column -->
@@ -490,7 +489,7 @@ circle(62,60,40);</pre>
 				<p>We say this repeatedly to students and are always surprised by :</p>
 				<ul>
 					<li>How few students take the time to draw out their sketches on paper</li>
-					<li>How much more efficiently and impressively these students make progress</li>
+					<li>How much more efficiently and impressively these sketching students make progress</li>
 				</ul>
 				<p>Use your sketchbooks!</p>
 			</div>
@@ -536,8 +535,8 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 				Each of the pairs of numbers after a drawing command corresponds to some location in our sketch
 				using the same coordinate system with the origin at the <i>top left</i> of the canvas.
 				To see how the numbers relate to the properties of the shape, you
-				can browse the <a href="https://processing.org/reference/" target="_blank">Processing Reference</a>
-				(for example, here is the reference for the <a href="https://processing.org/reference/quad_.html" target="_blank"><code>quad()</code></a> drawing command).
+				can browse the <a href="https://processing.org/reference/" target="_blank">Processing Reference</a>.
+				For example, here is the reference for the <a href="https://processing.org/reference/quad_.html" target="_blank"><code>quad()</code></a> drawing command.
 			</p>
 
 
@@ -596,10 +595,10 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 				<p>This is a concept that students often struggle with, so let's go over it again:</p>
 				<ul>
 					<li>Setting a drawing style with a command like <code>stroke()</code> has no effect on anything that has been drawn on the canvas</li>
-					<li>It will have an effect on anything that is drawn subsequently that has an outline, which sill use the most recently specified <code>stroke()</code> as its colour;<br/>
+					<li>It will have an effect on anything that is drawn subsequently that has an outline, which will use the most recently specified <code>stroke()</code> as its colour;<br/>
 					This will continue until the style is changed with a new <code>stroke()</code> command or perhaps <code>noStroke()</code>, the effects of which you can imagine, test and look up;</li>
 				</ul>
-				<p>This is a nice example of the effects of the order of our commands on our sketches. Remember: <b>Commands are run in the order in which we issue the program instructions</b> (see above).</p>
+				<p>This is a nice example of the effects of the order of our commands on our sketches.<br/>Remember: <b>Commands are run in the order in which we issue the program instructions</b> (see above).</p>
 			</div>
 
 			<div class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">4</span> - <b>Colour</b> : Fun with Colour </code></div>
@@ -617,7 +616,7 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 				<code>stroke(255,0,0)</code>.
 				If you are not sure how these numbers relate to colours you wish to use, you can always bring up
 				<i>Processing</i>'s <i>color selector</i> from the <code>Tools</code> menu.
-				(Alternatively, there are similar tools online, such as <a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank">W3 Schools HTML Color Picker</a>.)
+				Alternatively, there are similar tools online, such as <a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank">W3 Schools HTML Color Picker</a>.
 			</p>
 
 		</div> <!-- End of left column -->
@@ -657,9 +656,8 @@ background(200,200,255);
 				The thickness of shape outlines that appear on the coloured background can be controlled with the <a href="https://processing.org/reference/strokeWeight_.html" target="_blank">strokeWeight()</a>
 				command, requiring a single number in brackets indicating the thickness of the line in pixel units.
 				This can be a
-				decimal number between 0 and 1 if you wish to use very thin lines (useful for faint outlines). For
-				thicker
-				lines you can control the appearance of their end points and corners with the
+				decimal number between 0 and 1 if you wish to use very thin lines (useful for feint outlines).
+				For thicker lines you can control the appearance of their end points and corners with the
 				<a href="https://processing.org/reference/strokeCap_.html" target="_blank">strokeCap()</a> and
 				<a href="https://processing.org/reference/strokeJoin_.html" target="_blank">strokeJoin()</a>
 				commands.
@@ -717,6 +715,7 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 				you include these two
 				symbols, the rest of the line is then ignored by <i>Processing</i> so you are free to write text to explain
 				what the code does.
+				Indeed, we encourage you to do so with clarity and regularity.
 			</p>
 
 			<div class="tip">
@@ -745,13 +744,12 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 			<h3>5. Adding movement to your sketches</h3>
 
 			<p>
-				We can draw shapes, and we can colour them. Now lets look at how we can get our sketches to move. To
-				understand how we
-				do this, we need to introduce one further programming concept - that of the <i>method</i>.
-				We will
-				look at methods more
+				We can draw shapes in our sketches, and we can colour them.
+				Now lets look at how we can bring our sketches to life.
+				To understand how we do this, we need to introduce one further programming concept - that of the <i>method</i>.
+				We will look at methods more
 				fully later in <code>#CreativeCoding</code>, but for now we will consider a method as simply a collection of commands
-				that are grouped together to do something.
+				that are grouped together to do something a little more complex than we might achieve with a single command.
 			</p>
 
 			<p>
@@ -790,7 +788,7 @@ void draw()
 				end of the method. Whenever you place code inside a pair of braces like this, you should indent it
 				by two spaces or a tab.
 				This will make your code a little easier to read as the indentation helps to make it clear it is
-				part of block of code (in
+				part of block of associated code (in
 				these examples either the <code>setup()</code> or <code>draw()</code> methods).
 			</p>
 			<div class="tip">
@@ -920,6 +918,7 @@ void draw()
 			</p>
 		
 			<div class="codeTask">
+				<h5>Basic Sketch</h5>
 				<p>
 				Start with the moving rectangle sketch from the lecture notes (reproduced below).
 				For this task it is acceptable to copy and paste the code directly into <i>Processing</i> (using the Edit Copy / Paste menus or keyboard shortcuts
@@ -950,6 +949,7 @@ void draw()
 			<br><br>
 		
 			<div class="codeTask">
+				<h5>Underground Sign</h5>
 				<p>Create a new sketch called 'Underground'.<br/>Start with a blank page: <b>strictly NO copy and paste for this task</b>.
 				</p>
 				<p>
@@ -973,6 +973,7 @@ void draw()
 		
 		
 			<div class="codeTask">
+				<h5>Moving Colour</h5>
 				<p>
 				Create a new sketch that draws a simple rectangle that changes its <i>colour</i> depending on the position of the mouse.
 				</p>
@@ -989,12 +990,13 @@ void draw()
 		
 		
 			<div class="codeTask">
+				<h5>Underground Station</h5>
 				<p>Modify your 'Underground' sketch so that it displays some text across the blue bar.<br/>
 				Something like this, but choose your favourite station:
 				</p>
 				<img src="https://jsndyks.github.io/cityCreativeCoding/html/intro/img/cc.undergroundSign.png" width="339" height="284" alt="underground=">
 				<p>
-				To display text you will need to browse the <a href="https://processing.org/reference" target="_blank">Processing reference pages</a> and in particular look for the commands <a href="https://processing.org/reference/text_.html" target="_blank"><code>text()</code></a>
+				To display text you will need to browse the <a href="https://processing.org/reference" target="_blank"><i>Processing</i> reference pages</a> and in particular look for the commands <a href="https://processing.org/reference/text_.html" target="_blank"><code>text()</code></a>
 				and <a href="https://processing.org/reference/textAlign_.html" target="_blank"><code>textAlign()</code></a></p>
 			</div>
 
@@ -1003,14 +1005,15 @@ void draw()
 		<p>
 		Make your sketch original by deliberately varying the London Underground logo.
 		
-		Copying is easy - but try <i>something different</i>.
+		<br/>Copying is easy - but try <i>something different</i>.
 		
-		Try changing something in your design to give it some character and distinctiveness that others may not have thought of.</p>
+		<br/>Try changing something in your design to give it some character and distinctiveness that others may not have thought of - so it's the London Underground Sign, <i>but not as we know it</i>.
+		</p>
 		<p>
 		Use a creativity framework, such as the <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER technique</a> to help you do so.	
 		</p>
 
-			</div>
+		</div>
 		
 
 		</div> <!-- End of left column -->
@@ -1034,7 +1037,7 @@ void draw()
 
 				<li>
 					<i>Processing</i> is a variation of the <i>Java</i> programming language focussed on creating graphical and
-					interactive applications known as <i>sketches</i>.
+					interactive applications known as <i>sketches</i> with simple commands.
 				</li>
 
 				<li>
