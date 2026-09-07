@@ -62,8 +62,8 @@
 		<p><strong>By the end of this session you should be able to:</strong></p>
 
 		<ul class="objectives">
-			<li>use <i>Processing's</i>  built-in variables for storing mouse position and sketch size;</li>
-			<li>initialise your own variables by declaring them and assigning values;</li>
+			<li>use <i>Processing's</i>  built-in variables for storing data about the current mouse position and sketch size;</li>
+			<li>initialise your own variables by declaring them (giving them names and properties) and assigning values (filling them with data);</li>
 			<li>use <code>println()</code> to show the contents of a variable in the <i>Processing</i> console;</li>
 			<li>use variables for storing numbers, text and colours;</li>
 			<li>use appropriate variable scope in your coding design;</li>
@@ -81,24 +81,26 @@
 			<!-- Left column -->
 			<h3>1. What is a variable?</h3>
 			<p>
-				In the previous session you were introduced to a moving rectangle sketch that drew a rectangle whose
+				We have already seen a <i><a href="../sketches/ccSketches.html">sketch</a></i> in which a moving rectangle was drawn whose
 				corner was at the current mouse position. We managed this by using two special <i>variables</i>
 				provided by <i>Processing</i> — <code>mouseX</code> and <code>mouseY</code>. They are known as variables
-				because their value can vary (to capture the position of the mouse as it moves in this case).
+				because the numeric value that they represent at any time can vary during the life of the sketch.
+				In this case, to capture the position of the cursor as it moves in response to the movement of the mouse, or trackpad, or whatever.
 				Even though the <i>value</i> of a variable can change, its <i>name</i> does not.
-				At any point in our sketch code we can use the same name <code>mouseX</code> confident that it will contain the value of the current mouse position in pixel coordinates. This leads us to our first simple definition of a variable:
+				At any point in our sketch code we can use the same name <code>mouseX</code> confident that it will contain the value of the current mouse position in pixel coordinates form the top left of the sketch canvas.
+				This leads us to our first simple definition of a variable:
 			</p>
 
 			<div class="tip">
-				A <b>variable</b> is a named portion of a computer's memory that can store data. The data can be
-				retrieved and updated within your program.
+				A <b>variable</b> is a named portion of a computer's memory that can store data.<br/>
+				The data can be retrieved and updated within your program (sketch).
 			</div>
 
 			<p>
 				In the case of <code>mouseX</code> and <code>mouseY</code> the data value stored in each is a simple
-				number (referring to the pixel coordinates of the current mouse position). Behind the scenes
-				<i>Processing</i> keeps constant track of the position of your mouse and updates those variables with new
-				numbers every time the position changes.
+				number, referring to the pixel coordinates of the current cursor (mouse) position. Behind the scenes
+				<i>Processing</i> keeps constant track of the position of your cursor, as defined by the movement of your mouse
+				and updates those variables with new numbers (that vary in response to your actions) every time the position changes.
 			</p>
 
 	</div>
@@ -126,7 +128,7 @@ void draw()
 				to display the value stored in the variable <code>mouseX</code>. The value appears in <i>Processing's</i> 
 				'console' (the black window below where you normally type in code). If you run the program and move
 				the mouse left and right in the sketch you should see the number change as the mouse's horizontal
-				x-position changes.
+				x-position changes, and as the value stored in the variable <code>mouseX</code> varies in response.
 			</p>
 
 			<div class="aside">

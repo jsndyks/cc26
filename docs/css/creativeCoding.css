@@ -305,3 +305,32 @@ body {
   border-radius: 6px;
   margin-bottom: 2rem;
 }
+.intro ul,
+.intro ol,
+.intro li {
+  background: transparent !important;
+}
+.tip {
+  position: relative;
+}
+
+.tip::before {
+  content: "💡";
+  position: absolute;
+  left: -2.5em;
+  top: 0;
+  font-size: 2em;
+  line-height: 1;
+} 
+.aside {
+  position: relative;
+}
+
+.aside::before {
+  content: "❓";
+  position: absolute;
+  left: -2.5em;
+  top: 0;
+  font-size: 2em;
+  line-height: 1;
+}
