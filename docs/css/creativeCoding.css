@@ -336,6 +336,9 @@ body {
 .aside::before    { content: "🤔"; }
 .codeTask::after { content: "🦜";   transform: scaleX(-1); }
 .challenge::after { content: "🎯";   transform: scaleX(-1); }
+.task h4::before {
+  content: "\00BB\00A0"; /* » followed by a non-breaking space */
+}
 
 /* Give H3 headings a little more breathing room */
 h3 {
