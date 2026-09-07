@@ -341,8 +341,10 @@ h3 {
 } 
 
 /* H4 and H5 use the normal body font */
-h4,
-h5 {
+.task h4,
+.task h5,
+.challenge h4,
+.challenge h5 {
   font-family: inherit;
 }
 
@@ -350,6 +352,7 @@ h5 {
 .unit-30-cc.annotation {
   font-family: inherit;
   font-style: italic;
-  font-size: 0.9em;
+  font-size: 0.8em;
   line-height: 1.3;
+    letter-spacing: -0.04em;
 }
