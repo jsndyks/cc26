@@ -602,7 +602,7 @@ void draw()
 				Remember that when using variables in <i>Processing</i> you do two things — you <i>declare</i> the
 				variable, which is when you say what type of variable it is and give it a name; and you
 				<i>assign</i> a value to it.
-				One of the reasons why it can be important to separate <i>declaration</i> from <i>assignment</i> is that where a variable is declared determines its <i>scope</i>. It is certinly important to understand scope and be thoughtful about the implications of where variables are assigned and declared.
+				One of the reasons why it can be important to separate <i>declaration</i> from <i>assignment</i> is that where a variable is declared determines its <i>scope</i>. It is certainly important to understand scope and be thoughtful about the implications of where variables are assigned and declared: this matters.	
 			</p>
 
 			<p>
@@ -632,8 +632,9 @@ void draw()
 				One of the reasons we might wish to declare a variable outside of the <code>draw()</code> method in
 				particular is that it allows <i>Processing</i> to recall the value of the variable each time the method is
 				called (remembering that <code>draw()</code> happens 60 times a second). Changing the value of a
-				variable inside <code>draw()</code> is one way of creating simple animations. The following code
-				draws some text at position (<code>xPosition</code>,<code>100</code>) where <code>xPosition</code> decreases its value by one every time it is redrawn:
+				variable inside <code>draw()</code> is one way of creating simple animations.
+				By varying the value of the variable systematically in every draw loop, <i>Processing</i> will draw something slightly different each time - <i>animation</i>!
+				The following code draws some text at position (<code>xPosition</code>,<code>100</code>) where <code>xPosition</code> decreases its value by one every time it is redrawn:
 			</p>
 
 			<div class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">4</span> - <b>Variable Scope</b> : xPosition experiments</code></div>
@@ -668,7 +669,20 @@ void draw()
 				In the <code>draw()</code>
 				method some text is drawn using the current value of <code>xPosition</code> (still 600 the first time it
 				is drawn). The last line of <code>draw()</code> then decreases the value stored in <code>xPosition</code>
-				by 1. Remembering that <code>draw()</code> is repeatedly called 60 times a second, the text is then
+				by 1.</p>
+				<div class="tip">
+					<p><code>x = x-1</code> is a way of decreasing the value of variable <code>x</code> by one.</p>
+					<p>We can read it as : "<i>put into <code>x</code>, what is currently held in <code>x</code> minus 1.</i>"</p>
+					<p>We can do the same with this shorthand: <code>x-=</code></p>
+					<p>And we can add or subtract any quantity with this approach and notation:</p>
+					<ul>
+						<li><code>x=x+4</code> or <code>x+=4</code></li>
+						<li><code>cost=cost*0.95</code> or <code>coast*=0.95</code></li>
+						<li>etc.</li>
+					</ul>
+				</div>
+			<p>
+				Remembering that <code>draw()</code> is repeatedly called 60 times a second, the text is then
 				redrawn at position <code>xPosition</code> which is now 599 before being reduced by one to 598 etc. The
 				result is the text appears to scroll across the screen as <code>xPosition</code> gradually decreases in
 				value from 600 down to 0 and beyond.
@@ -753,7 +767,7 @@ void draw()
 			<p>
 				There is one more important implication to the fact that variables are bound to the block of code in
 				which they are declared:</p>
-				<ul><li><b><i>a variable's identity is defined not just by its name but also by it's scope</i></b>.</li></ul>
+				<blockquote>a variable's identity is defined not just by its name but also by its scope</blockquote>
 				<p>Consider the following version of the scrolling text code:</p>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; highlight: [7,12]">void setup()
@@ -830,10 +844,10 @@ void draw()
 
 			<p>
 				The problem occurs in the draw method where, given their scopes, both <code>xPosition</code> variables should be
-				visible. As such, which variable do the highlighted lines use?</p>
-				<p>The rule is that in such cases the name identifies the variable with the more specific scope
-					(in our case the <code>xPosition</code> declared in draw).
-				We say that <code>xPosition</code> declared in <code>draw()</code> shadows the global variable with the same name.
+				visible. As such, which variable do the highlighted lines of code use?</p>
+				<p>The rule is that in such cases the name is used to identify the variable with <i>the more specific scope</i>.
+					So in this case the script will use the value found in the <code>xPosition</code> variable that is declared in <code>draw()</code>.
+				We say that <code>xPosition</code> declared in <code>draw()</code> <i>shadows</i> the global variable with the same name.
 			</p>
 
 		</div> <!-- End of left column -->
