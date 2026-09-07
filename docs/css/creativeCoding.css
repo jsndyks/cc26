@@ -319,7 +319,7 @@ body {
 
 .tip::before,
 .aside::before,
-.codeTask::before {
+.codeTask::after {
   position: absolute;
   left: -2.5em;
   top: 0;
@@ -329,7 +329,7 @@ body {
 
 .tip::before      { content: "💡"; }
 .aside::before    { content: "🤔"; }
-.codeTask::before { content: "🦜";   transform: scaleX(-1); }
+.codeTask::after { content: "🦜";   transform: scaleX(-1); }
 
 /* Give H3 headings a little more breathing room */
 h3 {
