@@ -322,7 +322,7 @@ body {
 
 .tip::before,
 .aside::before,
-.challenge::before,
+.challenge::after,
 .codeTask::after {
   position: absolute;
   left: -1.5em;
@@ -368,10 +368,10 @@ pre {
 /* -- Remember ... */
 .remember {
   position: relative;
-  background: #fff7b2;
-  padding-top: 1.8em;
+  background: #fff7b280;
+  padding: 1.8rem 3rem 1.8rem 3rem;
   border: none;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.18);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .remember::before {

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Introducing Processing: Practical Exercises</title>
+	<title>CreativeCoding : Variables Extra</title>
 
 	<!-- Header, 16th September, 2021 -->
 	<meta charset="utf-8">
@@ -56,8 +56,10 @@
 	<!-- Add summary sentence or two below, which will act as an easy introduction -->
 
 	<div class="remember">
-	<p>Before you spend time working on any of these optional exercises, make sure you completed all the coding and core tasks in the <a href="./ccVar.html">Variables : Core</a> notes!</p>
-	<p>Attempt <i>all</i> or <i>none</i> of these ... in any order! Choose whatever you fancy, if you have time.</p>
+	<p>Before you spend time working on any of these optional exercises, make sure you have completed all of the coding and core tasks in the <a href="./ccVar.html">Variables : Core</a> notes!</p>
+	<p> These extra challenges are for those who were not stretched by that work.<br/>
+		Attempt <i>all</i> or <i>none</i> of these extra tasks ... in any order!<br/>
+		Choose whatever you fancy, experiment and discuss your solutions, if you have time.</p>
 	</div>
 
 	<!--p>
@@ -73,14 +75,14 @@
 		<p>How many variables did you use in the <i>Traveling Circles</i> task?<br/>
         Because of the symmetry of moving four circles each to their own corner, it can be achieved with only a single variable (plus a bit of arithmetic).
     </p>
-		<p>Can you modify your sketch to use only a single variable (in addition to <i>Processing</i>'s built-in variables such as <code>width</code> and <code>height</code>)?
+		<p>Can you modify your sketch to <b>use only a single variable</b> in the calculations, addition to <i>Processing</i>'s built-in variables such as <code>width</code> and <code>height</code>?
         </p>
 	</div>
 
 	<div class="challenge">
         <h5>2. Visualizing Frame Rate</h5>
-		<p>Let's make an interactive sketch that allows us to vary the target <a href="https://processing.org/reference/frameRate_.html"><code>frameRate()</code></a> and see whether our computer can achieved this!<br/>
-		This code will use <code>mouseY</code> as the input to a <a href="https://processing.org/reference/frameRate_.html"><code>frameRate()</code></a> call and position a <code>point()</code>at a vertical position that shows the <a href="https://processing.org/reference/frameRate.html"><code>frameRate</code></a> that is achieved.</p>
+		<p>Let's make an interactive sketch that allows us to vary the target <a href="https://processing.org/reference/frameRate_.html"><code>frameRate()</code></a> and see whether our computer can achieve this!<br/>
+		This code will use <code>mouseY</code> as the input to a <a href="https://processing.org/reference/frameRate_.html"><code>frameRate()</code></a> call and then plot a <code>point()</code> at a vertical position that shows the <a href="https://processing.org/reference/frameRate.html"><code>frameRate</code></a> that is achieved.</p>
 		<p>If the <a href="https://processing.org/reference/point_.html"><code>point()</code></a> is not at the same vertical position as the mouse / cursor then we know that the requested <a href="https://processing.org/reference/frameRate_.html"><code>frameRate()</code></a> is not being managed by your computer.</p>
 		<pre class="brush: processing; gutter: false; toolbar: false; ">
 void setup () {
@@ -138,7 +140,7 @@ void draw() {
 				<code>4 % 5</code> = 4.
 			</li>
 			<li><code><a href="https://processing.org/reference/textWidth_.html">textWidth(s)</a></code> is the display width in pixels of the String <code>s</code>.</li>
-			<li><code><a href="https://processing.org/reference/nf_.html">nf()</a></code> can be used to format a number as a String with a fixed number of digits.</li>
+			<li><code><a href="https://processing.org/reference/nf_.html">nf()</a></code> can be used to <b>n</b>icely <b>f</b>ormat a number as a String with a fixed number of digits.</li>
 			<li>For Strings <code>a</code> and <code>b</code>, <code>a + b</code> is the string obtained by joining
 				<code>a</code> and <code>b</code> end to end (string concatenation).<br/>
                 And if <code>a</code> is a
