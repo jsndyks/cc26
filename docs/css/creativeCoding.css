@@ -151,10 +151,11 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
 .objectives li {padding-top:0.5em; padding-bottom:0.5em; background-color:#ffffff}
 .summary li {padding-top:0.5em; padding-bottom:0.5em; background-color:#ffffff}
 
+/*
 .summary {
   font-size: larger;
   font-family: 'Roboto Slab', serif;
-}
+}*/
 
 .parotTalk {font-size:100%; font-weight:bold; background-color:#f09090; color:#202020; padding:2px; padding-left:0.25em; padding-right:0.25em; margin-right:0px; margin-left:0px} 
 .parotTalkSm {font-size:100%; font-weight:normal; background-color:#f09090; color:#ffffff; padding:2px; padding-left:0.25em; padding-right:0.25em; margin-right:0px; margin-left:0rem} 
