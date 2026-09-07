@@ -317,7 +317,7 @@ body {
 .tip::before {
   content: "💡";
   position: absolute;
-  left: -2.5em;
+  left: -1.5em;
   top: 0;
   font-size: 2em;
   line-height: 1;
@@ -329,8 +329,27 @@ body {
 .aside::before {
   content: "❓";
   position: absolute;
-  left: -2.5em;
+  left: -1.5em;
   top: 0;
   font-size: 2em;
   line-height: 1;
+}
+/* Give H3 headings a little more breathing room */
+h3 {
+  padding-top: 1.5em;
+  padding-bottom: 0.25em;
+} 
+
+/* H4 and H5 use the normal body font */
+h4,
+h5 {
+  font-family: inherit;
+}
+
+/* Annotation text */
+.unit-30-cc.annotation {
+  font-family: inherit;
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.3;
 }
