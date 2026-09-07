@@ -573,6 +573,11 @@ void draw()
 				<h5>Tree Experiments</h5>
 				<p>Try the tree sketch, by copying the code from above into a sketch.</p>
 				<p>Experiment with the numbers used in the <code>color()</code> declarations to change the colour of the sky, ground and trees.</p>
+				<ul>
+					<li>pink sky</li>
+					<li>yellow ground</li>
+					<li>autumnal leaves</li>
+				</ul>
 				<p>Change the numbers added to <code>treeX</code> and <code>treeY</code> before the second and third trees are drawn.<br/>
 				Can you move the trees closer together, further apart, into the sky?</p>
 			</div>
@@ -583,10 +588,12 @@ void draw()
 									  target="_blank"><code>boolean</code></a>), single characters (<a
 					href="https://processing.org/reference/char.html" target="_blank"><code>char</code></a>),
 					images (<a href="https://processing.org/reference/PImage.html" target="_blank"><code>PImage</code></a>),
-					fonts (<a href="https://processing.org/reference/PFont.html" target="_blank"><code>PFont</code></a>)
-					sound (<a href="https://processing.org/reference/libraries/sound/SoundFile.html" target="_blank"><code>SoundFile</code></a>)
+					fonts (<a href="https://processing.org/reference/PFont.html" target="_blank"><code>PFont</code></a>),
+					sound (<a href="https://processing.org/reference/libraries/sound/SoundFile.html" target="_blank"><code>SoundFile</code></a>),
 					video (<a href="https://processing.org/reference/libraries/video/Movie.html" target="_blank"><code>Movie</code></a>)
-				and plenty of others and we will learn about these in <code>#CreativeCoding</code> to give you lots of capability to express yourselves through creative sketches interesting. For now, being able to store numbers, text and colours in variables, and knowing that variables can store a variety of types of information, is sufficient.
+				and plenty of others.</p>
+			<p>
+				We will learn about these in <code>#CreativeCoding</code> to give you lots of capability to express yourselves through creative and interesting sketches. For now, being able to store numbers, text and colours in variables, and knowing that variables can store a variety of types of information, is sufficient.
 			</p>
 
 			<h3>4. Variable scope</h3>
@@ -595,13 +602,16 @@ void draw()
 				Remember that when using variables in <i>Processing</i> you do two things — you <i>declare</i> the
 				variable, which is when you say what type of variable it is and give it a name; and you
 				<i>assign</i> a value to it.
-				One of the reasons why it is important to separate <i>declaration</i> from <i>assignment</i> is that where a variable is declared determines its <i>scope</i>.
+				One of the reasons why it can be important to separate <i>declaration</i> from <i>assignment</i> is that where a variable is declared determines its <i>scope</i>. It is certinly important to understand scope and be thoughtful about the implications of where variables are assigned and declared.
 			</p>
 
 			<p>
 				The scope of a variable is the term given to <i>where</i> in your code that variable is recognised.
-				The general rule is <b><i>a variable can only be used in the same block of code in which it is
-				declared</i></b>. We can regard a 'block' as meaning within the pair of braces such as those
+				The general rule is that ...</p>
+				<blockquote><b><i>a variable can only be used in the same block of code in which it is
+				declared</i></b>.</blockquote>
+			<p>
+				We can regard a 'block' as meaning within the pair of braces such as those
 				that define a start and end of a method.
 			</p>
 
