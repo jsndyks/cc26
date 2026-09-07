@@ -41,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <script type="text/javascript" src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 </head>
 
 <body>
@@ -197,7 +197,7 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.varsInConsole.png', 450, 360, 'Processing console showing the mouseX mouseY and other variables');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/variables/img/cc.varsInConsole.png', 450, 360, 'Processing console showing the mouseX mouseY and other variables');</script>
 			<p><i>Processing</i> console showing the contents of <code>mouseX</code> and other variables <i>(click to enlarge)</i></p>
 
 
@@ -291,7 +291,7 @@ changeOwed = 10.00 - (totalCost - mealDeal);</pre>
 			<div class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">2</span> - <b>Declare &amp; Assign</b> : a floating point number</code></div>
 
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.variableAnatomy.png', 350, 300, 'The components of a variable declaration and initialisation');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/variables/img/cc.variableAnatomy.png', 350, 300, 'The components of a variable declaration and initialisation');</script>
 			<p>Initialising a <code>float</code> variable with a declaration and assignment.</p>
 
 
@@ -354,7 +354,7 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.mickeyMouse.png', 200, 200, 'Three circles');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/variables/img/cc.mickeyMouse.png', 200, 200, 'Three circles');</script>
 			<p>Three circles all using our own variables: centreX, centreY, faceSize and earSize.</p>
 
 
@@ -385,18 +385,18 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.mickeyBigEars.png', 200, 200, 'Mickey big ears');</script>
-			<p>Mickey big ears created by changing the values assigned to the faceSize and earSize variables.</p>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/variables/img/cc.mickeyBigEars.png', 200, 200, 'Mickey big ears');</script>
+			<p>Mickey big ears created by changing the values assigned to the <code>faceSize</code> and <code>earSize</code> variables.</p>
 
 			<div style="display:flex; justify-content: center">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey01.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey07.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey02.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey03.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey04.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey05.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey06.png" width="100" height="100">
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/variables/img/mickey/mickey08.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey01.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey07.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey02.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey03.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey04.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey05.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey06.png" width="100" height="100">
+			<img src="https://jsndyks.github.io/cc26/html/variables/img/mickey/mickey08.png" width="100" height="100">
 			</div>
 
 		</div> <!-- end of right column -->
@@ -415,8 +415,8 @@ void draw()
 
 			<p>
 				Remember that when we declare a variable we have to state what <i>type</i> of variable it is. So
-				far, we have only considered one type —<code>float</code>. This is a useful type when you need to
-				store numbers that might have a decimal point in them (such as our <code>cost</code> examples
+				far, we have only considered one type — <code>float</code>. This is a useful type when you need to
+				store numbers that might have a decimal point in them (such as our <code>cost</code> and <code>faceSize</code> and <code>earSize</code> examples
 				above).
 				But <i>Processing</i> has many different types of variables, each suited to storing different types
 				of data. It's important that you get to know some of these and understand how to use them.
@@ -432,9 +432,10 @@ void draw()
 
 			<p>
 				If you wish to store some text, such as someone's name, a sentence, a poem or or a book, then you can store the letters that make up the
-				text in a variable type called a <code>String</code> (note the use of the upper-case 'S' - this matters).
+				text in a variable type called a <code>String</code>. Note the use of the upper-case 'S' in <code>String</code> - this matters.</p>
+			<p>
 				String variables are initialised just as we did for <code>float</code> types, but instead of
-				assigning numbers, we assign text in quotation marks that delimit the start and end point of the information that we want to store in the <code>String</code> variable:
+				assigning numbers, we assign text in quotation marks that delimit the start and end point of the information that we want to store - the <i>sequence</i> or <i>string</i> of characters - in the <code>String</code> variable:
 			</p>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; highlight:[10,12]">void setup()
@@ -453,13 +454,14 @@ void draw()
 			<p>
 				Instead of providing the text "<code>Hello Creative Coders</code>" directly to <i>Processing's</i>  <a
 					href="https://processing.org/reference/text_.html" target="_blank"><code>text()</code></a> command, we assign it to a variable we have called <code>welcomeMessage</code> and then pass the contents of that
-				variable to <code>text()</code>. Note also that we are doing some simple arithmetic to find <code>width/2</code> and <code>height/2</code> in order to position the text in the centre of the sketch.
+				variable to <code>text()</code>.
+				Note also that we are doing some simple arithmetic (as above) to find <code>width/2</code> and <code>height/2</code> in order to position the text in the centre of the sketch.
 			</p>
 
 			<div class="codeTask">
 				<h5>Welcome Text</h5>
-				<p>Try it, by copying the code from above into a sketch.</p>
-				<p>Change the text with which you initialise the <code>welcomeMessage</code> variable.</p>
+				<p>Try this example out by copying the code from above into a new sketch.</p>
+				<p>Change the text with which you initialise the <code>welcomeMessage</code> variable by assigning a different sequence of characters to the <code>String</code> named <code>welcomeMessage</code>.</p>
 			</div>
 
 
@@ -553,7 +555,7 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.woodland.png', 400, 400, 'Three trees');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/variables/img/cc.woodland.png', 400, 400, 'Three trees');</script>
 			<p>Three trees using color variables to store trunk and leaf colours.</p>
 
 		</div> <!-- end of right column -->
@@ -672,7 +674,7 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/scrollingText/", 600, 200, "https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.varsScrollingText.png");</script>
+			<script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/scrollingText/", 600, 200, "https://jsndyks.github.io/cc26/html/variables/img/cc.varsScrollingText.png");</script>
 			<p>
 				Scrolling text sketch (<i>click to activate</i>).
 			</p>
@@ -724,7 +726,7 @@ void draw()
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 
-			<script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/mickeyZoom/", 400, 400, "https://jsndyks.github.io/cityCreativeCoding/html/variables/img/cc.mickeyZoom.png");</script>
+			<script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/mickeyZoom/", 400, 400, "https://jsndyks.github.io/cc26/html/variables/img/cc.mickeyZoom.png");</script>
 			<p>
 				Zooming Mickey (<i>click to activate</i>).
 			</p>
