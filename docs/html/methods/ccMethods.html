@@ -22,9 +22,9 @@
 
     <div class="intro">
         <p>
-            This section introduces method definition and parameterisation.
-            We start with a simple game, called <i>PathFinder</i>.
-            The code, as initially structured, is relatively complex and not easy to understand.
+            This section introduces method definition and parameterisation.<br/>
+            We start with a simple game, called <i>PathFinder</i>.<br/>
+            The code, as initially structured, is relatively complex and not easy to understand.<br/>
             We will see how to <em>refactor</em> the code using method definitions, resulting in code
             that is much easier to understand, debug and reuse.</p>
         <p><strong>By the end of this session you should be able to:</strong>
@@ -335,7 +335,7 @@ void draw()
   line(xPos,yPos,mouseX,mouseY);</pre>
 
             <p>
-                We can simply copy this code and wrap it up inside a method definition.
+                We can simply copy this code and wrap it up inside a method definition.<br/>
                 We will give our new method a meaningful name like <code>drawAimingLine</code> - but we could call it anything at all:
             </p>
             <pre class="brush: processing; gutter: false; toolbar: false; ">void drawAimingLine()
@@ -361,10 +361,10 @@ void draw()
                 The method definition has four components:
             </p>
             <ol>
-                <li>A <i>return type</i>. In this example the return type is <code>void</code>, which declares that
+                <li>A <i>return type</i>.<br/>In this example the return type is <code>void</code>, which declares that
                     this method doesn't return a value when it executes (some methods, like <code>dist()</code>, do
                     return values).</li>
-                <li>A <i>name</i>. In this example the name of the method is <code>drawAimingLine</code>. It is VERY important to
+                <li>A <i>name</i>.<br/>In this example the name of the method is <code>drawAimingLine</code>. It is VERY important to
                     choose good names for your methods. A good name is one that tells us concisely and accurately
                     what is the intended purpose of the method. Bad names for
                     this method would be things like <code>myMethod</code> (tells us nothing useful at all),
@@ -372,9 +372,9 @@ void draw()
                     <code>drawAL</code> (an abbreviation of “draw aiming line”, but why abbreviate when the full
                     version is easier to understand and takes only milliseconds longer to type?).
                 </li>
-                <li>A <i>parameter list</i>. That's the part in round brackets immediately after the method name.
+                <li>A <i>parameter list</i>.<br/>That's the part in round brackets immediately after the method name.
                     In this example the parameter list is empty. We will consider the more general case later.</li>
-                <li>The <i>method body</i>. That's the part in the curly brackets.
+                <li>The <i>method body</i>.<br/>That's the part in the curly brackets.
                     This is the code that be executed each time our method is used.</li>
             </ol>
             <p>
@@ -384,6 +384,8 @@ void draw()
     various things that we want the method to do;
     usually with a semicolon at the end;
     these semicolons separate the Processing statements in the method;
+
+    return some data of type returnType (unless returnType is 'void' in which case return nothing)
   };</pre>
 
         </div>
@@ -396,10 +398,12 @@ void draw()
         <div class="unit-70-cc">
             <!-- Left column -->
              <p>
-            Having defined a method in our sketch, what will it do when we run the sketch? Absolutely nothing. That
-            is to say, it won't do anything unless we <i>call</i> it from somewhere else in our code.</p>
-            <p>To call a  method, you just write its name followed
-            by an argument list that matches the parameter list in the definition.<br/>
+            Having defined a method in our sketch, what will it do when we run the sketch?<br/>Absolutely nothing.<br/>
+            That is to say, it won't do anything unless we <i>call</i> it from somewhere else in our code.
+            </p>
+            <p>
+                To call a  method, you just write its name followed
+                by an argument list that matches the parameter list in the definition.<br/>
             Since <code>drawAimingLine</code> has an empty parameter list, we also write an empty argument list when we
             call it<br/>So our method call will be just:
             </p>
@@ -407,7 +411,8 @@ void draw()
             <pre class="brush: processing; gutter: false; toolbar: false; ">    drawAimingLine();</pre>
             <div class="codeTask">
                 <h5>Your First Method - Call the Method</h5>
-                <p>Put this call inside <code>draw()</code>, <em>replacing</em> the two lines of code we started with.</p>
+                <p>Put this call inside <code>draw()</code> - <code>drawAimingLine();</code></p>
+                <p>It should <em>replace</em> the two lines of code that we started with.</p>
             </div>
             <div class="tip">
                 <p>Note that we now have two methods with similar names:</p>
@@ -446,7 +451,7 @@ void draw()
             <div class="figClear"></div>
             <div class="codeTask">
                 <h5>Your First Method - Check the Flow</h5>
-                <p>After making the changes above, make sure your sketch still works.
+                <p>After making the changes above, make sure your sketch still works.<br/>
                     It should behave <em>exactly the same as before</em>.</p>
                 <p>Remember, when we refactor code, our aim is to improve its structure,
                 <em>not</em> to change its behaviour.
@@ -464,7 +469,7 @@ void draw()
             <h3>4. Method Reuse versus Code Duplication</h3>
 
             <p>
-                There are two places in <code>draw()</code> where the <i>PathFinder</i> code draws the ball:
+                There are two places in our original <code>draw()</code> where the <i>PathFinder</i> code draws the ball:
             </p>
 
             <ol>
@@ -509,7 +514,7 @@ void draw()
                 </ul>
                 <p>
                 Take care to choose a good name for your method!<br/>
-                Make sure you haven't broken anything - PAROT (Talk)? 
+                Make sure you haven't broken anything, the script should execute as before, but the code removes this (bad) repetition  - PAROT (Talk)? 
              </p>
             </div>
             <br/>
@@ -599,9 +604,12 @@ void draw()
             parameter list has the same structure as a variable declaration: a type followed by a name. And that's
             because a parameter
             <i>is</i> a variable.
-            It is a local variable (in scope, and so available for use, <i>only within the method being defined</i>),
-            which gets initialised afresh each time the method is called.
-            Also notice how the code executed within the method now uses these local variables that are defined by the parameters
+            It is a local variable, meaning that its scope is limited to each individual call of the method.
+            So it is available for use, <i>only within the method being defined</i>,
+            and  gets initialised afresh each time the method is called.
+            </p>
+            <p>
+                Also notice how the code executed within the method now uses these local variables that are defined by the parameters
             <code>x</code>
             and <code>y</code> when the method is called. 
             The local variables are used in the distance check, instead of the global variables <code>peg1X</code> and <code>peg2X</code>.
@@ -613,7 +621,7 @@ void draw()
                 For example, if we wanted to check for a collision with a peg at position (29, 176) we would add the call:
             </p>
             <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision(29, 176)</pre>
-            So, by adding <i>parameters</i> to our method definition, our three calls can now each specify different values for <code>x</code> and <code>y</code>:
+            So, by adding <i>parameters</i> to our method definition, our three calls can now each specify different values for <code>x</code> and <code>y</code> but effectively perform the same check:
             <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision(peg1X, peg1Y);
     checkForPegCollision(peg2X, peg2Y);
     checkForPegCollision(peg3X, peg3Y);</pre>
@@ -633,8 +641,9 @@ void draw()
             <!-- Left column -->
             <div class="coreTask">
                 <h5>Video : Parameters &amp; Scope</h5>
-                <p>Let's finish this section on <i>parameters</i> with an explanation of parameters and <i>scope</i> from our colleague <i>Dr Radu Jianu</i>, that we have dug out of the City CS archives!
-                It's a <i>4 minute watch</i> and arrives direct from <i>way back when long ago</i>, but it's a great explanation and is still very helpful!</p>
+                <p>Let's finish this section on <i>parameters</i> with an explanation of parameters and <i>scope</i> from our colleague <i>Dr Radu Jianu</i>, that we have dug out of the City CS archives!</p>
+                <p>
+                    It's a <i>4 minute watch</i> and arrives direct from <i>way back when long ago</i>, but it's a great explanation and is still very helpful!</p>
                 <p>It uses a simple example to show how parameters are passed into a method and explains their scope.<br/>
                 It should really help clarify.</p>
             <a href="https://cityuni-my.sharepoint.com/:v:/g/personal/j_dykes_city_ac_uk/EUfVRWHE8KVChQhNHFJmkbwBSLpz6Du0sfCaSUGcqvQZsg?e=typd6d"><img style="padding:1.5em;padding-top:0px" width="400" src="https://jsndyks.github.io/cc26//html/methods/img/cc.video.parameters.png" alt="parameters video"></a>
@@ -669,7 +678,7 @@ void draw()
 {
   float dx = x2 - x1;               // &lt;-- calculate difference in x positions
   float dy = y2 - y1;               // &lt;-- calculate difference in y positions
-  return sqrt(dx * dx + dy * dy);  // &lt;-- use Pythagoras' theorem to work out the distance (the hypotenuse)
+  return sqrt(dx * dx + dy * dy);   // &lt;-- use Pythagoras' theorem to work out the distance (the hypotenuse)
 }</pre>
             <p>
                 Notice the two essential differences compared to the method definitions we have seen previously:
@@ -694,7 +703,8 @@ void draw()
             <h3>7. Practice and Exercises</h3>
 
             <p>OK, you will soon get the hang of all of this if you try writing some code that involves developing your own <i>methods()</i>.</p>
-            <p>Here are some challenges that should help with this.<br/>Try them out, discuss them with teaching staff and your colleagues. Use you sketch books to help you work out your solutions and remember to add comments and press <code>CTRL-T</code> to keep your code tidy.</p>
+            <p>Here are some challenges that should help with this.<br/>Try them out, discuss them with teaching staff and your colleagues.<br/>
+                Use you sketch books to help you work out your solutions and remember to add comments and press <code>CTRL-T</code> to keep your code tidy.</p>
 
             <div class="codeTask">
                 <h5>A Method to Draw A Composite Shape</h5>
@@ -711,14 +721,15 @@ void draw()
                     </figure>
                 </div>
     
+                    <p>Starting from scratch, with no copying or pasting ... </p>
                     <ol>
-                    <li style="padding-bottom:0.5em">Starting from scratch (no copy/paste), write a simple sketch to draw a composite shape - a shape that consists of at least three other shapes - in the centre of the sketch window, like the "roundel" shown here.<br/>
+                    <li style="padding-bottom:0.5em">Write a simple sketch to draw a composite shape - a shape that consists of at least three other shapes - in the centre of the sketch window, like the "roundel" shown here.<br/>
                         (This is a reduced-size screen-shot of a 400x400 sketch.)<br/>
                         Save your sketch with an appropriate name like "Roundel".
                     </li>
                     <li style="padding-bottom:0.5em">But, be creative here - you might want to draw something else - such as a simple: tree, dog, car, house, alien gloop monster, or like me ... the head of a robot</li>
                     <li style="padding-bottom:0.5em">
-                        Now refactor your sketch so that the drawing code for the roundel (or other composite shape) is in a separate method called <code>roundel()</code> or some shape-specific equivalent (like <code>alienGloopMonster()</code>).<br/>
+                        Now refactor your sketch so that the drawing code for the roundel (or other composite shape) is in a separate method called <code>roundel()</code> or some shape-specific equivalent - like <code>alienGloopMonster()</code>.<br/>
                         Note that this method has an empty parameter list.<br/>
                         After refactoring, your <code>draw()</code> method should look like this:
                         <pre class="brush: processing; gutter: false; toolbar: false; ">void draw()
@@ -788,21 +799,21 @@ void draw()
                 <div class="figRight">
                     <figure>
                     <a href="https://jsndyks.github.io/cc26//html/methods/img/RoundelPosScale.jpg"><img src="https://jsndyks.github.io/cc26//html/methods/img/RoundelPosScale.jpg" alt="Roundel" width="190"/></a>
-                    <figcaption>Roundels drawn by<br/>a <code>roundel</code> method<br/>with different input parameters<br/>affecting position and scale.</figcaption>
+                    <figcaption>Roundels drawn by<br/>a <code>roundel</code> method<br/>with different input parameters<br/>affecting position and size.</figcaption>
                     </figure>
                 </div>
                 <ol>
-                    <li style="padding-bottom:0.5em">Save a third version of your sketch with the name "RoundelPosScale" (or similar).</li>
+                    <li style="padding-bottom:0.5em">Save a third version of your sketch with the name "RoundelPosSize" (or similar).</li>
                     <li style="padding-bottom:0.5em">Add one more parameter to your <code>roundel</code> method. This parameter should be used to control
-                        the <i>scale</i> of the roundel (a scale of 1.0 will draw the roundel at the same size as before, a
-                        scale of 0.5 will draw it at half size, a scale of 2.0 will draw it at double size, etc).<br/>
+                        the <i>size</i> of the roundel (a size of 1.0 will draw the roundel at the same size as before, a
+                        size of 0.5 will draw it at half size, a size of 2.0 will draw it at double the original size, etc).<br/>
                         If you have drawn a car, or a house or an alien gloop monster or something else, then add parameters that affect the width and height of the composite shape.<br/>
-                        Refactor your <code>draw()</code> method to use a scale parameter of 1.0 in each
+                        Refactor your <code>draw()</code> method to use a size parameter of 1.0 in each
                         of the existing calls to <code>roundel</code> - everything should look the same as before when you run the sketch.
                     </li>
                     <li style="padding-bottom:0.5em">
-                        In the <code>draw()</code>, modify the scale parameters in the calls to <code>roundel</code> (or similar) so that
-                        each one is drawn at a different scale.<br/>
+                        In the <code>draw()</code>, modify the size parameters in the calls to <code>roundel</code> (or similar) so that
+                        each one is drawn at a different size.<br/>
                         The result should look something like the ones shown here.
                     </li>
                 </ol>
@@ -821,7 +832,7 @@ void draw()
             <!-- Left column -->
             <h3>8. Summary and Further Resources</h3>
             <ul>
-                <li>Methods are named pieces of code that can be called from other pieces of code.
+                <li>Methods are named pieces of code that can be called from other pieces of code.<br/>
                     When a method finishes execution, control returns to the calling code.</li>
                 <li>Using methods allows us to build code in a modular way and to write code once and use it many
                     times. Because methods are reusable they allow us to avoid code duplication.</li>
