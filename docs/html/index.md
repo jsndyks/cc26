@@ -75,8 +75,8 @@ table {
 
 <div style="align:right; text-align:right; padding-right:4rem">
 
-**Jason DYKES**<br/>
-02/09/26
+<b>Jason DYKES</b><br/>
+<i>02/09/26</i>
 
 </div>
 
