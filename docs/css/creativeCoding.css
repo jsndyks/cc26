@@ -308,6 +308,7 @@ body {
   padding: 1.15rem 1.25rem;
   border-radius: 6px;
   margin-bottom: 2rem;
+  position: relative;
 }
 .intro ul,
 .intro ol,
@@ -318,6 +319,18 @@ body {
   background: transparent !important;
 }
 .intro p, .intro ul, .intro ol {  padding: 0.25rem 2.5rem; margin: 0rem 1rem;}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  left: -2.5em;
+  top: 0;
+
+  width: 2em;
+  height: 2em;
+
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
+}
 
 .tip,
 .aside,
@@ -344,6 +357,7 @@ body {
 .task h4::before {
   content: "\00BB\00A0"; /* » followed by a non-breaking space */
 }
+
 
 /* Give H3 headings a little more breathing room */
 h3 {
