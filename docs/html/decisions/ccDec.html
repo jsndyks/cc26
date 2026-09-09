@@ -60,14 +60,14 @@
                         <i>This would make coding pretty straightforward, but it doesn't happen very often.</i><br/><br/></li>
                     <li>There are things we don't know when we write the code, that will only transpire as the code is running, but they are "<i>known unknowns</i>".<br/>
                         We know what kind of data our code has to process and we know the rules for how it should be processed
-                        when it becomes available.<br/><i>This is usually the case.</i></li>
+                        when it becomes available.<br/><i>This is usually the case, and it's what makes programmingm interesdtingf, powerful and someties a little challenging.</i></li>
                 </ol>
 
 
                 <p>
                     As the second of these situations is the one we normally have to deal with as programmers, we are expected
                     to write code that is flexible enough to process many alternative situations - combinations of inputs and user
-                    behaviours by applying known rules.
+                    behaviours - by applying known rules.
                     The precise context only becomes known as the code executes, but the rules can be figured out in advance.
                 </p>
 
@@ -80,8 +80,21 @@
 
                 <p>
                     A fundamental programming concept that brings us much closer to fully flexible programs is 
-                    <b>the <code>if</code> statement</b>
+                    <b>the <a href="https://processing.org/reference/if.html"><code>if</code></a> statement</b>.
+                    It enables us to make <i>decisions</i> as a program (such as a <i>Processing</i> script) runs.
                 </p>
+
+                <p>An <a href="https://processing.org/reference/if.html"><code>if</code></a> statement has the form ...</p>
+                <pre>
+if (test) {	
+  statements	
+}</pre>
+
+            <p>Where ...</p>
+                <dl>
+                <dd><b>test</b>	is any valid expression that evaluates to <code>true</code> or <code>false</code></dd>
+	            <dd><b>statements</b> are one or more statements (blocks of code) to be executed <em>if</em> the expression evaluates to <code>true</code></dd>
+                </dl>
 
             </div> <!-- End of left column -->
 

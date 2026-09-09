@@ -10,7 +10,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
 /* -- Existing CC Stylesheet -- */
-  pre {margin-left:2em; padding-top:8px; padding-bottom:8px; padding-left:2em;}
+  pre {margin-left:2rem; padding:0.5rem 2rem;}
   p {padding-top:0.5em; padding-bottom:0.5em; margin-top:0.5em; margin-bottom:0.5em; }
 
   .key {font-weight:bold; padding:6px; margin:2px; padding-top:2px; padding-bottom:2px; background-color:#e0e0e0; border:1px solid #c0c0c0; border-right:2px solid #909090; border-bottom:2px solid #909090; }
@@ -149,9 +149,9 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
 .challenge h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
 .aside h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
 
-.challenge li {padding-top:0.5em; padding-bottom:0.5em}
-.objectives li {padding-top:0.5em; padding-bottom:0.5em; background-color:#ffffff}
-.summary li {padding-top:0.5em; padding-bottom:0.5em; background-color:#ffffff}
+.challenge li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+.objectives li {padding-top:0.25rem; padding-bottom:0.25rem; background: transparent !important;}
+.summary li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
 
 /*
 .summary {
@@ -305,7 +305,7 @@ body {
   font-size: 1em;
   /* background-color: #f3f4f5; */
   background-color: #4080ff40;
-  padding: 1.25rem 1.5rem;
+  padding: 1.15rem 1.25rem;
   border-radius: 6px;
   margin-bottom: 2rem;
 }
@@ -372,7 +372,7 @@ h3 {
 }
 
 pre {
-  padding: 0.3em 0.5em;
+  padding: 0.5rem 2.5rem;
 }
 
 /* -- Remember ... */
