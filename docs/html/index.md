@@ -28,20 +28,20 @@ table {
 |         |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
 |      01 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                              |        |
 |         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)   | x                                     |        |
-|      02 | **Variables**                  | [ccVar.html](variables/ccVar.html)                                                       |        |
-|         |                                | [ccVar.extra.html](variables/ccVar.extra.html)                                           |        |
-|      03 | **Interaction**                | [ccInt.html](interaction/ccInt.html)                                                     |        |
-|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)                                         |        |
-|      04 | **Loops**                      | [ccLoops.html](loops/ccLoops.html)                                                       |        |
-|         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)                                           |        |
-|      04 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)                                                    |        |
-|         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html)                                        |        |
-|      05 | **Decisions**                  | [ccDec.html](decisions/ccDec.html)                                                       |        |
-|         |                                | [ccDec.extra.html](decisions/ccDec.extra.html)                                           |        |
-|      06 | **Methods**                    | [ccMethods.html](methods/ccMethods.html)                                                 |        |
-|         |                                | [ccMethods.extra.html](methods/ccMethods.extra.html)                                     |        |
-|         |                                | [ccMethods.tenMethodsGame.html](methods/ccMethods.tenMethodsGame.html)                   |        |
-|         |                                | [ccMethods.tenMethodsGame.template.html](methods/ccMethods.tenMethodsGame.template.html) |        |
+|      02 | **Variables**                  | [ccVar.html](variables/ccVar.html) |x                                                      |        |
+|         |                                | [ccVar.extra.html](variables/ccVar.extra.html)     |x                                      |        |
+|      03 | **Decisions**                  | [ccDec.html](decisions/ccDec.html) |x                                                      |        |
+|         |                                | [ccDec.extra.html](decisions/ccDec.extra.html) |x                                           |        |
+|      03 | **Methods**                    | [ccMethods.html](methods/ccMethods.html)  |x                                               |        |
+|         |                                | [ccMethods.extra.html](methods/ccMethods.extra.html)  |x                                   |        |
+|         |                                | [ccMethods.tenMethodsGame.html](methods/ccMethods.tenMethodsGame.html)  |x                 |        |
+|      04 | **Interaction**                | [ccInt.html](interaction/ccInt.html)                                                     |        |
+|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)  |                                     |        |
+|      05 | **Loops**                      | [ccLoops.html](loops/ccLoops.html)     |x                                                  |        |
+|         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)|x                                           |        |
+|      05 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)  |x                                                  |        |
+|         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html) |x                                       |        |
+|      06 | **Dear Data**                | [??      ]()                                                     |        |
 |      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |        |
 |         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |        |
 |         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |        |
