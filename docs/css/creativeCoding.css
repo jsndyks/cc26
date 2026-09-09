@@ -1,8 +1,11 @@
+/* -- Custom layout and style -- */
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/master.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css");
+
+/* -- Embedded fonts -- */
 @import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
