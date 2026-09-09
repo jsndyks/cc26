@@ -322,8 +322,8 @@ body {
 .summary li {
   background: transparent !important;
 }
-.intro p {  padding: 0.25rem 4.5rem; margin: 0rem 1rem;}
-.intro ul, .intro ol {  padding: 0.25rem 4.5rem; margin: 0.25rem 3rem;}
+.intro p, .remember p {  padding: 0.25rem 4.5rem; margin: 0rem 1rem;}
+.intro ul, .intro ol, .remember ul, .remember ol {  padding: 0.25rem 4.5rem; margin: 0.25rem 3rem;}
 .intro h2, .remember h2  {padding:0rem 4.5rem 1rem 3.25rem; margin:0rem 2rem}
 
 
@@ -415,7 +415,7 @@ pre {
   content: "Remember...";
   position: absolute;
   top: 4.45em;
-  left: 0.7em;
+  left: -10.7em;
   font-weight: bold;
   font-style: italic;
 }
