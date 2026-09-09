@@ -414,8 +414,8 @@ pre {
 .remember::before {
   content: "Remember...";
   position: absolute;
-  top: 4.45rem;
-  left: 2rem;
+  top: 5rem;
+  left: 4rem;
   transform: translateX(-100%);
   font-weight: bold;
   font-style: italic;
