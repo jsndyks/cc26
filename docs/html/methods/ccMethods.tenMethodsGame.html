@@ -2,68 +2,32 @@
 <html>
 
 <head>
-  <title>CreativeCoding Lecture: Ten Methods Game</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Methods Game</title>
 
-<!-- Embedded fonts -->
-<link
-    href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-    rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css"/>
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg"/>
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
-<!-- Custom layout and style -->
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-<!-- General browser compatibility handling -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-<!-- Formatted source code -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-<!-- Sketch popups and hidden text-->
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-<!-- JD Extras! -->
-<link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-  
-  <!-- iFrame -->
-  <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
-
-  <style>
-    h3 {padding-top:1rem; margin-top:8rem; border-top:1px dashed #c0c0c0; clear:none}
-  </style>
 </head>
 
 <body>
-  <div id="page">
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    
-<!--     
-    We'd like you to try this exercise in class.
-    Please _attempt each of the exercises_ **before checking the solutions**.
-    Trying things out and _thinking things through_, and _getting things wrong_ before seeing a solution that works is **the best way to learn to code**.
-
-    You can access [this page](https://jsndyks.github.io/cityCreativeCoding/html/art/2023%7C24/copyright.html) outside of _Moodle_ should you wish to do so. 
-  -->
 
 
-    <h2>Ten Methods Game</h2>
+<div id="page">
+
 
     <div class="intro">
-      
+     <h2>Ten Methods Game</h2>        
     <p>We are going to run this game as an exercise in class.<br/>
       There are 10 <i>Methods Challenges</i> and 10 solutions - let's see how far we can get!
       </p>
     </div>
  <hr/>
+
 
     <p>Each of the <i>10 Methods Challenges</i> begins with a code snippet that gives you a structure that will help you develop your methods.<br/>
       Double click the code to select it all, and use <i>copy</i> and <i>paste</i> to get it into your <i>Processing</i> sketch.
@@ -87,9 +51,9 @@
         Trying, failing, thinking and falling behind are all important parts of learning. So please only use the 'Catch Up!' buttons containing solutions to catch up!
       </p>
       <p>
-        Try clicking this one though!<br/>
+        Try clicking this first one though and read through!<br/>
       </p>
-      <p>Oh, and remember to save your sketch, perhaps with a new name, after very challenge.</p>
+      <p>Oh, and remember to save your sketch, perhaps with a new name, after very  challenge: '<code>method01.pde</code>', '<code>method02.pde</code>', etc.</p>
   
     <hr/>
 
@@ -97,7 +61,7 @@
     <h3>1. method 01 : Can you write a method with no content that does nothing?</h3>
 
     <p>Copy this code into a new <i>Processing</i> sketch - it is the basis of your method-making efforts.<br/>
-      Save it with a meaningful name - '<code>tenMethodsGame.pde</code>' or something to begin with.</p>
+      Save it with a meaningful name - '<code>method01.pde</code>' or something to begin with.</p>
 
       <pre class="brush: processing; gutter: false; toolbar: false; highlight: [11,15]">
       void setup () {
@@ -139,7 +103,7 @@
 
           <p>Call this method in the <code>draw()</code> loop with ... </p>
 
-          <pre class="brush: processing; gutter: false; toolbar: false; highlight: [3,4]">
+          <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1]">
               doNothing();                      
           </pre>
 
@@ -150,8 +114,36 @@
 
           <h3>2. method 02 : Can you write a method that draws something?</h3>
 
-          <p>The body of the method should draw a <b>square</b> that is a <b>random colour</b> in a <b>random position</b>.</p>
+          <p>The body of the method should draw a <b>square</b> somewhere on the canvas.</p>
+          <p>Write your method and call it from your sketch.</p>
       
+            <pre class="brush: processing; gutter: false; toolbar: false; highlight: [6,7]">
+              // -- method 02 : Can you write a method that draws something?
+
+              void doSomethingGraphical() {
+                
+                stroke(32,32);
+                // -- add a rect()
+              }
+              </pre>
+      
+              <!-- Hidden code button -->
+              <span><a href="#" class="link-show-code">Solution - Catch up Here!</a></span>
+              <div class="prettyprint" style="display: none;">
+
+                <pre class="brush: processing; gutter: false; toolbar: false; highlight: [6,7]">
+                  // -- method 02 : Can you write a method that draws something?
+
+                  void doSomethingGraphical() {
+                    
+                    stroke(32,32);
+                    rect(20,20,60,60);
+                  }</pre>
+
+                </div>
+
+                <p>If that's too easy then make the method draw a <b>square</b> that is a <b>random colour</b> in a <b>random position</b>.</p>
+
             <pre class="brush: processing; gutter: false; toolbar: false; highlight: [6,7]">
               // -- method 02 : Can you write a method that draws something?
 
@@ -182,7 +174,8 @@
 
                 <h3>method 03 : Can you write a method that returns something?</h3>
 
-                <p>Set the return type to <code>float</code> and return a random value between 0 and 100 from the method. </p>
+                <p>Make a copy of the previous sketch - '<code>method03.pde</code>' and in this example set the return type of the method to <code>float</code>
+                  and return a random value between 0 and 100 from the method. </p>
             
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [4,5,11]">
 void draw() {
@@ -300,7 +293,7 @@ float takeAnArgument(int a) {
                 <p>You should know how to call a method from the <code>draw()</code> loop by now!</p>
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [2,9,10,12,13]">
 // -- Add this to the draw() loop:
-showSomeText("Golnaz "+frameCount);
+showSomeText("Frames "+frameCount);
 
 // -- Your method should look something like this ...
 void showSomeText(String s) {
@@ -337,8 +330,8 @@ void showSomeText(String s) {
 
                 <h3>method 07 : Can you add two more arguments that set the rectangle and fill colours?</h3>
 
-                <p>Pass <code>color</code> variables into the method.<br/> 
-                You can create them by calling <code>color()</code> in the parameter list when you call your method.
+                <p>Pass two <code>color</code> variables into the method so that you now have a method with three parameters.<br/> 
+                You can instantiate these color variables by calling <code>color()</code> in the argument list when you call your method, as shown below.
                 </p>
             
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [2,9,10,12,13]">
