@@ -304,7 +304,8 @@ body {
 .intro, .summary {
   font-size: 1em;
   /* background-color: #f3f4f5; */
-  background-color: #4080ff40;
+  /* background-color: #4080ff40; */
+  background: #e4f4fa;
   padding: 1.15rem 1.25rem;
   border-radius: 6px;
   margin-bottom: 2rem;

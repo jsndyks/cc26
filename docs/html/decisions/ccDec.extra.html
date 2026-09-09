@@ -33,7 +33,7 @@
         <div class="challenge">
             <h5>Two Coins?</h5>
             <p>
-            This exercise is an adaptation of the “Heads or Tails” sketch from the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968007">Decisions : Core</a> activity :
+            This exercise is an adaptation of the “Heads or Tails” sketch from the <a href="./ccDec.html">Decisions : Core</a> activity :
         </p>
             <pre class="brush: processing; gutter: false; toolbar: false; ">float randomNumber;
 
@@ -64,7 +64,7 @@ void draw()
         </p>
             <p>
                 The aim is to extend this code so that it simulates two coin tosses instead of just one.<br/>
-                The possible combinations for two coin tosses are TT, TH, HT, HH.
+                The possible combinations for two coin tosses are TT, TH, HT, HH.<br/>
                 Your sketch should print one of three messages:
             </p>
             <ul>
@@ -87,7 +87,7 @@ void draw()
                     random numbers are less than 1 with an <code>if</code> statement.<br/>
                     You should use the <code>&amp;&amp;</code> operator to do this.<br/>
                     Modify the message variable assignments so that the first one is “TWO TAILS” and the second one is
-                    “WORK IN PROGRESS!”. Check that your sketch runs and behaves as expected. If you run it repeatedly many
+                    “WORK IN PROGRESS!”.<br/>Check that your sketch runs and behaves as expected.<br/>If you run it repeatedly many
                     times you should find that it displays the message “TWO TAILS” roughly a quarter of the time.
                 </li>
 
@@ -114,14 +114,14 @@ void draw()
             <h5>Bouncing Up &amp; Down</h5>
             <p>
             In this exercise you add movement in the y-direction to the bouncing ball sketch that you completed in
-            <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968007">Decisions : Core</a>.</p>
+            <a href="./ccDec.html">Decisions : Core</a>.</p>
             <p>You might worry that simultaneous movement in two dimensions will introduce all sorts of new complexities into your code.
                 Luckily for us, we can treat movement in the two directions independently, using very similar code for both cases,
             and everything works out fine.
              </p>
             <ol>
                 <li>
-                    <p>
+                    <p> 
                     Add extra variables <code>yPosition</code> and <code>yVelocity</code> to your sketch.<br/>
                     In <code>setup()</code>, initialise <code>yPosition</code> to be halfway down the screen and initialise <code>yVelocity</code> to 1 pixel per frame.
                     </p>
