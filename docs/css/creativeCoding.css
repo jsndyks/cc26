@@ -152,6 +152,7 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
 .challenge li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
 .objectives li {padding-top:0.25rem; padding-bottom:0.25rem; background: transparent !important;}
 .summary li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+.summary h4, .summary h5 {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
 
 /*
 .summary {
@@ -322,7 +323,7 @@ body {
 .intro p {  padding: 0.25rem 4.5rem; margin: 0rem 1rem;}
 .intro ul, .intro ol {  padding: 0.25rem 4.5rem; margin: 0.25rem 3rem;}
 .intro h2 {padding:0rem 4.5rem 1rem 3.25rem; margin:0rem 2rem}
-  
+
 
 .intro::before {
   content: "";
@@ -330,8 +331,8 @@ body {
   left: 0.5rem;
   top: 0.5rem;
 
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
 
   background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
 }
