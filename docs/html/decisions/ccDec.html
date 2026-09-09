@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
     <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
 	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
-	<script src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
 </head>
 
@@ -96,6 +96,23 @@ if (test) {
 	            <dd><b>statements</b> are one or more statements (blocks of code) to be executed <em>if</em> the expression evaluates to <code>true</code></dd>
                 </dl>
 
+                <p>Or,  when we have two different statements to be executed depending upon the outcome of the test, then we use <a href="https://processing.org/reference/else.html"><code>else</code></a>, with the form ...</p>
+                <pre>
+if (test) {	
+  true statements	
+} else {	
+  false statements	
+}</pre>
+
+            <p>Where ...</p>
+                <dl>
+                <dd><b>test</b>	is any valid expression that evaluates to <code>true</code> or <code>false</code></dd>
+	            <dd><b>true statements</b> are one or more statements (blocks of code) to be executed <em>if</em> the expression evaluates to <code>true</code></dd>
+	            <dd><b>false statements</b> are one or more statements (blocks of code) to be executed <em>if</em> the expression evaluates to <code>false</code></dd>
+                </dl>
+
+
+
             </div> <!-- End of left column -->
 
         </div> <!-- End of row -->
@@ -105,7 +122,9 @@ if (test) {
             <div class="unit-70-cc">
                 <!-- Left column -->
                 <h3>2. Example: choose a shape based on mouse position</h3>
-                <pre class="brush: processing; gutter: false; toolbar: false; ">
+                <p>Here is how this might look with an example test and some example statements to run depending on the outcome of the test.</p>
+
+<pre class="brush: processing; gutter: false; toolbar: false; ">
 void setup() 
 {
   size(400, 300);
@@ -132,20 +151,21 @@ void draw()
 
                 <ol>
                     <li>
-                        First the condition is evaluated. The condition is the stuff inside the round brackets,
+                        First the condition to test is evaluated.
+                        The condition is the stuff inside the round brackets,
                         immediately after the keyword <code>if</code>.<br/>
                         In this example the condition is
                         <code>mouseX &lt; width/2</code>.<br/>
-                        A condition can be <i>any Boolean expression</i> - something that is either <code>true</code> or <code>false></code>.
+                        A condition can be <i>any Boolean expression</i> - something that is either <code>true</code> or <code>false</code>.<br/>
                         We will learn more about <i>Boolean expressions</i> in a little while.
                     </li>
                     <li>
                         Then ...
                         <ul>
-                            <li><b>Either</b> the first block of code is executed (the code in between the condition and
-                                the keyword <code>else</code>),</li>
-                                <li><b>Or</b> the second block of code is executed (the code
-                                    immediately after the keyword <code>else</code>).</li>
+                            <li><b>Either</b> the first block of code is executed - the code in between the condition and
+                                the keyword <code>else</code> that is contained in <em>curly braces</em>,</li>
+                                <li><b>Or</b> the second block of code is executed - the code
+                                    immediately after the keyword <code>else</code> that is contained in a second set of <em>curly braces</em>.</li>
                         </ul>
                         The first block of code will be executed if the
                         condition evaluated to true, the second if the condition evaluated to false.
@@ -158,7 +178,7 @@ void draw()
                 <pre class="brush: processing; gutter: false; toolbar: false; ">
                     if (this condition is true)
                     {
-                      execute (run) the commands contained within this first pair of  curly braces;
+                      execute (run) the commands contained within this first pair of curly braces;
                     } else
                     {
                       otherwise execute (run) the commands contained within this second pair of curly braces;
@@ -175,12 +195,12 @@ void draw()
                 <!-- Right hand column for small images, popup sketches and annotations. -->
                 <p>The statement shown above could be used (has been used) in a sketch that results in the behaviours shown below - try the sketch out and move the cursor around.</p> 
                 <figure class="width50">
-                <script>loadImage("https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.syntax.png", 300, 240, 'The structure of an <code>if</code> statement');</script>
+                <script>loadImage("https://jsndyks.github.io/cc26/html/decisions/img/ccDec.syntax.png", 300, 240, 'The structure of an <code>if</code> statement');</script>
                 <figcaption>The structure of an <code>if</code> statement <i>(click to enlarge)</i>.</figcaption>
                 </figure>
 
                 <figure class="width50">
-                <script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/shapeByMouse", 300, 300, "https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.chooseShape.png");</script>
+                <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/shapeByMouse", 300, 300, "https://jsndyks.github.io/cc26/html/decisions/img/ccDec.chooseShape.png");</script>
                 <figcaption>Controlling shape with the mouse (click on image to activate).</figcaption>
                 </figure>
 
@@ -241,7 +261,7 @@ void draw()
             <div class="unit-30-cc annotation">
                 <!-- Right hand column for small images, popup sketches and annotations. -->
                 <br /><br />
-                <script> loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/nextStation", 800, 200, "https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.scrollingMessage.png");
+                <script> loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/nextStation", 800, 200, "https://jsndyks.github.io/cc26/html/decisions/img/ccDec.scrollingMessage.png");
                 </script>
                 <p>Scrolling text with wraparound (click on image to activate).</p>
             </div> <!-- end of right column -->
@@ -500,7 +520,7 @@ void draw()
             <div class="unit-30-cc annotation">
                 <!-- Right hand column for small images, popup sketches and annotations. -->
                 <br /><br />
-                <script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/coin", 400, 400, "https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.noCountry.jpg");</script>
+                <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/coin", 400, 400, "https://jsndyks.github.io/cc26/html/decisions/img/ccDec.noCountry.jpg");</script>
                 <p>Toss a coin (<i>click on image to activate</i>).</p>
             </div> <!-- end of right column -->
         </div> <!-- End of row -->
@@ -520,7 +540,7 @@ void draw()
                     Then we can map each unit interval in our range to one outcome of our roll.
                 </p>
 
-                <img src="https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.dieNumberLine.png"
+                <img src="https://jsndyks.github.io/cc26/html/decisions/img/ccDec.dieNumberLine.png"
                     alt="six-sided die number line" style="max-width:67%;max-height:67%;">
 
                 <p>
@@ -569,7 +589,7 @@ void draw()
             <div class="unit-30-cc annotation">
                 <!-- Right hand column for small images, popup sketches and annotations. -->
                 <br /><br />
-                <script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/dice", 100, 100, "https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.die.png");</script>
+                <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/dice", 100, 100, "https://jsndyks.github.io/cc26/html/decisions/img/ccDec.die.png");</script>
                 <p>Roll a six-sided die (<i>click on image to activate</i>).</p>
             </div> <!-- end of right column -->
         </div> <!-- End of row -->
@@ -866,22 +886,22 @@ void draw()
                     <ol>
                         <li>
                             <img style ="clear:both; float:right; margin-right:100px;margin-bottom:4px"
-                            src="https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.testCase-1.jpg" width="70" height="70" alt="test-case 1" />
+                            src="https://jsndyks.github.io/cc26/html/decisions/img/ccDec.testCase-1.jpg" width="70" height="70" alt="test-case 1" />
                             Mouse / cursor entirely outside the shape:<br />
                         </li>
                         <li style="clear:both">
                             <img style ="clear:both; float:right; margin-right:100px;margin-bottom:4px"
-                            src="https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.testCase-2.jpg" width="70" height="70" alt="test-case 2" />
+                            src="https://jsndyks.github.io/cc26/html/decisions/img/ccDec.testCase-2.jpg" width="70" height="70" alt="test-case 2" />
                             Mouse / cursor  inside rectangle but outside circle:<br />
                         </li>
                         <li style="clear:both">
                             <img style ="clear:both; float:right; margin-right:100px;margin-bottom:4px"
-                            src="https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.testCase-3.jpg" width="70" height="70" alt="test-case 3" />
+                            src="https://jsndyks.github.io/cc26/html/decisions/img/ccDec.testCase-3.jpg" width="70" height="70" alt="test-case 3" />
                             Mouse / cursor  inside rectangle <i>and</i> inside circle:<br />
                         </li>
                         <li style="clear:both">
                             <img style ="clear:both; float:right; margin-right:100px;margin-bottom:4px"
-                            src="https://jsndyks.github.io/cityCreativeCoding/html/decisions/img/ccDec.testCase-4.jpg" width="70" height="70" alt="test-case 4" />
+                            src="https://jsndyks.github.io/cc26/html/decisions/img/ccDec.testCase-4.jpg" width="70" height="70" alt="test-case 4" />
                             Mouse / cursor  inside circle but outside rectangle:<br />
                         </li>
                     </ol>
