@@ -47,10 +47,11 @@
             <p>We have used <i>Processing</i> to develop a simple game.<br/>
                 The game uses many of the concepts and much of the language that we have introduced so far.
         <br/>
-                Here's the code. Have a look through - read <i>carefully</i>:
+                Here's the code.<br/>Have a look through and take your time to read each line <i>carefully</i>.<br/>
+                Decide whether you can interpret each line and understand / predict what each code block will do:
             </p>
 
-            <pre class="brush: processing; gutter: false; toolbar: false; ">// -- Global variables are declared first
+<pre class="brush: processing; gutter: false; toolbar: false; ">// -- Global variables are declared first
 
 // ball position
 float xPos;
@@ -72,9 +73,9 @@ float radius;
 float pegRadius;
 
 // is ball in play?
-boolean inPlayMode;     // <-- boolean variable, can only hold values of TRUE and FALSE.
+boolean inPlayMode;     // &lt;-- boolean variable, can only hold values of TRUE and FALSE.
 
-void setup()            // <-- Whatever commands we put in here will be executed once.
+void setup()            // &lt;-- Whatever commands we put in here will be executed once.
 {
     size(500, 400);
     textSize(48);
@@ -95,13 +96,13 @@ void setup()            // <-- Whatever commands we put in here will be executed
     xPos = width - radius;
     yPos = height - radius;
 
-    inPlayMode = false;   // <-- Initialise 'inPlayMode' to FALSE
+    inPlayMode = false;   // &lt;-- Initialise 'inPlayMode' to FALSE
 }
 
 // -- A new method
 void mousePressed()
 {
-    if (inPlayMode)       // <-- Check whether this is TRUE, else change vx and vy, and set inPlayMode to TRUE
+    if (inPlayMode)       // &lt;-- Check whether this is TRUE, else change vx and vy, and set inPlayMode to TRUE
     {
         // -- do nothing, ball is already in play
     } else
@@ -187,7 +188,7 @@ void draw()
 <div class="unit-30-cc annotation">
 
 <script>
-    loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/pathfinder", 350, 280, "https://jsndyks.github.io/cityCreativeCoding/html/methods/img/cc.pathfinder.png");
+    loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pathfinder", 350, 280, "https://jsndyks.github.io/cc26/html/methods/img/cc.pathfinder.png");
 </script>
 <p>PathFinder demo (click on image to activate).</p>
 </div>
@@ -203,17 +204,20 @@ void draw()
                 <p>Click the sketch above, enlarge the size of the window and play the game a couple of times.</p>
                 <p>Now, create your own <i>PathFinder</i> sketch by copying the code that we have provided above - click the code and use <code>CTRL-A</code> to select it all, <code>CTRL-C</code> to copy the selection and <code>CTRL-V</code>< to paste into your sketch. Macs tend to use <code>COMMAND</code> rather than <code>CTRL</code>.</p>
                 <p>Save the sketch, and run it and play it a couple of times to get the hang of what it does.<br/>
-                    Make sure that your copy of the sketch behaves in the same way as the sketch that we have provided above.</p>
+                    Make sure that your local copy of the sketch behaves in the same way as the clickable sketch that we have provided above.</p>
             </div>
             <p>
-                That code is quite a mouthful.<br/>Maybe it's a bit scary? It looks a complicated mess. <br/>
+                That code is quite a mouthful.<br/>Maybe it's a bit scary? It looks a complicated mess. It was probably quite hard to read. <br/>
                 But don't despair! When structured properly, the code will
                 be much easier to understand.<br/>
-                We are going to <em>refactor</em> the code to improve its structure.
-                Here's a sneak preview of what our refactored <code>draw()</code>
-                will look like:
+                We are going to <em>refactor</em> the code to improve its structure.<br/>
+                And <em>methods</em> are a key part of this process.
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">void draw()
+            <p>
+                Here's a sneak preview of what our refactored <code>draw()</code>
+                will look like when we use <em>methods</em>:
+            </p>
+<pre class="brush: processing; gutter: false; toolbar: false; ">void draw()
 {
   background(255);
 
@@ -242,7 +246,7 @@ void draw()
 }</pre>
             <div class="tip">
                 <p>
-                When we refactor code, our aim is to improve its structure, <em>without</em> changing its behaviour.
+                When we refactor code, our aim is to improve its structure, <em>without</em> changing its behaviour.<br/>
                 We refactor code to make it easier to understand, debug, and extend.</p>
                 <p>It is <em>always</em> a mistake to try to refactor and add new features at the same time:
                 refactor <em>first</em>, check carefully that you haven't broken anything,
@@ -259,35 +263,32 @@ void draw()
             <!-- Left column -->
             <h3>2. Methods</h3>
             <p>
-                First a few words about terminology. There are several terms that programming language designers
+                First a few words about terminology.<br/>There are several terms that programming language designers
                 and programmers use for essentially the same thing:
-                <br/>
-                <br/>
-                <i>method</i>,
-                <br/>
-                <i>function</i>,
-                <br/>
-                <i>procedure</i>,
-                <br/>
-                <i>subroutine</i>.
-                <br/>
-                <br/>Depending on the specific programming language, there may, in fact, be some difference in
+            </p>
+                <dl>
+                <dd><i>method</i>,</dd>
+                <dd><i>function</i>,</dd>
+                <dd><i>procedure</i>,</dd>
+                <dd><i>subroutine</i>.</dd>
+                </dl>
+            <p> Depending on the specific programming language, there may, in fact, be some difference in
                 meaning between these words, but for present purposes we can safely consider them all to be
-                equivalent. We will try to stick to the term 'method' consistently
+                equivalent.<br/>
+                We will try to stick to the term <i>'method'</i> consistently
                 during our <code>#CreativeCoding</code> activity but, if you read around the subject, you will find other authors using different
                 terms (<a href="http://readinglists.city.ac.uk/items/27D2B53F-3DDE-EE72-F5EC-B1EBA9256FBF.html?referrer=%2Flists%2F3D1A6C7D-6690-EF98-BF4B-3B5B5788FBF7.html%23item-27D2B53F-3DDE-EE72-F5EC-B1EBA9256FBF" target="_blank">Daniel Shiffman</a>,
-                for example, usually says "function").
+                for example, usually says <i>"function"</i>).
             </p>
 
             <p>
                 So, what are methods and why do we need them?
             </p>
 
-            <div class="tip">
-                <!-- not really a tip but this will do to make it stand out -->
+            <blockquote>
                 A method is a piece of code, packaged as a named unit, which can be <i>called</i> from other pieces
                 of code.
-            </div>
+            </blockquote>
             <p>
                 We need them because they enable us to:
             </p>
@@ -420,7 +421,7 @@ void draw()
 <!-- style="border:1px solid #ff4444; background-color:#80ffb0; width:fit-content" -->
             <div class="figRight">
             <figure>
-            <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/methodFlow.png"><img src="https://jsndyks.github.io/cityCreativeCoding/html/methods/img/methodFlow.png" alt="method flow control-flow diagram" width="250"/></a>
+            <a href="https://jsndyks.github.io/cc26//html/methods/img/methodFlow.png"><img src="https://jsndyks.github.io/cc26/html/methods/img/methodFlow.png" alt="method flow control-flow diagram" width="250"/></a>
 			<figcaption>The control flow of a method call.</figcaption>
             </figure>
             </div>
@@ -636,7 +637,7 @@ void draw()
                 It's a <i>4 minute watch</i> and arrives direct from <i>way back when long ago</i>, but it's a great explanation and is still very helpful!</p>
                 <p>It uses a simple example to show how parameters are passed into a method and explains their scope.<br/>
                 It should really help clarify.</p>
-            <a href="https://cityuni-my.sharepoint.com/:v:/g/personal/j_dykes_city_ac_uk/EUfVRWHE8KVChQhNHFJmkbwBSLpz6Du0sfCaSUGcqvQZsg?e=typd6d"><img style="padding:1.5em;padding-top:0px" width="400" src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.video.parameters.png" alt="parameters video"></a>
+            <a href="https://cityuni-my.sharepoint.com/:v:/g/personal/j_dykes_city_ac_uk/EUfVRWHE8KVChQhNHFJmkbwBSLpz6Du0sfCaSUGcqvQZsg?e=typd6d"><img style="padding:1.5em;padding-top:0px" width="400" src="https://jsndyks.github.io/cc26//html/methods/img/cc.video.parameters.png" alt="parameters video"></a>
             </div>
         </div>
     <!-- End of left column -->
@@ -699,13 +700,13 @@ void draw()
                 <h5>A Method to Draw A Composite Shape</h5>
                 <div class="figRight">
                     <figure>
-                    <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.1.png"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.1.png" alt="Robots drawn by a new method" width="200"/></a>
+                    <a href="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.1.png"><img src="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.1.png" alt="Robots drawn by a new method" width="200"/></a>
                     <figcaption>Robot head drawn by<br/>a <code>drawRobot</code> method.</figcaption>
                     </figure>
                 </div>
                 <div class="figRight">
                     <figure>
-                    <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/Roundel.jpg"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/Roundel.jpg" alt="Roundel" width="190"/></a>
+                    <a href="https://jsndyks.github.io/cc26//html/methods/img/Roundel.jpg"><img src="https://jsndyks.github.io/cc26//html/methods/img/Roundel.jpg" alt="Roundel" width="190"/></a>
                     <figcaption>Roundel drawn by<br/>a <code>roundel</code> method.</figcaption>
                     </figure>
                 </div>
@@ -737,13 +738,13 @@ void draw()
             <h5>Adding Method Parameters</h5>
             <div class="figRight">
                 <figure>
-                <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.5.png"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.5.png" alt="Robots drawn by a new method" width="200"/></a>
+                <a href="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.5.png"><img src="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.5.png" alt="Robots drawn by a new method" width="200"/></a>
                 <figcaption>Robot heads drawn by<br/>a  <code>drawRobot</code> method.</figcaption>
                 </figure>
             </div>
             <div class="figRight">
                 <figure>
-                <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/RoundelPos.jpg"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/RoundelPos.jpg" alt="Roundel" width="190"/></a>
+                <a href="https://jsndyks.github.io/cc26//html/methods/img/RoundelPos.jpg"><img src="https://jsndyks.github.io/cc26//html/methods/img/RoundelPos.jpg" alt="Roundel" width="190"/></a>
                 <figcaption>Roundels drawn by<br/>a <code>roundel</code> method.</figcaption>
                 </figure>
             </div>
@@ -780,13 +781,13 @@ void draw()
                 <h5>Adding More Method Parameters</h5>        
                 <div class="figRight">
                     <figure>
-                    <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.7.png"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/cc.methods.drawRobot.7.png" alt="Robots drawn by a new method" width="200"/></a>
+                    <a href="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.7.png"><img src="https://jsndyks.github.io/cc26//html/methods/img/cc.methods.drawRobot.7.png" alt="Robots drawn by a new method" width="200"/></a>
                     <figcaption>Robot heads drawn by<br/>a <code>drawRobot</code> method<br/>with different input parameters<br/>affecting position and size</figcaption>
                     </figure>
                 </div>
                 <div class="figRight">
                     <figure>
-                    <a href="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/RoundelPosScale.jpg"><img src="https://jsndyks.github.io/cityCreativeCoding//html/methods/img/RoundelPosScale.jpg" alt="Roundel" width="190"/></a>
+                    <a href="https://jsndyks.github.io/cc26//html/methods/img/RoundelPosScale.jpg"><img src="https://jsndyks.github.io/cc26//html/methods/img/RoundelPosScale.jpg" alt="Roundel" width="190"/></a>
                     <figcaption>Roundels drawn by<br/>a <code>roundel</code> method<br/>with different input parameters<br/>affecting position and scale.</figcaption>
                     </figure>
                 </div>
