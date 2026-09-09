@@ -2,52 +2,25 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: Loops</title>
 
-    <!-- Header, 16th September, 2021 -->
+	<title>cc26 : Loops</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
-    <!-- Embedded fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom layout and style -->
-    <link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-    <link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-    <link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-    <link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-    <link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-    <!-- General browser compatibility handling -->
-    <script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-    <!-- Formatted source code -->
-    <script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-    <script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-    <!-- Sketch popups and hidden text-->
-    <script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-    <script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-    <script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-    <!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
 </head>
 
 <body>
-    <div id="page">
 
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-        <!-- Add summary sentence or two below, which will act as an easy introduction -->
+
+<div id="page">
 
         <div class="intro">
+            <h2>Loops</h2>
 
             <p>
                 This session introduces the idea of <i>loops</i> that force the repetition of selected parts of your code.
@@ -168,7 +141,9 @@
                     <h5>Tip:</h5>
                     <p>
                     If you find yourself writing very similar code many times, the chances are that it can be improved
-                    in both efficiency and clarity by using a loop to bring out the regularity.<br/>One of the skills in
+                    in both efficiency and clarity by using a loop to bring out the regularity.</p>
+                    <p>
+                    One of the skills in
                     programming is in being able to recognise that a particular task can be broken down into a repeated
                     set of simpler tasks.
                 </p>
@@ -183,7 +158,7 @@
                 <!-- Left column -->
                 <h3>2. The <code>for</code> loop</h3>
                 <p>
-                    One of the commonest forms of loops in <i>Processing</i> (and other languages) is the <code>for</code> loop.
+                    One of the commonest forms of loops in <i>Processing</i> (and other languages) is the <code>for</code> loop.<br/>
                     The example below shows how it might be used to draw those nine squares:
                 </p>
 
@@ -263,7 +238,7 @@
                 </div>
 
                 <p>
-                    Any code can go inside the body of a loop. For example, here is a modification to the woodland
+                    Any code can go inside the body of a loop.<br/>For example, here is a modification to the woodland
                     sketch we have previously developed, this time using a <code>for</code> loop to draw many trees.
                 </p>
             </div> <!-- End of left column -->
@@ -368,8 +343,8 @@ void drawTree(float treeX, float treeY)
                 <p>
                     Just as we placed the <code>circle()</code> command inside a loop, we can do the same thing for our
                     row drawing code.</p>
-                    <p>In other words, we <i>nest</i> one loop inside another. This allows us to draw
-                    many rows of circles:
+                    <p>In other words, we <i>nest</i> one loop inside another.<br/>
+                        This allows us to draw many rows of circles:
                 </p>
                 <pre class="brush: processing; gutter: false; toolbar: false;">  for (int row=0; row&lt;10; row = row+1)
   {  // &lt-- commands issued in these braces happen 10 times 
@@ -529,8 +504,9 @@ void drawTree(float treeX, float treeY)
                 <!-- Left column -->
 
                 <h3>5. Summary and Further Reading</h3>
-
-                <ul class="summary">
+                <div class="summary">
+                <h5>In Summary ...</h5>
+                <ul>
                     <li>
                         While program flow is dominantly from top-to-bottom, we have seen how we can force flow to
                         repeat sections of code using loops.
@@ -547,6 +523,7 @@ void drawTree(float treeX, float treeY)
                         structures.
                     </li>
                 </ul>
+                </div>
 
 
                 <div class="homework">
