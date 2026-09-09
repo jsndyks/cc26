@@ -206,9 +206,9 @@ void draw()
 
     <div class="coreTask">
         <h5>Colour Coded Code</h5>
-        <p>Note that the copyable code providede above is coloured in ways that are meaningful.</p>
+        <p>Note that the copyable code provided above, and throughout these pages, is <em>coloured</em> in ways that are meaningful.</p>
         <p>Variabes, methods, statements and other aspects of syntax are coloured consistently to differentiate and distinguish them.</p>
-        <p>Can you break the code? What do the colours mean?</p>
+        <p>Can you break the code?<br/>What do the colours mean?</p>
     </div>
     <div class="tip">
         <p>Attending to this colour encoding in the <em>Prorcessing</em> API will really help you write, understand and interpret scripts.<br/>
@@ -260,9 +260,9 @@ void draw()
                     <li>Check the <a href="https://processing.org/reference/if.html"><code>if</code> statement reference documentation</a> to ensure that you get the syntax correct</li>
                     <li>Draw the sketch in your sketchbook to help you work out ...
                         <ol>
-                            <li>what needs to change - the <i>true branch</i> - to have this effect</li>
-                            <li>and under what <i>condition</i> this needs to happen to make your sketch work as desired</li>
-                        </ol></li>
+                            <li>what needs to change to have this effect - what is in the <i>true branch</i></li>
+                            <li>under what <i>condition</i> this needs to happen- which condition needs to be <i>true</i></li>
+                        </ol> ... to make your sketch work as desired.</li>
                     
                     </ul>
 
@@ -333,8 +333,9 @@ void draw()
                 <div class="codeTask">
                     <h5>Change the Rectangle Colour</h5>
                     <p>
-                    Use the logic that we apply above to drawing the <i>ellipse</i> in different colours according to the Y position
-                    to the branch responsible for drawing the <i>rectangle</i>, so that the colour of the rectangle will change in the same way that the ellipse does.
+                    Above, draw the <i>ellipse</i> in different colours according to the Y position with <code>if () {}</code>.<br/>
+                    Apply ther same logic to the branch of this next code snippet responsible for drawing the <i>rectangle</i>,
+                    so that the colour of the rectangle will change in the same way that the ellipse does.
                     </p>
                 </div>
             </div> <!-- End of left column -->
@@ -509,7 +510,7 @@ void draw()
                 <div class="codeTask">
                     <h5>Heads or Tails?</h5>
                     <p>
-                    The <code>draw()</code> code doesn't actually use the random number yet - it just prints the message
+                    The <code>draw()</code> code that we provide aboive doesn't actually use the random number yet - it just prints the message
                     TAILS every time.</p>
                     <p>Modify the code with an <code>if () {}</code> statement, so that the message is TAILS if the number is less than 1 and HEADS otherwise.
                     </p>
@@ -524,7 +525,7 @@ void draw()
                     Can you predict what will happen before you run the code?<br/>
                     Try using <code>framerate()</code> to change the <code>frameRate</code> to 10, or 5 or 1 to see the effects.
                 </p>
-                <p>Check back to the notes on <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967994">Variable Scope</a> to help with this.</p>
+                <p>Check back to the notes on <a href=".../variables/ccVar.html">Variable Scope</a> to help with this.</p>
                 </div>
             </div> <!-- End of left column -->
 
@@ -641,9 +642,9 @@ else
     message = "SIX";
 }</pre>
                 <p>
-                    Note that despite there being multiple alternative branches, it's still the case that only one
-                    branch can execute. This is the case even though in some cases multiple conditions may be true (as
-                    is the case in the example above). In an <code>else if</code> statement the successive conditions are tested in order, one
+                    Note that despite there being multiple alternative branches, multiple possible blocks of statements to execurte depending on which condition evaluates to <code>true</code>, it's still the case that only one branch can execute.
+                    This is so even though in some cases multiple conditions may be true (as is we see in the example above).
+                    In an <code>else if</code> statement the successive conditions are tested in order, one
                     at a time. The branch of the first one to evaluate to true is executed, after which the entire if
                     stops. Thus, even if any subsequent conditions are true, they are never evaluated and their branches
                     never executed. So, <code>if (ran &lt; 4)</code> we execute <code>message = "FOUR";</code> and never check <code>if (ran &lt; 5)</code>
@@ -817,7 +818,7 @@ if (mouseUpperLeft || mouseLowerRight)
                 <!-- Left column -->
                 <h3>10. Practice and Exercises</h3>
 
-        <p>The learning you have done so far, about <code>if</code> and <code>else</code> and layout, along with the tips outlined above, should enable you to wrote simple sketches that use <code>if</code> statements to respond to different actions based on the mouse position.</p>
+        <p>The learning you have done so far, about <code>if</code> and <code>else</code> and layout, along with the tips outlined above, should enable you to write simple sketches that use <code>if</code> statements to respond to different actions based on the mouse position.</p>
         <p>So, use your sketch books to plan some code that addresses the following challenges.</p>
         <p>You won't get it right first time, and will need to do some thinking, experimentation and debugging (see above) to make this work.</p>
         <p>Remember to use '<a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967974">PAROT Talk</a>' (🦜) as an approach to learning by doing. The '<i>Talk</i>' bit is important!</p>
