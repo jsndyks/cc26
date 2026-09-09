@@ -375,6 +375,8 @@ h3 {
 /* H4 and H5 use the normal body font */
 .codeTask h4,
 .codeTask h5,
+.coreTask h4,
+.coreTask h5,
 .task h4,
 .task h5,
 .tip h4,
