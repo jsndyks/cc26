@@ -149,10 +149,12 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
 .challenge h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
 .aside h5, .tip h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
 
-.challenge li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
-.objectives li {padding-top:0.25rem; padding-bottom:0.25rem; background: transparent !important;}
-.summary li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+.challenge li, .objectives li, .coreTask li {padding-top:0.25rem; padding-bottom:0.25rem; background: transparent !important;}
+.summary li, .intro li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
 .summary h4, .summary h5 {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+
+/* CHECK */
+.challenge p, .coreTask p, .codeTask p. {margin:0.25rem 0.5rem; padding:0.25rem 0.5rem}
 
 /*
 .summary {
