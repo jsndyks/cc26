@@ -30,7 +30,7 @@
 
   .focusLecture {display:block; padding:4px; margin:4px; background-color:#b0e0ff; border-left:4px solid #8cf; float:left}
 
-  .figCaption {margin:1em; color:#606060; font-style:italic; font-size: 90%}
+  .figCaption {margin:0.5rem 1rem; color:#606060; font-style:italic; font-size: 90%}
 
   .sig {float:right; padding-right:4em; clear:both}
 
@@ -65,7 +65,7 @@
   .task,
   .codeTask,
   .codeTask::before {
-    background-color: #f0f8ff80;
+    background-color: #f0f8ff99;
   }
 
   .ddTask,
@@ -127,7 +127,7 @@ figure {display: block; margin-left: auto; margin-right: auto; width:75%; }
 .coreTask figure, .codeTask figure, .aside figure { margin-right: 1em; width:auto; margin-left:1em; float:right}
 .coreTask figure img, .codeTask figure img, .aside figure img {  display: block; margin-left: auto; margin-right: auto;}
 figure img, figure iframe {border:dashed #e0e0e0 1px; padding:4px; margin:2px}
-figcaption {text-align:center; color:#909090; padding-top:0.5em; font-size:90%; width: fit-content}
+figcaption {text-align:center; color:#909090; padding-top:0.5em; font-size:90%; width: 100%; }
 
 .figCode {float:right; margin-right: 1em; margin-left:2em; display:block; background-color: #f8fbff; border-bottom:solid #e0e0e0 1px; padding:4px}
 .figCore {float:right; margin-right: 1em; margin-left:2em; display:block; background-color: #ffffea; border-bottom:solid #e0e0e0 1px; padding:4px}
