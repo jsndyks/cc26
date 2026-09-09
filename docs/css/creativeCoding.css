@@ -317,6 +317,7 @@ body {
 .summary li {
   background: transparent !important;
 }
+.intro p {  padding: 2rem 0.25rem; margin: 1rem 0rem;}
 
 .tip,
 .aside,
