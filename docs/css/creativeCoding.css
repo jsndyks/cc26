@@ -415,7 +415,7 @@ pre {
   content: "Remember...";
   position: absolute;
   top: 4.45em;
-  left: -10.7em;
+  right: -1em;
   font-weight: bold;
   font-style: italic;
 }
