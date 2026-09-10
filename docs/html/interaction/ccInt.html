@@ -31,6 +31,12 @@
                 <li><b><i>structure a sketch</i></b> to react to, and develop through, interaction;</li>
                 <li>generate <b><i>random numbers</i></b> within a specified range.</li>
             </ul>
+            <b>ToDo</b>
+            <ul>
+                <li>Card link an images</li>
+                <li>Moodle links</li>
+                <li>checkOutcomes Alignment</li>
+            </ul>
 
         </div> <!-- End of intro section -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -527,7 +533,7 @@ void draw() {
                     <span class="key">b</span> key is pressed and red if the <span class="key">r</span> key is pressed.
                     <br /><br />
                     The code snippet provided below is likely to be useful.</br>
-                    Complete it and pop it in <code>keyPressed()</code> so that <i>Processing</i> executes it whenever a key on the keyboard is pressed:
+                    Complete it and pop it in to the <code>keyPressed()</code> method so that <i>Processing</i> executes it whenever a key on the keyboard is pressed:
                     </p>
                     <pre class="brush: processing; gutter: false; toolbar: false; ">if (key == 'r')
 {
@@ -1052,7 +1058,7 @@ void mouseClicked() {
                     <h5>Mouse Interaction - Controlling Flow</h5>
                     <p>Create a sketch using the skeleton code provided above.<br />Run it and experiment a
                         little.<br />
-                        Can you see how <code>isRed</code> works?<br/>Can you see how we make decisions based upon its value and how we interact to change that?</p>
+                        Can you see how <code>isRed</code> works?<br/>Can you see how we make decisions based upon the value of <code>isRed</code> in the <code>draw()</code> method and how we interact to change that?</p>
                     <p>Then <b>extend the sketch</b> by adding <i>a global variable</i>, <i>an event handling method</i> and <i>a control statement</i> to :</p>
                     <ul>
                         <li>make the screen clear in yellow if the mouse is in the right half of the screen, but grey otherwise</li>
@@ -1140,8 +1146,10 @@ void draw(){
   text(clickCount, width/2, height/2);
 }</pre>
 
-                <p>We'd like you to try two extensions to this task. There are some more listed on the optional <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968032">Interaction : Exercises &amp; Extras</a> page too if you'd like to test yourself a little further.<br />
-                    They all vary the way your sketch looks based upon accumulating interactions.</p>
+                <p>We'd like you to try two extensions to this task. <br/>
+                    They vary the way your sketch looks based upon accumulating interactions.<br/>
+                    There are some more listed on the optional <a href="./ccInt.extra.html">Interaction : Exercises &amp; Extras</a> page too if you'd like to test yourself a little further.
+                </p>
 
             </div> <!-- End of left column -->
 
@@ -1158,7 +1166,7 @@ void draw(){
                         occurred<br />
                         and, or when the number ends in 2 (or 3, or 5 or something - 8 even, you decide).<br/>
                         The <a href="https://processing.org/reference/modulo.html">modulo operator</a> <code>%</code> will be useful here.
-                        <br/>Remember to store the <i>state</i> of the sketch in a boolean variable ... something like <code>boolean isMoreThanTen</code>.
+                        <br/>Remember to store the <i>state</i> of the sketch in a boolean variable ... something like <code>boolean isMoreThanTen</code> or <code>boolean isFactorOf8</code>.
                     </p>
                     <p>
                         <b>Extension 2</b>: Add a <code>rect()</code> at the centre of the canvas that increases in size
@@ -1284,7 +1292,7 @@ void mouseClicked()
 
                 <div class="codeTask">
                   <h5>Building an 'Interface'</h5>
-                    <p>Run the example sketch to the right - click the check-button to see what happens!</p>
+                    <p>Run the example sketch - click the check-button to see what happens!</p>
                     <p>Then copy the code from above into <i>Processing</i> and run the sketch to see how it works.</p>
                     <p>Work through the code to understand how we know whether the mouse (cursor) is in the rectangle or not.</p>
                     <p>This allows us to interact with the mouse and other peripherals to identify and select spaces and
@@ -1320,7 +1328,7 @@ void mouseClicked()
                 </figure>
                 </div>
                 <div class="coreTask">
-                  <b>Be Creative! Don't be constrained by the 'Interfaces' you see!</b>
+                  <h5>Be Creative! Don't be constrained by the 'Interfaces' you see!</h5>
                   <p>
                     Where was I?<br/>Oh yeah, try the <i>CheckButton example</i> to the right.
                   </p>
@@ -1343,14 +1351,14 @@ void mouseClicked()
                 <hr />
                 <h3>5. Practice and Exercises</h3>
                 
-                <p>We have set a series of <b>Four Core Tasks</b> on the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=781754">Exercises & Extras</a> page.</p>
+                <p>We have set a series of <b>Four Core Tasks</b> on the <a href="./ccInt.extra.html">Interaction : Exercises & Extras</a> page.</p>
                 <ol>
-                    <li>Move</li>
-                    <li>Colour</li>
-                    <li>Splash</li>
-                    <li>Target</li>
+                    <li><b>Move</b></li>
+                    <li><b>Colour</b></li>
+                    <li><b>Splash</b></li>
+                    <li><b>Target</b></li>
                 </ol>
-                <p>You should work your way through these, getting help in the scheduled practical classes, on the <a href="https://moodle4.city.ac.uk/mod/forum/view.php?id=967978">Discussion Forum</a>, from the reference pages and through communication with your colleagues.</p>
+                <p>You should work your way through these, getting help in the scheduled practical classes, on the <a href="https://moodle4.city.ac.uk/mod/forum/view.php?id=967978">Discussion Forum</a>, from the reference pages and through communication with your colleagues and the teaching staff.</p>
 
             </div> <!-- End of left column -->
         </div> <!-- End of row -->
@@ -1405,8 +1413,9 @@ void mouseClicked()
              -->
 
 
-                <div>
-                <ul class="summary">
+                <div class="summary">
+                    <h5>In Su   mmary ...</h5>
+                <ul>
                     <li style="padding-top:1em; padding-bottom:1em">
                         <i>Processing</i> provides some useful capability for interaction - see the <b>Event handling : keyboard
 </b> and <b>Event handling : mouse</b> tables and follow the links to the <a href="https://processing.org/reference/">Processing Reference</a> materials for explanations and examples.<br/><b>Really - try the examples out and experiment with them</b>. There is great stuff in there that will help you understand and inspire you to do creative things.
@@ -1424,16 +1433,16 @@ void mouseClicked()
                     </li>
                     <li style="padding-top:1em; padding-bottom:1em">
                         Begin by working through these notes, examples and tasks ... then move on to the <a
-                            href="https://moodle4.city.ac.uk/mod/page/view.php?id=968032">practical exercises</a>.
+                            href="./ccInt.extra.html">Interaction : Examples & Extras</a>.
                             <br/>
                             Use the <a href="https://processing.org/reference/">Processing Reference</a> materials to help, and remember to
-                            b>plan / predict</b>, <b>attempt</b>, <b>run</b>, <b>observe</b> and <b>think</b> systematically as you go - and <b>talk</b> about this process.<br/>
+                            <b>plan / predict</b>, <b>attempt</b>, <b>run</b>, <b>observe</b> and <b>think</b> systematically as you go - and <b>talk</b> about this process.<br/>
                                 Your colleagues and teachers will be important sounding boards as you do so.<br/>
                                 Chat to them and help others as you iterate through this process multiple times.
                     </li>
-                    <li style="padding-top:1em; padding-bottom:1em">
+                    <!-- <li style="padding-top:1em; padding-bottom:1em">
                         You should be able to figure out how this sketch on the right works: <b>can you</b>?
-                    </li>
+                    </li> -->
                 </ul>
                 </div>
 
@@ -1447,7 +1456,7 @@ void mouseClicked()
                 <hr />
 
           <h2>7. Check on Progress</h2>
-          <p>We have introduced lots of possibilities in this session, and even though the mechanisms through which we achieve interaction are relatively straightforward, the World of possibilities that they enable can be a little overwhelming, even to a hardened <i>Processing</i> scripter like the ones who are teaching you.</p>
+          <p>We have introduced lots of possibilities in this session, and even though the mechanisms through which we achieve interaction are relatively straightforward, the world of possibilities that they enable can be a little overwhelming, even to a hardened <i>Processing</i> scripter like the ones who are teaching you.</p>
           <p>Stay calm. You can't do it all yet, but you can see some of what is possible, and with time, will master many of these possibilities.</p>
           <p>To ensure that you have achieved the outcomes associated with this session, consider the following questions, which allow you to evaluate your progress.</p>
   
@@ -1474,10 +1483,13 @@ void mouseClicked()
   
           </div> <!-- End of task -->
   
-          <p>If you can do that, then you are set.
-            <br/>If not, please keep reading, trying, interpreting debugging messages, using the <i>Processing</i> <a href="https://processing.org/reference/">reference pages</a> and chatting to the folks who can help you in class and on the <a href="https://moodle4.city.ac.uk/mod/forum/view.php?id=967978">Discussion Forum</a>.<br/>
-            This should be a great environment for learning, so please make the most of it and please let us know if you need a hand.
-          </p>
+            <p>
+            If you can do that, then you are set.
+            <br/>If not, please keep reading, trying, interpreting debugging messages, using the <i>Processing</i> <a href="https://processing.org/reference/">reference pages</a> and chatting to the folks who can help you in class and on the <a href="https://moodle4.city.ac.uk/mod/forum/view.php?id=967978">Discussion Forum</a>.
+            </p>
+            <p>
+                This should be a great environment for learning, so please make the most of it and please let us know when you need a hand.
+            </p>
   
         <!-- <hr /> -->
         <!-- <div class="sig"> -->
