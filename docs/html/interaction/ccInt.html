@@ -1,78 +1,35 @@
 <!DOCTYPE html>
-<html  dir="ltr" lang="en" xml:lang="en">
+<html>
+
 <head>
-    <title>CreativeCoding: Interaction</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Interaction</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-    <!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css" type="text/css" />
-    <!--- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
 </head>
-<body>	
+
+<body>
+
 
 <div id="page">
 
-<!---
-        <p> Work through these notes and examples <i>systematically</i> in class.
-            You'll need to do some reading, some thinking and experiment a little. 
-            You'll need to discuss your progress and your approaches (and your failures) with colleagues and teaching staff.
-            Use your sketchbooks to develop ideas and take notes.
-            Learning actively, taking notes and discussing ideas will enable you to achieve the learning outcomes that we list at the top of the lecture.</p>
-            <p>You can access the <a href="https://jsndyks.github.io/cityCreativeCoding/html/interaction/2023%7C24/bootCamp.int.2023.lecture.html">Interaction Lecture</a> outside of <em>Moodle</em> should you wish to do so.</p>             
--->
-
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-        <!-- Add summary sentence or two below, which will act as an easy introduction -->
-
         <div class="intro">
-            <!--p>
-                This session introduces ways in which you can collect and use <b>input</b> from somebody who is using
-                your <b>Processing</b> application through their <b>interactions</b> with the keyboard and mouse.
-                We'll use these <i>key presses</i> or <i>mouse events</i> to control what happens in our sketches.
-            </p-->
-
+            <h2>Interaction</h2>
             <p><strong>By the end of this session (preparation, lecture, class and subsequent work that you complete in your own time) you should be able to:</strong></p>
 
             <ul>
                 <li>collect and use input that comes from interactions with <b><i>the mouse</i></b> in simple sketches;</li>
                 <li>collect and use input that comes from interactions with <b><i>the keyboard</i></b> in simple sketches;</li>
-                <li>display the nature of this input;</li>
-                <li>use this input to control flow and behaviour in a sketch;</li>
-                <li>structure a sketch to react to, and develop through, interaction;</li>
-                <li>generate random numbers within a specified range.</li>
+                <li><b><i>display</i></b> the nature of this input;</li>
+                <li>use this input to <b><i>control flow and behaviour</i></b> in a sketch;</li>
+                <li><b><i>structure a sketch</i></b> to react to, and develop through, interaction;</li>
+                <li>generate <b><i>random numbers</i></b> within a specified range.</li>
             </ul>
 
         </div> <!-- End of intro section -->
@@ -85,7 +42,7 @@
                 <!-- Left column -->
                 <h3>1. Interaction</h3>
                 <p class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">1</span> - <b>Interaction</b> : how do we interact with computers?</code></p>
-                <p> We've looked at how to code programs that adapt to context with constructs that allow us to write code that makes choices as it executes: <a href="https://moodle4.city.ac.uk/course/section.php?id=243436">DECISIONS</a><br/>
+                <p> We've looked at how to code programs that adapt to context with constructs that allow us to write code that makes choices as it executes: <a href="../decisions/ccDec.html">DECISIONS</a><br/>
                   <br/>But how do we code programs that adapt to <i>people</i>?<br/>
 
                     A computer isn't much use without us being able to tell it what to do - without <b>interaction</b>!<br/>
@@ -93,7 +50,7 @@
                 <p>
                     Luckily (<i>actually, there is careful planning and sophisticated functionality involved</i>) <i>Processing</i>
                     has rich and straightforward capabilities for detecting input from mouse, keyboard and elsewhere and
-                    for using this to allow us to interact rapidly and consistently with sketches.
+                    for using this to allow us to interact rapidly and consistently with sketches.<br/>
                 </p>
                 <p>
                     And you're seen a few of these already, you have already made interactive sketches that respond to your input.
@@ -120,7 +77,7 @@
                 <p>So, if we're going to make interesting applications we need to know how to collect information about
                     interactions, how to detect what people are doing, and how to make our programs and sketches respond.</p>
                 <p>Let's start with the keyboard - a handy device that you may have used from time to time - that
-                    enables us to use keys to select from a series of characters (letters, numbers and weird symbols like '@'), that are detected by the computer and used as input to various programmes and apps that it runs!</p>
+                    enables us to use keys to select from a series of characters (letters, numbers and weird symbols like '@'), that are detected by the computer and used as input to various programmes and apps and sketches that it runs!</p>
 
                 <hr />
                 <h3>2. Keyboard Input</h3>
@@ -183,11 +140,13 @@
                     
                     <h5>Keyboard Interaction - key variable</h5>
                     <p>Read through the code above 👆 to see if you can work out what it does.</p>
-                    <p>Then run the sketch on the right 👉.<br/>
-                        Click the image to activate the sketch.<br/>
-                        Then <b>click again</b> inside the popup window. This will get the keyboard focussed on the sketch.<br/>
-                        Now press some keys and see how the value of <code>key</code> changes.
-                    </p>
+                    <p>Then run the sketch itself.</p>
+                        <ol>
+                            <li>Click the image to activate the sketch.</li>
+                            <li>Then <b>click again</b> inside the popup window. This will get the keyboard focussed on the sketch.</li>
+                            <li>Now press some keys on the keyboard and see how the value of <code>key</code> changes.</li>
+                        </ol>
+
                     <p>Then copy the above code in <i>Processing</i> and see what happens!</p>
                     <p>Make a few changes as suggested in the '<code>&lt; -- try</code>' comments and check that they have the effects that you expect:</p>
                         <ul>
@@ -216,11 +175,12 @@
                         href="https://processing.org/reference/keyPressed_.html"><code>keyPressed()</code></a> method.</p>
                         <p>This method is called and run by a <i>Processing</i> sketch every time a key is pressed.
                         </p>
-                        <p>This is important so let's say it again:<br/>&nbsp;&nbsp;any method that you specify in a sketch, that you give the name <code>keyPressed()</code>, will be run by your sketch any and every time you press any key on the keyboard.
-                        </p>
-                        <p>This is so important that I am going to say it again in bold:<br/>&nbsp;&nbsp;<b>any method that you specify in a sketch, that you give the name <code>keyPressed()</code>, will be run by your sketch any and every time you press any key on the keyboard.</b>
-                        </p>
-                        <p>You simply create a new method called <code>keyPressed()</code>, just as you have made methods to do all sorts of other things, and, as shown below, and <i>Processing</i> will automatically call this method every time it detects a <i>key press</i> interaction: every time a key is pressed on the keyboard</br>Let's try it!</p>
+                        <p>This is important so let's say it again:
+                            </p>
+                            <blockquote>any method that you specify in a sketch, that you give the name <code>keyPressed()</code>, will be run by your sketch any and every time you press any key on the keyboard.</blockquote>
+                        <p>This is so important that I am going to say it again in bold this time:</p>
+                            <blockquote>any method that you specify in a sketch, that you give the name <code>keyPressed()</code>, will be run by your sketch any and every time you press any key on the keyboard.</b></blockquote>
+                        <p>You simply create a new method called <code>keyPressed()</code>, just as you have made methods to do all sorts of other things, and, as shown below, and <i>Processing</i> will automatically call this method every time it detects a <i>key press</i> interaction: every time a key is pressed on the keyboard <code>keyPressed()</code> will run. If you have defined it.</br>Let's try it!</p>
                         <p>Note that we use <code><a href="https://processing.org/reference/random_.html">random(low,high)</a></code> to produce random positions within a range, as specified by the first (lower) and second (upper) parameters to the <code><a href="https://processing.org/reference/random_.html">random(low,high)</a></code> method.</p>
             </div> <!-- End of left column -->
 
@@ -271,16 +231,14 @@
                     <h5>KeyPressed Example</h5>
                     <p>Click the sketch to activate it and <b>press keys on the keyboard</b> for endless fun.</p>
 
-                    <b>Keyboard Interaction - keyPressed() method</b>
                     <p>Read through the code again and see if you can work what's new.
                       <br/>What happens in
                         <code>keyPressed()</code>?
                     </p>
-                    <p>Then run the sketch on the right - click it and press some keys and see how the value of
-                        <code>key</code> changes.
+                    <p>Then run the sketch itself - click it and press some keys and see how the value of <code>key</code> changes.
                     </p>
                     <p>Then copy the above code in a new <i>Processing</i> sketch and make sure it runs as expected!</p>
-                    <p>As usual, you should make a few changes and check that they have the effects that you expect.</p>
+                    <p>As usual, you should make a few changes and check that they have the effects that you anticipate.</p>
                     <p>If they don't - discuss! 🦜</p>
                 </div>
 
@@ -307,30 +265,30 @@
                 <ul>
                     <li style="padding-bottom:0.75em"><code>p % width</code> - uses the <a href="https://processing.org/reference/modulo.html">modulo operator</a> <code>%</code>.<br />
                         This calculates the <i>remainder when one number is divided by another</i>.<br/>
-                        So 110%100 is 10.<br/>
-                        As is 210%100.<br/>
-                        And 310%100 also = 10<br/>
-                        This is handy as any number <code>%width</code> gives us a position between <code>0</code> and <code>width</code>.
+                        So <code>110 % 100</code> is <code>10</code>.<br/>
+                        As is <code>210 % 100</code>.<br/>
+                        And <code>310 % 100</code> also returns a remainder of <code>10</code><br/>
+                        This is handy as any number <code>%width</code> gives us a position between <code>0</code> and <code>width</code> - a horizontal position in the canvas at which we can plot a character.
                         When we
                         get a number that is just more than width, this gives us a position back on the left hand side
                         of the canvas as <code>(width+1)%width</code> is <code>1</code>! </li>
                     <li style="padding-bottom:0.75em"><code>int(p/width)</code> -  <a
-                            href="https://processing.org/reference/divide.html">divide</a>s <code>p</code> by <code>width</code>. It
-                        also uses the <code><a href="https://processing.org/reference/intconvert_.html">int()</a></code>
+                            href="https://processing.org/reference/divide.html">divide</a>s <code>p</code> by <code>width</code>.
+                        It also uses the <code><a href="https://processing.org/reference/intconvert_.html">int()</a></code>
                         operator to convert the result to an integer. This means that we get a whole number - the number
                         of times <code>width</code> completely fits into <code>p</code>.
                         <br/>
                         So <code>int((width+1)/width)</code> is 1!<br/>
                         And <code>int((5*width+1)/width)</code> is 5.<br/>
                         And <code>int((5*width+(width-1))/width)</code> is also 5.<br/>
-                        It follows that int(110/100) is 1. And int(210/100) is 2. And int(310/100) is 3.<br/>
-                        If you think about it, this means we find out how may times <code>p</code> has filled our <code>width</code>
-                        through this part of the calculation. Which tells us how many <i>lines</i> of length
-                        <code>width</code> the characters have taken up. If we then multiply through by a number that is
-                        bigger than our current letter height, like <b>24</b> or something, and use this as our <code>y</code> position on the canvas, this will position text that has a <code>p</code> value that is greater than <code>width</code> down the screen so that it does not overlap. Basically it will give us a row.<br/>
+                        It follows that <code>int(110/100)</code> returns <code>1</code>. And <code>int(210/100)</code> is <code>2</code>. And <code>int(310/100)</code> is <code>3</code>.<br/>
+                        If you think about it, this means we find out how may times <code>p</code> has filled our <code>width</code> through this part of the calculation.
+                        Which tells us how many <i>lines</i> of length <code>width</code> the characters have taken up.
+                        If we then multiply through by a number that is
+                        bigger than our current letter height, like <b>24</b> or something in our case, and use this as our <code>y</code> position on the canvas, this will position text that has a <code>p</code> value that is greater than <code>width</code> down the screen so that it does not overlap.
+                        Basically it will give us a row.<br/>
                         So, <code>24 * int(p/width)</code> tells us how far down the canvas to plot the character when (and indeed before) <code>p &gt; width</code>.<br/>
-                        I have added another <code>100</code> on in the script that follows so that the text does not start at the very top of
-                        the screen.
+                        I have added another <code>100</code> on in the script that follows so that the text does not start at the very top of the screen.
                     </li>
                 </ul>
                 <p>Here's some code that should do the job!</p>
