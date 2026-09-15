@@ -4,9 +4,9 @@
 document.querySelectorAll("table tbody tr").forEach(row => {
   const firstCell = row.cells[0];
 
-  if (firstCell?.textContent.trim().includes("00")) {
-    row.classList.add("transparent-row");
-  }
+if (firstCell?.textContent.trim().includes("00")) {
+  row.classList.add("transparent-row");
+  firstCell.textContent = "";
 });
 </script>
 
