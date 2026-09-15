@@ -1,11 +1,11 @@
 ## CreativeCoding 2026 : Page Index [CC26]
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("table tbody tr").forEach(row => {
-    const firstCell = row.querySelector("td:first-child");
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table tbody tr").forEach(function (row) {
+    const firstCell = row.cells[0];
 
-    if (firstCell?.textContent.trim() === "00") {
+    if (firstCell && firstCell.textContent.trim() === "00") {
       row.classList.add("session-00");
       firstCell.textContent = "";
     }
@@ -29,9 +29,11 @@ table {
   border-collapse: collapse;
 }
 
-table tbody tr.transparent-row,
-table tbody tr.transparent-row td {
-  background: #ffffff !important;
+table tbody tr.session-00 > td,
+table tbody tr.session-00:nth-child(odd) > td,
+table tbody tr.session-00:nth-child(even) > td {
+  background: none !important;
+  background-color: transparent !important;
 }
 </style>
 
