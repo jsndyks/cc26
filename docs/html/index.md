@@ -1,5 +1,15 @@
 ## CreativeCoding 2026 : Page Index [CC26]
 
+<script>
+document.querySelectorAll("table tbody tr").forEach(row => {
+  const firstCell = row.cells[0];
+
+  if (firstCell?.textContent.trim().includes("00")) {
+    row.classList.add("transparent-row");
+  }
+});
+</script>
+
 <style>
 table,
 table thead,
@@ -15,6 +25,12 @@ table td {
 table {
   border-collapse: collapse;
 }
+
+table tbody tr.transparent-row,
+table tbody tr.transparent-row td {
+  background: transparent !important;
+}
+
 </style>
 
 | session | title                          | pages                                                                                    | status |
