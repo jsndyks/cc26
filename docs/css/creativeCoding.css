@@ -155,7 +155,7 @@ h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:bot
 .summary h4, .summary h5 {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
 
 /* CHECK */
-.challenge p, .coreTask p, .codeTask p. {margin:0.25rem 0.5rem; padding:0.25rem 0.5rem}
+.challenge p, .coreTask p, .codeTask p {margin:0.25rem 0.5rem; padding:0.25rem 0.5rem}
 
 /*
 .summary {

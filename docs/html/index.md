@@ -27,7 +27,6 @@ table {
 |         |                                | [ccInduction.html](preparation/ccInduction.html)                                         |        |
 |         |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
 |      01 | **DearData**                   | [ccDearData.html](dearData/ccDearData.html)                                              |        |
-|         |                                | [ccDearData100.html](dearData/ccDearData100.html)                                        |        |
 |         |                                | [ccDataCollection.html](dearData/ccDataCollection.html)                                  |        |
 |      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                              |        |
 |         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)   | x                                     |        |
