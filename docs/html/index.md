@@ -1,12 +1,15 @@
 ## CreativeCoding 2026 : Page Index [CC26]
 
 <script>
-document.querySelectorAll("table tbody tr").forEach(row => {
-  const firstCell = row.cells[0];
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table tr").forEach(function (row) {
+    const firstCell = row.querySelector("td:first-child");
 
-if (firstCell?.textContent.trim().includes("00")) {
-  row.classList.add("transparent-row");
-  firstCell.textContent = "";
+    if (firstCell && firstCell.textContent.trim().includes("00")) {
+      row.classList.add("transparent-row");
+      firstCell.textContent = "";
+    }
+  });
 });
 </script>
 
@@ -30,7 +33,6 @@ table tbody tr.transparent-row,
 table tbody tr.transparent-row td {
   background: transparent !important;
 }
-
 </style>
 
 | session | title                          | pages                                                                                    | status |
