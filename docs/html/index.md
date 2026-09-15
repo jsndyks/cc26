@@ -36,12 +36,12 @@ table tbody tr.transparent-row td {
 | session | title                          | pages                                                                                    | status |
 | ------: | ------------------------------ | ---------------------------------------------------------------------------------------- | :----: |
 |      00 | **CC Home**                    | [homeIntroduction.html](home/homeIntroduction.html)                                      |        |
-|         |                                | [homeGuidance.html](home/homeGuidance.html)                                              |        |
-|         |                                | [homeObjectives.html](home/homeObjectives.html)                                          |        |
+|      00 |                                | [homeGuidance.html](home/homeGuidance.html)                                              |        |
+|      00 |                                | [homeObjectives.html](home/homeObjectives.html)                                          |        |
 |      00 | **Preparation**                | [ccTenTasks.html](preparation/ccTenTasks.html)                                           |        |
-|         |                                | [ccSoundCheck.html](preparation/ccSoundCheck.html)                                       |        |
-|         |                                | [ccInduction.html](preparation/ccInduction.html)                                         |        |
-|         |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
+|      00 |                                | [ccSoundCheck.html](preparation/ccSoundCheck.html)                                       |        |
+|      00 |                                | [ccInduction.html](preparation/ccInduction.html)                                         |        |
+|      00 |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
 |      01 | **DearData**                   | [ccDearData.html](dearData/ccDearData.html)                                              |        |
 |         |                                | [ccDataCollection.html](dearData/ccDataCollection.html)                                  |        |
 |      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                              |        |
