@@ -23,10 +23,10 @@ function setup() {
   background(255);
   textSize(48);
 
-  xPos = 60;
+  xPos = 60; // Starting position of the ball
   yPos = 60;
 
-  vx = 2.2; // The ball launches itself: no click needed
+  vx = 2.2; // Speed of the ball
   vy = 1.2;
 }
 
