@@ -531,7 +531,7 @@ void draw()
       gameOver();
     }</pre>
             <p>
-                Twelve lines have become three, and this time the saving is not the main point.<br/>
+                Twelve lines of <code>draw()</code> have become three, and this time the saving is not the main point.<br/>
                 Suppose we decide the message should read "OUCH! GAME OVER", and that we want to play a sound
                 when the ball hits a peg.<br/>
                 Before, that meant three edits, and if we missed one we would have introduced a bug that only
@@ -576,7 +576,8 @@ void draw()
             </p>
 
             <p>
-                The peg-drawing code appears three times in <code>draw()</code>:
+                Here is the code in <code>draw()</code> that draws the pegs. The colours are set once, and then
+                there is one line for each of the three pegs:
             </p>
             <pre class="brush: processing; gutter: false; toolbar: false; ">    fill(255, 0, 0);
     stroke(0);
@@ -593,7 +594,12 @@ void draw()
   stroke(0);
   circle(peg1X, peg1Y, 2 * pegRadius);
 }</pre>
-            Then we can replace the previous mess with the much more elegant and readable:
+            <p>
+                We have tucked the two colour lines inside the method as well, since setting the colours is part of
+                what it means to draw a peg. That does mean we now set them three times instead of once, but the
+                result on screen is exactly the same.
+            </p>
+            Then we can replace those three lines with the much more elegant and readable:
             <pre class="brush: processing; gutter: false; toolbar: false; ">    drawPeg();
     drawPeg();
     drawPeg();</pre>
