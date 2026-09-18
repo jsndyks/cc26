@@ -24,7 +24,7 @@
         <h2>Methods</h2>
         <p>
             This section introduces <b>method definition and parameterisation</b>.<br/>
-            We start with a simple game, called <i>PathFinder</i>.<br/>
+            We start with a simple game, called <i>PegDodge</i>.<br/>
             The code, as initially structured, is relatively complex and not easy to understand.<br/>
             We will see how to <em>refactor</em> the code using method definitions, resulting in code
             that is much easier to understand, debug and reuse.</p>
@@ -34,7 +34,7 @@
             <li>Write simple method definitions without parameters and write code that calls these methods.</li>
             <li>Write more complex method definitions with parameters and write code that calls these methods,
                 providing appropriate values for each parameter.</li>
-            <li>Refactor the <i>PathFinder</i> sketch to use method definitions and method calls.</li>
+            <li>Refactor the <i>PegDodge</i> sketch to use method definitions and method calls.</li>
         </ul>
     </div>
     <!-- End of intro section -->
@@ -43,7 +43,7 @@
     <div class="units-row">
         <div class="unit-70-cc">
             <!-- Left column -->
-            <h3>1. PathFinder</h3>
+            <h3>1. PegDodge</h3>
 
             <p>We have used <i>Processing</i> to develop a simple game.<br/>
                 The game uses many of the concepts and much of the language that we have introduced so far.
@@ -73,9 +73,6 @@ float radius;
 // peg size
 float pegRadius;
 
-// is ball in play?
-boolean inPlayMode;     // &lt;-- boolean variable, can only hold values of TRUE and FALSE.
-
 void setup()            // &lt;-- Whatever commands we put in here will be executed once.
 {
     size(500, 400);
@@ -94,24 +91,11 @@ void setup()            // &lt;-- Whatever commands we put in here will be execu
     peg3X = width - 24;
     peg3Y = 70;
 
-    xPos = width - radius;
-    yPos = height - radius;
+    xPos = 60;
+    yPos = 60;
 
-    inPlayMode = false;   // &lt;-- Initialise 'inPlayMode' to FALSE
-}
-
-// -- A new method
-void mousePressed()
-{
-    if (inPlayMode)       // &lt;-- Check whether this is TRUE, else change vx and vy, and set inPlayMode to TRUE
-    {
-        // -- do nothing, ball is already in play
-    } else
-    {
-        vx = (mouseX - xPos) / 50;
-        vy = (mouseY - yPos) / 50;
-        inPlayMode = true;
-    }
+    vx = 2.9;             // &lt;-- The ball launches itself: no click needed
+    vy = 1.5;
 }
 
 void draw()
@@ -126,62 +110,48 @@ void draw()
     circle(peg2X, peg2Y, 2 * pegRadius);
     circle(peg3X, peg3Y, 2 * pegRadius);
 
-    // -- Lots of decisions that define the game!
-    if (inPlayMode)
+    // -- Move the ball
+    xPos = xPos + vx;
+    yPos = yPos + vy;
+
+    // -- Draw ball
+    noStroke();
+    fill(0, 0, 255);
+    circle(xPos, yPos, 2 * radius);
+
+    // -- Check rebounds against left and right walls
+    if (xPos - radius < 0 || xPos + radius > width)
     {
-        xPos = xPos + vx;
-        yPos = yPos + vy;
-
-        // -- Draw ball
-        noStroke();
-        fill(0, 0, 255);
-        circle(xPos, yPos, 2 * radius);
-
-        // -- Check rebounds against left and right walls
-        if (xPos - radius < 0 || xPos + radius > width)
-        {
-            vx = -vx;
-        }
-
-        // -- Check rebounds against top and bottom walls
-        if (yPos - radius < 0 || yPos + radius > height)
-        {
-            vy = -vy;
-        }
-
-        // -- Check collisions with pegs
-        if (dist(xPos, yPos, peg1X, peg1Y) < radius + pegRadius)
-        {
-            fill(0);
-            textAlign(CENTER, CENTER);
-            text("GAME OVER!", width/2, height/2);
-            frameRate(0);
-        }
-        if (dist(xPos, yPos, peg2X, peg2Y) < radius + pegRadius)
-        {
-            fill(0);
-            textAlign(CENTER, CENTER);
-            text("GAME OVER!", width/2, height/2);
-            frameRate(0);
-        }
-        if (dist(xPos, yPos, peg3X, peg3Y) < radius + pegRadius)
-        {
-            fill(0);
-            textAlign(CENTER, CENTER);
-            text("GAME OVER!", width/2, height/2);
-            frameRate(0);
-        }
+        vx = -vx;
     }
-    else
-    {
-        // -- Draw ball
-        noStroke();
-        fill(0, 0, 255);
-        circle(xPos, yPos, 2 * radius);
 
-        // -- Draw aiming line
-        stroke(0);
-        line(xPos, yPos, mouseX, mouseY);
+    // -- Check rebounds against top and bottom walls
+    if (yPos - radius < 0 || yPos + radius > height)
+    {
+        vy = -vy;
+    }
+
+    // -- Check collisions with pegs
+    if (dist(xPos, yPos, peg1X, peg1Y) < radius + pegRadius)
+    {
+        fill(0);
+        textAlign(CENTER, CENTER);
+        text("GAME OVER!", width/2, height/2);
+        frameRate(0);
+    }
+    if (dist(xPos, yPos, peg2X, peg2Y) < radius + pegRadius)
+    {
+        fill(0);
+        textAlign(CENTER, CENTER);
+        text("GAME OVER!", width/2, height/2);
+        frameRate(0);
+    }
+    if (dist(xPos, yPos, peg3X, peg3Y) < radius + pegRadius)
+    {
+        fill(0);
+        textAlign(CENTER, CENTER);
+        text("GAME OVER!", width/2, height/2);
+        frameRate(0);
     }
 }</pre>
 </div>
@@ -189,9 +159,9 @@ void draw()
 <div class="unit-30-cc annotation">
 
 <script>
-    loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pathfinder", 350, 280, "https://jsndyks.github.io/cc26/html/methods/img/cc.pathfinder.png");
+    loadSketch("https://jsndyks.github.io/cc26/p5js/pegDodge", 350, 280, "https://jsndyks.github.io/cc26/html/methods/img/cc.pegDodge.png");
 </script>
-<p>PathFinder demo (click on image to activate).</p>
+<p>PegDodge demo (click on image to activate).</p>
 </div>
 </div>
 
@@ -201,11 +171,27 @@ void draw()
 
 
             <div class="codeTask">
-                <h5>Play PathFinder</h5>
-                <p>Click the sketch above, enlarge the size of the window and play the game a couple of times.</p>
-                <p>Now, create your own <i>PathFinder</i> sketch by copying the code that we have provided above - click the code and use <code>CTRL-A</code> to select it all, <code>CTRL-C</code> to copy the selection and <code>CTRL-V</code>< to paste into your sketch. Macs tend to use <code>COMMAND</code> rather than <code>CTRL</code>.</p>
-                <p>Save the sketch, and run it and play it a couple of times to get the hang of what it does.<br/>
+                <h5>Watch PegDodge</h5>
+                <p>Click the sketch above, enlarge the size of the window and watch it a couple of times.<br/>
+                    The ball launches itself, bounces around, and sooner or later it clips a peg and the game is over.</p>
+                <p>Now, create your own <i>PegDodge</i> sketch by copying the code that we have provided above - click the code and use <code>CTRL-A</code> to select it all, <code>CTRL-C</code> to copy the selection and <code>CTRL-V</code>< to paste into your sketch. Macs tend to use <code>COMMAND</code> rather than <code>CTRL</code>.</p>
+                <p>Save the sketch, and run it a couple of times to get the hang of what it does.<br/>
                     Make sure that your local copy of the sketch behaves in the same way as the clickable sketch that we have provided above.</p>
+            </div>
+            <div class="codeTask">
+                <h5>Play PegDodge</h5>
+                <p>There is no aiming and no clicking here, so every run of the sketch is identical.<br/>
+                    To play a <i>different</i> game, change the values of <code>xPos</code>, <code>yPos</code>,
+                    <code>vx</code> and <code>vy</code> in <code>setup()</code> by hand and run the sketch again.</p>
+                <ul>
+                    <li>Try a steeper launch, then a shallower one.</li>
+                    <li>Try a faster ball, then a slower one.</li>
+                    <li>Start the ball somewhere else in the window.</li>
+                </ul>
+                <p>Some combinations survive for a long time, others hit a peg almost immediately.<br/>
+                    See whether you can find values that keep the ball alive indefinitely, without ever hitting a peg.</p>
+                <p>Notice what is going on here: the whole behaviour of the sketch is decided by a handful of named
+                    values. That is exactly the idea that <i>parameters</i> will generalise later in this session.</p>
             </div>
             <p>
                 That code is quite a mouthful.<br/>Maybe it's a bit scary? It looks a complicated mess. It was probably quite hard to read. <br/>
@@ -226,24 +212,15 @@ void draw()
   drawPeg(peg2X, peg2Y);
   drawPeg(peg3X, peg3Y);
 
-  if (inPlayMode)
-  {
-    moveBall();
+  moveBall();
 
-    drawBall();
+  drawBall();
 
-    bounceOffWalls();
+  bounceOffWalls();
 
-    checkForPegCollision(peg1X, peg1Y);
-    checkForPegCollision(peg2X, peg2Y);
-    checkForPegCollision(peg3X, peg3Y);
-  }
-  else
-  {
-    drawBall();
-
-    drawAimingLine();
-  }
+  checkForPegCollision(peg1X, peg1Y);
+  checkForPegCollision(peg2X, peg2Y);
+  checkForPegCollision(peg3X, peg3Y);
 }</pre>
             <div class="tip">
                 <p>
