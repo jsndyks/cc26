@@ -26,8 +26,8 @@ function setup() {
   xPos = 60;
   yPos = 60;
 
-  vx = 2.9; // The ball launches itself: no click needed
-  vy = 1.5;
+  vx = 2.2; // The ball launches itself: no click needed
+  vy = 1.2;
 }
 
 function draw() {
