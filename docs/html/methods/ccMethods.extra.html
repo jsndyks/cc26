@@ -30,10 +30,161 @@
         These are not essential tasks and we do not expect everybody to attempt them, but they will stretch you if you have found things straightforward so far.</p>
     </div>
 
+    <p>
+        These exercises are built around <i>PathFinder</i>, which is an extension of the <i>PegDodge</i> sketch from the
+        <a href="./ccMethods.html">Methods : Core</a> session.<br/>
+        The game is the same - a ball, three pegs, and walls to bounce off - but the ball no longer launches itself.
+        Instead the player aims it with the mouse and launches it with a click.
+    </p>
+    <p>
+        That one change brings in <b>interaction methods</b>: a <code>mousePressed()</code> method, which
+        <i>Processing</i> calls for us whenever the user clicks, and a <code>boolean</code> variable to keep track of
+        whether the ball is in play or still being aimed.<br/>
+        While the ball is being aimed, the sketch draws a line from the ball to the mouse pointer to show where it
+        is pointing.
+    </p>
+    <p>
+        Here is the <i>PathFinder</i> code in full. Copy it into a new sketch, run it, and have a few games before
+        you start on the challenges below:
+    </p>
+
+<pre class="brush: processing; gutter: false; toolbar: false; ">// -- Global variables are declared first
+
+// ball position
+float xPos;
+float yPos;
+
+// peg positions
+float peg1X, peg1Y;
+float peg2X, peg2Y;
+float peg3X, peg3Y;
+
+// ball velocity
+float vx;
+float vy;
+
+// ball size
+float radius;
+
+// peg size
+float pegRadius;
+
+// is ball in play?
+boolean inPlayMode;     // &lt;-- boolean variable, can only hold values of TRUE and FALSE.
+
+void setup()            // &lt;-- Whatever commands we put in here will be executed once.
+{
+    size(500, 400);
+    textSize(48);
+
+    radius = 15;
+
+    pegRadius = 10;
+
+    peg1X = 250;
+    peg1Y = 200;
+
+    peg2X = 70;
+    peg2Y = height - 24;
+
+    peg3X = width - 24;
+    peg3Y = 70;
+
+    xPos = width - radius;
+    yPos = height - radius;
+
+    inPlayMode = false;   // &lt;-- Initialise 'inPlayMode' to FALSE
+}
+
+// -- A new method
+void mousePressed()
+{
+    if (inPlayMode)       // &lt;-- Check whether this is TRUE, else change vx and vy, and set inPlayMode to TRUE
+    {
+        // -- do nothing, ball is already in play
+    } else
+    {
+        vx = (mouseX - xPos) / 50;
+        vy = (mouseY - yPos) / 50;
+        inPlayMode = true;
+    }
+}
+
+void draw()
+{
+    background(255);
+
+    fill(255, 0, 0);
+    stroke(0);
+
+    // -- Draw the pegs
+    circle(peg1X, peg1Y, 2 * pegRadius);
+    circle(peg2X, peg2Y, 2 * pegRadius);
+    circle(peg3X, peg3Y, 2 * pegRadius);
+
+    // -- Lots of decisions that define the game!
+    if (inPlayMode)
+    {
+        xPos = xPos + vx;
+        yPos = yPos + vy;
+
+        // -- Draw ball
+        noStroke();
+        fill(0, 0, 255);
+        circle(xPos, yPos, 2 * radius);
+
+        // -- Check rebounds against left and right walls
+        if (xPos - radius &lt; 0 || xPos + radius &gt; width)
+        {
+            vx = -vx;
+        }
+
+        // -- Check rebounds against top and bottom walls
+        if (yPos - radius &lt; 0 || yPos + radius &gt; height)
+        {
+            vy = -vy;
+        }
+
+        // -- Check collisions with pegs
+        if (dist(xPos, yPos, peg1X, peg1Y) &lt; radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
+        if (dist(xPos, yPos, peg2X, peg2Y) &lt; radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
+        if (dist(xPos, yPos, peg3X, peg3Y) &lt; radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
+    }
+    else
+    {
+        // -- Draw ball
+        noStroke();
+        fill(0, 0, 255);
+        circle(xPos, yPos, 2 * radius);
+
+        // -- Draw aiming line
+        stroke(0);
+        line(xPos, yPos, mouseX, mouseY);
+    }
+}</pre>
+
     <div class="challenge">
         <h5>PathFinder Refactoring</h5>
         <p>
-        Complete the refactoring of the <i>PathFinder</i> sketch that we started in the lecture.<br/>Here's a reminder of what
+        Refactor the <i>PathFinder</i> sketch in the same way that we refactored <i>PegDodge</i> in the lecture.<br/>Here's a reminder of what
         the <code>draw()</code> code should look like when the sketch is fully refactored:
         </p>
         <pre class="brush: processing; gutter: false; toolbar: false; ">void draw()
@@ -65,20 +216,23 @@
 }</pre>
         In the lecture we covered these methods:
         <ul>
-            <li> <code>drawAimingLine</code>
+            <li> <code>bounceOffWalls</code>
             </li>
-            <li> <code>drawBall</code>
+            <li> <code>gameOver</code>
+            </li>
+            <li> <code>drawPeg</code>
             </li>
             <li> <code>checkForPegCollision</code>
             </li>
         </ul>
-        In addition, you need to define the methods:
+        In addition, you need to define the methods (you may already have written the first two as a task in the
+        lecture - the same code works here):
         <ul>
             <li> <code>moveBall</code>
             </li>
-            <li> <code>bounceOffWalls</code>
+            <li> <code>drawBall</code>
             </li>
-            <li> <code>drawPeg</code>
+            <li> <code>drawAimingLine</code>
             </li>
         </ul>
 
