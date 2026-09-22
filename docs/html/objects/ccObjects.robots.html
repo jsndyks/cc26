@@ -2,49 +2,35 @@
 <html>
 
 <head>
-  <title>CreativeCoding: Objects &amp; Classes - Robots!</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Classes &amp; Objects - Robots</title>
 
-<!-- Embedded fonts -->
-<link
-    href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-    rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
-<!-- Custom layout and style -->
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-<!-- General browser compatibility handling -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-<!-- Formatted source code -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-<!-- Sketch popups and hidden text-->
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-<!-- JD Extras! -->
-<link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-<!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-
-<!-- iFrame -->
-<script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
 </head>
 
 <body>
-    <div id="page">
-        <div class="intro">
+
+
+<div id="page">
+
+	<div class="intro">
+        <h2>Classes &amp; Objects - Robots</h2>
+
 
        <p>
-            In the <i>Objects &amp; Classes</i> lecture we show some simple, and increasingly functional and sophisticated (though still quite simple) classes involving <i>Robots</i>.
+            In the <i>Objects &amp; Classes</i> lecture we show some simple, and increasingly functional and sophisticated (though still relativelt simple) classes involving <i>Robots</i>.
+        </p>
+        <p>
+          Working through this page introduces the classes in turn.
+        </p>
+        <p>
+          It would be great if you could complete the <i>Preparation</i> <b>before our scheduled lecture</b> on <i>Classes &amp; Objects</i>.
         </p>
         </div>
 
@@ -57,8 +43,9 @@
                 First, some preparation ...
             </p>
             <ol start="-1">
-                <li style="padding-bottom:0.5em"><b style="color:#904040">Preparation</b> - some sketching to establish the coordinates and characteristics of a simple representation of a robot</li>
-                <li style="padding-bottom:0.5em"><b style="color:#904040">Methods</b> - we use a <i>method</i> to draw a robot using a series of shapes based these coordinates and characteristics - just like we have done before</li>
+                <li style="padding-bottom:0.5em"><b style="color:#904040">Preparation</b> - some sketching to establish the coordinates and characteristics of a simple representation of a robot.<br/>Can you draw a <i>robot</i> using 5 shapes or fewer?</li>
+                <li style="padding-bottom:0.5em"><b style="color:#904040">Methods</b> - we use a <i>method</i> to draw a robot using a series of shapes based these coordinates and characteristics - just like we have done before.<br/>
+                Get your <i>robot</i> into a <i>Processing</i> sketch - onto the canvas!</li>
             </ol>
             <p>And then some classes - some basic ones that all of you should try ...</p>
             <ol>
@@ -95,7 +82,7 @@
                 <figcaption style="margin-top:-2.5em">Draw a Robot Head.<br/>Find the variables that allow us to draw it!</figcaption>
             </div>
 
-            <p>Sketch a robot head with four simple shapes - a rectangle, two circles and a line.</p>
+            <p>Sketch a robot head with less than fove simple shapes - here I use four ... a rectangle, two circles and a line.</p>
             <p>Find the coordinates of the robot head centred around the origin (0,0).<br/>
             Note that in this sketch, for no sensible reason at all, other than that I kinda forgot when I drew it ... we are using <i>standard coordinates</i>.
             Of course, in <i>Processing</i> the vertical <i>Y-axis</i> increases from top to bottom with the origin at the <i>top-left</i>.</p>
@@ -184,7 +171,7 @@ void draw () {
 }            </pre>
 
 
-            <p>So, we can draw a robot, and we could draw more with different configurations by calling the <i>method</i> again with different input parameters.</p>
+            <p>So, we can draw a robot, and we could draw more with different configurations by calling the <i>method</i> multiple times with different input parameters.</p>
 
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Method approach to drawing:
   drawRobot(x,    y, wide,high, eyeD, eyeR, mLong, mDown);
@@ -219,7 +206,7 @@ void draw () {
                 Remember that the <i>Processing</i> documentation helpfully and effectively defines a <code><a href="https://processing.org/reference/class.html">class</a></code> as:</p>
             <blockquote>a composite of fields (data) and methods (functions that are a part of the class) which may be instantiated as objects.</blockquote>
 
-            <p>We use the <code><a href="https://processing.org/reference/class.html">class</a></code> keyword to define one of these composites, and here's the simplest example I can come up with of a robot class that takes advantage of this <i>Processing</i> capability and uses the expected syntax:</p>
+            <p>We use the <code><a href="https://processing.org/reference/class.html">class</a></code> keyword to define one of these composites, and here's the simplest example I can come up with of a robot class that takes advantage of this <i>Processing</i> capability and uses the expected syntax - the class is called <code>RobotMk1</code> and we can use it to make <code>RobotMk1</code> objects:</p>
 
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Very Basic Robot class that does ... er ... nothing!
 // -- Useless!
@@ -235,17 +222,18 @@ void draw () {
     }
 </pre>
 
-            <p>Having defined a class we can use it to create one or more <i>objects</i> that are instances of that class.<br/>
+            <p>Having defined the class we can use it to create one or more <i>objects</i> that are instances of that class.<br/>
             So we can now make a Mark1 robot of type <code>RobotMk1</code> just as we would create any variable.
             But this variable is an object and so it is ... "<i>a composite of fields (data) and methods (functions that are a part of the class)</i>". 
-            Or at least it could be if we had defined a class with fields and methods, but this current class, our <i>Mark 1</i> basic robot, has no data or methods so it's pretty useless.</p>
+            Or at least it could be if we had defined a class with fields and methods.
+            But we chose not to. This current class, our <i>Mark 1</i> basic robot, has no data or methods. So it's pretty useless.</p>
             <p>We can still declare and instantiate variables of this type though.<br/>Try adding the class to your sketch in a new tab titled <i>RobotMk1</i> and declaring an instance or two in <code>setup()</code> to see that it is possible:</p>
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Very Basic Robot class that does ... er ... nothing!
     RobotMk1 r  = new RobotMk1();
     RobotMk1 r2 = new RobotMk1();
     RobotMk1 c3po = new RobotMk1();</pre>
             <p>We now have three robots in our sketch, but they don't contain any data that describes them or allows us to differentiate them (variables), or do anything like draw themselves or move (methods).</p>
-            <p>But we can easily add this kind of thing now that we can see how easy it is to make a class.</p>
+            <p>But we can easily add this kind of thing now that we can see how easy it is to make a class. Let's try a more sophisticated and functional <i>Mark2</i> robot.</p>
 
 
             <h3>2. Mark 2 - A Class that Does Something (not much) - the 'Something' Class</h3>
@@ -318,7 +306,7 @@ r.draw();</pre>
         <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk3 takes arguments that<br/>allow us to configure instances (objects)!</figcaption>
     </div>
 
-    <p>It should now be clear that we can create a more sophisticated looking robot by adding some commands to the <code>draw()</code> method of the class. That's pretty easy, particularly if we use our sketchbook to help, and we do so below with <i>head</i>, <i>eyes</i> and <i>mouth</i> (but still no body) below.</p>
+    <p>It should now be clear that we can create a more sophisticated looking robot by adding some commands to the <code>draw()</code> method of the class. That's pretty easy, particularly if we use our sketchbook to help, and we do so below with <i>head</i>, <i>eyes</i> and <i>mouth</i> (but still no body - can't be bothered for now) below.</p>
 
             <p>But what is new and exciting is that we can pass arguments to our object, to configure it individually, if we define these in the constructor class - just as we do with objects available in <i>Processing</i>like <a href="https://processing.org/reference/PVector.html"><code>PVector</code></a>.</p>
 
@@ -488,7 +476,8 @@ RobotMk3 r2d4 = new RobotMk3(250, 150);</pre>
                 <h5>More Impressive Robots</h5>
                 <p>
                     That's plenty for now!<br/>
-                But, if you want to know more ... try the following examples, which take things a little further.<br/>
+                But, if you want to know more and explore a little ... try the following examples, which take things a bit further.</p>
+                <p>
                 It's not too hard, and builds gently on what we have learned above, taking advantage of classes to add interaction and more behaviours.
                 </p>
             </div>                    
