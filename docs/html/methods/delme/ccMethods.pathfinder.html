@@ -24,7 +24,7 @@
         <h2>Methods</h2>
         <p>
             This section introduces <b>method definition and parameterisation</b>.<br/>
-            We start with a simple game, called <i>PegDodge</i>.<br/>
+            We start with a simple game, called <i>PathFinder</i>.<br/>
             The code, as initially structured, is relatively complex and not easy to understand.<br/>
             We will see how to <em>refactor</em> the code using method definitions, resulting in code
             that is much easier to understand, debug and reuse.</p>
@@ -34,7 +34,7 @@
             <li>Write simple method definitions without parameters and write code that calls these methods.</li>
             <li>Write more complex method definitions with parameters and write code that calls these methods,
                 providing appropriate values for each parameter.</li>
-            <li>Refactor the <i>PegDodge</i> sketch to use method definitions and method calls.</li>
+            <li>Refactor the <i>PathFinder</i> sketch to use method definitions and method calls.</li>
         </ul>
     </div>
     <!-- End of intro section -->
@@ -43,7 +43,7 @@
     <div class="units-row">
         <div class="unit-70-cc">
             <!-- Left column -->
-            <h3>1. PegDodge</h3>
+            <h3>1. PathFinder</h3>
 
             <p>We have used <i>Processing</i> to develop a simple game.<br/>
                 The game uses many of the concepts and much of the language that we have introduced so far.
@@ -73,6 +73,9 @@ float radius;
 // peg size
 float pegRadius;
 
+// is ball in play?
+boolean inPlayMode;     // &lt;-- boolean variable, can only hold values of TRUE and FALSE.
+
 void setup()            // &lt;-- Whatever commands we put in here will be executed once.
 {
     size(500, 400);
@@ -91,11 +94,24 @@ void setup()            // &lt;-- Whatever commands we put in here will be execu
     peg3X = width - 24;
     peg3Y = 70;
 
-    xPos = 60;            // &lt;-- Starting position of the ball
-    yPos = 60;
+    xPos = width - radius;
+    yPos = height - radius;
 
-    vx = 2.2;             // &lt;-- Speed of the ball
-    vy = 1.2;
+    inPlayMode = false;   // &lt;-- Initialise 'inPlayMode' to FALSE
+}
+
+// -- A new method
+void mousePressed()
+{
+    if (inPlayMode)       // &lt;-- Check whether this is TRUE, else change vx and vy, and set inPlayMode to TRUE
+    {
+        // -- do nothing, ball is already in play
+    } else
+    {
+        vx = (mouseX - xPos) / 50;
+        vy = (mouseY - yPos) / 50;
+        inPlayMode = true;
+    }
 }
 
 void draw()
@@ -110,48 +126,62 @@ void draw()
     circle(peg2X, peg2Y, 2 * pegRadius);
     circle(peg3X, peg3Y, 2 * pegRadius);
 
-    // -- Move the ball
-    xPos = xPos + vx;
-    yPos = yPos + vy;
+    // -- Lots of decisions that define the game!
+    if (inPlayMode)
+    {
+        xPos = xPos + vx;
+        yPos = yPos + vy;
 
-    // -- Draw ball
-    noStroke();
-    fill(0, 0, 255);
-    circle(xPos, yPos, 2 * radius);
+        // -- Draw ball
+        noStroke();
+        fill(0, 0, 255);
+        circle(xPos, yPos, 2 * radius);
 
-    // -- Check rebounds against left and right walls
-    if (xPos - radius < 0 || xPos + radius > width)
-    {
-        vx = -vx;
-    }
+        // -- Check rebounds against left and right walls
+        if (xPos - radius < 0 || xPos + radius > width)
+        {
+            vx = -vx;
+        }
 
-    // -- Check rebounds against top and bottom walls
-    if (yPos - radius < 0 || yPos + radius > height)
-    {
-        vy = -vy;
-    }
+        // -- Check rebounds against top and bottom walls
+        if (yPos - radius < 0 || yPos + radius > height)
+        {
+            vy = -vy;
+        }
 
-    // -- Check collisions with pegs
-    if (dist(xPos, yPos, peg1X, peg1Y) < radius + pegRadius)
-    {
-        fill(0);
-        textAlign(CENTER, CENTER);
-        text("GAME OVER!", width/2, height/2);
-        frameRate(0);
+        // -- Check collisions with pegs
+        if (dist(xPos, yPos, peg1X, peg1Y) < radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
+        if (dist(xPos, yPos, peg2X, peg2Y) < radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
+        if (dist(xPos, yPos, peg3X, peg3Y) < radius + pegRadius)
+        {
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("GAME OVER!", width/2, height/2);
+            frameRate(0);
+        }
     }
-    if (dist(xPos, yPos, peg2X, peg2Y) < radius + pegRadius)
+    else
     {
-        fill(0);
-        textAlign(CENTER, CENTER);
-        text("GAME OVER!", width/2, height/2);
-        frameRate(0);
-    }
-    if (dist(xPos, yPos, peg3X, peg3Y) < radius + pegRadius)
-    {
-        fill(0);
-        textAlign(CENTER, CENTER);
-        text("GAME OVER!", width/2, height/2);
-        frameRate(0);
+        // -- Draw ball
+        noStroke();
+        fill(0, 0, 255);
+        circle(xPos, yPos, 2 * radius);
+
+        // -- Draw aiming line
+        stroke(0);
+        line(xPos, yPos, mouseX, mouseY);
     }
 }</pre>
 </div>
@@ -159,9 +189,9 @@ void draw()
 <div class="unit-30-cc annotation">
 
 <script>
-    loadSketch("https://jsndyks.github.io/cc26/p5js/pegDodge", 350, 280, "https://jsndyks.github.io/cc26/html/methods/img/cc.pegDodge.png");
+    loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pathfinder", 350, 280, "https://jsndyks.github.io/cc26/html/methods/img/cc.pathfinder.png");
 </script>
-<p>PegDodge demo (click on image to activate).</p>
+<p>PathFinder demo (click on image to activate).</p>
 </div>
 </div>
 
@@ -171,27 +201,11 @@ void draw()
 
 
             <div class="codeTask">
-                <h5>Watch PegDodge</h5>
-                <p>Click the sketch above, enlarge the size of the window and watch it a couple of times.<br/>
-                    The ball launches itself, bounces around, and when it clips a peg the game is over.</p>
-                <p>Now, create your own <i>PegDodge</i> sketch by copying the code that we have provided above - click the code and use <code>CTRL-A</code> to select it all, <code>CTRL-C</code> to copy the selection and <code>CTRL-V</code>< to paste into your sketch. Macs tend to use <code>COMMAND</code> rather than <code>CTRL</code>.</p>
-                <p>Save the sketch, and run it a couple of times to get the hang of what it does.<br/>
+                <h5>Play PathFinder</h5>
+                <p>Click the sketch above, enlarge the size of the window and play the game a couple of times.</p>
+                <p>Now, create your own <i>PathFinder</i> sketch by copying the code that we have provided above - click the code and use <code>CTRL-A</code> to select it all, <code>CTRL-C</code> to copy the selection and <code>CTRL-V</code>< to paste into your sketch. Macs tend to use <code>COMMAND</code> rather than <code>CTRL</code>.</p>
+                <p>Save the sketch, and run it and play it a couple of times to get the hang of what it does.<br/>
                     Make sure that your local copy of the sketch behaves in the same way as the clickable sketch that we have provided above.</p>
-            </div>
-            <div class="codeTask">
-                <h5>Play PegDodge</h5>
-                <p>The starting point and velocity of the ball are always the same, so every run of the sketch is identical.<br/>
-                    To play a <i>different</i> game, change the values of <code>xPos</code>, <code>yPos</code>,
-                    <code>vx</code> and <code>vy</code> in <code>setup()</code> by hand and run the sketch again.</p>
-                <ul>
-                    <li>Try a steeper launch, then a shallower one.</li>
-                    <li>Try a faster ball, then a slower one.</li>
-                    <li>Start the ball somewhere else in the window.</li>
-                </ul>
-                <p>Some combinations survive for a long time, others hit a peg almost immediately.<br/>
-                    See whether you can find values that keep the ball alive indefinitely, without ever hitting a peg.</p>
-                <p>Notice what is going on here: the whole behaviour of the sketch is decided by a handful of named
-                    values. That is exactly the idea that <i>parameters</i> will generalise later in this session.</p>
             </div>
             <p>
                 That code is quite a mouthful.<br/>Maybe it's a bit scary? It looks a complicated mess. It was probably quite hard to read. <br/>
@@ -212,15 +226,24 @@ void draw()
   drawPeg(peg2X, peg2Y);
   drawPeg(peg3X, peg3Y);
 
-  moveBall();
+  if (inPlayMode)
+  {
+    moveBall();
 
-  drawBall();
+    drawBall();
 
-  bounceOffWalls();
+    bounceOffWalls();
 
-  checkForPegCollision(peg1X, peg1Y);
-  checkForPegCollision(peg2X, peg2Y);
-  checkForPegCollision(peg3X, peg3Y);
+    checkForPegCollision(peg1X, peg1Y);
+    checkForPegCollision(peg2X, peg2Y);
+    checkForPegCollision(peg3X, peg3Y);
+  }
+  else
+  {
+    drawBall();
+
+    drawAimingLine();
+  }
 }</pre>
             <div class="tip">
                 <p>
@@ -287,9 +310,7 @@ void draw()
                 </li>
                 <li>Methods defined by you and that <i>Processing</i> calls when running your sketches:<br/>
                     <code>setup()</code>,
-                    <code>draw()</code>, <code>keyPressed()</code>
-                    (this last one is optional - it is the <i>Interaction</i> session that deals with methods like
-                    <code>keyPressed()</code>, so don't worry if you haven't met it yet).
+                    <code>draw()</code>, <code>keyPressed()</code>.
                 </li>
             </ul>
             <p>
@@ -306,53 +327,35 @@ void draw()
     <div class="units-row">
         <div class="unit-70-cc">
             <!-- Left column -->
-            <h3>3. PegDodge Reloaded</h3>
+            <h3>3. PathFinder Reloaded</h3>
             <p>
-                Let's write a method to bounce the ball off the walls.<br/> The existing code that does this job is
-                the two <code>if</code> statements in the middle of <code>draw()</code> - here they are:
+                Let's write a method to draw the “aiming line”.<br/> The existing code that does this job is
+                two lines that you can see in the else-branch at the very end of <code>draw()</code> - here they are:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">  if (xPos - radius &lt; 0 || xPos + radius &gt; width)
-  {
-    vx = -vx;
-  }
-  if (yPos - radius &lt; 0 || yPos + radius &gt; height)
-  {
-    vy = -vy;
-  }</pre>
+            <pre class="brush: processing; gutter: false; toolbar: false; ">  stroke(0);
+  line(xPos,yPos,mouseX,mouseY);</pre>
 
             <p>
                 We can simply copy this code and wrap it up inside a method definition.<br/>
-                We will give our new method a meaningful name like <code>bounceOffWalls</code> - but we could call it anything at all:
+                We will give our new method a meaningful name like <code>drawAimingLine</code> - but we could call it anything at all:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">void bounceOffWalls()
+            <pre class="brush: processing; gutter: false; toolbar: false; ">void drawAimingLine()
 {
-  if (xPos - radius &lt; 0 || xPos + radius &gt; width)
-  {
-    vx = -vx;
-  }
-  if (yPos - radius &lt; 0 || yPos + radius &gt; height)
-  {
-    vy = -vy;
-  }
+  stroke(0);
+  line(xPos,yPos,mouseX,mouseY);
 }</pre>
 
 <p>You should be able to see why this is a better method name than ...</p>
 <pre class="brush: processing; gutter: false; toolbar: false; ">void anythingAtAll()
 {
-    if (xPos - radius &lt; 0 || xPos + radius &gt; width)
-    {
-        vx = -vx;
-    }
-    if (yPos - radius &lt; 0 || yPos + radius &gt; height)
-    {
-        vy = -vy;
-    }
+    stroke(0);
+    line(xPos,yPos,mouseX,mouseY);
 }</pre>
 
     
             <div class="codeTask">
                 <h5>Your First Method - Definition</h5>
-                <p>Add the <code>bounceOffWalls()</code> method definition to your sketch.</p>
+                <p>Add the <code>drawAimingLine()</code> method definition to your sketch.</p>
                 <p>It must be <em>outside</em> the <code>draw()</code> method.</p>
             </div>
             <p>
@@ -362,12 +365,12 @@ void draw()
                 <li>A <i>return type</i>.<br/>In this example the return type is <code>void</code>, which declares that
                     this method doesn't return a value when it executes (some methods, like <code>dist()</code>, do
                     return values).</li>
-                <li>A <i>name</i>.<br/>In this example the name of the method is <code>bounceOffWalls</code>. It is VERY important to
+                <li>A <i>name</i>.<br/>In this example the name of the method is <code>drawAimingLine</code>. It is VERY important to
                     choose good names for your methods. A good name is one that tells us concisely and accurately
                     what is the intended purpose of the method. Bad names for
                     this method would be things like <code>myMethod</code> (tells us nothing useful at all),
-                    <code>check</code> (OK, so it checks something; but what exactly, and what does it do about it?)
-                    <code>bow</code> (an abbreviation of “bounce off walls”, but why abbreviate when the full
+                    <code>aim</code> (OK, so it's something to do with aiming; but what exactly?)
+                    <code>drawAL</code> (an abbreviation of “draw aiming line”, but why abbreviate when the full
                     version is easier to understand and takes only milliseconds longer to type?).
                 </li>
                 <li>A <i>parameter list</i>.<br/>That's the part in round brackets immediately after the method name.
@@ -402,15 +405,23 @@ void draw()
             <p>
                 To call a  method, you just write its name followed
                 by an argument list that matches the parameter list in the definition.<br/>
-            Since <code>bounceOffWalls</code> has an empty parameter list, we also write an empty argument list when we
+            Since <code>drawAimingLine</code> has an empty parameter list, we also write an empty argument list when we
             call it<br/>So our method call will be just:
             </p>
 
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    bounceOffWalls();</pre>
+            <pre class="brush: processing; gutter: false; toolbar: false; ">    drawAimingLine();</pre>
             <div class="codeTask">
                 <h5>Your First Method - Call the Method</h5>
-                <p>Put this call inside <code>draw()</code> - <code>bounceOffWalls();</code></p>
-                <p>It should <em>replace</em> the two <code>if</code> statements that we started with.</p>
+                <p>Put this call inside <code>draw()</code> - <code>drawAimingLine();</code></p>
+                <p>It should <em>replace</em> the two lines of code that we started with.</p>
+            </div>
+            <div class="tip">
+                <p>Note that we now have two methods with similar names:</p>
+                <ul>
+                <li><code>draw()</code> (executed automatically, 60 times a second, by <i>Processing</i>), and</li>
+                <li><code>drawAimingLine()</code> (executed only when our code explicitly calls it).</li>
+                <p>Try not to get them mixed up!</p>
+                </ul>
             </div>
 
 <!-- style="border:1px solid #ff4444; background-color:#80ffb0; width:fit-content" -->
@@ -422,16 +433,16 @@ void draw()
             </div>
 
             <p>
-                Now, every time <code>draw()</code> executes, this is what will happen:
+                Now, whenever the else-branch in <code>draw()</code> executes, this is what will happen:
             </p>
             <ol>
-                <li>Execution arrives at the call <code>bounceOffWalls()</code>.</li>
-                <li>Execution jumps into the body of the <code>bounceOffWalls</code> method [<i>method call</i>].
+                <li>Execution arrives at the call <code>drawAimingLine()</code>.</li>
+                <li>Execution jumps into the body of the <code>drawAimingLine</code> method [<i>method call</i>].
                 </li>
-                <li>The code in the body of <code>bounceOffWalls</code> executes [<i>method execution</i>].</li>
+                <li>The code in the body of <code>drawAimingLine</code> executes [<i>method execution</i>].</li>
                 <li>Execution jumps back to where it came from [<i>method return</i>].</li>
                 <li>Execution continues with the code immediately <em>after</em> the call point
-                    (in our example, the code that checks for collisions with the pegs).
+                    (in our example there is no more code - we have arrived at the very end of <code>draw</code>).
                 </li>
             </ol>
             <p>
@@ -447,20 +458,6 @@ void draw()
                 <em>not</em> to change its behaviour.
                 </p>
             </div>
-            <p>
-                Be clear about what we have and haven't gained here.<br/>
-                We haven't saved a single line of code - we have actually added a couple.<br/>
-                What we have gained is that <code>draw()</code> now tells us <em>what</em> happens
-                (the ball bounces off the walls) while <code>bounceOffWalls()</code> quietly looks after
-                <em>how</em> it happens. That is worth having on its own, and in the next section
-                we will see methods start to earn their keep in a more obvious way too.
-            </p>
-            <div class="codeTask">
-                <h5>Two More of the Same</h5>
-                <p>The two lines that move the ball, and the three lines that draw it, are asking for exactly the same treatment.</p>
-                <p>Wrap them up as <code>moveBall()</code> and <code>drawBall()</code>, and call them from <code>draw()</code>.</p>
-                <p>One change at a time, and run the sketch after each one.</p>
-            </div>
         </div>
         <!-- End of Left column -->
     </div>
@@ -473,20 +470,28 @@ void draw()
             <h3>4. Method Reuse versus Code Duplication</h3>
 
             <p>
-                There are three places in our original <code>draw()</code> where the <i>PegDodge</i> code ends the game:
-                once inside each of the three peg collision checks. The relevant code is:
+                There are two places in our original <code>draw()</code> where the <i>PathFinder</i> code draws the ball:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    fill(0);
-    textAlign(CENTER, CENTER);
-    text("GAME OVER!", width/2, height/2);
-    frameRate(0);</pre>
-            <p>
-                That is four lines, written out three times: twelve lines of <code>draw()</code>, of which eight
-                tell us nothing we didn't already know from the first four.
-            </p>
+
+            <ol>
+                <li>In the true-branch of the outermost <code>if</code> statement.<br/>The relevant code is:
+                    <br/>
+                    <br/>
+                    <pre class="brush: processing; gutter: false; toolbar: false; ">    noStroke();
+    fill(0,0,255);
+    circle(xPos, yPos, 2 * radius);</pre>
+                </li>
+                <li>In the false-branch of the outermost <code>if</code> statement.<br/>The relevant code is:
+                    <br/>
+                    <br/>
+                    <pre class="brush: processing; gutter: false; toolbar: false; ">    noStroke();
+    fill(0,0,255);
+    circle(xPos, yPos, 2 * radius);</pre>
+                </li>
+            </ol>
             <p>
                 Of course, it is no coincidence that these chunks of code are identical: I copy-pasted the first to
-                get the other two. This is known as code duplication and it is <b>BAD</b>.<br/>
+                get the second. This is known as code duplication and it is <b>BAD</b>.<br/>
                 It is bad because if we ever need
                 to debug or modify the intended behaviour of that code,
                 we have to make the same changes multiple times. Not only is that wasted effort, it is also error
@@ -498,53 +503,20 @@ void draw()
             </div>
             <p>
                 There is a better way: define a single method (containing just one copy of the code) and call it
-                three times.
+                twice.
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">void gameOver()
-{
-  fill(0);
-  textAlign(CENTER, CENTER);
-  text("GAME OVER!", width/2, height/2);
-  frameRate(0);
-}</pre>
-            <p>
-                The collision checks in <code>draw()</code> then become:
-            </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    if (dist(xPos, yPos, peg1X, peg1Y) &lt; radius + pegRadius)
-    {
-      gameOver();
-    }
-    if (dist(xPos, yPos, peg2X, peg2Y) &lt; radius + pegRadius)
-    {
-      gameOver();
-    }
-    if (dist(xPos, yPos, peg3X, peg3Y) &lt; radius + pegRadius)
-    {
-      gameOver();
-    }</pre>
-            <p>
-                Twelve lines of <code>draw()</code> have become three, and this time the saving is not the main point.<br/>
-                Suppose we decide the message should read "OUCH! GAME OVER", and that we want to play a sound
-                when the ball hits a peg.<br/>
-                Before, that meant three edits, and if we missed one we would have introduced a bug that only
-                shows up when the ball happens to hit peg 3 - which it might not do for quite some time.<br/>
-                Now, it is one edit in one place:
-            </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; highlight: [5] ">void gameOver()
-{
-  fill(0);
-  textAlign(CENTER, CENTER);
-  text("OUCH! GAME OVER", width/2, height/2);
-  frameRate(0);
-}</pre>
 
             <div class="codeTask">
-                <h5>A Method to End the Game</h5>
+                <h5>A Method to Draw a Ball</h5>
                 <p>
-                Make the change that we suggest above in your copy of <i>PegDodge</i>.</p>
+                Make the change that we suggest above in your copy of <i>PathFinder</i>.</p>
                 <ul>
-                    <li>define a single method (containing just one copy of the code) and call it three times</li>
+                    <li>define a single method (containing just one copy of the code) and call it twice</li>
                 </ul>
+                <p>
+                Take care to choose a good name for your method!<br/>
+                Make sure you haven't broken anything, the script should execute as before, but the code removes this (bad) repetition  - PAROT (Talk)? 
+             </p>
             </div>
             <br/>
         </div>
@@ -560,71 +532,76 @@ void draw()
             <p>
                 In many cases, for a method to be genuinely reusable, we need to allow the calling code to provide
                 it with extra information that can vary from one call to the next.
-                The code that draws the pegs in <i>PegDodge</i> illustrates the issue.
+                The code that checks for collisions between the ball and pegs in <i>PathFinder</i> illustrates the issue.
             </p>
 
             <p>
-                Here is the code in <code>draw()</code> that draws the pegs. The colours are set once, and then
-                there is one line for each of the three pegs:
+                The collision-checking code is duplicated three times in <code>draw()</code>:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    fill(255, 0, 0);
-    stroke(0);
-    circle(peg1X, peg1Y, 2 * pegRadius);
-    circle(peg2X, peg2Y, 2 * pegRadius);
-    circle(peg3X, peg3Y, 2 * pegRadius);</pre>
+            <pre class="brush: processing; gutter: false; toolbar: false; ">    if (dist(xPos,yPos,peg1X,peg1Y) &lt; radius + pegRadius) {
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text("GAME OVER!", width/2, height/2);
+      frameRate(0);
+    }
+    if (dist(xPos,yPos,peg2X,peg2Y) &lt; radius + pegRadius) {
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text("GAME OVER!", width/2, height/2);
+      frameRate(0);
+    }
+    if (dist(xPos,yPos,peg3X,peg3Y) &lt; radius + pegRadius) {
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text("GAME OVER!", width/2, height/2);
+      frameRate(0);
+    }</pre>
             <p>
                 Ok, so we know how to deal with this now, right?<br/>
                 We define a <i>method</i> where the code can be written once, and call the method multiple times :
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">void drawPeg()
+            <pre class="brush: processing; gutter: false; toolbar: false; ">void checkForPegCollision()
 {
-  fill(255, 0, 0);
-  stroke(0);
-  circle(peg1X, peg1Y, 2 * pegRadius);
+  if (dist(xPos,yPos,peg1X,peg1Y) &lt; radius + pegRadius) {
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text("GAME OVER!", width/2, height/2);
+    frameRate(0);
+  }
 }</pre>
+            Then we can replace the previous mess with the much more elegant and readable:
+            <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision();
+    checkForPegCollision();
+    checkForPegCollision();</pre>
             <p>
-                We have tucked the two colour lines inside the method as well, since setting the colours is part of
-                what it means to draw a peg. That does mean we now set them three times instead of once, but the
-                result on screen is exactly the same.
-            </p>
-            Then we can replace those three lines with the much more elegant and readable:
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    drawPeg();
-    drawPeg();
-    drawPeg();</pre>
-            <div class="codeTask">
-                <h5>Predict, Then Run</h5>
-                <p>Before you type any of this in, decide what you think the sketch will look like when you run it.<br/>
-                    Write your prediction down in your sketch book.</p>
-                <p>Now make the change and run it. Were you right?</p>
-            </div>
-            <p>
-                There is one peg on the screen, not three. It has been drawn three times, in exactly the same place.<br/>
-                Pegs 2 and 3 have vanished, and with them two thirds of the game.
+                But there is a problem: if we look carefully we see that the three duplicates are not
+                <em>exactly</em> the same. The first one (the one we used in the body of
+                <code>checkForPegCollision</code>) uses
+                <code>peg1X,peg1Y</code>
+                in the distance check, the second one uses
+                <code>peg2X,peg2Y</code>, and the third one uses
+                <code>peg3X,peg3Y</code>.<br/>
+                If we refactor the code as suggested, we will just be checking three times
+                for collisions
+                with peg 1, rather than checking each peg in turn.
+
             </p>
             <p>
-                The method draws peg 1 every time because peg 1 is what is written in its body, and nothing we write
-                at the call point can change that.
-            </p>
-            <p>
-                Look again at why this went wrong. The three <code>GAME OVER</code> blocks in the previous section were
-                <em>exactly</em> the same as each other, so one method could stand in for all three.<br/>
-                These three lines are not: they are the same shape but with different values -
-                <code>peg1X,peg1Y</code>, then <code>peg2X,peg2Y</code>, then <code>peg3X,peg3Y</code>.<br/>
-                That difference is precisely what <i>parameters</i> are for.
-            </p>
-            <p>
-                The solution is to <i>parameterise</i> <code>drawPeg()</code> so that the calling code
-                can specify <em>which</em> peg position to draw.<br/>The new version looks like this - with lines that
+                The solution is to <i>parameterise</i> <code>checkForPegCollision()</code> so that the calling code
+                can specify <em>which</em> peg position to check.<br/>The new version looks like this - with lines that
                 differ from the previous version  highlighted:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1,5] ">void drawPeg(float x, float y)
+            <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1,3] ">void checkForPegCollision(float x, float y)
 {
-  fill(255, 0, 0);
-  stroke(0);
-  circle(x, y, 2 * pegRadius);
+  if (dist(xPos,yPos,x,y) &lt; radius + pegRadius) {
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text("GAME OVER!", width/2, height/2);
+    frameRate(0);
+  }
 }</pre> 
             <p>
-            Notice that the parameter list for <code>drawPeg</code> is no longer empty. Each entry in a
+            Notice that the parameter list for <code>checkForPegCollision</code> is no longer empty. Each entry in a
             parameter list has the same structure as a variable declaration: a type followed by a name. And that's
             because a parameter
             <i>is</i> a variable.
@@ -636,64 +613,25 @@ void draw()
                 Also notice how the code executed within the method now uses these local variables that are defined by the parameters
             <code>x</code>
             and <code>y</code> when the method is called. 
-            The local variables are used in the call to <code>circle()</code>, instead of the global variables <code>peg1X</code> and <code>peg1Y</code>.
+            The local variables are used in the distance check, instead of the global variables <code>peg1X</code> and <code>peg2X</code>.
             </p>
             <p>
-                We can use this version to draw a peg at any <code>(x,y)</code> position we like
-                (even positions where there is no peg in the game, if we like). We specify the actual values
+                We can use this version to check for collisions with pegs at any <code>(x,y)</code> position we like
+                (even positions where there are no pegs, if we like). We specify the actual values
                 for <code>x</code> and <code>y</code> only when we <em>call</em> the method.<br/>
-                For example, if we wanted a peg at position (300, 120) we would add the call:
+                For example, if we wanted to check for a collision with a peg at position (29, 176) we would add the call:
             </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    drawPeg(300, 120);</pre>
-            So, by adding <i>parameters</i> to our method definition, our three calls can now each specify different values for <code>x</code> and <code>y</code> but effectively perform the same job:
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    drawPeg(peg1X, peg1Y);
-    drawPeg(peg2X, peg2Y);
-    drawPeg(peg3X, peg3Y);</pre>
+            <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision(29, 176)</pre>
+            So, by adding <i>parameters</i> to our method definition, our three calls can now each specify different values for <code>x</code> and <code>y</code> but effectively perform the same check:
+            <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision(peg1X, peg1Y);
+    checkForPegCollision(peg2X, peg2Y);
+    checkForPegCollision(peg3X, peg3Y);</pre>
 
                 <p>We hope you can see that:</p>
                 <ol type="a">
                     <li>This is extremely useful</li>
                     <li>It is what existing methods available in <i>Processing</i> do - <code>rect()</code>, <code>color()</code>, <code>size()</code>, <code>ellipse()</code>, <code>println()</code>, etc.</li>
                 </ol>
-            <p>
-                Now that we have the habit, let's use it again straight away.<br/>
-                The three collision checks have the same shape as the three peg-drawing lines, and they differ in the
-                same way, so they get the same treatment:
-            </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">void checkForPegCollision(float x, float y)
-{
-  if (dist(xPos, yPos, x, y) &lt; radius + pegRadius)
-  {
-    gameOver();
-  }
-}</pre>
-            <p>
-                and in <code>draw()</code>:
-            </p>
-            <pre class="brush: processing; gutter: false; toolbar: false; ">    checkForPegCollision(peg1X, peg1Y);
-    checkForPegCollision(peg2X, peg2Y);
-    checkForPegCollision(peg3X, peg3Y);</pre>
-            <p>
-                Notice that <code>checkForPegCollision</code> calls <code>gameOver()</code>.<br/>
-                A method can call another method, and the flow of control is exactly the one in the diagram earlier
-                in this session: <code>draw()</code> jumps into <code>checkForPegCollision</code>, which jumps into
-                <code>gameOver</code>, and control comes back out the same way.
-            </p>
-            <div class="tip">
-                <p>Imagine we had made the no-parameter mistake <em>here</em>, on the collision checks, rather than on
-                    the pegs.<br/>
-                    Nothing would have looked wrong at all. The sketch would have quietly checked peg 1 three times,
-                    and we would have had a game where two of the three pegs were simply harmless.</p>
-                <p>The pegs showed us our mistake. This one would have hidden it.<br/>
-                    That is worth remembering: code that is wrong does not always look wrong.</p>
-            </div>
-            <p>
-                If you have followed all the steps above, you should now have completed the refactoring of the
-                <i>PegDodge</i> sketch.<br/>
-                Have a look at your <code>draw()</code> and compare it with the “sneak preview” back in section 1 -
-                it should look just like it.<br/>
-                Much nicer code, right?
-            </p>
         </div>
         <!-- End of left column -->
     </div>
@@ -722,7 +660,7 @@ void draw()
             <!-- Left column -->
             <h3>6. Return values</h3>
             <p>
-                There is one more important feature of method definitions to consider. It isn't needed in the <i>PegDodge</i>
+                There is one more important feature of method definitions to consider. It isn't needed in the <i>PathFinder</i>
                 project, but it is used in one of the core tasks for this session and in many practical applications.
                 We can define methods so that they return <i>a value</i> when they finish, and the calling code can
                 then use that value. If we define such a method, then it is usually called in a slightly different
