@@ -216,17 +216,19 @@ void mousePressed()
                 </div>
         
                 <p>
-                    The variable is declared like any other, here in the first line. It is initialised with the special
+                    The <code>PVector</code> variable is declared like any other, here in the first line.
+                    It is initialised with the special
                     keyword <code>new</code>, like we did when creating arrays. In the case of <code>PVector</code> we
-                    specify the pair of numbers we wish to store (here, <code>width/2</code> and <code>height/2</code>).
+                    specify the pair of numbers we wish to store (here, <code>width/2</code> and <code>height/2</code>, but these could be any numbers, random numbers, negative numbers, anything).
                     Once created, we can access those two numbers at any point in our code by using the name of the
                     variable with a <code>.x</code> or <code>.y</code> appended.
                 </p>
 
                 <p>
-                    A class is a description of the types of data that are to be stored and the methods that can be
+                    A <a href="https://processing.org/reference/class.html"><code>class</code></a> is a description of the <i>types of data</i> that are to be stored and the <i>methods</i> that can be
                     applied to those data. Using <code>new</code> to initialise a variable from a class is known as
-                    <i>instantiation</i> and the resulting data collection is called an <i>object</i>.
+                    <i>instantiation</i> and the resulting data collection is called an <i>object</i>.<br/>
+                    You can of course instantiate many objects from a single <code>class</code> - have many <code>PVector</code> objects in a single sketch.
                     <br /><br />
                     You can think of a class as a <i>template</i> and objects as instances of the template.
                     These templates model aspects of the world that we want to include in our sketches: like balls, and desktops, and graphs, and dogs and cats and those <a href="https://www.free80sarcade.com/phoenix.php">aliens that fly down at you</a> in 80s arcade classic <a href="https://en.wikipedia.org/wiki/Phoenix_(1980_video_game)">Phoenix</a>. 
@@ -327,6 +329,7 @@ void mousePressed()
                 </p>
 
                 <div class="codeTask" style="clear:both">
+                    <h5>Object Array</h5>
                     <p>Copy the above code and run the sketch.<br/>Compare it to the sketch that we have provided to the right.</p>
                     <ul><li>What are the differences in the sketch behaviours?</li>
                         <li>Can you work out how the sketch on the right might be implemented?</li>
