@@ -348,10 +348,10 @@ void mousePressed()
 
                 <h3>2. Creating your own classes</h3>
                 <p>
-                    The real power of the <i>Processing</i> language is in the ability to create your own classes that store
-                    data and do stuff with those data. Very cool stuff if you do a bit of creative thinking and have a play with the possibilities.</p>
+                    The real power of the <i>Processing</i> language is in <i>the ability to create your own classes that store
+                    data and do stuff with those data</i>: very cool stuff if you do a bit of creative thinking and have a play with the possibilities.</p>
                 <p> This really is amazing and exciting and gives us phenomenal power.<br/>
-                    We don't just have to rely on the amazing enabling set of classes that come with the language.<br/>
+                    We don't just have to rely on the phenomenal enabling set of classes that come with the language.<br/>
                     We can make and model absolutely anything that we want to in a class.
                     All we require is some imagination and some creativity.</p>
                 <p>
@@ -517,14 +517,14 @@ void draw()
 				<div class="codeTask">
                     <h5>Bouncing Ball</h5>
                     <p>Copy the code into a sketch and run it in <i>Processing</i>.</p>
-                    <p>Can you explain why we need both conditions in the <code>IF</code> clause?</p>
-                    <p>What happens if you use </p>
+                    <p>Can you explain why we need both conditions in the <code>IF</code> clauses?</p>
+                    <p>🦜 What happens if you change the code when drawing the ball to ... </p>
                     <ol>
                         <li><code>  circle(position.x,position.y,radius*1);</code></li>
                         <li><code>  circle(position.x,position.y,radius*4);</code></li>
                     </ol>
                     Watch carefully - and can you explain this behaviour?</p>
-                    <p>What happens if you use a <circle>rect()</circle> instead of a <code>circle()</code>?<br/>
+                    <p>What happens if you use a <code>rect()</code> instead of a <code>circle()</code>?<br/>
                     Watch carefully - and can you explain this behaviour?</p>
                 </div>
 
@@ -560,14 +560,13 @@ void draw()
                 </p>
 
                 <p>
-                    So the solution is to <i>refactor the code</i>, just as we did when we wished to remove duplicated code in
-                    the <i>Pathfinder</i> example when we introduced <i>methods</i>.
+                    So the solution is to <i>refactor the code</i>, just as we did when we wished to remove duplicated code in the examples we tried when considering <i>methods</i>.
                     This time, instead of creating new methods to represent the repeated sections of code, we will create a new <i>class</i> to contain the code that we wish to reuse.
                     When we define a method we can reuse its code by calling it multiple times. As we will see,
                     when we define a class, we can reuse its code by creating multiple <i>objects</i> from the class
                     (these objects are said to be <i>instances</i> of the class).
                     Our <code>Ball</code> class will not
-                    only have its own methods, but will also store the data that characterise a ball.
+                    only have its own methods, but will also store the data that characterise and differentiate each ball instance, or object, that we create from the class.
                     <br/>Here we define a <code>Ball</code> class:
                 </p>
 
@@ -641,7 +640,7 @@ void draw()
                 <p>
                     The only differences are that we have placed each of those three behaviours (initialisation, drawing
                     and moving) each in their own method, and that everything is placed within a pair of (highlighted) braces
-                    underneath the line <code>class Ball</code>.
+                    underneath the line that defines and manes the class: <code>class Ball</code>.
                 </p>
 
                 <div class="tip">
@@ -649,7 +648,7 @@ void draw()
                     <p>To create a new class in <i>Processing</i>, simply use the keyword <code>class</code> followed by the name
                     you wish to give the class and a pair of braces. </p>
                     <p>All the methods and variables associated with this class are then added within those braces.
-                       The class name itself should start with a capital letter.</p>
+                       The class name itself should start with a <b>Capital Letter</b>.</p>
                 </div>
 
                 <p>
@@ -723,7 +722,7 @@ void draw()
 {
   background(254, 244, 232);
   ball1.draw();  // -- call the draw() method of the Ball ball1 - to draw it.
-  ball1.move();  // -- call the move() method of the Ball ball1 - to move it and check for edges.
+  ball1.move();   // -- call the move() method of the Ball ball1 - to move it and check for edges.
 }</pre>
 
 <div class="figRight" style="width:225">
@@ -744,8 +743,10 @@ void draw()
                     What is new here is that in line 1 we have created a variable of type <code>Ball</code> (rather
                     than, say, <code>float</code> or <code>String</code>) with this declaration.
                     In the second line of <code>setup()</code> we
-                    then initialise a <code>Ball</code> object (here called <code>ball1</code>, but we could call it
-                    anything we wish, just like any other kind of variable) with the special keyword <code>new</code>.
+                    then initialise a <code>Ball</code> object with the special keyword <code>new</code>.
+                    We name our <code>Ball</code> object <code>ball1</code> here, but we could call it
+                    anything we wish, just like any other kind of variable.</p>
+                <p>
                     Once we have created the <code>ball1</code> object, we can call any of its methods by appending a
                     dot and the method name to the object name. This follows exactly the same rules as we applied when
                     creating objects from some of <i>Processing</i>'s built-in classes such as <code>String</code> and
@@ -892,7 +893,7 @@ void draw()
                     that it allows us to create many objects quite simply. The other important benefit is that the
                     characteristics of each of those objects can be independent of all the other ones. So although all
                     <code>Ball</code> objects have <i>a</i> position, velocity, size and colour, each <code>ball</code>
-                    object can have a different instance of that position, velocity etc. We saw this was the case
+                    object can have different values for position, velocity etc. We saw this was the case
                     because in our example, the velocity of each ball was set to be a random value, which was different
                     for each ball.
                 </p>
@@ -1061,6 +1062,11 @@ void draw()
             <div class="unit-70-cc">
                 <!-- Left column -->
 
+                <h3>ToDo</h3>
+                <ul>
+                    <li>Remove classes for dogs &raquo; data</li>
+                    <li>Check summary </li>
+                </ul>
                 <h3>4. Practice &amp; Exercises </h3>
 
                 <div class="codeTask">
