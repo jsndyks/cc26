@@ -66,7 +66,7 @@ h3 {
    applied to its generated block. */
 .syntaxhighlighter {
   margin-top: 0.75rem !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 3rem !important;
 }
 
 /* A little more breathing room inside rendered code blocks. */
@@ -352,12 +352,28 @@ figcaption {
 .figClear { clear: both; }
 
 
+
+/* Keep task/note tabs anchored to the far-right edge of their box,
+   regardless of whether a figure is paired with the box. */
+:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge)::before {
+  left: auto;
+  right: -0.6em;
+}
+
+/* Where a box uses ::after for a decorative icon, do not let that
+   positioning affect the title/tab anchoring above. */
+.codeTask::after,
+.challenge::after {
+  left: -1.5em;
+  right: auto;
+}
+
 /* --- Task / note boxes --------------------------------------------------- */
 
 
 /* Gentle vertical separation before major task/note boxes. */
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 1.75rem;
+  margin-top: 0.75rem;
 }
 
 .tip,
@@ -736,4 +752,4 @@ blockquote::after {
 
 .imgCropBanner {
   clip-path: inset(40% 0);
-} 
+}
