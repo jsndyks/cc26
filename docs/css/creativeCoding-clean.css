@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v18.css — updated 2026-09-23 17:29 BST */
+/* creativeCoding-FCUS-v19.css — updated 2026-09-23 17:33 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -169,243 +169,6 @@ figcaption {
 }
 
 
-/* Figure + task/note pairing ------------------------------------------------
-
-   A .figCode can sit immediately before OR after any of these box types:
-
-     .codeTask  .coreTask  .task  .tip
-     .aside     .challenge .ddTask .homework
-
-   The pair may occur anywhere inside .unit-70-cc. Other direct children
-   (for example PRE, P, headings, etc.) remain full-width grid rows.
-
-   No HTML changes and no hard-coded figure widths are required.
-   -------------------------------------------------------------------------- */
-
-/* Turn the container into a two-column grid only when it contains
-   an adjacent figure/box pair, in either source order. */
-.unit-70-cc:has(> .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc:has(> :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode) {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-auto-flow: row dense;
-  align-items: stretch;
-  row-gap: 2rem;
-}
-
-/* Ordinary direct children use a whole row. */
-.unit-70-cc:has(> .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)) > *,
-.unit-70-cc:has(> :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode) > * {
-  grid-column: 1 / -1;
-}
-
-/* The task/note half of an adjacent pair always occupies the left column. */
-.unit-70-cc > .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-):has(+ .figCode) {
-  grid-column: 1;
-  min-width: 0;
-  float: none;
-  margin: 0;
-  border-right: 0;
-  border-radius: 8px 0 0 8px;
-}
-
-/* The figure half always occupies the intrinsic-width right column. */
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode {
-  grid-column: 2;
-  align-self: stretch;
-
-  float: none;
-  clear: none;
-
-  /*
-   * Existing pages sometimes specify margin-top inline.
-   * The grid row supplies the separation instead.
-   */
-  margin: 0 !important;
-  padding: 1.5rem 0.75rem 1rem 2rem;
-
-  border: 1px solid #ccc;
-  border-left: 0;
-  border-radius: 0 8px 8px 0;
-}
-
-/* Match the figure background to whichever neighbouring box it belongs to.
-   The cells do not overlap, so translucent colours remain visually clean. */
-
-.figCode:has(+ :is(.codeTask, .task, .ddTask)),
-:is(.codeTask, .task, .ddTask) + .figCode {
-  background: var(--cc-code-bg);
-}
-
-.figCode:has(+ .coreTask),
-.coreTask + .figCode {
-  background: var(--cc-core-bg);
-}
-
-.figCode:has(+ .aside),
-.aside + .figCode {
-  background: var(--cc-aside-bg);
-  border-color: #bcb;
-}
-
-.figCode:has(+ .challenge),
-.challenge + .figCode {
-  background: var(--cc-challenge-bg);
-  border-color: #ffb0b0;
-}
-
-.figCode:has(+ .homework),
-.homework + .figCode {
-  background: var(--cc-homework-bg);
-  border-color: #999;
-}
-
-.figCode:has(+ .tip),
-.tip + .figCode {
-  background: #fafafa;
-  border-color: #999;
-}
-
-/* If a PRE immediately precedes either half of a pair, put breathing room
-   below the code block so the complete figure/task row starts cleanly. */
-.unit-70-cc > pre:has(+ .figCode),
-.unit-70-cc > pre:has(+ :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)) {
-  margin-bottom: 2rem;
-}
-
-/* Tabs --------------------------------------------------------------------
-
-   In a paired row the task/note box occupies the left grid cell, so its own
-   ::before cannot reach the far-right edge of the combined row. Hide that
-   tab and reproduce it on .figCode, which occupies the right-hand cell.
-
-   The parent supplies --pair-tab according to the adjacent box type.
-   -------------------------------------------------------------------------- */
-
-.unit-70-cc:has(> .figCode + .codeTask),
-.unit-70-cc:has(> .codeTask + .figCode) {
-  --pair-tab: "{coding task} 🦜";
-}
-
-.unit-70-cc:has(> .figCode + .coreTask),
-.unit-70-cc:has(> .coreTask + .figCode) {
-  --pair-tab: "CORE TASK";
-}
-
-.unit-70-cc:has(> .figCode + .task),
-.unit-70-cc:has(> .task + .figCode) {
-  --pair-tab: "task";
-}
-
-.unit-70-cc:has(> .figCode + .tip),
-.unit-70-cc:has(> .tip + .figCode) {
-  --pair-tab: "tip";
-}
-
-.unit-70-cc:has(> .figCode + .aside),
-.unit-70-cc:has(> .aside + .figCode) {
-  --pair-tab: "aside ...";
-}
-
-.unit-70-cc:has(> .figCode + .challenge),
-.unit-70-cc:has(> .challenge + .figCode) {
-  --pair-tab: "EXTRA CHALLENGE";
-}
-
-/* Hide the original tab only when that box is paired with a figure. */
-.unit-70-cc > .figCode + :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-)::before,
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-):has(+ .figCode)::before {
-  content: none;
-}
-
-/* Put the paired tab at the far-right edge of the figure cell / combined row. */
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-)),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-) + .figCode {
-  position: relative;
-}
-
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-))::before,
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip, .aside, .challenge
-) + .figCode::before {
-  content: var(--pair-tab);
-  position: absolute;
-  z-index: 2;
-  top: auto;
-  bottom: 100%;
-  right: -1px;
-
-  width: max-content;
-  padding: 0.3em 0.5em 0.2em;
-
-  background: inherit;
-  color: #34383c;
-  border: 1px solid #ccc;
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
-
-  /* Pull down by one pixel so tab and box borders physically meet. */
-  margin-bottom: -1px;
-
-  font-weight: 600;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* Unpaired boxes keep their own tab, explicitly aligned right. */
-:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge):not(
-  :has(+ .figCode)
-)::before {
-  left: auto;
-  right: -0.6em;
-}
-
-/* Existing decorative left-side icons stay on the left. */
-.codeTask::after,
-.challenge::after {
-  left: -1.5em;
-  right: auto;
-}
-
 /* Intrinsic-width figure: its image/canvas/iframe determines the width. */
 .figCode figure,
 .cc-right figure {
@@ -447,16 +210,8 @@ figcaption {
   background: #f3fbf3ff;
 }
 
-.figRight { float: right; }
-
-.figRight figure {
-  width: fit-content;
-  margin-left: 1em;
-  margin-right: 2px;
-}
 
 .figClear { clear: both; }
-
 
 
 /* --- Task / note boxes --------------------------------------------------- */
@@ -469,9 +224,12 @@ figcaption {
 
 .tip,
 .aside,
+.task,
 .coreTask,
 .codeTask,
-.challenge {
+.challenge,
+.ddTask,
+.homework {
   position: relative;
 }
 
@@ -524,10 +282,10 @@ figcaption {
 /* Labels */
 
 .codeTask::before { content: "{coding task} 🦜"; }
+.task::before { content: "task"; }
 .ddTask::before { content: "Dear Data 100"; }
 .coreTask::before { content: "CORE TASK"; }
 .homework::before { content: "homework"; }
-.aside::before { content: "aside ..."; }
 .challenge::before { content: "EXTRA CHALLENGE"; }
 
 
@@ -571,7 +329,6 @@ figcaption {
   font-weight: 600;
   line-height: 1;
 }
-
 
 
 /* Extra breathing room between consecutive coloured boxes. */
@@ -870,64 +627,6 @@ blockquote::after {
 }
 
 
-
-
-
-/* ==========================================================================
-   Tab / icon alignment refinements
-   ========================================================================== */
-
-/* Real tabbed boxes: anchor the tab at the right and overlap the body
-   slightly so no grey seam appears between tab and box. */
-:is(
-  .codeTask,
-  .coreTask,
-  .task,
-  .aside,
-  .challenge,
-  .ddTask,
-  .homework
-)::before {
-  left: auto;
-  right: -0.6em;
-
-  /* Pull the tab down over the box border by 2px. */
-  transform: translateY(2px);
-
-  border-bottom: 0;
-  z-index: 3;
-}
-
-/* .tip::before is the bulb icon, not a tab: keep it on the left. */
-.tip::before {
-  left: -1.5em;
-  right: auto;
-  top: 0;
-  transform: none;
-}
-
-/* Decorative left-side icons stay on the left. */
-.codeTask::after,
-.challenge::after {
-  left: -1.5em;
-  right: auto;
-}
-
-/* Paired figure/task rows generate their tab from .figCode.
-   Pull that tab 2px into the body so the top borders merge cleanly. */
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .aside, .challenge, .ddTask, .homework
-))::before,
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .aside, .challenge, .ddTask, .homework
-) + .figCode::before {
-  bottom: calc(100% - 2px);
-  margin-bottom: 0;
-  border-bottom: 0;
-  z-index: 3;
-}
-
-
 /* ==========================================================================
    .figRight figure/caption support
 
@@ -1089,115 +788,6 @@ html.show-lecture-notes .lectureNote::before {
 
 
 /* ==========================================================================
-   Paired figure + coloured-box stabilisation
-   ========================================================================== */
-
-.unit-70-cc:has(> .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc:has(> :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode) {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-}
-
-.unit-70-cc > .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-):has(+ .figCode) {
-  align-self: stretch;
-
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.8rem 1rem;
-
-  border-radius: 8px;
-}
-
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode {
-  align-self: start;
-
-  margin: 1rem 0.5rem 1rem 2rem !important;
-  padding: 0;
-
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-
-:is(
-  .codeTask,
-  .coreTask,
-  .task,
-  .aside,
-  .challenge,
-  .ddTask,
-  .homework
-)::before {
-  transform: translateY(2px);
-}
-
-.tip::before {
-  left: -1.5em;
-  right: auto;
-  top: 0;
-  transform: none;
-}
-
-:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 1rem;
-}
-
-:is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) {
-  margin-top: 2.5rem;
-}
-
-
-/* ==========================================================================
-   Aside icon alignment
-   .aside::before is an icon, not a right-hand tab.
-   ========================================================================== */
-
-.aside::before,
-.unit-70-cc > .figCode + .aside::before,
-.unit-70-cc > .aside:has(+ .figCode)::before {
-  content: "🤔" !important;
-
-  position: absolute;
-  left: -1.5em !important;
-  right: auto !important;
-  top: 0 !important;
-
-  transform: none !important;
-
-  font-size: 2em;
-  line-height: 1;
-  z-index: 3;
-}
-
-
-/* ==========================================================================
    CSS diagnostic panel
    cssShow.js creates this when ?css=show, ?css=true or ?css=1.
    The first line is the clickable stylesheet URL label.
@@ -1244,20 +834,120 @@ html.show-lecture-notes .lectureNote::before {
 
 
 /* ==========================================================================
-   AUTHORITATIVE TABBED-BOX + .figCode LAYOUT
-   --------------------------------------------------------------------------
-   Tabbed boxes:
-     .codeTask  .coreTask  .task  .challenge  .ddTask  .homework
-
-   Icon boxes:
-     .tip       .aside
-
-   A .figCode may appear immediately BEFORE or AFTER a tabbed box.
-   The pair is rendered as one joined coloured box and the tab is always
-   visible at the FAR RIGHT of the combined row.
+   Tabs, icons, and .figCode pairing — definitive rules
    ========================================================================== */
 
-/* Pair-specific tab labels, colours, and borders. */
+/*
+ * TABBED boxes:
+ *   .codeTask .coreTask .task .challenge .ddTask .homework
+ *
+ * ICON boxes:
+ *   .tip .aside
+ *
+ * A .figCode may sit immediately before or after any tabbed box.
+ * In that case the pair becomes one two-column grid row, with one visible
+ * tab at the far right of the combined row.
+ */
+
+
+/* --- Unpaired tabbed boxes ---------------------------------------------- */
+
+:is(.codeTask, .coreTask, .task, .challenge, .ddTask, .homework)::before {
+  position: absolute;
+  top: -1.55em;
+  right: -0.6em;
+  left: auto;
+
+  z-index: 3;
+
+  display: block;
+  width: max-content;
+
+  padding: 0.3em 0.5em 0.2em;
+
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  /* Small overlap removes the grey seam. */
+  transform: translateY(2px);
+}
+
+.codeTask::before,
+.task::before,
+.ddTask::before {
+  background: var(--cc-code-bg);
+}
+
+.coreTask::before {
+  background: var(--cc-core-bg);
+}
+
+.challenge::before {
+  background: var(--cc-challenge-bg);
+  border-color: #ffb0b0;
+}
+
+.homework::before {
+  background: var(--cc-homework-bg);
+  border-color: #999;
+}
+
+
+/* --- Icon boxes ---------------------------------------------------------- */
+
+.tip::before,
+.aside::before {
+  position: absolute;
+  top: 0;
+  left: -1.5em;
+  right: auto;
+
+  z-index: 3;
+
+  font-size: 2em;
+  line-height: 1;
+
+  transform: none;
+}
+
+.tip::before {
+  content: "💡";
+}
+
+.aside::before {
+  content: "🤔";
+}
+
+/* Decorative icons associated with tabbed boxes remain on the left. */
+.codeTask::after,
+.challenge::after {
+  position: absolute;
+  left: -1.5em;
+  right: auto;
+  top: 0;
+
+  font-size: 2em;
+  line-height: 1;
+}
+
+.codeTask::after {
+  content: "🦜";
+  transform: scaleX(-1);
+}
+
+.challenge::after {
+  content: "🎯";
+  transform: scaleX(-1);
+}
+
+
+/* --- Pair-specific variables -------------------------------------------- */
+
 .unit-70-cc:has(> .figCode + .codeTask),
 .unit-70-cc:has(> .codeTask + .figCode) {
   --pair-tab: "{coding task} 🦜";
@@ -1300,24 +990,29 @@ html.show-lecture-notes .lectureNote::before {
   --pair-border: #999;
 }
 
-/* The parent is layout only. */
+
+/* --- Paired layout ------------------------------------------------------- */
+
 .unit-70-cc:has(> .figCode + :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 )),
 .unit-70-cc:has(> :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ) + .figCode) {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  grid-auto-flow: row dense !important;
-  align-items: stretch !important;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-flow: row dense;
+  align-items: stretch;
 
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+  /* Reliable vertical separation from PRE/other rows. */
+  row-gap: 2rem;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
-/* Other direct children remain full-width rows. */
+/* Normal siblings (PRE, P, H3, etc.) span the whole grid. */
 .unit-70-cc:has(> .figCode + :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 )) > *,
@@ -1327,140 +1022,107 @@ html.show-lecture-notes .lectureNote::before {
   grid-column: 1 / -1;
 }
 
-/* Left-hand semantic box. */
+/* Semantic box = left column. */
 .unit-70-cc > .figCode + :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ),
 .unit-70-cc > :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ):has(+ .figCode) {
-  grid-column: 1 !important;
+  grid-column: 1;
+
   min-width: 0;
-  align-self: stretch !important;
+  align-self: stretch;
 
-  margin: 1rem 0 !important;
-  padding: 0.8rem 1rem !important;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
 
-  background: var(--pair-bg) !important;
+  background: var(--pair-bg);
 
-  border: 1px solid var(--pair-border) !important;
-  border-right: 0 !important;
-  border-radius: 8px 0 0 8px !important;
+  border: 1px solid var(--pair-border);
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
 
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
-/* Hide the box's own tab only when paired; figCode owns the visible tab. */
+/* Suppress the semantic box's own tab when paired. */
 .unit-70-cc > .figCode + :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 )::before,
 .unit-70-cc > :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ):has(+ .figCode)::before {
-  content: none !important;
+  content: none;
 }
 
-/* Right-hand figure cell. */
+/* Figure = intrinsic-width right column. */
 .unit-70-cc > .figCode:has(+ :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 )),
 .unit-70-cc > :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ) + .figCode {
-  grid-column: 2 !important;
+  grid-column: 2;
 
-  position: relative !important;
-  align-self: stretch !important;
+  position: relative;
+  align-self: stretch;
 
-  float: none !important;
-  clear: none !important;
+  float: none;
+  clear: none;
 
+  /* Override legacy inline margin-top values in paired layouts. */
   margin: 1rem 0 !important;
-  padding: 0.8rem 0.75rem 1rem 2rem !important;
+  padding: 0.8rem 0.75rem 1rem 2rem;
 
-  background: var(--pair-bg) !important;
+  background: var(--pair-bg);
 
-  border: 1px solid var(--pair-border) !important;
-  border-left: 0 !important;
-  border-radius: 0 8px 8px 0 !important;
+  border: 1px solid var(--pair-border);
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
 }
 
-/* One consistent far-right tab for every paired tabbed box. */
+/* One visible tab at the far-right edge of every paired row. */
 .unit-70-cc > .figCode:has(+ :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ))::before,
 .unit-70-cc > :is(
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
 ) + .figCode::before {
-  content: var(--pair-tab) !important;
+  content: var(--pair-tab);
 
-  position: absolute !important;
-  top: auto !important;
-  bottom: calc(100% - 2px) !important;
-  right: -1px !important;
-  left: auto !important;
+  position: absolute;
+  top: auto;
+  bottom: calc(100% - 2px);
+  right: -1px;
+  left: auto;
 
-  z-index: 20 !important;
+  z-index: 20;
 
-  display: block !important;
-  width: max-content !important;
+  display: block;
+  width: max-content;
 
-  margin: 0 !important;
-  padding: 0.3em 0.5em 0.2em !important;
+  margin: 0;
+  padding: 0.3em 0.5em 0.2em;
 
-  background: var(--pair-bg) !important;
-  color: #34383c !important;
+  background: var(--pair-bg);
+  color: #34383c;
 
-  border: 1px solid var(--pair-border) !important;
-  border-bottom: 0 !important;
-  border-radius: 8px 8px 0 0 !important;
+  border: 1px solid var(--pair-border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
 
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
 
-  transform: none !important;
+  transform: none;
 }
 
-/* Unpaired tabbed boxes keep visible right-edge tabs. */
-:is(.codeTask, .coreTask, .task, .challenge, .ddTask, .homework):not(
-  :has(+ .figCode)
-)::before {
-  left: auto !important;
-  right: -0.6em !important;
-  transform: translateY(2px) !important;
-  border-bottom: 0 !important;
-  z-index: 3 !important;
-}
 
-/* Icon boxes are never tabs. */
-.tip::before {
-  content: "💡" !important;
-  left: -1.5em !important;
-  right: auto !important;
-  top: 0 !important;
-  transform: none !important;
-}
+/* --- General coloured-box spacing --------------------------------------- */
 
-.aside::before,
-.unit-70-cc > .figCode + .aside::before,
-.unit-70-cc > .aside:has(+ .figCode)::before {
-  content: "🤔" !important;
-  left: -1.5em !important;
-  right: auto !important;
-  top: 0 !important;
-  transform: none !important;
-}
-
-/* Decorative left-side icons stay left. */
-.codeTask::after,
-.challenge::after {
-  left: -1.5em !important;
-  right: auto !important;
-}
-
-/* Requested box spacing. */
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
   margin-top: 1rem;
 }
