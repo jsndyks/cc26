@@ -5,7 +5,7 @@
  *   ?ln=true
  *   ?ln=1
  *
- * CSS diagnostic badge:
+ * CSS diagnostic:
  *   ?css=show
  *   ?css=true
  *   ?css=1
@@ -34,13 +34,10 @@
 
 
   // -----------------------------------------------------------------------
-  // CSS diagnostic badge
+  // CSS diagnostic
   // -----------------------------------------------------------------------
 
-  const showCssInfo =
-    isTruthyParam(params.get("css"));
-
-  if (!showCssInfo) {
+  if (!isTruthyParam(params.get("css"))) {
     return;
   }
 
@@ -70,18 +67,57 @@
 
   const css = stylesheets[0];
 
-  const badge = document.createElement("a");
 
-  badge.id = "css-info-badge";
-  badge.href = css.href;
-  badge.textContent = css.label;
-  badge.title = "Open stylesheet";
-  badge.target = "_blank";
-  badge.rel = "noopener noreferrer";
+  // -----------------------------------------------------------------------
+  // Build diagnostic panel
+  // -----------------------------------------------------------------------
+
+  const panel = document.createElement("div");
+  panel.id = "css-info-badge";
+
+  const link = document.createElement("a");
+  link.href = css.href;
+  link.textContent = css.label;
+  link.title = "Open stylesheet";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+
+  const version = document.createElement("div");
+  version.className = "css-info-first-line";
+  version.textContent = "reading stylesheet…";
+
+  panel.appendChild(link);
+  panel.appendChild(version);
+
+
+  // -----------------------------------------------------------------------
+  // Read first line of actual stylesheet
+  // -----------------------------------------------------------------------
+
+  fetch(css.href)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      return response.text();
+    })
+    .then(text => {
+      const firstLine = text.split(/\r?\n/, 1)[0];
+      version.textContent = firstLine || "(blank first line)";
+    })
+    .catch(() => {
+      version.textContent = "(unable to read first line)";
+    });
+
+
+  // -----------------------------------------------------------------------
+  // Add panel
+  // -----------------------------------------------------------------------
 
   const addBadge = () => {
     if (!document.getElementById("css-info-badge")) {
-      document.body.appendChild(badge);
+      document.body.appendChild(panel);
     }
   };
 
