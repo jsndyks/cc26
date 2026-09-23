@@ -357,7 +357,7 @@ figcaption {
 
 /* Gentle vertical separation before major task/note boxes. */
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 0.75rem;
+  margin-top: 1.75rem;
 }
 
 .tip,
