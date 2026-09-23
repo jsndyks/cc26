@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v15.css — updated 2026-09-23 16:20 BST */
+/* creativeCoding-FCUS-v16.css — updated 2026-09-23 16:40 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -1145,4 +1145,122 @@ html.show-lecture-notes .lectureNote::before {
   padding: 0.2rem;
   margin: 0.15rem 0.55rem 0.15rem 0.1rem;
   vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   Check outcomes: hanging checkbox indent
+   Wrapped lines align with the text, not with the checkbox.
+   ========================================================================== */
+
+.checkOutcomes dd {
+  padding-left: 2rem;
+}
+
+.checkOutcomes dd input[type="checkbox"] {
+  float: left;
+
+  margin-left: -2rem;
+  margin-top: 0.3em;
+  margin-right: 0.6rem;
+
+  padding: 0;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   Core task + figure pairing
+   Makes .figCore + .coreTask behave like the clean .figCode + .codeTask
+   layout. Source order may be either figure/task or task/figure.
+   ========================================================================== */
+
+.unit-70-cc:has(> .figCore + .coreTask),
+.unit-70-cc:has(> .coreTask + .figCore) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-flow: row dense;
+  align-items: stretch;
+  row-gap: 2rem;
+}
+
+/* Other direct children still occupy a full row. */
+.unit-70-cc:has(> .figCore + .coreTask) > *,
+.unit-70-cc:has(> .coreTask + .figCore) > * {
+  grid-column: 1 / -1;
+}
+
+/* Core task text occupies the left cell. */
+.unit-70-cc > .figCore + .coreTask,
+.unit-70-cc > .coreTask:has(+ .figCore) {
+  grid-column: 1;
+  min-width: 0;
+
+  float: none;
+  margin: 0;
+
+  background: var(--cc-core-bg);
+
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+}
+
+/* Core figure occupies the intrinsic-width right cell. */
+.unit-70-cc > .figCore:has(+ .coreTask),
+.unit-70-cc > .coreTask + .figCore {
+  grid-column: 2;
+  align-self: stretch;
+
+  float: none;
+  clear: none;
+
+  margin: 0 !important;
+  padding: 1.5rem 0.75rem 1rem 2rem;
+
+  background: var(--cc-core-bg);
+
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Intrinsic figure width + caption constrained to that same width. */
+.figCore figure {
+  display: table;
+  width: auto;
+  margin: 0;
+}
+
+.figCore figure :is(img, iframe, canvas) {
+  display: block;
+  margin-inline: auto;
+}
+
+.figCore figure figcaption,
+.figCore > figcaption {
+  display: table-caption;
+  caption-side: bottom;
+
+  width: 100%;
+  margin-top: 0 !important;
+
+  color: #909090;
+  font-size: 90%;
+  text-align: center;
+}
+
+/* The CORE TASK tab remains attached to the coloured box itself. */
+.coreTask::before {
+  position: absolute !important;
+  left: auto !important;
+  right: -1px !important;
+  top: 0 !important;
+
+  transform: translateY(calc(-100% + 2px)) !important;
+
+  margin: 0 !important;
+  float: none !important;
+  z-index: 4;
+
+  border-bottom: 0 !important;
 }
