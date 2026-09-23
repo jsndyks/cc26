@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v22.css — updated 2026-09-23 18:02 BST */
+/* creativeCoding-FCUS-v23.css — updated 2026-09-23 18:14 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -219,7 +219,7 @@ figcaption {
 
 /* Gentle vertical separation before major task/note boxes. */
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .tip,
@@ -1066,7 +1066,7 @@ html.show-lecture-notes .lectureNote::before {
   min-width: 0;
   align-self: stretch;
 
-  margin: 1rem 0;
+  margin: 2rem 0 1rem;
   padding: 0.8rem 1rem;
 
   background: var(--pair-bg);
@@ -1104,7 +1104,7 @@ html.show-lecture-notes .lectureNote::before {
   clear: none;
 
   /* Override legacy inline margin-top values in paired layouts. */
-  margin: 1rem 0 !important;
+  margin: 2rem 0 1rem !important;
   padding: 0.8rem 0.75rem 1rem 2rem;
 
   background: var(--pair-bg);
@@ -1187,7 +1187,7 @@ html.show-lecture-notes .lectureNote::before {
   min-width: 0;
   align-self: stretch;
 
-  margin: 1rem 0;
+  margin: 2rem 0 1rem;
   padding: 0.8rem 1rem;
 
   background: var(--core-pair-bg);
@@ -1216,7 +1216,7 @@ html.show-lecture-notes .lectureNote::before {
   float: none;
   clear: none;
 
-  margin: 1rem 0 !important;
+  margin: 2rem 0 1rem !important;
   padding: 0.8rem 0.75rem 1rem 2rem;
 
   background: var(--core-pair-bg);
@@ -1302,7 +1302,7 @@ html.show-lecture-notes .lectureNote::before {
 /* --- General coloured-box spacing --------------------------------------- */
 
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 :is(
