@@ -7,7 +7,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css?v=1455">
     <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
 	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
 	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
@@ -88,8 +88,8 @@
             <div class="figRight" style="padding:1em; padding-left:4em">
                 <figure>
                 <img src="./img/cc.objects.robotHead.sketch.jpg" width="200" alt="Sketching a Robot"/>
-                </figure>
-                <figcaption style="margin-top:-2.5em">Draw a Robot Head.<br/>Find the variables that allow us to draw it!</figcaption>
+                <figcaption>Draw a Robot Head.<br/>Find the variables that allow us to draw it!</figcaption>
+              </figure>
             </div>
 
             <p>Sketch a robot head with less than fove simple shapes - here I use four ... a rectangle, two circles and a line.</p>
@@ -199,8 +199,8 @@ void draw () {
             <div class="figRight" style="padding:1em; padding-left:4em">
                 <figure>
                 <img src="./img/cc.objects.robotHead.method.png" width="200" alt="A Robot produced via a method"/>
+                <figcaption>Using a Method.<br/>We can draw a collection of shapes<br/>that are configured by method parameters<br/>through repeated method calls<br/>(with different parameter values).</figcaption>
                 </figure>
-                <figcaption style="margin-top:-2.5em">Using a Method.<br/>We can draw a collection of shapes<br/>that are configured by method parameters<br/>through repeated method calls<br/>(with different parameter values).</figcaption>
             </div>
 
             <p>We can fill our canvas with variously configured collections of simple shapes that look like simple robots.</p>
@@ -251,8 +251,8 @@ void draw () {
             <div class="figRight" style="padding:1em; padding-left:4em; float:right">
                 <figure>
                 <img src="./img/cc.objects.robotHead.robotMk2.png" width="200" alt="A Robot produced via a method"/>
+                <figcaption>A Robot Class.<br/>Our RobotMk2 class is very simple,<br/>but at least it draws something!</figcaption>
                 </figure>
-                <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk2 class is very simple,<br/>but at least it draws something!</figcaption>
             </div>
 
             <p>All we do to add <i>data</i> to a <code>class</code> is define it with <i>instance variables</i> or <i>fields</i>.</p>
@@ -312,8 +312,8 @@ r.draw();</pre>
     <div class="figRight" style="padding:1em; padding-left:4em">
         <figure>
         <img src="./img/cc.objects.robotHead.robotMk3.png" width="200" alt="A Robot produced via a class"/>
+        <figcaption>A Robot Class.<br/>Our RobotMk3 takes arguments that<br/>allow us to configure instances (objects)!</figcaption>
         </figure>
-        <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk3 takes arguments that<br/>allow us to configure instances (objects)!</figcaption>
     </div>
 
     <p>It should now be clear that we can create a more sophisticated looking robot by adding some commands to the <code>draw()</code> method of the class. That's pretty easy, particularly if we use our sketchbook to help, and we do so below with <i>head</i>, <i>eyes</i> and <i>mouth</i> (but still no body - can't be bothered for now) below.</p>
@@ -388,8 +388,8 @@ RobotMk3 r2d4 = new RobotMk3(250, 150);</pre>
     <div class="figRight" style="padding:1em; padding-left:4em">
         <figure>
         <img src="./img/cc.objects.robotHead.robotMk4.png" width="200" alt="A Robot produced via a class"/>
+        <figcaption>A Robot Class.<br/>Our RobotMk4 takes four arguments<br/>and contains additional methods<br/>that allow us to configure RobotMk4 objects!</figcaption>
         </figure>
-        <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk4 takes four arguments<br/>and contains additional methods<br/>that allow us to configure RobotMk4 objects!</figcaption>
     </div>
 
 
@@ -500,8 +500,8 @@ RobotMk3 r2d4 = new RobotMk3(250, 150);</pre>
       <div class="figRight" style="padding:1em; padding-left:4em">
         <figure>
         <img src="./img/cc.objects.robotHead.robotMk5.png" width="200" alt="A Robot produced via a class"/>
+        <figcaption>A Robot Class.<br/>Our RobotMk5 class has a method<br/>that checks where the mouse is<br/>and acts accordingly.</figcaption>
         </figure>
-        <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk5 class has a method<br/>that checks where the mouse is<br/>and acts accordingly.</figcaption>
     </div>
 
     <p>
@@ -633,8 +633,8 @@ RobotMk5 r5d1, r5d2, r5d3, r5d4;
       <div class="figRight" style="padding:1em; padding-left:4em">
         <figure>
         <img src="./img/cc.objects.robotHead.robotMk6.png" width="200" alt="A Robot produced via a class"/>
+        <figcaption>A Robot Class.<br/>Our RobotMk6 class only draws<br/>active robots and enables you to<br/>switch robots off with a c lick.</figcaption>
         </figure>
-        <figcaption style="margin-top:-2.5em">A Robot Class.<br/>Our RobotMk6 class only draws<br/>active robots and enables you to<br/>switch robots off with a click.</figcaption>
     </div>
 
     <p>When we start repeating code like this you should be thinking about some refactoring.<br/>
