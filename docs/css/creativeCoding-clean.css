@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v21.css — updated 2026-09-23 17:54 BST */
+/* creativeCoding-FCUS-v22.css — updated 2026-09-23 18:02 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -1156,7 +1156,9 @@ html.show-lecture-notes .lectureNote::before {
 
 /* ==========================================================================
    .figCore + .coreTask pairing
-   Same layout principle as .figCode + .codeTask.
+   Mirrors .figCode + .codeTask exactly:
+   text on the left, intrinsic-width figure on the right,
+   one CORE TASK tab at the far-right edge of the combined row.
    Supports either adjacent source order.
    ========================================================================== */
 
@@ -1197,24 +1199,18 @@ html.show-lecture-notes .lectureNote::before {
   box-shadow: none;
 }
 
-/* Keep CORE TASK tab on the semantic box itself. */
+/* Suppress the coreTask's own tab when paired. */
 .unit-70-cc > .figCore + .coreTask::before,
 .unit-70-cc > .coreTask:has(+ .figCore)::before {
-  content: "CORE TASK";
-
-  top: auto;
-  bottom: calc(100% - 1px);
-
-  right: -1px;
-  left: auto;
-
-  transform: none;
+  content: none !important;
 }
 
 /* Core figure = intrinsic-width right cell. */
 .unit-70-cc > .figCore:has(+ .coreTask),
 .unit-70-cc > .coreTask + .figCore {
   grid-column: 2;
+
+  position: relative;
   align-self: stretch;
 
   float: none;
@@ -1267,6 +1263,40 @@ html.show-lecture-notes .lectureNote::before {
   text-align: center;
 
   overflow-wrap: anywhere;
+}
+
+/* One CORE TASK tab at the far-right edge of the combined row. */
+.unit-70-cc > .figCore:has(+ .coreTask)::before,
+.unit-70-cc > .coreTask + .figCore::before {
+  content: "CORE TASK";
+
+  position: absolute;
+  top: auto;
+  bottom: calc(100% - 2px);
+  right: -1px;
+  left: auto;
+
+  z-index: 20;
+
+  display: block;
+  width: max-content;
+
+  margin: 0;
+  padding: 0.3em 0.5em 0.2em;
+
+  background: var(--core-pair-bg);
+  color: #34383c;
+
+  border: 1px solid var(--core-pair-border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  transform: none;
 }
 
 /* --- General coloured-box spacing --------------------------------------- */
