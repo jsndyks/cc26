@@ -1018,7 +1018,7 @@ html.show-lecture-notes .lectureNote {
   box-sizing: border-box;
 
   /* Place in the left margin with a little extra breathing room. */
-  left: calc(50% - 49.5rem);
+  left: calc(50% - 49rem);
 
   margin: 0;
   padding: 0.8rem 0.9rem;
