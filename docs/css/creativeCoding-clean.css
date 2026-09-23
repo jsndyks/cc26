@@ -1,4 +1,4 @@
-/* creativeCoding-CUS-v7.css — updated 2026-09-23 13:42 BST */
+/* creativeCoding-CUS-v8.css — updated 2026-09-23 13:47 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -370,8 +370,9 @@ figcaption {
   content: var(--pair-tab);
   position: absolute;
   z-index: 2;
-  top: -2.15rem;
-  right: -0.05rem;
+  top: auto;
+  bottom: 100%;
+  right: -1px;
 
   width: max-content;
   padding: 0.3em 0.5em 0.2em;
@@ -381,6 +382,9 @@ figcaption {
   border: 1px solid #ccc;
   border-bottom: 0;
   border-radius: 8px 8px 0 0;
+
+  /* Pull down by one pixel so tab and box borders physically meet. */
+  margin-bottom: -1px;
 
   font-weight: 600;
   line-height: 1;
