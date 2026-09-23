@@ -2,54 +2,33 @@
 <html>
 
 <head>
-  <title>CreativeCoding Lecture: Objects &amp; Classes - Bouncing Balls</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Classes &amp; Objects - Balls</title>
 
-<!-- Embedded fonts -->
-<link
-    href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-    rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
 
-<!-- Custom layout and style -->
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-<!-- General browser compatibility handling -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-<!-- Formatted source code -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-<!-- Sketch popups and hidden text-->
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-<!-- JD Extras! -->
-<link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-<!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-
-  <!-- iFrame -->
-  <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
 </head>
+
 <body>
-  <div id="page">
 
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-    <!-- Content below -->
 
-    <p class="intro">
-      This page shows you how to build a set of coloured bouncing balls that interact with the edge of your sketch
-      as well as each other. It uses a <i>class</i> to make it easier to organise the code that describes a ball's
-      state and its behaviour.
-    </p>
+<div id="page">
+
+	<div class="intro">
+        <h2>Classes &amp; Objects - Balls</h2>
+
+      <p>
+        This page shows you how to build a set of coloured bouncing balls that interact with the edge of your sketch as well as each other.
+      </p>
+      <p>
+        It uses a <i>class</i> to make it easier to organise the code that describes a ball's state and its behaviour.
+      </p>
+    </div>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -60,7 +39,7 @@
         <h3>A simple ball</h3>
         <p>
           Let's start with a simple sketch to draw a static coloured ball on screen. This just uses <i>Processing</i>'s
-          basic drawing commands to drawn a filled circle on screen:
+          basic drawing commands to draw a filled circle on screen:
         </p>
 
         <pre class="brush: processing; gutter: false; toolbar: false; ">void setup()
@@ -191,12 +170,14 @@ void setup()
 void draw()
 {
   background(254, 244, 232);  // Pale background.
-  ball1.draw();
+
+  ball1.draw();        // Invoke the draw() method for ball1
+                        //   each Ball has one of these methods as defined in the class.
 }
 </pre>
         <p>
           Creating a new object out of a class is a bit like declaring and initialising a variable. In our example, the
-          first line of the sketch declares a new object (<code>ball1</code>) of type <code>Ball</code>), much as we
+          first line of the sketch declares a new object (<code>ball1</code>) of type <code>Ball</code>, much as we
           might
           have declared a variable <code>diameter</code> of type <code>float</code>. As with simple variables, the
           convention
