@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v20.css — updated 2026-09-23 17:43 BST */
+/* creativeCoding-FCUS-v21.css — updated 2026-09-23 17:54 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -634,6 +634,27 @@ blockquote::after {
 }
 
 
+
+/* ==========================================================================
+   Check outcomes: hanging checkbox indent
+   Wrapped lines align with the text, not beneath the checkbox.
+   ========================================================================== */
+
+.checkOutcomes dd {
+  padding-left: 2rem;
+}
+
+.checkOutcomes dd input[type="checkbox"] {
+  float: left;
+
+  margin-left: -2rem;
+  margin-top: 0.3em;
+  margin-right: 0.6rem;
+
+  padding: 0;
+  vertical-align: middle;
+}
+
 /* ==========================================================================
    .figRight figure/caption support
 
@@ -861,8 +882,12 @@ html.show-lecture-notes .lectureNote::before {
 
 :is(.codeTask, .coreTask, .task, .challenge, .ddTask, .homework)::before {
   position: absolute;
-  top: -1.55em;
-  right: -0.6em;
+
+  /* Anchor the tab to the box top edge, with a 1px overlap to remove seams. */
+  top: auto;
+  bottom: calc(100% - 1px);
+
+  right: -1px;
   left: auto;
 
   z-index: 3;
@@ -870,6 +895,7 @@ html.show-lecture-notes .lectureNote::before {
   display: block;
   width: max-content;
 
+  margin: 0;
   padding: 0.3em 0.5em 0.2em;
 
   border: 1px solid #ccc;
@@ -880,8 +906,7 @@ html.show-lecture-notes .lectureNote::before {
   line-height: 1;
   white-space: nowrap;
 
-  /* Small overlap removes the grey seam. */
-  transform: translateY(2px);
+  transform: none;
 }
 
 .codeTask::before,
@@ -1127,6 +1152,122 @@ html.show-lecture-notes .lectureNote::before {
   transform: none;
 }
 
+
+
+/* ==========================================================================
+   .figCore + .coreTask pairing
+   Same layout principle as .figCode + .codeTask.
+   Supports either adjacent source order.
+   ========================================================================== */
+
+.unit-70-cc:has(> .figCore + .coreTask),
+.unit-70-cc:has(> .coreTask + .figCore) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-flow: row dense;
+  align-items: stretch;
+  row-gap: 2rem;
+
+  --core-pair-bg: var(--cc-core-bg);
+  --core-pair-border: #ccc;
+}
+
+/* Other direct children stay full width. */
+.unit-70-cc:has(> .figCore + .coreTask) > *,
+.unit-70-cc:has(> .coreTask + .figCore) > * {
+  grid-column: 1 / -1;
+}
+
+/* Core task text = left cell. */
+.unit-70-cc > .figCore + .coreTask,
+.unit-70-cc > .coreTask:has(+ .figCore) {
+  grid-column: 1;
+  min-width: 0;
+  align-self: stretch;
+
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+
+  background: var(--core-pair-bg);
+
+  border: 1px solid var(--core-pair-border);
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+
+  box-shadow: none;
+}
+
+/* Keep CORE TASK tab on the semantic box itself. */
+.unit-70-cc > .figCore + .coreTask::before,
+.unit-70-cc > .coreTask:has(+ .figCore)::before {
+  content: "CORE TASK";
+
+  top: auto;
+  bottom: calc(100% - 1px);
+
+  right: -1px;
+  left: auto;
+
+  transform: none;
+}
+
+/* Core figure = intrinsic-width right cell. */
+.unit-70-cc > .figCore:has(+ .coreTask),
+.unit-70-cc > .coreTask + .figCore {
+  grid-column: 2;
+  align-self: stretch;
+
+  float: none;
+  clear: none;
+
+  margin: 1rem 0 !important;
+  padding: 0.8rem 0.75rem 1rem 2rem;
+
+  background: var(--core-pair-bg);
+
+  border: 1px solid var(--core-pair-border);
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Figure width is set by its media; caption follows that width. */
+.figCore figure {
+  display: grid;
+  grid-template-columns: max-content;
+
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+}
+
+.figCore figure > img,
+.figCore figure > iframe,
+.figCore figure > canvas {
+  grid-column: 1;
+
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.figCore figure > figcaption {
+  grid-column: 1;
+
+  width: 0;
+  min-width: 100%;
+  box-sizing: border-box;
+
+  margin: 0.6rem 0 0 !important;
+  padding: 0;
+
+  color: #909090;
+  font-size: 90%;
+  line-height: 1.35;
+  text-align: center;
+
+  overflow-wrap: anywhere;
+}
 
 /* --- General coloured-box spacing --------------------------------------- */
 
