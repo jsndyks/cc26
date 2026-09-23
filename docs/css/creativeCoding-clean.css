@@ -66,7 +66,7 @@ h3 {
    applied to its generated block. */
 .syntaxhighlighter {
   margin-top: 0.75rem !important;
-  margin-bottom: 3rem !important;
+  margin-bottom: 3.5rem !important;
 }
 
 /* A little more breathing room inside rendered code blocks. */
@@ -195,6 +195,7 @@ figcaption {
   grid-template-columns: minmax(0, 1fr) auto;
   grid-auto-flow: row dense;
   align-items: stretch;
+  row-gap: 2rem;
 }
 
 /* Ordinary direct children use a whole row. */
@@ -300,6 +301,106 @@ figcaption {
   margin-bottom: 2rem;
 }
 
+/* Tabs --------------------------------------------------------------------
+
+   In a paired row the task/note box occupies the left grid cell, so its own
+   ::before cannot reach the far-right edge of the combined row. Hide that
+   tab and reproduce it on .figCode, which occupies the right-hand cell.
+
+   The parent supplies --pair-tab according to the adjacent box type.
+   -------------------------------------------------------------------------- */
+
+.unit-70-cc:has(> .figCode + .codeTask),
+.unit-70-cc:has(> .codeTask + .figCode) {
+  --pair-tab: "{coding task} 🦜";
+}
+
+.unit-70-cc:has(> .figCode + .coreTask),
+.unit-70-cc:has(> .coreTask + .figCode) {
+  --pair-tab: "CORE TASK";
+}
+
+.unit-70-cc:has(> .figCode + .task),
+.unit-70-cc:has(> .task + .figCode) {
+  --pair-tab: "task";
+}
+
+.unit-70-cc:has(> .figCode + .tip),
+.unit-70-cc:has(> .tip + .figCode) {
+  --pair-tab: "tip";
+}
+
+.unit-70-cc:has(> .figCode + .aside),
+.unit-70-cc:has(> .aside + .figCode) {
+  --pair-tab: "aside ...";
+}
+
+.unit-70-cc:has(> .figCode + .challenge),
+.unit-70-cc:has(> .challenge + .figCode) {
+  --pair-tab: "EXTRA CHALLENGE";
+}
+
+/* Hide the original tab only when that box is paired with a figure. */
+.unit-70-cc > .figCode + :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+)::before,
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+):has(+ .figCode)::before {
+  content: none;
+}
+
+/* Put the paired tab at the far-right edge of the figure cell / combined row. */
+.unit-70-cc > .figCode:has(+ :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+)),
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+) + .figCode {
+  position: relative;
+}
+
+.unit-70-cc > .figCode:has(+ :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+))::before,
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip, .aside, .challenge
+) + .figCode::before {
+  content: var(--pair-tab);
+  position: absolute;
+  z-index: 2;
+  top: -2.15rem;
+  right: -0.05rem;
+
+  width: max-content;
+  padding: 0.3em 0.5em 0.2em;
+
+  background: inherit;
+  color: #34383c;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Unpaired boxes keep their own tab, explicitly aligned right. */
+:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge):not(
+  :has(+ .figCode)
+)::before {
+  left: auto;
+  right: -0.6em;
+}
+
+/* Existing decorative left-side icons stay on the left. */
+.codeTask::after,
+.challenge::after {
+  left: -1.5em;
+  right: auto;
+}
+
 /* Intrinsic-width figure: its image/canvas/iframe determines the width. */
 .figCode figure,
 .cc-right figure {
@@ -352,21 +453,6 @@ figcaption {
 .figClear { clear: both; }
 
 
-
-/* Keep task/note tabs anchored to the far-right edge of their box,
-   regardless of whether a figure is paired with the box. */
-:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge)::before {
-  left: auto;
-  right: -0.6em;
-}
-
-/* Where a box uses ::after for a decorative icon, do not let that
-   positioning affect the title/tab anchoring above. */
-.codeTask::after,
-.challenge::after {
-  left: -1.5em;
-  right: auto;
-}
 
 /* --- Task / note boxes --------------------------------------------------- */
 
