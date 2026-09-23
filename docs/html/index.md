@@ -64,10 +64,10 @@ table tbody tr.session-00:nth-child(even) > td {
 |      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)  |x                                                  |        |
 |         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html) |x                                       |        |
 |      06 | **Dear Data**                | [??      ]()                                                     |        |
-|      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |        |
-|         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |        |
-|         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |        |
-|         |                                | [ccObjects.robots.html](objects/ccObjects.robots.html)                                   |        |
+|      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |   x    |
+|         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |   x    |
+|         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |   x    |
+|         |                                | [ccObjects.robots.html](objects/ccObjects.robots.html)                                   |   x    |
 |      08 | **Images**                     | [ccImages.html](images/ccImages.html)                                                    |        |
 |         |                                | [ccImages.extra.html](images/ccImages.extra.html)                                        |        |
 |         |                                | [ccImages.intro.html](images/ccImages.intro.html)                                        |        |

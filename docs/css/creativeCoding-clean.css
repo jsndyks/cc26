@@ -1,0 +1,806 @@
+/* ==========================================================================
+   Creative Coding — consolidated stylesheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Imports
+   -------------------------------------------------------------------------- */
+
+@import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css");
+@import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css");
+@import url("https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css");
+@import url("https://www.staff.city.ac.uk/~jwo/moodle/css/master.css");
+@import url("https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css");
+
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+
+/* --------------------------------------------------------------------------
+   Base typography and spacing
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #34383c;
+}
+
+p {
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+}
+
+pre {
+  margin-left: 2rem;
+  padding: 0.5rem 2.5rem;
+}
+
+code {
+  color: #228;
+  background-color: #e0f0f080;
+}
+
+
+/* --------------------------------------------------------------------------
+   Headings
+   -------------------------------------------------------------------------- */
+
+h3 {
+  clear: both;
+  margin-top: 1em;
+  padding-top: 3.5em !important;
+  padding-bottom: 0.25em !important;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.codeTask h4,
+.codeTask h5,
+.coreTask h4,
+.coreTask h5,
+.task h4,
+.task h5,
+.tip h4,
+.tip h5,
+.aside h4,
+.aside h5,
+.challenge h4,
+.challenge h5 {
+  font-family: inherit;
+}
+
+.codeTask h5 {
+  color: #606090;
+}
+
+.coreTask h5 {
+  color: #906060;
+}
+
+.challenge h5,
+.aside h5,
+.tip h5 {
+  color: #903030;
+}
+
+.codeTask h5,
+.coreTask h5,
+.challenge h5,
+.aside h5,
+.tip h5 {
+  margin-top: 0.05em;
+  margin-bottom: 0.25em;
+  padding-top: 0.05em;
+  padding-bottom: 0.25em;
+}
+
+.task h4::before {
+  content: "\00BB\00A0";
+}
+
+
+/* --------------------------------------------------------------------------
+   General layout
+   -------------------------------------------------------------------------- */
+
+.unit-30-cc {
+  clear: both;
+  margin: 4px;
+  padding: 0.25em;
+  background-color: #ffffff;
+  border: 0 dashed #e0e0e0;
+}
+
+.unit-70-cc {
+  margin: 4px;
+  background-color: #ffffff;
+
+  /* Contain floated figures without a clearfix hack. */
+  display: flow-root;
+}
+
+.unit-30-cc annotation .right {
+  float: right;
+}
+
+.cc-right {
+  float: right;
+  padding: 2px;
+}
+
+.rightCol {
+  float: right;
+  width: 40%;
+}
+
+.sig {
+  float: right;
+  clear: both;
+  padding-right: 4em;
+}
+
+
+/* --------------------------------------------------------------------------
+   Figures
+   -------------------------------------------------------------------------- */
+
+figure {
+  display: block;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure img,
+figure iframe {
+  margin: 2px;
+  padding: 4px;
+  border: 1px dashed #e0e0e0;
+}
+
+figcaption {
+  width: 100%;
+  padding-top: 0.5em;
+  color: #909090;
+  font-size: 90%;
+  text-align: center;
+}
+
+.figCaption {
+  margin: 0.5rem 1rem;
+  color: #606060;
+  font-size: 90%;
+  font-style: italic;
+}
+
+
+/* Figures inside task/aside boxes. */
+
+.coreTask figure,
+.codeTask figure,
+.aside figure {
+  float: right;
+  width: auto;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.coreTask figure img,
+.codeTask figure img,
+.aside figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Code figure: right-aligned, intrinsic width, caption constrained to figure. */
+
+.figCode {
+  float: right;
+  clear: right;
+  display: block;
+
+  margin: 0.25rem 0.5rem 1rem 2rem;
+  padding: 0.25rem 0.5rem;
+
+  background-color: #ffffff;
+}
+
+.figCode figure {
+  display: table;
+  width: auto;
+  margin: 0;
+}
+
+.figCode figure img,
+.figCode figure iframe,
+.figCode figure canvas {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figCode figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  width: 100%;
+  padding-top: 0.5em;
+  color: #909090;
+  font-size: 90%;
+  text-align: center;
+}
+
+
+/* Other figure variants. */
+
+.figCore {
+  float: right;
+  display: block;
+  margin-left: 2em;
+  margin-right: 1em;
+  padding: 4px;
+  background-color: #ffffea;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.figAside {
+  float: right;
+  display: block;
+  width: 24em;
+  margin-left: 2em;
+  margin-right: 1em;
+  padding: 4px;
+  background-color: #f3fbf3ff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.figRight {
+  float: right;
+}
+
+.figRight figure {
+  width: fit-content;
+  margin-left: 1em;
+  margin-right: 2px;
+}
+
+.figClear {
+  clear: both;
+}
+
+
+/* Existing compact right-aligned figure behaviour. */
+
+.cc-right figure {
+  display: table;
+}
+
+.cc-right figure figcaption {
+  display: table-caption;
+  caption-side: bottom;
+}
+
+
+/* --------------------------------------------------------------------------
+   Content boxes
+   -------------------------------------------------------------------------- */
+
+.aside {
+  background-color: #e8f8e880;
+  border-color: #bcb;
+  line-height: 1.6;
+}
+
+.tip {
+  margin-bottom: 2em;
+  padding: 0.7em;
+  background-color: #fafafa;
+  border-color: #999;
+  border-radius: 12px;
+  box-shadow: 8px 8px 5px #999;
+}
+
+.task,
+.codeTask,
+.codeTask::before,
+.ddTask,
+.ddTask::before {
+  background-color: #f0f8ff80;
+}
+
+.coreTask,
+.coreTask::before {
+  background-color: #ffffe0a0;
+}
+
+.homework,
+.homework::before {
+  background-color: #f9f9ff;
+  border-color: #999;
+}
+
+.challenge,
+.challenge::before {
+  background-color: #fff8f8;
+  border-color: #ffb0b0;
+}
+
+
+/* Box labels */
+
+.codeTask::before {
+  content: "{coding task} 🦜";
+}
+
+.ddTask::before {
+  content: "Dear Data 100";
+}
+
+.coreTask::before {
+  content: "CORE TASK";
+}
+
+.homework::before {
+  content: "homework";
+}
+
+.aside::before {
+  content: "aside ...";
+}
+
+.challenge::before {
+  content: "EXTRA CHALLENGE";
+}
+
+
+/* Task text spacing */
+
+.challenge p,
+.coreTask p,
+.codeTask p {
+  margin: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+
+/* Decorative icons */
+
+.tip,
+.aside,
+.coreTask,
+.codeTask,
+.challenge {
+  position: relative;
+}
+
+.tip::before,
+.aside::before,
+.challenge::after,
+.codeTask::after {
+  position: absolute;
+  left: -1.5em;
+  top: 0;
+  font-size: 2em;
+  line-height: 1;
+}
+
+.tip::before {
+  content: "💡";
+}
+
+.aside::before {
+  content: "🤔";
+}
+
+.codeTask::after {
+  content: "🦜";
+  transform: scaleX(-1);
+}
+
+.challenge::after {
+  content: "🎯";
+  transform: scaleX(-1);
+}
+
+
+/* Dear Data task label.
+   Consolidated from repeated declarations in the original stylesheet. */
+
+.ddTask {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-bottom-color: #eef;
+  border-radius: 8px 8px 0 0;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+.ddTask::before {
+  float: right;
+  margin-top: -2em;
+  margin-right: -0.6em;
+  padding: 0.3em 0.3em 1px;
+  border: 1px solid #ccc;
+  border-bottom-color: #eef;
+  border-radius: 8px 8px 0 0;
+  font-weight: 600;
+  line-height: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   Intro / summary
+   -------------------------------------------------------------------------- */
+
+.intro,
+.summary {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 1.15rem 1.25rem;
+  background: #e4f4fa;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.intro ul,
+.intro ol,
+.intro li,
+.summary ul,
+.summary ol,
+.summary li {
+  background: transparent !important;
+}
+
+.intro p,
+.remember p {
+  margin: 0 1rem;
+  padding: 0.25rem 4.5rem;
+}
+
+.intro ul,
+.intro ol,
+.remember ul,
+.remember ol {
+  margin: 0.25rem 3rem;
+  padding: 0.25rem 4.5rem;
+}
+
+.intro h2,
+.remember h2 {
+  margin: 0 2rem;
+  padding: 0 4.5rem 1rem 3.25rem;
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
+}
+
+
+/* --------------------------------------------------------------------------
+   Lists
+   -------------------------------------------------------------------------- */
+
+.challenge li,
+.objectives li,
+.coreTask li,
+.summary li,
+.intro li {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: transparent !important;
+}
+
+.summary h4,
+.summary h5 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: transparent !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   Focus / lecture elements
+   -------------------------------------------------------------------------- */
+
+.focusON_orig {
+  float: left;
+  clear: both;
+  margin-top: 0.25em;
+  margin-right: 1em;
+  margin-bottom: 1.5em;
+  padding: 0.75em;
+  color: #b44;
+  background-color: #f84;
+  border-right: 4px solid #b44;
+  font-size: 150%;
+  text-align: right;
+}
+
+.focusON {
+  float: right;
+  clear: both;
+  display: block;
+  width: 100%;
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0;
+  padding: 0.75em;
+  color: #ddd;
+  background-color: #6aa0cf;
+  border-left: 4px solid #0070a6;
+  font-size: 125%;
+  text-align: left;
+}
+
+.focusNum {
+  color: #c3e9ff;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+.focusHash {
+  color: #c3e9ff;
+  font-size: 125%;
+  font-weight: bold;
+}
+
+.focusON code {
+  color: #fff;
+  background-color: #6aa0cf;
+}
+
+.focusOFF {
+  display: none;
+  padding: 0;
+  color: #229;
+  background-color: #fff;
+}
+
+.focusLecture {
+  float: left;
+  display: block;
+  margin: 4px;
+  padding: 4px;
+  background-color: #b0e0ff;
+  border-left: 4px solid #8cf;
+}
+
+
+/* --------------------------------------------------------------------------
+   Remember box
+   -------------------------------------------------------------------------- */
+
+.remember {
+  position: relative;
+  margin-bottom: 3rem;
+  padding: 1.8rem 3rem;
+  background: #fff7b280;
+  border: none;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remember::before {
+  content: "Remember...";
+  position: absolute;
+  top: 5rem;
+  left: 7rem;
+  transform: translateX(-100%);
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+/* --------------------------------------------------------------------------
+   Blockquotes
+   -------------------------------------------------------------------------- */
+
+blockquote {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 2rem 3rem;
+  background: #f3f3f3;
+  color: #555;
+  border-radius: 6px;
+  font-size: 95%;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+blockquote::before,
+blockquote::after {
+  position: absolute;
+  color: #c5c5c5;
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+blockquote::before {
+  content: "\201C";
+  top: 2rem;
+  left: 1rem;
+}
+
+blockquote::after {
+  content: "\201D";
+  right: 1rem;
+  bottom: 2rem;
+  transform: translateY(0.65em);
+}
+
+
+/* --------------------------------------------------------------------------
+   Miscellaneous components
+   -------------------------------------------------------------------------- */
+
+.key {
+  margin: 2px;
+  padding: 2px 6px;
+  background-color: #e0e0e0;
+  border: 1px solid #c0c0c0;
+  border-right: 2px solid #909090;
+  border-bottom: 2px solid #909090;
+  font-weight: bold;
+}
+
+.todo {
+  margin: 2em;
+  background-color: #fffff0;
+}
+
+.checkOutcomes {
+  margin-left: 3em;
+  padding: 1em;
+}
+
+.parotTalk {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 2px 0.25em;
+  background-color: #f09090;
+  color: #202020;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.parotTalkSm {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 2px 0.25em;
+  background-color: #f09090;
+  color: #ffffff;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+.tutorMedalB,
+.tutorMedalS,
+.tutorMedalG,
+.tutorMedalP {
+  padding: 4px 1em;
+}
+
+.tutorMedalB {
+  background-color: #b0602040;
+}
+
+.tutorMedalS {
+  background-color: #b0b0b060;
+}
+
+.tutorMedalG {
+  background-color: #f0d04040;
+}
+
+.tutorMedalP {
+  background-color: #80808010;
+}
+
+.hrClear {
+  clear: both;
+  padding: 0;
+  border: 1px dashed #f0f0f0;
+}
+
+.hrInvisible {
+  clear: both;
+  padding: 0;
+  border: 0;
+}
+
+.console {
+  padding: 1em;
+  background-color: #224;
+  color: #ddf;
+}
+
+.menu {
+  padding: 0.15rem 0.75rem 0.15rem 1.25rem;
+  background-color: #f0f0f0;
+  font-size: 80%;
+}
+
+.dataFile {
+  float: right;
+  width: 45%;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  font-size: 67%;
+}
+
+.adviceToStudents {
+  margin-bottom: 0.25em;
+}
+
+.qAndA {
+  clear: both;
+  margin-top: 2em;
+  padding: 1rem;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.qAndA-Q {
+  padding: 0.5rem;
+  background-color: #fefeb0;
+  color: #666;
+  font-size: 110%;
+  font-style: italic;
+}
+
+.qAndA-A {
+  padding: 0.5rem 0.5rem 0.5rem 3rem;
+  background-color: #fefeff;
+  color: #669;
+}
+
+.qAndA-A p {
+  background-color: #fefeff;
+  color: #669;
+}
+
+.qAndA-A .moodleButton {
+  padding: 0.25rem;
+  background-color: #d71626;
+  color: #fff;
+  font-size: 80%;
+}
+
+.qAndA-A .moodleSubmission {
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  color: #444;
+}
+
+
+/* --------------------------------------------------------------------------
+   Image helpers
+   -------------------------------------------------------------------------- */
+
+.imgCropBanner {
+  clip-path: inset(40% 0 40% 0);
+}
+
+
+/* --------------------------------------------------------------------------
+   Annotation text
+   -------------------------------------------------------------------------- */
+
+.unit-30-cc.annotation {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-style: italic;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+}
