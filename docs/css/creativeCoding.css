@@ -46,7 +46,7 @@ p {
 
 pre {
   margin-left: 2rem;
-  padding: 0.5rem 2.5rem;
+  padding: 0.75rem 2.75rem;
 }
 
 code {
@@ -155,67 +155,136 @@ figcaption {
 }
 
 
-/* Right-aligned figure beside a coding task.
-   Existing HTML is detected automatically:
+/* Figure + task/note pairing ------------------------------------------------
 
-     .unit-70-cc
-       > .figCode
-       + .codeTask
+   A .figCode can sit immediately before OR after any of these box types:
 
-   No HTML changes or hard-coded figure widths are required. */
+     .codeTask  .coreTask  .task  .tip
+     .aside     .challenge .ddTask .homework
 
-.unit-70-cc:has(> .figCode:first-child + .codeTask) {
-  display: flex;
+   The pair may occur anywhere inside .unit-70-cc. Other direct children
+   (for example PRE, P, headings, etc.) remain full-width grid rows.
+
+   No HTML changes and no hard-coded figure widths are required.
+   -------------------------------------------------------------------------- */
+
+/* Turn the container into a two-column grid only when it contains
+   an adjacent figure/box pair, in either source order. */
+.unit-70-cc:has(> .figCode + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)),
+.unit-70-cc:has(> :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + .figCode) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-flow: row dense;
   align-items: stretch;
-
-  /* One shared translucent layer avoids darker overlap patches. */
-  background: var(--cc-code-bg);
-
-  /* The combined figure/task behaves as one visual box. */
-  border: 1px solid #ccc;
-  border-radius: 8px;
 }
 
-/* Existing source order is figure first, task second.
-   Flex order presents task left and figure right. */
-.unit-70-cc:has(> .figCode:first-child + .codeTask) > .codeTask {
-  order: 1;
-  flex: 1 1 auto;
+/* Ordinary direct children use a whole row. */
+.unit-70-cc:has(> .figCode + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)) > *,
+.unit-70-cc:has(> :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + .figCode) > * {
+  grid-column: 1 / -1;
+}
+
+/* The task/note half of an adjacent pair always occupies the left column. */
+.unit-70-cc > .figCode + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+),
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+):has(+ .figCode) {
+  grid-column: 1;
   min-width: 0;
-
+  float: none;
   margin: 0;
-
-  /* Parent supplies the shared translucent background/border. */
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
 }
 
-.unit-70-cc:has(> .figCode:first-child + .codeTask) > .figCode {
-  order: 2;
-  flex: 0 0 auto;
-  align-self: flex-start;
+/* The figure half always occupies the intrinsic-width right column. */
+.unit-70-cc > .figCode:has(+ :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)),
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + .figCode {
+  grid-column: 2;
+  align-self: stretch;
 
   float: none;
   clear: none;
 
-  margin: 1em 0.5rem 1rem 2rem;
-  padding: 0.25rem 0.5rem;
+  /*
+   * Existing pages sometimes specify margin-top inline.
+   * The grid row supplies the separation instead.
+   */
+  margin: 0 !important;
+  padding: 1.5rem 0.75rem 1rem 2rem;
 
-  /* Avoid stacking another translucent layer over the parent. */
-  background: transparent;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
 }
 
-/* Keep the coding-task tab's original translucent appearance. */
-.unit-70-cc:has(> .figCode:first-child + .codeTask) > .codeTask::before {
+/* Match the figure background to whichever neighbouring box it belongs to.
+   The cells do not overlap, so translucent colours remain visually clean. */
+
+.figCode:has(+ :is(.codeTask, .task, .ddTask)),
+:is(.codeTask, .task, .ddTask) + .figCode {
   background: var(--cc-code-bg);
 }
 
-/* If a figure follows a code block, start it on a new line with breathing room. */
-pre + .figCode {
-  clear: both;
-  margin-top: 2rem;
+.figCode:has(+ .coreTask),
+.coreTask + .figCode {
+  background: var(--cc-core-bg);
+}
+
+.figCode:has(+ .aside),
+.aside + .figCode {
+  background: var(--cc-aside-bg);
+  border-color: #bcb;
+}
+
+.figCode:has(+ .challenge),
+.challenge + .figCode {
+  background: var(--cc-challenge-bg);
+  border-color: #ffb0b0;
+}
+
+.figCode:has(+ .homework),
+.homework + .figCode {
+  background: var(--cc-homework-bg);
+  border-color: #999;
+}
+
+.figCode:has(+ .tip),
+.tip + .figCode {
+  background: #fafafa;
+  border-color: #999;
+}
+
+/* If a PRE immediately precedes either half of a pair, put breathing room
+   below the code block so the complete figure/task row starts cleanly. */
+.unit-70-cc > pre:has(+ .figCode),
+.unit-70-cc > pre:has(+ :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)) {
+  margin-bottom: 2rem;
 }
 
 /* Intrinsic-width figure: its image/canvas/iframe determines the width. */
@@ -271,6 +340,12 @@ pre + .figCode {
 
 
 /* --- Task / note boxes --------------------------------------------------- */
+
+
+/* Gentle vertical separation before major task/note boxes. */
+:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
+  margin-top: 0.75rem;
+}
 
 .tip,
 .aside,
