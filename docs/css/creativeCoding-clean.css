@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v23.css — updated 2026-09-23 18:14 BST */
+/* creativeCoding-FCUS-v24.css — updated 2026-09-23 18:21 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -680,7 +680,7 @@ blockquote::after {
   max-width: 100%;
 
   margin-left: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 /* The figure itself shrink-wraps to its visual media. */
@@ -1297,6 +1297,23 @@ html.show-lecture-notes .lectureNote::before {
   white-space: nowrap;
 
   transform: none;
+}
+
+
+/* ==========================================================================
+   Coloured boxes clear preceding floated figures automatically.
+   This removes the need for inline style="clear:both" in legacy HTML.
+   ========================================================================== */
+
+:is(
+  .codeTask,
+  .coreTask,
+  .task,
+  .challenge,
+  .ddTask,
+  .homework
+) {
+  clear: both;
 }
 
 /* --- General coloured-box spacing --------------------------------------- */
