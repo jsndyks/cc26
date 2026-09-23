@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v16.css — updated 2026-09-23 16:40 BST */
+/* creativeCoding-FCUS-v17.css — updated 2026-09-23 16:47 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -960,38 +960,37 @@ blockquote::after {
 
 /* ==========================================================================
    Legacy .figRight support
-   Supports older HTML where <figcaption> is a sibling of <figure>.
-   Uses Grid consistently with the rest of the layout system.
+   Supports both ordinary images and loadSketch()-generated content.
    ========================================================================== */
 
 .figRight {
   float: right;
 
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: auto;
   justify-items: center;
 
-  /* Shrink-wrap to the intrinsic width of the figure/image. */
-  width: min-content;
+  /* Let dynamically inserted image/iframe/canvas establish the width. */
+  width: auto;
 }
 
 .figRight > figure {
-  width: max-content;
+  display: table;
+  width: auto;
   margin: 0;
 }
 
-.figRight > figure img,
-.figRight > figure iframe,
-.figRight > figure canvas {
+.figRight > figure :is(img, iframe, canvas) {
   display: block;
-  margin: 0;
+  margin-inline: auto;
 }
 
-.figRight > figcaption {
-  width: 100%;
-  box-sizing: border-box;
+/* Preferred semantic structure: figcaption inside figure. */
+.figRight > figure > figcaption {
+  display: table-caption;
+  caption-side: bottom;
 
-  /* Neutralise legacy inline negative margins. */
+  width: 100%;
   margin-top: 0 !important;
 
   color: #909090;
@@ -999,6 +998,17 @@ blockquote::after {
   text-align: center;
 }
 
+/* Legacy structure: figcaption as sibling of figure. */
+.figRight > figcaption {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 0 !important;
+
+  color: #909090;
+  font-size: 90%;
+  text-align: center;
+}
 /* ==========================================================================
    Lecture notes
    Hidden normally; shown with ?lectureNote=true via cssShow.js
