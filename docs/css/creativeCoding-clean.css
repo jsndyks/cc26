@@ -1,4 +1,4 @@
-/* creativeCoding-CUS-v8.css — updated 2026-09-23 13:47 BST */
+/* creativeCoding-CUS-v9.css — updated 2026-09-23 14:10 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -874,3 +874,58 @@ html.show-css-info::before {
   white-space: nowrap;
 }
 
+
+
+/* ==========================================================================
+   Tab / icon alignment refinements
+   ========================================================================== */
+
+/* Real tabbed boxes: anchor the tab at the right and overlap the body
+   slightly so no grey seam appears between tab and box. */
+:is(
+  .codeTask,
+  .coreTask,
+  .task,
+  .aside,
+  .challenge,
+  .ddTask,
+  .homework
+)::before {
+  left: auto;
+  right: -0.6em;
+
+  /* Pull the tab down over the box border by 2px. */
+  transform: translateY(2px);
+
+  border-bottom: 0;
+  z-index: 3;
+}
+
+/* .tip::before is the bulb icon, not a tab: keep it on the left. */
+.tip::before {
+  left: -1.5em;
+  right: auto;
+  top: 0;
+  transform: none;
+}
+
+/* Decorative left-side icons stay on the left. */
+.codeTask::after,
+.challenge::after {
+  left: -1.5em;
+  right: auto;
+}
+
+/* Paired figure/task rows generate their tab from .figCode.
+   Pull that tab 2px into the body so the top borders merge cleanly. */
+.unit-70-cc > .figCode:has(+ :is(
+  .codeTask, .coreTask, .task, .aside, .challenge, .ddTask, .homework
+))::before,
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .aside, .challenge, .ddTask, .homework
+) + .figCode::before {
+  bottom: calc(100% - 2px);
+  margin-bottom: 0;
+  border-bottom: 0;
+  z-index: 3;
+}
