@@ -1,417 +1,351 @@
-/* ==========================================================================
-   Creative Coding — lean stylesheet
-   Keeps existing class names and HTML structure.
-   ========================================================================== */
-
-/* --- Imports ------------------------------------------------------------- */
-
+/* -- Custom layout and style -- */
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/master.css");
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css");
 
+/* -- Embedded fonts -- */
 @import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
+/* -- Existing CC Stylesheet -- */
+  pre {margin-left:2rem; padding:0.5rem 2rem;}
+  p {padding-top:0.5em; padding-bottom:0.5em; margin-top:0.5em; margin-bottom:0.5em; }
 
-/* --- Variables ----------------------------------------------------------- */
+  .key {font-weight:bold; padding:6px; margin:2px; padding-top:2px; padding-bottom:2px; background-color:#e0e0e0; border:1px solid #c0c0c0; border-right:2px solid #909090; border-bottom:2px solid #909090; }
 
-:root {
-  --cc-text: #34383c;
-  --cc-muted: #909090;
-  --cc-border: #e0e0e0;
-  --cc-blue: #6aa0cf;
-  --cc-blue-dark: #0070a6;
+  .todo {margin:2em; background-color:#fffff0}
 
-  --cc-code-bg: #f0f8ff80;
-  --cc-core-bg: #ffffe0a0;
-  --cc-aside-bg: #e8f8e880;
-  --cc-challenge-bg: #fff8f8;
-  --cc-homework-bg: #f9f9ff;
-}
+  .checkOutcomes {padding:1em; margin-left:3em}
 
+  .focusON_orig {float:left; padding:0.75em; margin-right:1em; margin-top:0.25em;margin-bottom:1.5em;  color:#b44; background-color:#f84; text-align:right; clear:both; border-right:4px solid #b44; font-size:150%;}
+  .focusON {clear:both; float:right; padding:0.75em; margin-left:0; margin-top:2.5em;margin-bottom:0.5em;  color:#ddd; background-color:#6AA0CF; text-align:left; clear:both; border-left:4px solid #0070A6; font-size:125%; width:100%}
+  .focusNum {font-size:200%; font-weight:bold; color:#C3E9FF;}
+  .focusHash {font-size:125%; font-weight:bold; color:#C3E9FF}
+  .focusON code {color:#fff;  background-color:#6AA0CF}
+  .focusON {display:block}
 
-/* --- Base ---------------------------------------------------------------- */
+  .focusOFF {display:none; padding:0px; color:#229; background-color:#fff; }
 
-body {
-  font: 0.95rem/1.45 "Inter", Arial, sans-serif;
-  color: var(--cc-text);
-}
+  .focusLecture {display:block; padding:4px; margin:4px; background-color:#b0e0ff; border-left:4px solid #8cf; float:left}
 
-p {
-  margin: 0.5em 0;
-  padding: 0.5em 0;
-}
+  .figCaption {margin:0.5rem 1rem; color:#606060; font-style:italic; font-size: 90%}
 
-pre {
-  margin-left: 2rem;
-  padding: 0.75rem 2.75rem;
-}
-
-code {
-  color: #228;
-  background: #e0f0f080;
-}
-
-h3 {
-  clear: both;
-  margin-top: 1em;
-  padding: 3.5em 0 0.25em !important;
-  border-top: 1px dashed var(--cc-border);
-}
-
-
-/* --- Headings ------------------------------------------------------------ */
-
-:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) :is(h4, h5) {
-  font-family: inherit;
-}
-
-:is(.codeTask, .coreTask, .challenge, .aside, .tip) h5 {
-  margin: 0.05em 0 0.25em;
-  padding: 0.05em 0 0.25em;
-}
-
-.codeTask h5 { color: #606090; }
-.coreTask h5 { color: #906060; }
-:is(.challenge, .aside, .tip) h5 { color: #903030; }
-
-.task h4::before {
-  content: "\00BB\00A0";
-}
-
-
-/* --- Layout -------------------------------------------------------------- */
-
-.unit-30-cc {
-  clear: both;
-  margin: 4px;
-  padding: 0.25em;
-  background: #fff;
-}
-
-.unit-70-cc {
-  margin: 4px;
-  background: #fff;
-}
-
-.unit-30-cc.annotation {
-  font-size: 0.9em;
-  font-style: italic;
-  line-height: 1.3;
-  letter-spacing: -0.04em;
-}
-
-.unit-30-cc annotation .right,
-.cc-right,
-.rightCol,
-.sig {
-  float: right;
-}
-
-.cc-right { padding: 2px; }
-.rightCol { width: 40%; }
-.sig { clear: both; padding-right: 4em; }
-
-
-/* --- Figures ------------------------------------------------------------- */
-
-figure {
-  width: 75%;
-  margin-inline: auto;
-}
-
-figure :is(img, iframe) {
-  margin: 2px;
-  padding: 4px;
-  border: 1px dashed var(--cc-border);
-}
-
-figcaption {
-  width: 100%;
-  padding-top: 0.5em;
-  color: var(--cc-muted);
-  font-size: 90%;
-  text-align: center;
-}
-
-.figCaption {
-  margin: 0.5rem 1rem;
-  color: #606060;
-  font-size: 90%;
-  font-style: italic;
-}
-
-:is(.coreTask, .codeTask, .aside) figure {
-  float: right;
-  width: auto;
-  margin: 0 1em;
-}
-
-:is(.coreTask, .codeTask, .aside) figure img {
-  display: block;
-  margin-inline: auto;
-}
-
-
-/* Figure + task/note pairing ------------------------------------------------
-
-   A .figCode can sit immediately before OR after any of these box types:
-
-     .codeTask  .coreTask  .task  .tip
-     .aside     .challenge .ddTask .homework
-
-   The pair may occur anywhere inside .unit-70-cc. Other direct children
-   (for example PRE, P, headings, etc.) remain full-width grid rows.
-
-   No HTML changes and no hard-coded figure widths are required.
-   -------------------------------------------------------------------------- */
-
-/* Turn the container into a two-column grid only when it contains
-   an adjacent figure/box pair, in either source order. */
-.unit-70-cc:has(> .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc:has(> :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode) {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-auto-flow: row dense;
-  align-items: stretch;
-}
-
-/* Ordinary direct children use a whole row. */
-.unit-70-cc:has(> .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)) > *,
-.unit-70-cc:has(> :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode) > * {
-  grid-column: 1 / -1;
-}
-
-/* The task/note half of an adjacent pair always occupies the left column. */
-.unit-70-cc > .figCode + :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-):has(+ .figCode) {
-  grid-column: 1;
-  min-width: 0;
-  float: none;
-  margin: 0;
-  border-right: 0;
-  border-radius: 8px 0 0 8px;
-}
-
-/* The figure half always occupies the intrinsic-width right column. */
-.unit-70-cc > .figCode:has(+ :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)),
-.unit-70-cc > :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-) + .figCode {
-  grid-column: 2;
-  align-self: stretch;
-
-  float: none;
-  clear: none;
+  .sig {float:right; padding-right:4em; clear:both}
 
   /*
-   * Existing pages sometimes specify margin-top inline.
-   * The grid row supplies the separation instead.
+   *
+   * -- removing side columns ...
    */
-  margin: 0 !important;
-  padding: 1.5rem 0.75rem 1rem 2rem;
 
-  border: 1px solid #ccc;
-  border-left: 0;
-  border-radius: 0 8px 8px 0;
-}
+  .unit-30-cc {margin:4px; background-color:#ffffff; padding:0.25em; border:dashed #e0e0e0 0px; clear:both; } 
+  .unit-70-cc {margin:4px; background-color:#ffffff;} 
+  .unit-30-cc annotation .right {float:right}
+  .cc-right {float:right; padding:2px}
 
-/* Match the figure background to whichever neighbouring box it belongs to.
-   The cells do not overlap, so translucent colours remain visually clean. */
+  .rightCol {float:right; width :40%}
+  
+  /*
+   * -- Jo's Original : https://www.staff.city.ac.uk/~jwo/moodle/css/master.css
+   */
+   .aside {
+    background-color: #e8f8e880;
+    border-color: #bcb;
+    line-height: 1.6;
+  }
+  .tip {
+    background-color: #fafafa;
+    border-color: #999;
+    padding: 0.7em;
+    box-shadow: 8px 8px 5px #999;
+    border-radius: 12px;
+    margin-bottom: 2em;
+  }
+  .task,
+  .codeTask,
+  .codeTask::before {
+    background-color: #f0f8ff80;
+  }
 
-.figCode:has(+ :is(.codeTask, .task, .ddTask)),
-:is(.codeTask, .task, .ddTask) + .figCode {
-  background: var(--cc-code-bg);
-}
+  .ddTask,
+  .ddTask::before {
+    background-color: #f0f8ff80;
+  }
 
-.figCode:has(+ .coreTask),
-.coreTask + .figCode {
-  background: var(--cc-core-bg);
-}
+  .coreTask,
+  .coreTask::before {
+    background-color: #ffffe0a0;
+  }
+  .homework,
+  .homework::before {
+    background-color: #f9f9ff;
+    border-color: #999;
+  }
+  .challenge,
+  .challenge::before {  
+    background-color: #fff8f8;
+    border-color: #ffb0b0;
+  }
+  
+  .codeTask::before {
+    content: "{coding task} 🦜";
+  }
+  .ddTask::before {
+    content: "Dear Data 100";
+  }
+  .coreTask::before {
+    content: "CORE TASK";
+  }
+  .homework::before {
+    content: "homework";
+  }
+  .aside::before {
+    content: "aside ...";
+  }
+  .challenge::before {
+    content: "EXTRA CHALLENGE";
+  }
+  
+  /* -- New Colours!
+   */
 
-.figCode:has(+ .aside),
-.aside + .figCode {
-  background: var(--cc-aside-bg);
-  border-color: #bcb;
-}
+  /*
+  .codingTask {background-color: #d8e8f8}
+  .coreTask {background-color: #f8f888}
+  .challenge {background-color: #ffe8e8}
+  */
 
-.figCode:has(+ .challenge),
-.challenge + .figCode {
-  background: var(--cc-challenge-bg);
-  border-color: #ffb0b0;
-}
+  /*
+  * crop image 
+  */
+  .imgCropBanner {
+      /* Example: clip away the element from the top, right, bottom, and left edges */
+    clip-path: inset(40% 0px 40% 0px);
+  }
+figure {display: block; margin-left: auto; margin-right: auto; width:75%; }
+.coreTask figure, .codeTask figure, .aside figure { margin-right: 1em; width:auto; margin-left:1em; float:right}
+.coreTask figure img, .codeTask figure img, .aside figure img {  display: block; margin-left: auto; margin-right: auto;}
+figure img, figure iframe {border:dashed #e0e0e0 1px; padding:4px; margin:2px}
+figcaption {text-align:center; color:#909090; padding-top:0.5em; font-size:90%; width: 100%; }
 
-.figCode:has(+ .homework),
-.homework + .figCode {
-  background: var(--cc-homework-bg);
-  border-color: #999;
-}
+/* .figCode {float:right; margin-right: 1em; margin-left:2em; display:block; background-color: #f8fbff; border-bottom:solid #e0e0e0 1px; padding:4px} */
+.figCode {margin:0.25rem 0.5rem; padding:0.25rem 0.5rem; clear:both; display:block; background-color: #f8fbff; }
+.figCore {float:right; margin-right: 1em; margin-left:2em; display:block; background-color: #ffffea; border-bottom:solid #e0e0e0 1px; padding:4px}
+.figAside {float:right; margin-right: 1em; width:24em; margin-left:2em; display:block; background-color: #f3fbf3ff; border-bottom:solid #e0e0e0 1px; padding:4px}
 
-.figCode:has(+ .tip),
-.tip + .figCode {
-  background: #fafafa;
-  border-color: #999;
-}
+.figRight figure {margin-left: 1em; margin-right: 2px; width:fit-content;}    
+.figRight {float:right; }
+.figClear {clear:both;} /* background-color:#ff8888; color:#ff0000 */
 
-/* If a PRE immediately precedes either half of a pair, put breathing room
-   below the code block so the complete figure/task row starts cleanly. */
-.unit-70-cc > pre:has(+ .figCode),
-.unit-70-cc > pre:has(+ :is(
-  .codeTask, .coreTask, .task, .tip,
-  .aside, .challenge, .ddTask, .homework
-)) {
-  margin-bottom: 2rem;
-}
-
-/* Intrinsic-width figure: its image/canvas/iframe determines the width. */
-.figCode figure,
-.cc-right figure {
-  display: table;
-}
-
-.figCode figure {
-  width: auto;
-  margin: 0;
-}
-
-.figCode figure :is(img, iframe, canvas) {
-  display: block;
-  margin-inline: auto;
-}
-
-:is(.figCode, .cc-right) figure figcaption {
-  display: table-caption;
-  caption-side: bottom;
-}
+/*
+code {color:#6AA0CF; background-color:#f0f8ff}
+ */
+code {color:#228;background-color:#e0f0f080;}
 
 
-/* Other figure helpers retained for existing pages. */
+h3 {padding-top:0.25em; margin-top:1em; border-top:1px dashed #e0e0e0; clear:both}
+.codeTask h5  {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #606090}
+.coreTask h5  {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #906060}
+.challenge h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
+.aside h5, .tip h5 {padding-top:0.05em; padding-bottom:0.25em; margin-top:0.05em; margin-bottom:0.25em; color: #903030}
 
-.figCore,
-.figAside {
+.challenge li, .objectives li, .coreTask li {padding-top:0.25rem; padding-bottom:0.25rem; background: transparent !important;}
+.summary li, .intro li {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+.summary h4, .summary h5 {padding-top:0.25rem; padding-bottom:0.25rem; ; background: transparent !important;}
+
+/* CHECK */
+.challenge p, .coreTask p, .codeTask p {margin:0.25rem 0.5rem; padding:0.25rem 0.5rem}
+
+/*
+.summary {
+  font-size: larger;
+  font-family: 'Roboto Slab', serif;
+}*/
+
+.parotTalk {font-size:100%; font-weight:bold; background-color:#f09090; color:#202020; padding:2px; padding-left:0.25em; padding-right:0.25em; margin-right:0px; margin-left:0px} 
+.parotTalkSm {font-size:100%; font-weight:normal; background-color:#f09090; color:#ffffff; padding:2px; padding-left:0.25em; padding-right:0.25em; margin-right:0px; margin-left:0rem} 
+
+.tutorMedalB {padding:4px; padding-left:1em;padding-right:1em; background-color:#b0602040}
+.tutorMedalS {padding:4px; padding-left:1em;padding-right:1em; background-color:#b0b0b060}
+.tutorMedalG {padding:4px; padding-left:1em;padding-right:1em; background-color:#f0d04040}
+.tutorMedalP {padding:4px; padding-left:1em;padding-right:1em; background-color:#80808010}
+
+/*
+ * right aligned figures with captions that fit!
+ *
+ */
+.cc-right figure {display:table;}
+.cc-right figure figcaption {display:table-caption;caption-side:bottom}
+
+.hrClear {clear:both; padding:0; border:dashed #f0f0f0 1px;}
+.hrInvisible {clear:both; padding:0; border:none #ffffff 0px;}
+
+.console {background-color:#224; color:#ddf; padding:1em}
+
+.menu {padding:0.15rem; background-color:#f0f0f0; padding-left:1.25rem;padding-right:0.75rem;font-size:80%}
+
+.dataFile {font-size:67%; width:45%; float:right; margin-right:1rem; margin-left:2rem; padding:0.5rem}
+.adviceToStudents {margin-bottom:0.25em}
+
+.qAndA {padding:1rem; clear:both; margin-top:2em; border-bottom:dashed 1px #e0e0e0}
+.qAndA-Q {padding:0.5rem;background-color:#fefeb0; color:#666; font-size:110%; font-style:italic}
+.qAndA-A {padding:0.5rem; padding-left:3rem; background-color:#fefeff; color:#669}
+.qAndA-A p {background-color:#fefeff; color:#669}
+.qAndA-A .moodleButton {padding:0.25rem; color:#fff; background-color:#D71626; font-size:80%}
+.qAndA-A .moodleSubmission {padding:0.5rem; color:#444; background-color:#F8F9FA; margin:1rem}
+
+/* -- task magic --*/
+.ddTask::before,
+.ddTask {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 8px;
+  font-weight: normal;
+  padding: 0.5em;
+  border: solid;
+  border-color: #ccc;
+  border-width: 1px;
+  /* margin-bottom: 20px; */
+  line-height: 130%;
+  -webkit-border-radius: 8px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius: 8px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 1px solid #eef;
+
+  line-height: 100%;
+  padding: 0.3em;
+  padding-bottom: 1px;
+  font-weight: 600;
   float: right;
-  display: block;
-  margin-left: 2em;
-  margin-right: 1em;
-  padding: 4px;
-  border-bottom: 1px solid var(--cc-border);
+  /* margin-bottom:0; */
+  margin-top: -2em;
+  margin-right: -0.6em;
+  -webkit-border-radius: 8px;
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius: 8px;
+  -moz-border-radius-topright: 0;
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  margin-top: 2.5em;
+  -webkit-border-radius: 8px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius: 8px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 1px solid #eef;
+
+  line-height: 100%;
+  padding: 0.3em;
+  padding-bottom: 1px;
+  font-weight: 600;
+  float: right;
+  /* margin-bottom:0; */
+  margin-top: -2em;
+  margin-right: -0.6em;
 }
 
-.figCore { background: #ffffea; }
+/**
+ ** blockquote
+ **
+ **/
+  blockquote {
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 2rem 3rem;
 
-.figAside {
-  width: 24em;
-  background: #f3fbf3ff;
+    background: #f3f3f3;
+    color: #555;
+    border-radius: 6px;
+
+    font-size: 95%;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  blockquote::before,
+  blockquote::after {
+    position: absolute;
+    font-family: Georgia, serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: #c5c5c5;
+  }
+
+  /* Opening quote — level with top of text */
+  blockquote::before {
+    content: "\201C";
+    top: 2rem;
+    left: 1rem;
+  }
+
+  /* Closing quote — dropped to the bottom of the final line */
+  blockquote::after {
+    content: "\201D";
+    right: 1rem;
+    bottom: 2rem;
+    transform: translateY(0.65em);
+  }
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #34383c;
 }
 
-.figRight { float: right; }
-
-.figRight figure {
-  width: fit-content;
-  margin-left: 1em;
-  margin-right: 2px;
+/* Intro */
+.intro, .summary {
+  font-size: 1em;
+  /* background-color: #f3f4f5; */
+  /* background-color: #4080ff40; */
+  background: #e4f4fa;
+  padding: 1.15rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  position: relative;
 }
+.intro ul,
+.intro ol,
+.intro li,
+.summary ul,
+.summary ol,
+.summary li {
+  background: transparent !important;
+}
+.intro p, .remember p {  padding: 0.25rem 4.5rem; margin: 0rem 1rem;}
+.intro ul, .intro ol, .remember ul, .remember ol {  padding: 0.25rem 4.5rem; margin: 0.25rem 3rem;}
+.intro h2, .remember h2  {padding:0rem 4.5rem 1rem 3.25rem; margin:0rem 2rem}
 
-.figClear { clear: both; }
 
+.intro::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
 
-/* --- Task / note boxes --------------------------------------------------- */
+  width: 4rem;
+  height: 4rem;
 
-
-/* Gentle vertical separation before major task/note boxes. */
-:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
-  margin-top: 0.75rem;
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
 }
 
 .tip,
 .aside,
-.coreTask,
-.codeTask,
-.challenge {
+.coretask,
+.codeTask {
   position: relative;
 }
-
-.task,
-.codeTask,
-.codeTask::before,
-.ddTask,
-.ddTask::before {
-  background: var(--cc-code-bg);
-}
-
-.coreTask,
-.coreTask::before {
-  background: var(--cc-core-bg);
-}
-
-.aside {
-  background: var(--cc-aside-bg);
-  border-color: #bcb;
-  line-height: 1.6;
-}
-
-.challenge,
-.challenge::before {
-  background: var(--cc-challenge-bg);
-  border-color: #ffb0b0;
-}
-
-.homework,
-.homework::before {
-  background: var(--cc-homework-bg);
-  border-color: #999;
-}
-
-.tip {
-  margin-bottom: 2em;
-  padding: 0.7em;
-  background: #fafafa;
-  border-color: #999;
-  border-radius: 12px;
-  box-shadow: 8px 8px 5px #999;
-}
-
-:is(.challenge, .coreTask, .codeTask) p {
-  margin: 0.25rem 0.5rem;
-  padding: 0.25rem 0.5rem;
-}
-
-
-/* Labels */
-
-.codeTask::before { content: "{coding task} 🦜"; }
-.ddTask::before { content: "Dear Data 100"; }
-.coreTask::before { content: "CORE TASK"; }
-.homework::before { content: "homework"; }
-.aside::before { content: "aside ..."; }
-.challenge::before { content: "EXTRA CHALLENGE"; }
-
-
-/* Icons */
 
 .tip::before,
 .aside::before,
@@ -424,90 +358,58 @@ figcaption {
   line-height: 1;
 }
 
-.tip::before { content: "💡"; }
-.aside::before { content: "🤔"; }
-.codeTask::after { content: "🦜"; transform: scaleX(-1); }
-.challenge::after { content: "🎯"; transform: scaleX(-1); }
+.tip::before      { content: "💡"; }
+.aside::before    { content: "🤔"; }
+.codeTask::after  { content: "🦜";   transform: scaleX(-1); }
+.challenge::after { content: "🎯";   transform: scaleX(-1); }
+.task h4::before {
+  content: "\00BB\00A0"; /* » followed by a non-breaking space */
+}
 
 
-/* Dear Data task */
+/* Give H3 headings a little more breathing room */
+h3 {
+  padding-top: 3.5em !important;
+  padding-bottom: 0.25em !important;
+} 
 
-.ddTask {
-  margin: 1em 0;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-bottom-color: #eef;
-  border-radius: 8px 8px 0 0;
+/* H4 and H5 use the normal body font */
+.codeTask h4,
+.codeTask h5,
+.coreTask h4,
+.coreTask h5,
+.task h4,
+.task h5,
+.tip h4,
+.tip h5,
+.aside h4,
+.aside h5,
+.challenge h4,
+.challenge h5 {
+  font-family: inherit;
+}
+
+/* Annotation text */
+.unit-30-cc.annotation {
+  font-family: inherit;
+  font-style: italic;
+  font-size: 0.9em;
   line-height: 1.3;
+    letter-spacing: -0.04em;
 }
 
-.ddTask::before {
-  float: right;
-  margin: -2em -0.6em 0 0;
-  padding: 0.3em 0.3em 1px;
-  border: 1px solid #ccc;
-  border-bottom-color: #eef;
-  border-radius: 8px 8px 0 0;
-  font-weight: 600;
-  line-height: 1;
+pre {
+  padding: 0.5rem 2.5rem;
 }
 
-
-/* --- Intro / summary / remember ----------------------------------------- */
-
-.intro,
-.summary {
-  position: relative;
-  margin-bottom: 2rem;
-  padding: 1.15rem 1.25rem;
-  background: #e4f4fa;
-  border-radius: 6px;
-}
-
-:is(.intro, .summary) :is(ul, ol, li),
-:is(.challenge, .objectives, .coreTask) li,
-.summary :is(h4, h5) {
-  background: transparent !important;
-}
-
-:is(.challenge, .objectives, .coreTask, .summary, .intro) li,
-.summary :is(h4, h5) {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-:is(.intro, .remember) p {
-  margin: 0 1rem;
-  padding: 0.25rem 4.5rem;
-}
-
-:is(.intro, .remember) :is(ul, ol) {
-  margin: 0.25rem 3rem;
-  padding: 0.25rem 4.5rem;
-}
-
-:is(.intro, .remember) h2 {
-  margin: 0 2rem;
-  padding: 0 4.5rem 1rem 3.25rem;
-}
-
-.intro::before {
-  content: "";
-  position: absolute;
-  left: 0.5rem;
-  top: 0.5rem;
-  width: 4rem;
-  height: 4rem;
-  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
-}
-
+/* -- Remember ... */
 .remember {
   position: relative;
-  margin-bottom: 3rem;
-  padding: 1.8rem 3rem;
   background: #fff7b280;
-  border: 0;
-  box-shadow: 1px 2px 4px rgb(0 0 0 / 10%);
+  padding: 1.8rem 3rem 1.8rem 3rem;
+  margin-bottom:3rem;
+  border: none;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .remember::before {
@@ -517,210 +419,5 @@ figcaption {
   left: 7rem;
   transform: translateX(-100%);
   font-weight: bold;
-  font-style: italic;
-}
-
-
-/* --- Focus / lecture ----------------------------------------------------- */
-
-.focusON_orig,
-.focusON {
-  clear: both;
-  padding: 0.75em;
-}
-
-.focusON_orig {
-  float: left;
-  margin: 0.25em 1em 1.5em 0;
-  color: #b44;
-  background: #f84;
-  border-right: 4px solid #b44;
-  font-size: 150%;
-  text-align: right;
-}
-
-.focusON {
-  float: right;
-  display: block;
-  width: 100%;
-  margin: 2.5em 0 0.5em;
-  color: #ddd;
-  background: var(--cc-blue);
-  border-left: 4px solid var(--cc-blue-dark);
-  font-size: 125%;
-}
-
-.focusON code {
-  color: #fff;
-  background: var(--cc-blue);
-}
-
-.focusNum {
-  color: #c3e9ff;
-  font-size: 200%;
-  font-weight: bold;
-}
-
-.focusHash {
-  color: #c3e9ff;
-  font-size: 125%;
-  font-weight: bold;
-}
-
-.focusOFF {
-  display: none;
-  padding: 0;
-  color: #229;
-  background: #fff;
-}
-
-.focusLecture {
-  float: left;
-  display: block;
-  margin: 4px;
-  padding: 4px;
-  background: #b0e0ff;
-  border-left: 4px solid #8cf;
-}
-
-
-/* --- Blockquotes --------------------------------------------------------- */
-
-blockquote {
-  position: relative;
-  margin: 1.5rem 0;
-  padding: 2rem 3rem;
-  background: #f3f3f3;
-  color: #555;
-  border-radius: 6px;
-  font-size: 95%;
-  font-style: italic;
-  line-height: 1.6;
-}
-
-blockquote::before,
-blockquote::after {
-  position: absolute;
-  color: #c5c5c5;
-  font: 2.5rem/1 Georgia, serif;
-}
-
-blockquote::before {
-  content: "\201C";
-  top: 2rem;
-  left: 1rem;
-}
-
-blockquote::after {
-  content: "\201D";
-  right: 1rem;
-  bottom: 2rem;
-  transform: translateY(0.65em);
-}
-
-
-/* --- Small components --------------------------------------------------- */
-
-.key {
-  margin: 2px;
-  padding: 2px 6px;
-  background: #e0e0e0;
-  border: 1px solid #c0c0c0;
-  border-right: 2px solid #909090;
-  border-bottom: 2px solid #909090;
-  font-weight: bold;
-}
-
-.todo { margin: 2em; background: #fffff0; }
-.checkOutcomes { margin-left: 3em; padding: 1em; }
-
-.parotTalk,
-.parotTalkSm {
-  margin: 0;
-  padding: 2px 0.25em;
-  background: #f09090;
-  font-size: 100%;
-}
-
-.parotTalk { color: #202020; font-weight: bold; }
-.parotTalkSm { color: #fff; }
-
-:is(.tutorMedalB, .tutorMedalS, .tutorMedalG, .tutorMedalP) {
-  padding: 4px 1em;
-}
-
-.tutorMedalB { background: #b0602040; }
-.tutorMedalS { background: #b0b0b060; }
-.tutorMedalG { background: #f0d04040; }
-.tutorMedalP { background: #80808010; }
-
-.hrClear,
-.hrInvisible {
-  clear: both;
-  padding: 0;
-}
-
-.hrClear { border: 1px dashed #f0f0f0; }
-.hrInvisible { border: 0; }
-
-.console { padding: 1em; background: #224; color: #ddf; }
-
-.menu {
-  padding: 0.15rem 0.75rem 0.15rem 1.25rem;
-  background: #f0f0f0;
-  font-size: 80%;
-}
-
-.dataFile {
-  float: right;
-  width: 45%;
-  margin: 0 1rem 0 2rem;
-  padding: 0.5rem;
-  font-size: 67%;
-}
-
-.adviceToStudents { margin-bottom: 0.25em; }
-
-.qAndA {
-  clear: both;
-  margin-top: 2em;
-  padding: 1rem;
-  border-bottom: 1px dashed var(--cc-border);
-}
-
-.qAndA-Q {
-  padding: 0.5rem;
-  background: #fefeb0;
-  color: #666;
-  font-size: 110%;
-  font-style: italic;
-}
-
-.qAndA-A {
-  padding: 0.5rem 0.5rem 0.5rem 3rem;
-  background: #fefeff;
-  color: #669;
-}
-
-.qAndA-A p {
-  background: #fefeff;
-  color: #669;
-}
-
-.qAndA-A .moodleButton {
-  padding: 0.25rem;
-  background: #d71626;
-  color: #fff;
-  font-size: 80%;
-}
-
-.qAndA-A .moodleSubmission {
-  margin: 1rem;
-  padding: 0.5rem;
-  background: #f8f9fa;
-  color: #444;
-}
-
-.imgCropBanner {
-  clip-path: inset(40% 0);
+  font-style: italic; 
 }
