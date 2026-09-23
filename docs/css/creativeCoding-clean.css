@@ -935,58 +935,64 @@ blockquote::after {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    Lecture notes
-   Hidden normally; shown with ?lectureNote=true
-   -------------------------------------------------------------------------- */
+   Hidden normally; shown with ?lectureNote=true via cssShow.js
+   ========================================================================== */
 
 .lectureNote {
-  display: none !important;
+  display: none;
 }
 
 html.show-lecture-notes .lectureNote {
-  display: block !important;
+  display: block;
 
-  position: relative !important;
+  /* Remove note from normal vertical flow */
+  position: absolute;
 
-  width: 11rem !important;
+  width: 11rem;
   box-sizing: border-box;
 
   /*
-   * Pull the note into the left margin.
-   * It remains in normal document flow vertically.
+   * Position in left margin.
+   * Slightly farther left gives more space before main content.
    */
-  margin:
-    1rem
-    0
-    2.5rem
-    calc(50% - 48rem) !important;
+  left: calc(50% - 50rem);
 
-  padding: 0.8rem 0.9rem !important;
+  margin: 0;
+  padding: 0.8rem 0.9rem;
 
-  background: #fff3a6 !important;
-  color: #555 !important;
+  background: #fff3a6;
+  color: #555;
 
-  border: 1px solid #e5d47c !important;
+  border: 1px solid #e5d47c;
   border-radius: 2px;
 
   box-shadow: 2px 3px 5px rgb(0 0 0 / 15%);
 
-  font-size: 0.82rem !important;
+  font-size: 0.82rem;
   line-height: 1.35;
-  text-align: right !important;
+
+  /* Note text remains right aligned */
+  text-align: right;
 
   transform: rotate(-1deg);
+
+  z-index: 10;
 }
 
 
-/* Manual note number */
+/* Manual number: data-note="03" */
 html.show-lecture-notes .lectureNote::before {
   content: attr(data-note);
 
   display: inline-block;
 
-  margin-right: 0.5rem;
+  /*
+   * Number itself is left aligned.
+   * Text starts alongside it.
+   */
+  margin: 0 0.5rem 0 0;
 
   color: #b29d42;
 
@@ -994,16 +1000,6 @@ html.show-lecture-notes .lectureNote::before {
   font-weight: 600;
   line-height: 0.9;
 
+  text-align: left;
   vertical-align: top;
-}
-
-
-/* Narrow screens: put the note back into normal page content */
-@media (max-width: 1100px) {
-  html.show-lecture-notes .lectureNote {
-    width: auto !important;
-    margin: 1rem 2rem 2.5rem !important;
-
-    transform: none;
-  }
 }
