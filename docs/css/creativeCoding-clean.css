@@ -155,42 +155,44 @@ figcaption {
 }
 
 
-/* Figure + coding-task layout.
-   Add class "figureTask" to the existing .unit-70-cc parent:
+/* Right-aligned figure beside a coding task.
+   Existing HTML is detected automatically:
 
-     <div class="unit-70-cc figureTask">
+     .unit-70-cc
+       > .figCode
+       + .codeTask
 
-   Flexbox keeps this compatible, allows arbitrary figure widths, and makes
-   the whole task area as tall as whichever side is taller. */
+   No HTML changes or hard-coded figure widths are required. */
 
-.figureTask {
+.unit-70-cc:has(> .figCode + .codeTask) {
   display: flex;
   align-items: stretch;
-  gap: 0;
 
-  /* One translucent layer only: avoids darker overlap patches. */
+  /* One shared translucent layer avoids darker overlap patches. */
   background: var(--cc-code-bg);
 
-  /* Reproduce the task-box boundary around both text and figure. */
+  /* The combined figure/task behaves as one visual box. */
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
-/* Existing HTML puts .figCode first; visual order is reversed with flex. */
-.figureTask > .codeTask {
+/* Existing source order is figure first, task second.
+   Flex order presents task left and figure right. */
+.unit-70-cc:has(> .figCode + .codeTask) > .codeTask {
   order: 1;
   flex: 1 1 auto;
   min-width: 0;
 
-  /* Parent supplies the shared translucent background/border. */
   margin: 0;
+
+  /* Parent supplies the shared translucent background/border. */
   background: transparent;
   border: 0;
   border-radius: 0;
   box-shadow: none;
 }
 
-.figureTask > .figCode {
+.unit-70-cc:has(> .figCode + .codeTask) > .figCode {
   order: 2;
   flex: 0 0 auto;
   align-self: flex-start;
@@ -201,11 +203,16 @@ figcaption {
   margin: 1em 0.5rem 1rem 2rem;
   padding: 0.25rem 0.5rem;
 
-  /* Do not stack another translucent layer over the parent's one. */
+  /* Avoid stacking another translucent layer over the parent. */
   background: transparent;
 }
 
-/* Intrinsic-width figure: image/canvas/iframe decides the width. */
+/* Keep the coding-task tab's original translucent appearance. */
+.unit-70-cc:has(> .figCode + .codeTask) > .codeTask::before {
+  background: var(--cc-code-bg);
+}
+
+/* Intrinsic-width figure: its image/canvas/iframe determines the width. */
 .figCode figure,
 .cc-right figure {
   display: table;
@@ -224,11 +231,6 @@ figcaption {
 :is(.figCode, .cc-right) figure figcaption {
   display: table-caption;
   caption-side: bottom;
-}
-
-/* Keep the existing coding-task tab visible above the shared parent box. */
-.figureTask > .codeTask::before {
-  background: var(--cc-code-bg);
 }
 
 
