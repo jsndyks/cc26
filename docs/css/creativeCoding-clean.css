@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v14.css — updated 2026-09-23 15:05 BST */
+/* creativeCoding-FCUS-v16.css — updated 2026-09-23 15:53 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -959,46 +959,95 @@ blockquote::after {
 }
 
 /* ==========================================================================
-   Legacy .figRight support
-   Supports older HTML where <figcaption> is a sibling of <figure>.
-   Uses Grid consistently with the rest of the layout system.
+   .figRight figure/caption support
+
+   Supports BOTH existing HTML patterns:
+
+     1) caption inside figure:
+        .figRight > figure > figcaption
+
+     2) legacy caption beside figure:
+        .figRight > figure + figcaption
+
+   The image/canvas/iframe determines the intrinsic width; long caption text
+   wraps to that width instead of widening the figure.
    ========================================================================== */
 
 .figRight {
   float: right;
-
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: max-content;
   justify-items: center;
 
-  /* Shrink-wrap to the intrinsic width of the figure/image. */
-  width: min-content;
+  width: fit-content;
+  max-width: 100%;
+
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
 }
 
+/* The figure itself shrink-wraps to its visual media. */
 .figRight > figure {
+  display: grid;
+  grid-template-columns: max-content;
+
   width: max-content;
+  max-width: 100%;
   margin: 0;
 }
 
-.figRight > figure img,
-.figRight > figure iframe,
-.figRight > figure canvas {
+.figRight > figure > img,
+.figRight > figure > iframe,
+.figRight > figure > canvas {
+  grid-column: 1;
+
   display: block;
-  margin: 0;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
-.figRight > figcaption {
-  width: 100%;
+/*
+ * Nested caption:
+ * width:0 removes the caption from intrinsic width calculation;
+ * min-width:100% then expands it to the media-defined figure width.
+ */
+.figRight > figure > figcaption {
+  grid-column: 1;
+
+  width: 0;
+  min-width: 100%;
   box-sizing: border-box;
 
-  /* Neutralise legacy inline negative margins. */
-  margin-top: 0 !important;
+  margin: 0.6rem 0 0 !important;
+  padding: 0;
 
   color: #909090;
   font-size: 90%;
+  line-height: 1.35;
   text-align: center;
+
+  overflow-wrap: anywhere;
 }
 
+/* Legacy sibling caption: same intrinsic-width trick on the outer grid. */
+.figRight > figcaption {
+  grid-column: 1;
+
+  width: 0;
+  min-width: 100%;
+  box-sizing: border-box;
+
+  margin: 0.6rem 0 0 !important;
+  padding: 0;
+
+  color: #909090;
+  font-size: 90%;
+  line-height: 1.35;
+  text-align: center;
+
+  overflow-wrap: anywhere;
+}
 /* ==========================================================================
    Lecture notes
    Hidden normally; shown with ?lectureNote=true via cssShow.js
@@ -1066,4 +1115,90 @@ html.show-lecture-notes .lectureNote::before {
     margin: 1rem 2rem 2rem;
     transform: none;
   }
+}
+
+
+/* ==========================================================================
+   Paired figure + coloured-box stabilisation
+   ========================================================================== */
+
+.unit-70-cc:has(> .figCode + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)),
+.unit-70-cc:has(> :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + .figCode) {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.unit-70-cc > .figCode + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+),
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+):has(+ .figCode) {
+  align-self: stretch;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+
+  border-radius: 8px;
+}
+
+.unit-70-cc > .figCode:has(+ :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+)),
+.unit-70-cc > :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + .figCode {
+  align-self: start;
+
+  margin: 1rem 0.5rem 1rem 2rem !important;
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+:is(
+  .codeTask,
+  .coreTask,
+  .task,
+  .aside,
+  .challenge,
+  .ddTask,
+  .homework
+)::before {
+  transform: translateY(2px);
+}
+
+.tip::before {
+  left: -1.5em;
+  right: auto;
+  top: 0;
+  transform: none;
+}
+
+:is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
+  margin-top: 1rem;
+}
+
+:is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) + :is(
+  .codeTask, .coreTask, .task, .tip,
+  .aside, .challenge, .ddTask, .homework
+) {
+  margin-top: 2.5rem;
 }

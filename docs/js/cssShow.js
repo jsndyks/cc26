@@ -1,28 +1,46 @@
 /* cssShow.js
  *
- * ?css=show
- *     Shows a clickable link to the active Creative Coding stylesheet.
+ * Lecture notes:
+ *   ?lectureNote=true
+ *   ?ln=true
+ *   ?ln=1
  *
- * ?lectureNote=true
- *     Shows elements with class="lectureNote".
+ * CSS diagnostic badge:
+ *   ?css=show
+ *   ?css=true
+ *   ?css=1
  */
 
 (() => {
   const params = new URLSearchParams(window.location.search);
 
+  const isTruthyParam = value =>
+    value === "1" ||
+    value === "true" ||
+    value === "show";
+
+
   // -----------------------------------------------------------------------
   // Lecture notes
   // -----------------------------------------------------------------------
 
-  if (params.get("lectureNote") === "true") {
+  const showLectureNotes =
+    params.get("lectureNote") === "true" ||
+    isTruthyParam(params.get("ln"));
+
+  if (showLectureNotes) {
     document.documentElement.classList.add("show-lecture-notes");
   }
+
 
   // -----------------------------------------------------------------------
   // CSS diagnostic badge
   // -----------------------------------------------------------------------
 
-  if (params.get("css") !== "show") {
+  const showCssInfo =
+    isTruthyParam(params.get("css"));
+
+  if (!showCssInfo) {
     return;
   }
 
@@ -53,6 +71,7 @@
   const css = stylesheets[0];
 
   const badge = document.createElement("a");
+
   badge.id = "css-info-badge";
   badge.href = css.href;
   badge.textContent = css.label;
