@@ -49,8 +49,8 @@ table tbody tr.session-00:nth-child(even) > td {
 |      00 | **Assessment**                 | [ccAssessment.html](dearData/ccAssessment.html)                                          |   x    |
 |      01 | **DearData**                   | [ccDearData.html](dearData/ccDearData.html)                                              |   x    |
 |         |                                | [ccDataCollection.html](dearData/ccDataCollection.html)                                  |   x    |
-|      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                           |   x    |
-|         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)   | x                                  |   x    |
+|      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)                                                    |   x    |
+|         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)                                        |   x    |
 |      03 | **Variables**                  | [ccVar.html](variables/ccVar.html)                                                       |   x    |
 |         |                                | [ccVar.extra.html](variables/ccVar.extra.html)                                           |   x    |
 |      04 | **Decisions**                  | [ccDec.html](decisions/ccDec.html)                                                       |   x    |
@@ -98,7 +98,8 @@ table tbody tr.session-00:nth-child(even) > td {
 
 <b>Jason DYKES</b><br/>
 <!-- <i>02/09/26</i> -->
-<i>15/09/26</i>
+<!-- <i>15/09/26</i> -->
+<i>25/09/26</i>
 
 </div>
 
