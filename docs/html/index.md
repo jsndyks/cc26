@@ -58,8 +58,8 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccMethods.extra.html](methods/ccMethods.extra.html)  |x                                   |        |
 |         |                                | [ccMethods.tenMethodsGame.html](methods/ccMethods.tenMethodsGame.html)  |x                 |        |
 |      05 | **Interaction**                | [ccInt.html](interaction/ccInt.html)                                                       |   x    |
-|         |                                | [ccInt.extra.html](interaction/ccInt.exercises.html)  |                                    |   x    |
-|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)  |                                        |   x    |
+|         |                                | [ccInt.extra.html](interaction/ccInt.exercises.html)                                       |   x    |
+|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)                                           |   x    |
 |      06 | **Loops**                      | [ccLoops.html](loops/ccLoops.html)     |x                                                  |        |
 |         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)|x                                           |        |
 |      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)  |x                                                  |        |
