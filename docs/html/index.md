@@ -65,7 +65,7 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)                                           |   x    |
 |      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)                                                    |   x    |
 |         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html)                                        |   x    |
-|      06 | **Dear Data**                | [??      ]()                                                     |        |
+|      06 | **Dear Data**                   | [??      ]()                                                     |        |
 |      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |   x    |
 |         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |   x    |
 |         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |   x    |
@@ -85,12 +85,12 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccArt.extra.html](art/ccArt.extra.html)                                                 |        |
 |         |                                | [ccArt.copyright.html](art/ccArt.copyright.html)                                         |        |
 |         |                                | [veraMolnar.html](art/veraMolnar.html)                                                   |        |
-|      14 | **3D Graphics**                | [ccGraphics.html](3d/ccGraphics.html)                                                    |        |
-|         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |        |
-|         |                                | [ccGraphics.game.html](3d/ccGraphics.game.html)                                          |        |
+|      14 | **3D Graphics**                | [ccGraphics.html](3d/ccGraphics.html)                                                    |   x    |
+|         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |   x    |
+|         |                                | [ccGraphics.game.html](3d/ccGraphics.game.html)                                          |   x    |
 |         |                                | [ccGraphics.gameTemplate.html](3d/ccGraphics.gameTemplate.html)                          |        |
 |      15 | **Computational Thinking**     | [ccThinking.html](data/ccThinking.html)                                                  |        |
-|      16 | **Dear Data Denouement** | [ccDenouement.html](denouement/ccDenouement.html)                                        |        |
+|      16 | **Dear Data Denouement** | [ccDenouement.html](denouement/ccDenouement.html)                                              |        |
 |         |                                | [ccObservationTable.html](denouement/ccObservationTable.html)                            |        |
 |         |                                | [ccQandA.html](denouement/ccQandA.html)                                                  |        |
 
