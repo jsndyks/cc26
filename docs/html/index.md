@@ -46,24 +46,25 @@ table tbody tr.session-00:nth-child(even) > td {
 |      00 |                                | [ccSoundCheck.html](preparation/ccSoundCheck.html)                                       |        |
 |      00 |                                | [ccInduction.html](preparation/ccInduction.html)                                         |        |
 |      00 |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
-|      01 | **DearData**                   | [ccDearData.html](dearData/ccDearData.html)                                              |        |
-|         |                                | [ccDataCollection.html](dearData/ccDataCollection.html)                                  |        |
-|      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                              |        |
-|         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)   | x                                     |        |
-|      03 | **Variables**                  | [ccVar.html](variables/ccVar.html) |x                                                      |        |
-|         |                                | [ccVar.extra.html](variables/ccVar.extra.html)     |x                                      |        |
-|      04 | **Decisions**                  | [ccDec.html](decisions/ccDec.html) |x                                                      |        |
-|         |                                | [ccDec.extra.html](decisions/ccDec.extra.html) |x                                           |        |
-|      04 | **Methods**                    | [ccMethods.html](methods/ccMethods.html)  |x                                               |        |
-|         |                                | [ccMethods.extra.html](methods/ccMethods.extra.html)  |x                                   |        |
-|         |                                | [ccMethods.tenMethodsGame.html](methods/ccMethods.tenMethodsGame.html)  |x                 |        |
-|      05 | **Interaction**                | [ccInt.html](interaction/ccInt.html)                                                       |   x    |
-|         |                                | [ccInt.extra.html](interaction/ccInt.exercises.html)                                       |   x    |
-|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)                                           |   x    |
-|      06 | **Loops**                      | [ccLoops.html](loops/ccLoops.html)     |x                                                  |        |
-|         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)|x                                           |        |
-|      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)  |x                                                  |        |
-|         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html) |x                                       |        |
+|      00 | **Assessment**                 | [ccAssessment.html](dearData/ccAssessment.html)                                          |   x    |
+|      01 | **DearData**                   | [ccDearData.html](dearData/ccDearData.html)                                              |   x    |
+|         |                                | [ccDataCollection.html](dearData/ccDataCollection.html)                                  |   x    |
+|      02 | **Sketches**                   | [ccSketch.html](sketch/ccSketch.html)      | x                                           |   x    |
+|         |                                | [ccSketch.extra.html](sketch/ccSketch.extra.html)   | x                                  |   x    |
+|      03 | **Variables**                  | [ccVar.html](variables/ccVar.html)                                                       |   x    |
+|         |                                | [ccVar.extra.html](variables/ccVar.extra.html)                                           |   x    |
+|      04 | **Decisions**                  | [ccDec.html](decisions/ccDec.html)                                                       |   x    |
+|         |                                | [ccDec.extra.html](decisions/ccDec.extra.html)                                           |   x    |
+|      04 | **Methods**                    | [ccMethods.html](methods/ccMethods.html)                                                 |   x    |
+|         |                                | [ccMethods.extra.html](methods/ccMethods.extra.html)                                     |   x    |
+|         |                                | [ccMethods.tenMethodsGame.html](methods/ccMethods.tenMethodsGame.html)                   |   x    |
+|      05 | **Interaction**                | [ccInt.html](interaction/ccInt.html)                                                     |   x    |
+|         |                                | [ccInt.extra.html](interaction/ccInt.exercises.html)                                     |   x    |
+|         |                                | [ccInt.extra.html](interaction/ccInt.extra.html)                                         |   x    |
+|      06 | **Loops**                      | [ccLoops.html](loops/ccLoops.html)                                                       |   x    |
+|         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)                                           |   x    |
+|      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)                                                    |   x    |
+|         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html)                                        |   x    |
 |      06 | **Dear Data**                | [??      ]()                                                     |        |
 |      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |   x    |
 |         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |   x    |
