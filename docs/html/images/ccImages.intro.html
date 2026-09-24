@@ -2,62 +2,27 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: Images Intro</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Images Introduction</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
-
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-	<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-    <div id="page">
-        <!--
-            <p>
-            This session introduces you to a series of concepts,
-            classes and methods related to <b>digital images</b>,
-            their <em>features</em>, <em>storage</em> and <em>processing</em>.
-            We learn how to use capability provided by <em>Processing</em>
-            to load, display and images.</p>
-            <p>You can access the <a href="https://jsndyks.github.io/cityCreativeCoding/html/images/ccImages.2024.html">Images Lecture</a> outside of <em>Moodle</em> should you wish to do so.</p>
 
-        -->
 
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-        <!-- Content below -->
+<div id="page">
 
-        <div class="intro">
-            <p>This session provides an introduction to digital images, with some contextual information about their composition, structure and use.
+	<div class="intro">
+        <h2>Images : Introduction</h2>
+            <p>This page provides an introduction to digital images, with some contextual information about their composition, structure and use.</p>
+            <p>It compliments the <a href="./ccImages.html">Images : Core</a> page, providing additional foundational information for those who need an introduction to the concepts and nature of digital images.
             </p>
 
             <p><strong>If you read through these notes, attempt the tasks and exercises and use the resources
@@ -70,8 +35,8 @@
                 <li>know the meaning of terms like <i>pixel</i> and <i>resolution</i> and use these to describe and explain the nature of digital images</li>
             </ul>
 
-        </div>
-        <!-- End of intro section -->
+    </div>
+    <!-- End of intro section -->
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -89,8 +54,8 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <a href="https://jsndyks.github.io/cityCreativeCoding/images/internetTrends2019.imageSharing.png"><img
-                        src="https://jsndyks.github.io/cityCreativeCoding/images/internetTrends2019.imageSharing.png"
+                    <a href="https://jsndyks.github.io/cc26/images/internetTrends2019.imageSharing.png"><img
+                        src="https://jsndyks.github.io/cc26/images/internetTrends2019.imageSharing.png"
                         width="300"/></a>
                     <figcaption>
                         <p>An <i>image</i> - showing the number of images shared and taken globally (in 2019).</p>
@@ -106,8 +71,7 @@
 
                 <p>Lots.<br />
                     The influential <a href="https://www.bondcap.com/report/itr19/#view/77">Meeker Report</a> on
-                    <i>Internet Trends</i> suggested that in 2019 well over a billion images were shared every month, and over a
-                    trillion photos taken each year.
+                    <i>Internet Trends</i> suggested that in 2019 well over a billion images were shared every month, and over a trillion photos taken each year.
                 </p>
                 <p>It's an increasing trend, as shown by the image to the right.</p>
 
@@ -164,7 +128,7 @@
 
         </div>
 
-        <!--img src="https://jsndyks.github.io/cityCreativeCoding/images/uploads14.jpg"-->
+        <!--img src="https://jsndyks.github.io/cc26/images/uploads14.jpg"-->
 
         <div class="units-row">
 
@@ -337,8 +301,8 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                     <figure>
-                        <a href="https://jsndyks.github.io/cityCreativeCoding/images/spaceInvader.jpg"><img
-                            src="https://jsndyks.github.io/cityCreativeCoding/images/spaceInvader.jpg" width="250"></a>
+                        <a href="https://jsndyks.github.io/cc26/images/spaceInvader.jpg"><img
+                            src="https://jsndyks.github.io/cc26/images/spaceInvader.jpg" width="250"></a>
                         <figcaption>
                             <p>A Parisian <a href="https://en.wikipedia.org/wiki/Invader_(artist)">Invader</a>.
                             </p>
@@ -383,12 +347,12 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/pixels.png" width="250">
+                    <img src="https://jsndyks.github.io/cc26/images/pixels.png" width="250">
                     <figcaption>
                         Pixels!
                     </figcaption>
                 </figure>
-                    <!---img src="https://jsndyks.github.io/cityCreativeCoding/images/pixels.png"--->
+                    <!---img src="https://jsndyks.github.io/cc26/images/pixels.png"--->
             </div>
             <div class="unit-70-cc">
                 <p>
@@ -425,21 +389,21 @@
 
                 <table cellspacing="4" cellpadding="4" border="0">
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage263853.3.png" width="200"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage263853.3.png" width="200"
                                 height="200"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage828640.9.png" width="200"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage828640.9.png" width="200"
                                 height="200"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage535541.27.png" width="200"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage535541.27.png" width="200"
                                 height="200"></td>
                     </tr>
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage255807.60.png" width="200"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage255807.60.png" width="200"
                                 height="200"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage224381.150.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage224381.150.png"
                                 width="200" height="200"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage874483.300.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage874483.300.png"
                                 width="200" height="200"></td>
-                        <!--td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage854884.600.png" width=200 height=200></td-->
+                        <!--td><img src="https://jsndyks.github.io/cc26/images/savedImage854884.600.png" width=200 height=200></td-->
                     </tr>
                 </table>
             </div>
@@ -448,7 +412,7 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/giffordsCircus.jpg" width="200" height="200" />
+                    <img src="https://jsndyks.github.io/cc26/images/giffordsCircus.jpg" width="200" height="200" />
                     <figcaption>
                         Download by right clicking on the image.
                     </figcaption>
@@ -483,7 +447,7 @@
     
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage802116.9.png" width="200" height="200"
+                    <img src="https://jsndyks.github.io/cc26/images/savedImage802116.9.png" width="200" height="200"
                     style="padding-bottom:1em" />
                     <figcaption>
                         <p>A simple image made of (9x9) 81 pixels and containing two different colours.<br /></p>
@@ -502,7 +466,7 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage211945.9.png" width="200" height="200"
+                    <img src="https://jsndyks.github.io/cc26/images/savedImage211945.9.png" width="200" height="200"
                     style="padding-bottom:1em" />
                     <figcaption>
                         <p>The same image made of (9x9) 81 pixels but with a grid to show image resolution.<br /></p>
@@ -527,9 +491,9 @@
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/invader11.down.png" width="100" height="100"
+                    <img src="https://jsndyks.github.io/cc26/images/invader11.down.png" width="100" height="100"
                     style=" padding-bottom:1em" />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/invader11.up.png" width="100" height="100"
+                    <img src="https://jsndyks.github.io/cc26/images/invader11.up.png" width="100" height="100"
                     style="padding-bottom:1em" />
                     <figcaption>
                         <p>A pair of simple images made of (11x11) 121 pixels, still containing just two different colours.</p>
@@ -558,13 +522,13 @@
 
                 <table cellspacing="4" cellpadding="4" border="0">
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage373116.9.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage373116.9.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage505940.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage505940.30.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage464307.100.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage464307.100.png"
                                 width="150" height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage667495.300.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage667495.300.png"
                                 width="150" height="150"></td>
                     </tr>
                 </table>
@@ -586,13 +550,13 @@
                     through to dark <code>color(0)</code>.</p>
                 <table cellspacing="4" cellpadding="4" border="0">
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage224979.9.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage224979.9.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage310369.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage310369.30.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage155053.100.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage155053.100.png"
                                 width="150" height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage587062.300.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage587062.300.png"
                                 width="150" height="150"></td>
                     </tr>
                 </table>
@@ -624,13 +588,13 @@
             </p>
                 <table cellspacing="4" cellpadding="4" border="0">
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage122651.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage122651.30.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage758135.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage758135.30.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage530539.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage530539.30.png" width="150"
                                 height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage382163.30.png" width="150"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage382163.30.png" width="150"
                                 height="150"></td>
                     </tr>
                 </table>
@@ -648,13 +612,13 @@
                 </p>
                     <table cellspacing="4" cellpadding="4" border="0">
                     <tr>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage388297.600.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage388297.600.png"
                                 width="150" height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage751933.600.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage751933.600.png"
                                 width="150" height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage683720.600.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage683720.600.png"
                                 width="150" height="150"></td>
-                        <td><img src="https://jsndyks.github.io/cityCreativeCoding/images/savedImage231930.600.png"
+                        <td><img src="https://jsndyks.github.io/cc26/images/savedImage231930.600.png"
                                 width="150" height="150"></td>
                     </tr>
                 </table>
@@ -729,7 +693,7 @@
 
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right figCore" style="padding-top:4em">
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/imageGridHelp.png" width="250" />
+                <img src="https://jsndyks.github.io/cc26/images/imageGridHelp.png" width="250" />
                 <p>
                     <br />
                     <!---<b>Keys to press!</b><br/>--->
@@ -773,7 +737,6 @@
             <!-- <i>09 Nov 2024</i> -->
             <i>05 Sep 2025</i>
         </div>
-
 
 
         <div style="padding-bottom:2em;clear:both" />
