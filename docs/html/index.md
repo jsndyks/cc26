@@ -88,7 +88,7 @@ table tbody tr.session-00:nth-child(even) > td {
 |      14 | **3D Graphics**                | [ccGraphics.html](3d/ccGraphics.html)                                                    |   x    |
 |         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |   x    |
 |         |                                | [ccGraphics.game.html](3d/ccGraphics.game.html)                                          |   x    |
-|      15 | **Computational Thinking**     | [ccThinking.html](data/ccThinking.html)                                                  |        |
+|      15 | **Computational Thinking**     | [ccThinking.html](data/ccThinking.html)                                                  |   x    |
 |      16 | **Dear Data Denouement** | [ccDenouement.html](denouement/ccDenouement.html)                                              |        |
 |         |                                | [ccObservationTable.html](denouement/ccObservationTable.html)                            |        |
 |         |                                | [ccQandA.html](denouement/ccQandA.html)                                                  |        |

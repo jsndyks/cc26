@@ -11,17 +11,46 @@ hs.enableKeyListener = false;
 
 
 
-function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc)
+function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
 {
-    document.write("<div><a href=\""+sketchSrc+"/index.html\" onclick=\"return hs.htmlExpand(this, { objectType: 'iframe', minWidth: "+sketchWidth+"})\">");
-    document.write("<img src=\""+imgSrc+"\" width=\""+imgWidth+"\" alt=\"click to see sketch\" /></a></div>");
-}
+    // Backward compatibility:
+    // if no height is supplied, use the sketch width.
+    if (sketchHeight === undefined) {
+        sketchHeight = sketchWidth;
+    }
 
+    document.write(
+        "<div><a href=\"" + sketchSrc + "/index.html\" " +
+        "onclick=\"return hs.htmlExpand(this, {" +
+        "objectType: 'iframe', " +
+        "width: " + sketchWidth + ", " +
+        "height: " + sketchHeight +
+        "})\">"
+    );
+
+    document.write(
+        "<img src=\"" + imgSrc +
+        "\" width=\"" + imgWidth +
+        "\" alt=\"click to see sketch\" /></a></div>"
+    );
+}
 
 function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
 {
+    document.write(
+        "<div><a href=\"" + imgFile + "\" " +
+        "onclick=\"return hs.htmlExpand(this, {" +
+        "objectType: 'iframe', " +
+        "width: " + imgWidth + ", " +
+        "height: " + imgHeight +
+        "})\">"
+    );
 
-    document.write("<div><a href=\""+imgFile+"\" onclick=\"return hs.htmlExpand(this, { objectType: 'iframe', minWidth: "+imgWidth+"})\">");
-    document.write("<img src=\""+imgFile+"\" width=\""+imgWidth+"\"  height=\""+imgHeight+"\" alt=\""+imgAlt+"\" /></a></div>");
-    
+    document.write(
+        "<img src=\"" + imgFile +
+        "\" width=\"" + imgWidth +
+        "\" height=\"" + imgHeight +
+        "\" alt=\"" + imgAlt +
+        "\" /></a></div>"
+    );
 }
