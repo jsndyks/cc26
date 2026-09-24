@@ -2,62 +2,38 @@
 <html>
 
 <head>
-  <title>CreativeCoding Extra: 3D Graphics</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : 3D Graphics</title>
 
-<!-- Embedded fonts -->
-<link
-    href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-    rel="stylesheet">
-
-<!-- Custom layout and style -->
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-<!-- General browser compatibility handling -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-<!-- Formatted source code -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-<!-- Sketch popups and hidden text-->
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-  
-  <!-- iFrame -->
-  <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-    <div id="page">
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!--
-You can access [this page](https://jsndyks.github.io/cityBootCamp/html/3d/bootCamp.3d.exercise.html) outside of _Moodle_ should you wish to do so. 
-		 -->
 
-        <p class="intro">
+
+<div id="page">
+
+	<div class="remember">
+        <h2>3D Graphics : Extras</h2>
+		<p>
             Engaging with these concepts, capabilities and challenges is <b>optional</b>
 			However, if you do so, you will extend the learning that you have achieved through the 
-            <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=816847">3D Graphics : Core</a> materials and consolidate and enhance your capabilities in using 3D.
+            <a href="./ccGraphics.html">3D Graphics : Core</a> materials and consolidate and enhance your capabilities in using 3D.
         </p>
-        <p class="intro">
+        <p>
             If you follow this page carefully, try out the examples and attempt the exercises you will get some useful practice in understanding the way
             coordinate systems, transformations and lighting effects work together in computing environments to generate interactive 3D applications.
         </p>
-        <p class="intro">
-            We encourage you to use the <a href="https://moodle4.city.ac.uk/mod/forum/view.php?id=967978">Discussion Forum</a> to discuss your efforts, and those of your colleagues, and will contribute to help you with key concepts as you develop your <i>3D Graphics</i> capabilities and perhaps a <i>Box City</i> sketch.
+        <p>
+            We encourage you to use the <i>Discussion Forum</i> to discuss your efforts, and those of your colleagues, and will contribute to help you with key concepts as you develop your <i>3D Graphics</i> capabilities and perhaps a <i>Box City</i> sketch.
         </p>
+	</div>
 
 <!-- Was Core! -->
  	<div class="units-row">
@@ -72,7 +48,7 @@ You can access [this page](https://jsndyks.github.io/cityBootCamp/html/3d/bootCa
 			<img src="https://gicentre.github.io/data/images/lovelace.jpg" width="200" alt="Input image">
 			<p>Input image used in<br/>the Voxeliser sketch.</p>
 
-			<script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/voxeliser", 200, 200, "https://jsndyks.github.io/cityCreativeCoding/html/3d/img/voxeliser.jpg");</script>
+			<script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/voxeliser", 200, 200, "https://jsndyks.github.io/cc26/html/3d/img/voxeliser.jpg");</script>
 			<p>Voxeliser<br/>(click on image to activate).</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -125,6 +101,12 @@ You can access [this page](https://jsndyks.github.io/cityBootCamp/html/3d/bootCa
           }
         }</pre>
 
+		<div class="challenge">
+			<h5>Voxeliser</h5>
+			<p>Read the code, try it out.<br/>
+				Experiment - see what you can make!</p>
+		</div>
+
 		</div> <!-- End of left column -->
 
 	</div> <!-- End of row -->
@@ -161,7 +143,7 @@ You can access [this page](https://jsndyks.github.io/cityBootCamp/html/3d/bootCa
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/cc.rotatedText.png', 200, 150, 'Rotating text');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/cc.rotatedText.png', 200, 150, 'Rotating text');</script>
 			<p>Rotating text.</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -196,6 +178,13 @@ void draw()
 				on the screen.
 			</p>
 
+		<div class="challenge">
+			<h5>Other Shapes</h5>
+			<p>Read the documentation and then try the code.<br/>
+				Can you use some of these <i>other shapes</i> in a sketch?<br/>
+				Experiment - see what you can make, and do some creative thinking about how this might relate to your <a href="../dearData/ccDearData100.html">Dear Data 100</a> assignment.</p>
+		</div>
+
 		</div> <!-- End of left column -->
 
 	</div> <!-- End of row -->
@@ -213,7 +202,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/tetrahedron.png', 200, 167, 'Tetrahedron as a custom shape');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/tetrahedron.png', 200, 167, 'Tetrahedron as a custom shape');</script>
 			<p>
 				A tetrahedron as a custom shape<br/>made up of triangles.
 			</p>
@@ -275,6 +264,13 @@ void draw()
   endShape();
 }</pre>
 
+		<div class="challenge">
+			<h5>Making Your Own 3D Shapes</h5>
+			<p>There is plenty of scope for creative expression and learning here.<br/>
+				Try new shapes - see what you can visualize!</p>
+		</div>
+
+
 		</div> <!-- End of left column -->
 
 	</div> <!-- End of row -->
@@ -284,7 +280,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/tetrahedronColoured.png', 200, 167, 'Tetrahedron with coloured vertices');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/tetrahedronColoured.png', 200, 167, 'Tetrahedron with coloured vertices');</script>
 			<p>
 				A tetrahedron with coloured vertices.
 			</p>
@@ -364,7 +360,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/hand.png', 200, 200, 'Hand.obj file rendered as a PShape');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/hand.png', 200, 200, 'Hand.obj file rendered as a PShape');</script>
 			<p>
 				Hand '.obj' file rendered<br/>as a <code>PShape</code>.
 			</p>
@@ -411,6 +407,14 @@ public void draw()
 				your sketch before running it.
 			</p>
 
+		<div class="challenge">
+			<h5>Even More Shapes</h5>
+			<p>Can you load the OBJ file into your sketch?<br/>
+				Can you find (copyright appropriate) OBJ files that depict other shapes?<br/>
+				Can you use them in your <a href="../dearData/ccDearData100.html">Dear Data 100</a> assignment ... to make it truly</p>
+		</div>
+
+
 		<h3>5. Shading</h3>
 
 		</div> <!-- End of left column -->
@@ -422,11 +426,11 @@ public void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/lightSphere1.png', 200, 200, 'Red sphere with lights off');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/lightSphere1.png', 200, 200, 'Red sphere with lights off');</script>
 			<p>
 				Red sphere with lights off.
 			</p>
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/lightSphere2.png', 200, 200, 'Red sphere with lights on');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/lightSphere2.png', 200, 200, 'Red sphere with lights on');</script>
 			<p>
 				Red sphere with lights on.
 			</p>
@@ -489,7 +493,7 @@ public void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/Apple.png', 200, 200, 'Specular reflection');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/Apple.png', 200, 200, 'Specular reflection');</script>
 			<p>A surface with a specular highlight</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -532,7 +536,7 @@ public void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/ballLight", 200, 200, "https://jsndyks.github.io/cityCreativeCoding/html/3d/img/lightSphere3.png");</script>
+			<script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ballLight", 200, 200, "https://jsndyks.github.io/cc26/html/3d/img/lightSphere3.png");</script>
 			<p>Lights (click on image to activate,<br/>then click again on the image<br/>to cycle between options).</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -590,7 +594,7 @@ void mouseClicked()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/uv.png', 238, 178, 'Texture coordinates');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/uv.png', 238, 178, 'Texture coordinates');</script>
 			<p>Texture coordinates (u, v).</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -599,7 +603,7 @@ void mouseClicked()
 				apply an image instead. In <i>texture mapping</i>, you can transfer colours from an image (also
 				known as a <i>texture</i>) onto the surface, composed of polygons.
 			</p>
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/TextureMapping.png"
+			<img src="https://jsndyks.github.io/cc26/html/3d/img/TextureMapping.png"
 				 width="800" alt="Texture mapping" />
 			<!-- Row break ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 			<p>
@@ -620,7 +624,7 @@ void mouseClicked()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/TextureQuad.png', 200, 200, 'Texture coordinates for a quad');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/TextureQuad.png', 200, 200, 'Texture coordinates for a quad');</script>
 			<p>Texture coordinates for a quad.</p>
 		</div> <!-- end of right column -->
 		<div class="unit-70-cc">
@@ -661,7 +665,7 @@ void mouseClicked()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadSketch("https://jsndyks.github.io/cityCreativeCoding/p5js/jwo/distorto", 200, 200, "https://jsndyks.github.io/cityCreativeCoding/html/3d/img/distorto.png");</script>
+			<script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/distorto", 200, 200, "https://jsndyks.github.io/cc26/html/3d/img/distorto.png");</script>
 
 			<p>Distorto sketch -  click to activate.</p>
 		</div> <!-- end of right column -->
@@ -731,9 +735,9 @@ void draw()
 
             <table>
                 <tr>
-                    <td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/face1.png"
+                    <td><img src="https://jsndyks.github.io/cc26/html/3d/img/face1.png"
                             width="300" height="200" alt="face1" /></td>
-                    <td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/face2.png"
+                    <td><img src="https://jsndyks.github.io/cc26/html/3d/img/face2.png"
                             width="300" height="200" alt="face2" /></td>
                 </tr>
             </table>
@@ -817,13 +821,13 @@ void draw()
                 <li>
                     Run the program. You should see a single box as shown below.
                     <br />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxCity0.png"
+                    <img src="https://jsndyks.github.io/cc26/html/3d/img/boxCity0.png"
                         width="320" height="240" alt="Box City initial attempt">
                     <br />
                     What is happening is all the boxes are being rendered at the same place, then rotated based on mouse
                     movement. How can you move the boxes so they don't overlap to achieve the result below?
                     <br />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxCity1.png"
+                    <img src="https://jsndyks.github.io/cc26/html/3d/img/boxCity1.png"
                         width="320" height="240" alt="Box City first grid attempt">
                 </li>
 
@@ -836,14 +840,14 @@ void draw()
                     produces results similar to those shown below (the random numbers will be different each time, so
                     the shape of the box city will not exactly match that shown here):
                     <br />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxCity2.png"
+                    <img src="https://jsndyks.github.io/cc26/html/3d/img/boxCity2.png"
                         width="320" height="240" alt="Box City second grid attempt">
                 </li>
                 <li>
                     Now try setting <code>d = 1000*pow(noise(0.01*x, 0.01*y), 5);</code>. Notice the effect. What is
                     this code doing?
                     <br />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxCity3.png"
+                    <img src="https://jsndyks.github.io/cc26/html/3d/img/boxCity3.png"
                         width="320" height="240" alt="Box City third grid attempt">
                 </li>
                 <li>
@@ -862,7 +866,7 @@ void draw()
                     Think creatively and experiment with developing your city model in other ways.<br/>
                     Have fun trying things out!
                     <br />
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxCity4.png"
+                    <img src="https://jsndyks.github.io/cc26/html/3d/img/boxCity4.png"
                         width="640" height="480" alt="Box City with textures">
                 </li>
             </ol>

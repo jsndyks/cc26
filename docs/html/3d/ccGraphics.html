@@ -2,55 +2,26 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: 3D Graphics</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : 3D Graphics</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
-
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-	<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-    <div id="page">
 
-        <!--
-You can access [these Lecture Notes](https://jsndyks.github.io/cityBootCamp/html/3d/bootCamp.3d.lecture.html) outside of _Moodle_ should you wish to do so. 
-		 -->
 
-         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-	<!-- Add summary sentence or two below, which will act as an easy introduction -->
+<div id="page">
 
 	<div class="intro">
+        <h2>3D Graphics</h2>
+
 
 		<p>
 			In this session, you will learn how to program 3D graphics in <i>Processing</i>.
@@ -82,7 +53,7 @@ You can access [these Lecture Notes](https://jsndyks.github.io/cityBootCamp/html
 			</ul>
 			These techniques are very powerful, and can be used in countless ways to create engaging applications.
 			<br />
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/apps.png" height="450"
+			<img src="https://jsndyks.github.io/cc26/html/3d/img/apps.png" height="450"
 				 alt="Example 2D sketches" />
 			<br />
 			But we live in a 3D world &mdash; you may be wondering, &quot;<i>Is it possible to do 3D graphics in
@@ -101,7 +72,7 @@ You can access [these Lecture Notes](https://jsndyks.github.io/cityBootCamp/html
 
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/xy.png" width="200"
+			<img src="https://jsndyks.github.io/cc26/html/3d/img/xy.png" width="200"
 				 alt="2D coordinate system">
 			<p>
 				The 2D coordinate system used<br/>in <i>Processing</i>.
@@ -126,7 +97,7 @@ You can access [these Lecture Notes](https://jsndyks.github.io/cityBootCamp/html
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/xyz.png" width="200"
+			<img src="https://jsndyks.github.io/cc26/html/3d/img/xyz.png" width="200"
 				 alt="3D coordinates">
 			<p>
 				The 3D coordinate system used<br/>in <i>Processing</i>'s P3D render mode.
@@ -207,11 +178,11 @@ void setup()
 
 			<table>
 				<tr>
-					<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/minecraft.png"
+					<td><img src="https://jsndyks.github.io/cc26/html/3d/img/minecraft.png"
 							 height="250" alt="Minecraft"></td>
-					<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/CAD.png"
+					<td><img src="https://jsndyks.github.io/cc26/html/3d/img/CAD.png"
 							 height="250" alt="CAD software"></td>
-					<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/googleEarth.png"
+					<td><img src="https://jsndyks.github.io/cc26/html/3d/img/googleEarth.png"
 							 height="250" alt="Google Earth"></td>
 				</tr>
 				<tr>
@@ -286,7 +257,7 @@ void setup()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/sphere.png', 300, 250, 'Simple sphere rendered in P3D');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/sphere.png', 300, 250, 'Simple sphere rendered in P3D');</script>
 			<p>
 				A sphere of radius 200<br/>rendered to the sketch window.
 			</p>
@@ -360,13 +331,13 @@ void setup()
             </pre>
 				<table>
 					<tr>
-						<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/sphereA.png"
+						<td><img src="https://jsndyks.github.io/cc26/html/3d/img/sphereA.png"
 								 width="150" height="125" alt="Sphere A"></td>
-						<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/sphereB.png"
+						<td><img src="https://jsndyks.github.io/cc26/html/3d/img/sphereB.png"
 								 width="150" height="125" alt="Sphere B"></td>
-						<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/sphereC.png"
+						<td><img src="https://jsndyks.github.io/cc26/html/3d/img/sphereC.png"
 								 width="150" height="125" alt="Sphere C"></td>
-						<td><img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/sphereD.png"
+						<td><img src="https://jsndyks.github.io/cc26/html/3d/img/sphereD.png"
 								 width="150" height="125" alt="Sphere D"></td>
 					</tr>
 				</table>
@@ -386,12 +357,12 @@ void setup()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxA.png', 300, 250, 'Simple cube of dimension 200');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/boxA.png', 300, 250, 'Simple cube of dimension 200');</script>
 			<p>
 				A simple box of dimensions 200<br/>(width=200, height=200, depth=200).
 			</p>
 
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/boxB.png', 300, 250, 'Simple box of dimensions (200,150,100)');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/boxB.png', 300, 250, 'Simple box of dimensions (200,150,100)');</script>
 			<p>
 				A box of dimensions width=200, height=150, depth=100.
 			</p>
@@ -457,7 +428,7 @@ box(200,150,100);</pre>
 				three transformations (translation, rotation, and scaling) that are commonly used. To illustrate how
 				they can be applied, we will draw a hand object centred at the origin of the 3D coordinate system:
 				<br />
-				<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handOrigin.png"
+				<img src="https://jsndyks.github.io/cc26/html/3d/img/handOrigin.png"
 					 width="400" height="400" alt="Untransformed hand" />
 				<br />
 				The key to understanding how transformations work is to appreciate that they apply to the
@@ -477,7 +448,7 @@ box(200,150,100);</pre>
 					This origin shift can be achieved in <i>Processing</i> with the call <code>translate(200, 0, 0)</code>.
 					The two '0' values indicate we are not shifting in the Y or Z directions.
 					<br />
-					<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handTranslate.png"
+					<img src="https://jsndyks.github.io/cc26/html/3d/img/handTranslate.png"
 						 width="600"  alt="Translated hand" />
 					<br />
 					In a 3D <i>Processing</i> sketch, we often put <code>translate(width/2, height/2, 0);</code> as the
@@ -504,13 +475,13 @@ box(200,150,100);</pre>
 					pointing towards you. For example, the following images rotate the coordinate system 40 degrees
 					about the X, the Y and the Z axes respectively.
 					<br />
-					<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handRotateX.png"
+					<img src="https://jsndyks.github.io/cc26/html/3d/img/handRotateX.png"
 						 width="400" height="250" alt="Rotation around the X axis" />
 					<br />
-					<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handRotateY.png"
+					<img src="https://jsndyks.github.io/cc26/html/3d/img/handRotateY.png"
 						 width="400" height="250" alt="Rotation around the Y axis" />
 					<br />
-					<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handRotateZ.png"
+					<img src="https://jsndyks.github.io/cc26/html/3d/img/handRotateZ.png"
 						 width="400" height="250" alt="Rotation around the Z axis" />
 					<br />
 					To rotate in an anti-clockwise direction, you can provide a negative rotation angle. The
@@ -533,7 +504,7 @@ box(200,150,100);</pre>
 							object eight times the size of the original). A scaling factor of 0.5 will make it half
 							as big along all the axes.
 							<br />
-							<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handScaleA.png"
+							<img src="https://jsndyks.github.io/cc26/html/3d/img/handScaleA.png"
 								 width="400" height="250" alt="Scaling of 0.5 along all axes" />
 						</li>
 						<li>
@@ -541,7 +512,7 @@ box(200,150,100);</pre>
 							axes based on scaling factors <code>sx</code>, <code>sy</code>, and <code>sz</code>.
 						</li>
 						<br />
-						<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/handScaleB.png"
+						<img src="https://jsndyks.github.io/cc26/html/3d/img/handScaleB.png"
 							 width="400" height="250" alt="Scaling of 0.5 along all axes" />
 					</ul>
 				</li>
@@ -631,11 +602,11 @@ void draw()
 				as in most cases <b>order matters</b>. For example, rotation, followed by translation, will give a
 				different result than translation followed by rotation.
 				<br /><br />
-				<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/compositeA.png"
+				<img src="https://jsndyks.github.io/cc26/html/3d/img/compositeA.png"
 					 width="650" height="275" alt="Translation followed by rotation" />
 
 				<br /><br />
-				<img src="https://jsndyks.github.io/cityCreativeCoding/html/3d/img/compositeB.png"
+				<img src="https://jsndyks.github.io/cc26/html/3d/img/compositeB.png"
 					 width="650" height="275" alt="Rotation followed by translation" />
 			</p>
 			<p>
@@ -650,7 +621,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/rotatingEllipsoid.png', 320, 240, 'Rotating ellipsoid');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/rotatingEllipsoid.png', 320, 240, 'Rotating ellipsoid');</script>
 			<p>
 				Rotating ellipsoid created by<br/>translating to the right,<br/> rotating and then scaling the Y-axis.
 			</p>
@@ -725,7 +696,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/rotatingEllipsoids.png', 320, 240, 'Rotating ellipsoid');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/rotatingEllipsoids.png', 320, 240, 'Rotating ellipsoid');</script>
 			<p>
 				Two rotating ellipsoids each<br/>with their own transformations.
 			</p>
@@ -801,7 +772,7 @@ void draw()
 	<div class="units-row">
 		<div class="unit-30-cc annotation cc-right">
 			<!-- Right column -->
-			<script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/3d/img/rotatingEllipsoids.png', 320, 240, 'Rotating ellipsoid');</script>
+			<script>loadImage('https://jsndyks.github.io/cc26/html/3d/img/rotatingEllipsoids.png', 320, 240, 'Rotating ellipsoid');</script>
 			<p>
 				Two rotating ellipsoids each<br/>with their own transformations.
 			</p>
