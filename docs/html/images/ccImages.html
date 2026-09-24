@@ -2,61 +2,26 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: Images</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Images</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
-
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-	<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-        
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-    <div id="page">
-        <!--
-            <p>
-            This session introduces you to a series of concepts,
-            classes and methods related to <b>digital images</b>,
-            their <em>features</em>, <em>storage</em> and <em>processing</em>.
-            We learn how to use capability provided by <em>Processing</em>
-            to load, display and images.</p>
-            <p>You can access the <a href="https://jsndyks.github.io/cityCreativeCoding/html/images/ccImages.2024.html">Images Lecture</a> outside of <em>Moodle</em> should you wish to do so.</p>
 
-        -->
 
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT unit-30-cc annotation cc-right -->
-        <!-- Content below -->
+<div id="page">
 
-        <div class="intro">
+	<div class="intro">
+        <h2>Images</h2>
+
             <p>This session introduces you to a series of concepts, classes and methods related to digital images, their
                 storage, processing and display in <i>Processing</i>.
             </p>
@@ -66,11 +31,11 @@
             </p>
 
             <ul>
-                <li>describe the information structure of a digital image, knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so</li>
-                <li>load and display an image in <i>Processing</i></li>
-                <li>apply digital effects to an image</li>
-                <li>retrieve the colour value(s) of a given pixel</li>
-                <li>produce interactive and dynamic sketches in <i>Processing</i> that use images</li>
+                <li>describe the information structure of a digital image, knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so;</li>
+                <li>load and display an image in <i>Processing</i>;</li>
+                <li>apply digital effects to an image;</li>
+                <li>retrieve the colour value(s) of a given pixel;</li>
+                <li>produce interactive and dynamic sketches in <i>Processing</i> that use images;</li>
             </ul>
 
         </div>
@@ -86,7 +51,7 @@
             <li>describe the information structure of a digital knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so</li>
         </ul>
         <p>Now we guess that many of you can do this already, so we are going to focus more on the practical - the <i>do</i>, in what follows, rather than the theory and context - the <i>know</i>.
-            But if you are not able to put your hand on your heart and acknowledge that you can <i>describe the information structure of a digital image, knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so</i>, then you should check the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968069">Images : Intro</a> page that will help.</p>
+            But if you are not able to put your hand on your heart and acknowledge that you can <i>describe the information structure of a digital image, knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so</i>, then you should check the <a href="./ccImages.intro.html">Images : Intro</a> page that will help.</p>
 
         <p>If you are able to <i>describe the information structure of a digital image, knowing how to use terms like <i>pixel</i> and <i>resolution</i> in doing so</i>, then let's move on and do some stuff!</p>
 
@@ -131,8 +96,9 @@
                 <img src="https://images.unsplash.com/photo-1641760151116-22395a3b9d15?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 width="250" />
                 <figcaption style="margin-top:-1em">
+                    <p>
                     <a href="https://unsplash.com/about">Unsplash</a> contains 6 million images that are available for use under a generous license - find a nice one!
-                </p>
+                    </p>
                 </figcaption>
                 </figure>
             </div>
