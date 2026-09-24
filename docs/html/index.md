@@ -69,9 +69,9 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |   x    |
 |         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |   x    |
 |         |                                | [ccObjects.robots.html](objects/ccObjects.robots.html)                                   |   x    |
-|      08 | **Images**                     | [ccImages.html](images/ccImages.html)                                                    |        |
-|         |                                | [ccImages.extra.html](images/ccImages.extra.html)                                        |        |
-|         |                                | [ccImages.intro.html](images/ccImages.intro.html)                                        |        |
+|      08 | **Images**                     | [ccImages.html](images/ccImages.html)                                                    |   x    |
+|         |                                | [ccImages.extra.html](images/ccImages.extra.html)                                        |   x    |
+|         |                                | [ccImages.intro.html](images/ccImages.intro.html)                                        |   x    |
 |      09 | **Media: Sound & Video**       | [ccMedia.html](media/ccMedia.html)                                                       |        |
 |         |                                | [ccMedia.extra.html](media/ccMedia.extra.html)                                           |        |
 |         |                                | [ccMedia.soundTest.html](media/ccMedia.soundTest.html)                                   |        |
