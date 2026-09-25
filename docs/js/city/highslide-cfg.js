@@ -1,20 +1,37 @@
-/* Site-wide configuration of the highslide window appearance */
-/* Jo Wood, 10th September, 2014 */
-hs.graphicsDir = 'http://staff.city.ac.uk/~jwo/moodle/css/graphics/';
+/*
+ * Site-wide configuration of the Highslide window appearance
+ * Original: Jo Wood, 10th September 2014
+ *
+ * Updated: 25th September 2026
+ * - Moved Highslide graphics to:
+ *   https://jsndyks.github.io/cc26/js/city/graphics/
+ * - loadSketch() now sets both popup width and height.
+ * - Existing loadSketch() calls remain backward compatible:
+ *   if no sketchHeight is supplied, height defaults to sketchWidth.
+ * - loadImage() now sets both popup width and height explicitly.
+ */
+
+hs.graphicsDir = 'https://jsndyks.github.io/cc26/js/city/graphics/';
 hs.showCredits = false;
-hs.outlineType = 'rounded-white'; 
-hs.wrapperClassName = 'draggable-header'; 
+hs.outlineType = 'rounded-white';
+hs.wrapperClassName = 'draggable-header';
 hs.preserveContent = false;
 hs.enableKeyListener = false;
 
 
-
-
-
+/**
+ * Load an interactive sketch in a Highslide iframe.
+ *
+ * sketchSrc    URL of sketch folder, without /index.html
+ * sketchWidth  width of popup iframe
+ * imgWidth     width of preview image
+ * imgSrc       URL of preview image
+ * sketchHeight optional popup height; defaults to sketchWidth
+ */
 function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
 {
     // Backward compatibility:
-    // if no height is supplied, use the sketch width.
+    // old four-argument calls use a square popup.
     if (sketchHeight === undefined) {
         sketchHeight = sketchWidth;
     }
@@ -35,6 +52,15 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
     );
 }
 
+
+/**
+ * Load an image in a Highslide iframe.
+ *
+ * imgFile   URL of image
+ * imgWidth  width of image and popup
+ * imgHeight height of image and popup
+ * imgAlt    alternative text
+ */
 function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
 {
     document.write(
