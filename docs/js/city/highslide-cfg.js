@@ -3,12 +3,12 @@
  * Original: Jo Wood, 10th September 2014
  *
  * Updated: 25th September 2026
- * - Moved Highslide graphics to:
+ * - Highslide graphics moved to:
  *   https://jsndyks.github.io/cc26/js/city/graphics/
- * - loadSketch() now sets both popup width and height.
- * - Existing loadSketch() calls remain backward compatible:
- *   if no sketchHeight is supplied, height defaults to sketchWidth.
- * - loadImage() now sets both popup width and height explicitly.
+ * - loadSketch() now sets iframe objectWidth and objectHeight.
+ * - Existing four-argument loadSketch() calls remain compatible:
+ *   sketchHeight defaults to sketchWidth.
+ * - loadImage() now sets iframe objectWidth and objectHeight explicitly.
  */
 
 hs.graphicsDir = 'https://jsndyks.github.io/cc26/js/city/graphics/';
@@ -40,8 +40,8 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
         "<div><a href=\"" + sketchSrc + "/index.html\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
-        "width: " + sketchWidth + ", " +
-        "height: " + sketchHeight +
+        "objectWidth: " + sketchWidth + ", " +
+        "objectHeight: " + sketchHeight +
         "})\">"
     );
 
@@ -57,8 +57,8 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
  * Load an image in a Highslide iframe.
  *
  * imgFile   URL of image
- * imgWidth  width of image and popup
- * imgHeight height of image and popup
+ * imgWidth  width of popup/image
+ * imgHeight height of popup/image
  * imgAlt    alternative text
  */
 function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
@@ -67,8 +67,8 @@ function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
         "<div><a href=\"" + imgFile + "\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
-        "width: " + imgWidth + ", " +
-        "height: " + imgHeight +
+        "objectWidth: " + imgWidth + ", " +
+        "objectHeight: " + imgHeight +
         "})\">"
     );
 
