@@ -209,18 +209,26 @@ hs.enableKeyListener = false;
  */
 function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
 {
-    // Backward compatibility:
-    // old four-argument calls use a square popup.
     if (sketchHeight === undefined) {
         sketchHeight = sketchWidth;
     }
+
+    // Keep the popup inside the visible browser window.
+    // The margins leave room for Highslide's frame/header/controls.
+    var maxWidth = window.innerWidth - 60;
+    var maxHeight = window.innerHeight - 80;
+
+    var popupWidth = Math.min(sketchWidth, maxWidth);
+    var popupHeight = Math.min(sketchHeight, maxHeight);
 
     document.write(
         "<div><a href=\"" + sketchSrc + "/index.html\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
-        "objectWidth: " + sketchWidth + ", " +
-        "objectHeight: " + sketchHeight +
+        "objectWidth: " + popupWidth + ", " +
+        "objectHeight: " + popupHeight + ", " +
+        "allowWidthReduction: false, " +
+        "allowHeightReduction: false" +
         "})\">"
     );
 
@@ -230,7 +238,6 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
         "\" alt=\"click to see sketch\" /></a></div>"
     );
 }
-
 
 /**
  * Load an image in a Highslide iframe.
@@ -242,12 +249,21 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
  */
 function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
 {
+    // Keep the popup inside the visible browser window.
+    var maxWidth = window.innerWidth - 60;
+    var maxHeight = window.innerHeight - 80;
+
+    var popupWidth = Math.min(imgWidth, maxWidth);
+    var popupHeight = Math.min(imgHeight, maxHeight);
+
     document.write(
         "<div><a href=\"" + imgFile + "\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
-        "objectWidth: " + imgWidth + ", " +
-        "objectHeight: " + imgHeight +
+        "objectWidth: " + popupWidth + ", " +
+        "objectHeight: " + popupHeight + ", " +
+        "allowWidthReduction: false, " +
+        "allowHeightReduction: false" +
         "})\">"
     );
 
