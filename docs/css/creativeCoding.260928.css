@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v26.css — updated 2026-09-28 11:33 BST */
+/* creativeCoding-FCUS-v25.css — updated 2026-09-24 09:18 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -188,16 +188,6 @@ figcaption {
 :is(.figCode, .cc-right) figure figcaption {
   display: table-caption;
   caption-side: bottom;
-}
-
-
-/* Keep .cc-right captions constrained to the figure/media width.
-   Long URLs and other unbroken text wrap instead of widening the figure. */
-.cc-right figure figcaption {
-  width: 0;
-  min-width: 100%;
-  box-sizing: border-box;
-  overflow-wrap: anywhere;
 }
 
 
@@ -550,12 +540,6 @@ blockquote::after {
 
 
 /* --- Small components --------------------------------------------------- */
-
-.spacedList {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
 
 /* Information for illustration / instruction text. */
 .i4i {
