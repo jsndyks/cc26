@@ -402,6 +402,16 @@ figcaption {
   background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
 }
 
+.introHome::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
+}
+
 .remember {
   position: relative;
   margin-bottom: 3rem;
