@@ -1,1352 +1,2709 @@
-/* creativeCoding-FCUS-v25.css — updated 2026-09-24 09:18 BST */
+/* creativeCoding-FCUS-v26.css — updated 2026-09-28 11:24 BST */
+
 /* ==========================================================================
+
    Creative Coding — lean stylesheet
+
    Keeps existing class names and HTML structure.
+
    ========================================================================== */
+
+
 
 /* --- Imports ------------------------------------------------------------- */
 
+
+
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css");
+
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css");
+
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css");
+
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/master.css");
+
 @import url("https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css");
 
+
+
 @import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap");
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+
+
 
 
 /* --- Variables ----------------------------------------------------------- */
 
+
+
 :root {
+
   --cc-text: #34383c;
+
   --cc-muted: #909090;
+
   --cc-border: #e0e0e0;
+
   --cc-blue: #6aa0cf;
+
   --cc-blue-dark: #0070a6;
 
+
+
   --cc-code-bg: #f0f8ff80;
+
   --cc-core-bg: #ffffe0a0;
+
   --cc-aside-bg: #e8f8e880;
+
   --cc-challenge-bg: #fff8f8;
+
   --cc-homework-bg: #f9f9ff;
+
 }
+
+
+
 
 
 /* --- Base ---------------------------------------------------------------- */
 
+
+
 body {
+
   font: 0.95rem/1.45 "Inter", Arial, sans-serif;
+
   color: var(--cc-text);
+
 }
+
+
 
 p {
+
   margin: 0.5em 0;
+
   padding: 0.5em 0;
+
 }
+
+
 
 pre {
+
   margin-left: 2rem;
+
   padding: 0.9rem 2.75rem;
+
 }
+
+
 
 code {
+
   color: #228;
+
   background: #e0f0f080;
+
 }
 
+
+
 h3 {
+
   clear: both;
+
   margin-top: 1em;
+
   padding: 3.5em 0 0.25em !important;
+
   border-top: 1px dashed var(--cc-border);
+
 }
+
+
+
 
 
 /* SyntaxHighlighter replaces/wraps PRE visually, so spacing must also be
+
    applied to its generated block. */
+
 .syntaxhighlighter {
+
   margin-top: 0.75rem !important;
+
   margin-bottom: 3.5rem !important;
+
 }
 
+
+
 /* A little more breathing room inside rendered code blocks. */
+
 .syntaxhighlighter .code .line {
+
   padding-top: 0.05rem !important;
+
   padding-bottom: 0.05rem !important;
+
 }
+
+
 
 /* --- Headings ------------------------------------------------------------ */
 
+
+
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) :is(h4, h5) {
+
   font-family: inherit;
+
 }
+
+
 
 :is(.codeTask, .coreTask, .challenge, .aside, .tip) h5 {
+
   margin: 0.05em 0 0.25em;
+
   padding: 0.05em 0 0.25em;
+
 }
+
+
 
 .codeTask h5 { color: #606090; }
+
 .coreTask h5 { color: #906060; }
+
 :is(.challenge, .aside, .tip) h5 { color: #903030; }
 
+
+
 .task h4::before {
+
   content: "\00BB\00A0";
+
 }
+
+
+
 
 
 /* --- Layout -------------------------------------------------------------- */
 
+
+
 .unit-30-cc {
+
   clear: both;
+
   margin: 4px;
+
   padding: 0.25em;
+
   background: #fff;
+
 }
+
+
 
 .unit-70-cc {
+
   margin: 4px;
+
   background: #fff;
+
 }
+
+
 
 .unit-30-cc.annotation {
+
   font-size: 0.9em;
+
   font-style: italic;
+
   line-height: 1.3;
+
   letter-spacing: -0.04em;
+
 }
+
+
 
 .unit-30-cc annotation .right,
+
 .cc-right,
+
 .rightCol,
+
 .sig {
+
   float: right;
+
 }
 
+
+
 .cc-right { padding: 2px; }
+
 .rightCol { width: 40%; }
+
 .sig { clear: both; padding-right: 4em; }
+
+
+
 
 
 /* --- Figures ------------------------------------------------------------- */
 
+
+
 figure {
+
   width: 75%;
+
   margin-inline: auto;
+
 }
+
+
 
 figure :is(img, iframe) {
+
   margin: 2px;
+
   padding: 4px;
+
   border: 1px dashed var(--cc-border);
+
 }
+
+
 
 figcaption {
+
   width: 100%;
+
   padding-top: 0.5em;
+
   color: var(--cc-muted);
+
   font-size: 90%;
+
   text-align: center;
+
 }
+
+
 
 .figCaption {
+
   margin: 0.5rem 1rem;
+
   color: #606060;
+
   font-size: 90%;
+
   font-style: italic;
+
 }
+
+
 
 :is(.coreTask, .codeTask, .aside) figure {
+
   float: right;
+
   width: auto;
+
   margin: 0 1em;
+
 }
 
+
+
 :is(.coreTask, .codeTask, .aside) figure img {
+
   display: block;
+
   margin-inline: auto;
+
 }
+
+
+
 
 
 /* Intrinsic-width figure: its image/canvas/iframe determines the width. */
+
 .figCode figure,
+
 .cc-right figure {
+
   display: table;
+
 }
+
+
 
 .figCode figure {
+
   width: auto;
+
   margin: 0;
+
 }
+
+
 
 .figCode figure :is(img, iframe, canvas) {
+
   display: block;
+
   margin-inline: auto;
+
 }
 
+
+
 :is(.figCode, .cc-right) figure figcaption {
+
   display: table-caption;
+
   caption-side: bottom;
+
 }
+
+/* Keep .cc-right captions constrained to the figure/media width.
+   Long URLs and other unbroken text wrap instead of widening the figure. */
+.cc-right figure figcaption {
+  width: 0;
+  min-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+
+
 
 
 /* Other figure helpers retained for existing pages. */
 
+
+
 .figCore,
+
 .figAside {
+
   float: right;
+
   display: block;
+
   margin-left: 2em;
+
   margin-right: 1em;
+
   padding: 4px;
+
   border-bottom: 1px solid var(--cc-border);
+
 }
+
+
 
 .figCore { background: #ffffea; }
 
+
+
 .figAside {
+
   width: 24em;
+
   background: #f3fbf3ff;
+
 }
+
+
+
 
 
 .figClear { clear: both; }
 
 
+
+
+
 /* --- Task / note boxes --------------------------------------------------- */
 
 
+
+
+
 /* Gentle vertical separation before major task/note boxes. */
+
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
+
   margin-top: 2rem;
+
 }
+
+
 
 .tip,
+
 .aside,
+
 .task,
+
 .coreTask,
+
 .codeTask,
+
 .challenge,
+
 .ddTask,
+
 .homework {
+
   position: relative;
+
 }
+
+
 
 .task,
+
 .codeTask,
+
 .codeTask::before,
+
 .ddTask,
+
 .ddTask::before {
+
   background: var(--cc-code-bg);
+
 }
 
+
+
 .coreTask,
+
 .coreTask::before {
+
   background: var(--cc-core-bg);
+
 }
+
+
 
 .aside {
+
   background: var(--cc-aside-bg);
+
   border-color: #bcb;
+
   line-height: 1.6;
+
 }
+
+
 
 .challenge,
+
 .challenge::before {
+
   background: var(--cc-challenge-bg);
+
   border-color: #ffb0b0;
+
 }
+
+
 
 .homework,
+
 .homework::before {
+
   background: var(--cc-homework-bg);
+
   border-color: #999;
+
 }
+
+
 
 .tip {
+
   margin-bottom: 2em;
+
   padding: 0.7em;
+
   background: #fafafa;
+
   border-color: #999;
+
   border-radius: 12px;
+
   box-shadow: 8px 8px 5px #999;
+
 }
 
+
+
 :is(.challenge, .coreTask, .codeTask) p {
+
   margin: 0.25rem 0.5rem;
+
   padding: 0.25rem 0.5rem;
+
 }
+
+
+
 
 
 /* Labels */
 
+
+
 .codeTask::before { content: "{coding task} 🦜"; }
+
 .task::before { content: "task"; }
+
 .ddTask::before { content: "Dear Data 100"; }
+
 .coreTask::before { content: "CORE TASK"; }
+
 .homework::before { content: "homework"; }
+
 .challenge::before { content: "EXTRA CHALLENGE"; }
+
+
+
 
 
 /* Icons */
 
+
+
 .tip::before,
+
 .aside::before,
+
 .challenge::after,
+
 .codeTask::after {
+
   position: absolute;
+
   left: -1.5em;
+
   top: 0;
+
   font-size: 2em;
+
   line-height: 1;
+
 }
 
+
+
 .tip::before { content: "💡"; }
+
 .aside::before { content: "🤔"; }
+
 .codeTask::after { content: "🦜"; transform: scaleX(-1); }
+
 .challenge::after { content: "🎯"; transform: scaleX(-1); }
+
+
+
 
 
 /* Dear Data task */
 
+
+
 .ddTask {
+
   margin: 1em 0;
+
   padding: 0.5em;
+
   border: 1px solid #ccc;
+
   border-bottom-color: #eef;
+
   border-radius: 8px 8px 0 0;
+
   line-height: 1.3;
+
 }
 
+
+
 .ddTask::before {
+
   float: right;
+
   margin: -2em -0.6em 0 0;
+
   padding: 0.3em 0.3em 1px;
+
   border: 1px solid #ccc;
+
   border-bottom-color: #eef;
+
   border-radius: 8px 8px 0 0;
+
   font-weight: 600;
+
   line-height: 1;
+
 }
+
+
+
 
 
 /* Extra breathing room between consecutive coloured boxes. */
+
 :is(
+
   .codeTask,
+
   .coreTask,
+
   .task,
+
   .tip,
+
   .aside,
+
   .challenge,
+
   .ddTask,
+
   .homework
+
 ) + :is(
+
   .codeTask,
+
   .coreTask,
+
   .task,
+
   .tip,
+
   .aside,
+
   .challenge,
+
   .ddTask,
+
   .homework
+
 ) {
+
   margin-top: 2.5rem;
+
 }
+
+
 
 /* --- Intro / summary / remember ----------------------------------------- */
 
+
+
 .intro,
+
 .summary {
+
   position: relative;
+
   margin-bottom: 2rem;
+
   padding: 1.15rem 1.25rem;
+
   background: #e4f4fa;
+
   border-radius: 6px;
+
 }
+
+
 
 :is(.intro, .summary) :is(ul, ol, li),
+
 :is(.challenge, .objectives, .coreTask) li,
+
 .summary :is(h4, h5) {
+
   background: transparent !important;
+
 }
+
+
 
 :is(.challenge, .objectives, .coreTask, .summary, .intro) li,
+
 .summary :is(h4, h5) {
+
   padding-top: 0.25rem;
+
   padding-bottom: 0.25rem;
+
 }
+
+
 
 :is(.intro, .remember) p {
+
   margin: 0 1rem;
+
   padding: 0.25rem 4.5rem;
+
 }
+
+
 
 :is(.intro, .remember) :is(ul, ol) {
+
   margin: 0.25rem 3rem;
+
   padding: 0.25rem 4.5rem;
+
 }
+
+
 
 :is(.intro, .remember) h2 {
+
   margin: 0 2rem;
+
   padding: 0 4.5rem 1rem 3.25rem;
+
 }
+
+
 
 .intro::before {
+
   content: "";
+
   position: absolute;
+
   left: 0.5rem;
+
   top: 0.5rem;
+
   width: 4rem;
+
   height: 4rem;
-  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg")
-              center / contain no-repeat;
+
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
+
 }
 
-/* Special version when the SAME element is both intro and home */
+
+
 .intro.home::before {
   top: 1.5rem;
   width: 5rem;
   height: 5rem;
 }
 
+
+
 .remember {
+
   position: relative;
+
   margin-bottom: 3rem;
+
   padding: 1.8rem 3rem;
+
   background: #fff7b280;
+
   border: 0;
+
   box-shadow: 1px 2px 4px rgb(0 0 0 / 10%);
+
 }
 
+
+
 .remember::before {
+
   content: "Remember...";
+
   position: absolute;
+
   top: 5rem;
+
   left: 7rem;
+
   transform: translateX(-100%);
+
   font-weight: bold;
+
   font-style: italic;
+
 }
+
+
+
 
 
 /* --- Focus / lecture ----------------------------------------------------- */
 
+
+
 .focusON_orig,
+
 .focusON {
+
   clear: both;
+
   padding: 0.75em;
+
 }
+
+
 
 .focusON_orig {
+
   float: left;
+
   margin: 0.25em 1em 1.5em 0;
+
   color: #b44;
+
   background: #f84;
+
   border-right: 4px solid #b44;
+
   font-size: 150%;
+
   text-align: right;
+
 }
+
+
 
 .focusON {
+
   float: right;
+
   display: block;
+
   width: 100%;
+
   margin: 2.5em 0 0.5em;
+
   color: #ddd;
+
   background: var(--cc-blue);
+
   border-left: 4px solid var(--cc-blue-dark);
+
   font-size: 125%;
+
 }
+
+
 
 .focusON code {
+
   color: #fff;
+
   background: var(--cc-blue);
+
 }
+
+
 
 .focusNum {
+
   color: #c3e9ff;
+
   font-size: 200%;
+
   font-weight: bold;
+
 }
+
+
 
 .focusHash {
+
   color: #c3e9ff;
+
   font-size: 125%;
+
   font-weight: bold;
+
 }
+
+
 
 .focusOFF {
+
   display: none;
+
   padding: 0;
+
   color: #229;
+
   background: #fff;
+
 }
 
+
+
 .focusLecture {
+
   float: left;
+
   display: block;
+
   margin: 4px;
+
   padding: 4px;
+
   background: #b0e0ff;
+
   border-left: 4px solid #8cf;
+
 }
+
+
+
+
 
 
 
 /* ==========================================================================
+
    Prevent PRE and BLOCKQUOTE from running underneath right-hand floats.
+
    Existing .cc-right floats remain unchanged.
+
    ========================================================================== */
 
+
+
 pre,
+
 blockquote {
+
   overflow: auto;
+
 }
+
+
 
 /* --- Blockquotes --------------------------------------------------------- */
 
+
+
 blockquote {
+
   position: relative;
+
   margin: 1.5rem 0;
+
   padding: 2rem 3rem;
+
   background: #f3f3f3;
+
   color: #555;
+
   border-radius: 6px;
+
   font-size: 95%;
+
   font-style: italic;
+
   line-height: 1.6;
+
 }
+
+
 
 blockquote::before,
+
 blockquote::after {
+
   position: absolute;
+
   color: #c5c5c5;
+
   font: 2.5rem/1 Georgia, serif;
+
 }
+
+
 
 blockquote::before {
+
   content: "\201C";
+
   top: 2rem;
+
   left: 1rem;
+
 }
 
+
+
 blockquote::after {
+
   content: "\201D";
+
   right: 1rem;
+
   bottom: 2rem;
+
   transform: translateY(0.65em);
+
 }
+
+
+
 
 
 /* --- Small components --------------------------------------------------- */
 
-/* Information for illustration / instruction text. */
-.i4i {
-  font-size: 80%;
-  color: rgba(0, 0, 0, 0.5);
+.spacedList {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
+
+
+
+/* Information for illustration / instruction text. */
+
+.i4i {
+
+  font-size: 80%;
+
+  color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+
 
 
 .key {
+
   margin: 2px;
+
   padding: 2px 6px;
+
   background: #e0e0e0;
+
   border: 1px solid #c0c0c0;
+
   border-right: 2px solid #909090;
+
   border-bottom: 2px solid #909090;
+
   font-weight: bold;
+
 }
+
+
 
 .todo { margin: 2em; background: #fffff0; }
+
 .checkOutcomes { margin-left: 3em; padding: 1em; }
 
+
+
 .parotTalk,
+
 .parotTalkSm {
+
   margin: 0;
+
   padding: 2px 0.25em;
+
   background: #f09090;
+
   font-size: 100%;
+
 }
+
+
 
 .parotTalk { color: #202020; font-weight: bold; }
+
 .parotTalkSm { color: #fff; }
 
+
+
 :is(.tutorMedalB, .tutorMedalS, .tutorMedalG, .tutorMedalP) {
+
   padding: 4px 1em;
+
 }
+
+
 
 .tutorMedalB { background: #b0602040; }
+
 .tutorMedalS { background: #b0b0b060; }
+
 .tutorMedalG { background: #f0d04040; }
+
 .tutorMedalP { background: #80808010; }
 
+
+
 .hrClear,
+
 .hrInvisible {
+
   clear: both;
+
   padding: 0;
+
 }
 
+
+
 .hrClear { border: 1px dashed #f0f0f0; }
+
 .hrInvisible { border: 0; }
+
+
 
 .console { padding: 1em; background: #224; color: #ddf; }
 
+
+
 .menu {
+
   padding: 0.15rem 0.75rem 0.15rem 1.25rem;
+
   background: #f0f0f0;
+
   font-size: 80%;
+
 }
 
+
+
 .dataFile {
+
   float: right;
+
   width: 45%;
+
   margin: 0 1rem 0 2rem;
+
   padding: 0.5rem;
+
   font-size: 67%;
+
 }
+
+
 
 .adviceToStudents { margin-bottom: 0.25em; }
 
+
+
 .qAndA {
+
   clear: both;
+
   margin-top: 2em;
+
   padding: 1rem;
+
   border-bottom: 1px dashed var(--cc-border);
+
 }
+
+
 
 .qAndA-Q {
+
   padding: 0.5rem;
+
   background: #fefeb0;
+
   color: #666;
+
   font-size: 110%;
+
   font-style: italic;
+
 }
+
+
 
 .qAndA-A {
+
   padding: 0.5rem 0.5rem 0.5rem 3rem;
+
   background: #fefeff;
+
   color: #669;
+
 }
+
+
 
 .qAndA-A p {
+
   background: #fefeff;
+
   color: #669;
+
 }
+
+
 
 .qAndA-A .moodleButton {
+
   padding: 0.25rem;
+
   background: #d71626;
+
   color: #fff;
+
   font-size: 80%;
+
 }
+
+
 
 .qAndA-A .moodleSubmission {
+
   margin: 1rem;
+
   padding: 0.5rem;
+
   background: #f8f9fa;
+
   color: #444;
+
 }
+
+
 
 .imgCropBanner {
+
   clip-path: inset(40% 0);
+
 }
 
 
 
+
+
+
+
 /* ==========================================================================
+
    Check outcomes: hanging checkbox indent
+
    Wrapped lines align with the text, not beneath the checkbox.
+
    ========================================================================== */
 
+
+
 .checkOutcomes dd {
+
   padding-left: 2rem;
+
 }
+
+
 
 .checkOutcomes dd input[type="checkbox"] {
+
   float: left;
 
+
+
   margin-left: -2rem;
+
   margin-top: 0.3em;
+
   margin-right: 0.6rem;
 
+
+
   padding: 0;
+
   vertical-align: middle;
+
 }
 
+
+
 /* ==========================================================================
+
    .figRight figure/caption support
+
+
 
    Supports BOTH existing HTML patterns:
 
+
+
      1) caption inside figure:
+
         .figRight > figure > figcaption
 
+
+
      2) legacy caption beside figure:
+
         .figRight > figure + figcaption
 
+
+
    The image/canvas/iframe determines the intrinsic width; long caption text
+
    wraps to that width instead of widening the figure.
+
    ========================================================================== */
+
+
 
 .figRight {
+
   float: right;
+
   display: grid;
+
   grid-template-columns: max-content;
+
   justify-items: center;
 
+
+
   width: fit-content;
+
   max-width: 100%;
+
+
 
   margin-left: 2rem;
+
   margin-bottom: 2rem;
+
 }
+
+
 
 /* The figure itself shrink-wraps to its visual media. */
+
 .figRight > figure {
+
   display: grid;
+
   grid-template-columns: max-content;
 
+
+
   width: max-content;
+
   max-width: 100%;
+
   margin: 0;
+
 }
+
+
 
 .figRight > figure > img,
+
 .figRight > figure > iframe,
+
 .figRight > figure > canvas {
+
   grid-column: 1;
 
+
+
   display: block;
+
   max-width: 100%;
+
   height: auto;
+
   margin: 0 auto;
+
 }
+
+
 
 /*
+
  * Nested caption:
+
  * width:0 removes the caption from intrinsic width calculation;
+
  * min-width:100% then expands it to the media-defined figure width.
+
  */
+
 .figRight > figure > figcaption {
+
   grid-column: 1;
 
+
+
   width: 0;
+
   min-width: 100%;
+
   box-sizing: border-box;
 
+
+
   margin: 0.6rem 0 0 !important;
+
   padding: 0;
 
+
+
   color: #909090;
+
   font-size: 90%;
+
   line-height: 1.35;
+
   text-align: center;
 
+
+
   overflow-wrap: anywhere;
+
 }
+
+
 
 /* Legacy sibling caption: same intrinsic-width trick on the outer grid. */
+
 .figRight > figcaption {
+
   grid-column: 1;
 
+
+
   width: 0;
+
   min-width: 100%;
+
   box-sizing: border-box;
+
+
 
   margin: 0.6rem 0 0 !important;
+
   padding: 0;
 
+
+
   color: #909090;
+
   font-size: 90%;
+
   line-height: 1.35;
+
   text-align: center;
 
+
+
   overflow-wrap: anywhere;
+
 }
+
 /* ==========================================================================
+
    Lecture notes
+
    Hidden normally; shown with ?lectureNote=true via cssShow.js
+
    ========================================================================== */
 
+
+
 .lectureNote {
+
   display: none;
+
 }
 
+
+
 html.show-lecture-notes .lectureNote {
+
   display: block;
 
+
+
   /* Remove from normal vertical flow so following content does not move down. */
+
   position: absolute;
 
+
+
   width: 11rem;
+
   box-sizing: border-box;
 
+
+
   /* Place in the left margin with a little extra breathing room. */
+
   left: calc(50% - 49rem);
 
+
+
   margin: 0;
+
   padding: 0.8rem 0.9rem;
 
+
+
   background: #fff3a6;
+
   color: #555;
 
+
+
   border: 1px solid #e5d47c;
+
   border-radius: 2px;
+
+
 
   box-shadow: 2px 3px 5px rgb(0 0 0 / 15%);
 
+
+
   font-size: 0.82rem;
+
   line-height: 1.35;
+
   text-align: right;
 
+
+
   transform: rotate(-1deg);
+
   z-index: 10;
+
 }
 
+
+
 /* Manual note number supplied in HTML, e.g. data-note="03". */
+
 html.show-lecture-notes .lectureNote::before {
+
   content: attr(data-note);
+
+
 
   float: left;
 
+
+
   margin-right: 0.65rem;
+
   margin-bottom: 0.35rem;
+
   padding-bottom: 0.25rem;
+
+
 
   color: #b29d42;
 
+
+
   font-size: 2.2rem;
+
   font-weight: 600;
+
   line-height: 0.9;
 
+
+
   text-align: left;
+
 }
 
+
+
 /* On narrower screens, keep notes inside the normal page flow. */
+
 @media (max-width: 1100px) {
+
   html.show-lecture-notes .lectureNote {
+
     position: static;
+
     width: auto;
+
     margin: 1rem 2rem 2rem;
+
     transform: none;
+
   }
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    CSS diagnostic panel
+
    cssShow.js creates this when ?css=show, ?css=true or ?css=1.
+
    The first line is the clickable stylesheet URL label.
+
    The second line is the actual first line fetched from the stylesheet.
+
    ========================================================================== */
 
+
+
 #css-info-badge {
+
   position: fixed;
+
   top: 0.4rem;
+
   right: 0.5rem;
+
   z-index: 99999;
+
+
 
   padding: 0.35rem 0.55rem;
 
+
+
   background: rgba(255, 255, 255, 0.94);
+
   color: #666;
 
+
+
   border: 1px solid #ccc;
+
   border-radius: 4px;
 
+
+
   font: 11px/1.35 monospace;
+
   white-space: nowrap;
 
+
+
   box-shadow: 1px 2px 4px rgb(0 0 0 / 10%);
+
 }
+
+
 
 #css-info-badge a {
+
   color: #555;
+
   text-decoration: none;
+
 }
+
+
 
 #css-info-badge a:hover,
+
 #css-info-badge a:focus {
+
   color: #111;
+
   text-decoration: underline;
+
 }
 
+
+
 #css-info-badge .css-info-first-line {
+
   margin-top: 0.15rem;
+
   color: #888;
+
   font-size: 10px;
+
   line-height: 1.25;
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    Tabs, icons, and .figCode pairing — definitive rules
+
    ========================================================================== */
 
+
+
 /*
+
  * TABBED boxes:
+
  *   .codeTask .coreTask .task .challenge .ddTask .homework
+
  *
+
  * ICON boxes:
+
  *   .tip .aside
+
  *
+
  * A .figCode may sit immediately before or after any tabbed box.
+
  * In that case the pair becomes one two-column grid row, with one visible
+
  * tab at the far right of the combined row.
+
  */
+
+
+
 
 
 /* --- Unpaired tabbed boxes ---------------------------------------------- */
 
+
+
 :is(.codeTask, .coreTask, .task, .challenge, .ddTask, .homework)::before {
+
   position: absolute;
 
+
+
   /* Anchor the tab to the box top edge, with a 1px overlap to remove seams. */
+
   top: auto;
+
   bottom: calc(100% - 1px);
 
+
+
   right: -1px;
+
   left: auto;
+
+
 
   z-index: 3;
 
+
+
   display: block;
+
   width: max-content;
 
+
+
   margin: 0;
+
   padding: 0.3em 0.5em 0.2em;
 
+
+
   border: 1px solid #ccc;
+
   border-bottom: 0;
+
   border-radius: 8px 8px 0 0;
 
+
+
   font-weight: 600;
+
   line-height: 1;
+
   white-space: nowrap;
 
+
+
   transform: none;
+
 }
+
+
 
 .codeTask::before,
+
 .task::before,
+
 .ddTask::before {
+
   background: var(--cc-code-bg);
+
 }
+
+
 
 .coreTask::before {
+
   background: var(--cc-core-bg);
+
 }
+
+
 
 .challenge::before {
+
   background: var(--cc-challenge-bg);
+
   border-color: #ffb0b0;
+
 }
 
+
+
 .homework::before {
+
   background: var(--cc-homework-bg);
+
   border-color: #999;
+
 }
+
+
+
 
 
 /* --- Icon boxes ---------------------------------------------------------- */
 
+
+
 .tip::before,
+
 .aside::before {
+
   position: absolute;
+
   top: 0;
+
   left: -1.5em;
+
   right: auto;
+
+
 
   z-index: 3;
 
+
+
   font-size: 2em;
+
   line-height: 1;
+
+
 
   transform: none;
+
 }
+
+
 
 .tip::before {
+
   content: "💡";
+
 }
+
+
 
 .aside::before {
+
   content: "🤔";
+
 }
+
+
 
 /* Decorative icons associated with tabbed boxes remain on the left. */
+
 .codeTask::after,
+
 .challenge::after {
+
   position: absolute;
+
   left: -1.5em;
+
   right: auto;
+
   top: 0;
 
+
+
   font-size: 2em;
+
   line-height: 1;
+
 }
+
+
 
 .codeTask::after {
+
   content: "🦜";
+
   transform: scaleX(-1);
+
 }
 
+
+
 .challenge::after {
+
   content: "🎯";
+
   transform: scaleX(-1);
+
 }
+
+
+
 
 
 /* --- Pair-specific variables -------------------------------------------- */
 
+
+
 .unit-70-cc:has(> .figCode + .codeTask),
+
 .unit-70-cc:has(> .codeTask + .figCode) {
+
   --pair-tab: "{coding task} 🦜";
+
   --pair-bg: var(--cc-code-bg);
+
   --pair-border: #ccc;
+
 }
+
+
 
 .unit-70-cc:has(> .figCode + .coreTask),
+
 .unit-70-cc:has(> .coreTask + .figCode) {
+
   --pair-tab: "CORE TASK";
+
   --pair-bg: var(--cc-core-bg);
+
   --pair-border: #ccc;
+
 }
+
+
 
 .unit-70-cc:has(> .figCode + .task),
+
 .unit-70-cc:has(> .task + .figCode) {
+
   --pair-tab: "task";
+
   --pair-bg: var(--cc-code-bg);
+
   --pair-border: #ccc;
+
 }
+
+
 
 .unit-70-cc:has(> .figCode + .challenge),
+
 .unit-70-cc:has(> .challenge + .figCode) {
+
   --pair-tab: "EXTRA CHALLENGE";
+
   --pair-bg: var(--cc-challenge-bg);
+
   --pair-border: #ffb0b0;
+
 }
+
+
 
 .unit-70-cc:has(> .figCode + .ddTask),
+
 .unit-70-cc:has(> .ddTask + .figCode) {
+
   --pair-tab: "Dear Data 100";
+
   --pair-bg: var(--cc-code-bg);
+
   --pair-border: #ccc;
+
 }
 
+
+
 .unit-70-cc:has(> .figCode + .homework),
+
 .unit-70-cc:has(> .homework + .figCode) {
+
   --pair-tab: "homework";
+
   --pair-bg: var(--cc-homework-bg);
+
   --pair-border: #999;
+
 }
+
+
+
 
 
 /* --- Paired layout ------------------------------------------------------- */
 
+
+
 .unit-70-cc:has(> .figCode + :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 )),
+
 .unit-70-cc:has(> :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ) + .figCode) {
+
   display: grid;
+
   grid-template-columns: minmax(0, 1fr) auto;
+
   grid-auto-flow: row dense;
+
   align-items: stretch;
+
+
 
   /* Reliable vertical separation from PRE/other rows. */
+
   row-gap: 2rem;
+
+
 
   background: transparent;
+
   border: 0;
+
   border-radius: 0;
+
 }
+
+
 
 /* Normal siblings (PRE, P, H3, etc.) span the whole grid. */
+
 .unit-70-cc:has(> .figCode + :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 )) > *,
+
 .unit-70-cc:has(> :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ) + .figCode) > * {
+
   grid-column: 1 / -1;
+
 }
+
+
 
 /* Semantic box = left column. */
+
 .unit-70-cc > .figCode + :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ),
+
 .unit-70-cc > :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ):has(+ .figCode) {
+
   grid-column: 1;
 
+
+
   min-width: 0;
+
   align-self: stretch;
 
+
+
   margin: 2rem 0 1rem;
+
   padding: 0.8rem 1rem;
+
+
 
   background: var(--pair-bg);
 
+
+
   border: 1px solid var(--pair-border);
+
   border-right: 0;
+
   border-radius: 8px 0 0 8px;
 
+
+
   box-shadow: none;
+
 }
+
+
 
 /* Suppress the semantic box's own tab when paired. */
+
 .unit-70-cc > .figCode + :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 )::before,
+
 .unit-70-cc > :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ):has(+ .figCode)::before {
+
   content: none;
+
 }
+
+
 
 /* Figure = intrinsic-width right column. */
+
 .unit-70-cc > .figCode:has(+ :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 )),
+
 .unit-70-cc > :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ) + .figCode {
+
   grid-column: 2;
 
+
+
   position: relative;
+
   align-self: stretch;
 
+
+
   float: none;
+
   clear: none;
+
+
 
   /* Override legacy inline margin-top values in paired layouts. */
+
   margin: 2rem 0 1rem !important;
+
   padding: 0.8rem 0.75rem 1rem 2rem;
+
+
 
   background: var(--pair-bg);
 
+
+
   border: 1px solid var(--pair-border);
+
   border-left: 0;
+
   border-radius: 0 8px 8px 0;
+
 }
+
+
 
 /* One visible tab at the far-right edge of every paired row. */
+
 .unit-70-cc > .figCode:has(+ :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ))::before,
+
 .unit-70-cc > :is(
+
   .codeTask, .coreTask, .task, .challenge, .ddTask, .homework
+
 ) + .figCode::before {
+
   content: var(--pair-tab);
 
+
+
   position: absolute;
+
   top: auto;
+
   bottom: calc(100% - 2px);
+
   right: -1px;
+
   left: auto;
+
+
 
   z-index: 20;
 
+
+
   display: block;
+
   width: max-content;
 
+
+
   margin: 0;
+
   padding: 0.3em 0.5em 0.2em;
+
+
 
   background: var(--pair-bg);
+
   color: #34383c;
 
+
+
   border: 1px solid var(--pair-border);
+
   border-bottom: 0;
+
   border-radius: 8px 8px 0 0;
 
+
+
   font-size: 1rem;
+
   font-weight: 600;
+
   line-height: 1;
+
   white-space: nowrap;
 
+
+
   transform: none;
+
 }
+
+
+
+
 
 
 
 /* ==========================================================================
+
    .figCore + .coreTask pairing
+
    Mirrors .figCode + .codeTask exactly:
+
    text on the left, intrinsic-width figure on the right,
+
    one CORE TASK tab at the far-right edge of the combined row.
+
    Supports either adjacent source order.
+
    ========================================================================== */
 
+
+
 .unit-70-cc:has(> .figCore + .coreTask),
+
 .unit-70-cc:has(> .coreTask + .figCore) {
+
   display: grid;
+
   grid-template-columns: minmax(0, 1fr) auto;
+
   grid-auto-flow: row dense;
+
   align-items: stretch;
+
   row-gap: 2rem;
 
+
+
   --core-pair-bg: var(--cc-core-bg);
+
   --core-pair-border: #ccc;
+
 }
+
+
 
 /* Other direct children stay full width. */
+
 .unit-70-cc:has(> .figCore + .coreTask) > *,
+
 .unit-70-cc:has(> .coreTask + .figCore) > * {
+
   grid-column: 1 / -1;
+
 }
+
+
 
 /* Core task text = left cell. */
+
 .unit-70-cc > .figCore + .coreTask,
+
 .unit-70-cc > .coreTask:has(+ .figCore) {
+
   grid-column: 1;
+
   min-width: 0;
+
   align-self: stretch;
+
+
 
   margin: 2rem 0 1rem;
+
   padding: 0.8rem 1rem;
 
+
+
   background: var(--core-pair-bg);
 
+
+
   border: 1px solid var(--core-pair-border);
+
   border-right: 0;
+
   border-radius: 8px 0 0 8px;
 
+
+
   box-shadow: none;
+
 }
+
+
 
 /* Suppress the coreTask's own tab when paired. */
+
 .unit-70-cc > .figCore + .coreTask::before,
+
 .unit-70-cc > .coreTask:has(+ .figCore)::before {
+
   content: none !important;
+
 }
 
+
+
 /* Core figure = intrinsic-width right cell. */
+
 .unit-70-cc > .figCore:has(+ .coreTask),
+
 .unit-70-cc > .coreTask + .figCore {
+
   grid-column: 2;
 
+
+
   position: relative;
+
   align-self: stretch;
 
+
+
   float: none;
+
   clear: none;
 
+
+
   margin: 2rem 0 1rem !important;
+
   padding: 0.8rem 0.75rem 1rem 2rem;
+
+
 
   background: var(--core-pair-bg);
 
+
+
   border: 1px solid var(--core-pair-border);
+
   border-left: 0;
+
   border-radius: 0 8px 8px 0;
+
 }
+
+
 
 /* Figure width is set by its media; caption follows that width. */
+
 .figCore figure {
+
   display: grid;
+
   grid-template-columns: max-content;
 
+
+
   width: max-content;
+
   max-width: 100%;
+
   margin: 0;
+
 }
+
+
 
 .figCore figure > img,
+
 .figCore figure > iframe,
+
 .figCore figure > canvas {
+
   grid-column: 1;
+
+
 
   display: block;
+
   max-width: 100%;
+
   height: auto;
+
   margin: 0 auto;
+
 }
+
+
 
 .figCore figure > figcaption {
+
   grid-column: 1;
 
+
+
   width: 0;
+
   min-width: 100%;
+
   box-sizing: border-box;
 
+
+
   margin: 0.6rem 0 0 !important;
+
   padding: 0;
 
+
+
   color: #909090;
+
   font-size: 90%;
+
   line-height: 1.35;
+
   text-align: center;
 
+
+
   overflow-wrap: anywhere;
+
 }
 
+
+
 /* One CORE TASK tab at the far-right edge of the combined row. */
+
 .unit-70-cc > .figCore:has(+ .coreTask)::before,
+
 .unit-70-cc > .coreTask + .figCore::before {
+
   content: "CORE TASK";
 
+
+
   position: absolute;
+
   top: auto;
+
   bottom: calc(100% - 2px);
+
   right: -1px;
+
   left: auto;
+
+
 
   z-index: 20;
 
+
+
   display: block;
+
   width: max-content;
 
+
+
   margin: 0;
+
   padding: 0.3em 0.5em 0.2em;
 
+
+
   background: var(--core-pair-bg);
+
   color: #34383c;
 
+
+
   border: 1px solid var(--core-pair-border);
+
   border-bottom: 0;
+
   border-radius: 8px 8px 0 0;
 
+
+
   font-size: 1rem;
+
   font-weight: 600;
+
   line-height: 1;
+
   white-space: nowrap;
 
+
+
   transform: none;
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    Coloured boxes clear preceding floated figures automatically.
+
    This removes the need for inline style="clear:both" in legacy HTML.
+
    ========================================================================== */
 
+
+
 :is(
+
   .codeTask,
+
   .coreTask,
+
   .task,
+
   .challenge,
+
   .ddTask,
+
   .homework
+
 ) {
+
   clear: both;
+
 }
+
+
 
 /* --- General coloured-box spacing --------------------------------------- */
 
+
+
 :is(.codeTask, .coreTask, .task, .tip, .aside, .challenge) {
+
   margin-top: 2rem;
+
 }
 
+
+
 :is(
+
   .codeTask, .coreTask, .task, .tip,
+
   .aside, .challenge, .ddTask, .homework
+
 ) + :is(
+
   .codeTask, .coreTask, .task, .tip,
+
   .aside, .challenge, .ddTask, .homework
+
 ) {
+
   margin-top: 2.5rem;
+
 }
