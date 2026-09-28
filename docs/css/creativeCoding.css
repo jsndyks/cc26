@@ -402,7 +402,7 @@ figcaption {
   background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
 }
 
-.introHome::before {
+.intro .home::before {
   content: "";
   position: absolute;
   left: 0.5rem;
