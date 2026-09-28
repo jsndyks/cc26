@@ -399,17 +399,15 @@ figcaption {
   top: 0.5rem;
   width: 4rem;
   height: 4rem;
-  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
+  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg")
+              center / contain no-repeat;
 }
 
+/* Special version when the SAME element is both intro and home */
 .intro.home::before {
-  content: "";
-  position: absolute;
-  left: 0.5rem;
   top: 1.5rem;
   width: 5rem;
   height: 5rem;
-  background: url("https://jsndyks.github.io/cc26/svg/cc26.svg") center / contain no-repeat;
 }
 
 .remember {
