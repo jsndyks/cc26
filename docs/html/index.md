@@ -39,10 +39,10 @@ table tbody tr.session-00:nth-child(even) > td {
 
 | session | title                          | pages                                                                                    | status |
 | ------: | ------------------------------ | ---------------------------------------------------------------------------------------- | :----: |
-|      00 | **CC Home**                    | [homeIntroduction.html](home/homeIntroduction.html)                                      |        |
-|      00 |                                | [homeGuidance.html](home/homeGuidance.html)                                              |        |
-|      00 |                                | [homeObjectives.html](home/homeObjectives.html)                                          |        |
-|      00 | **Preparation**                | [ccTenTasks.html](preparation/ccTenTasks.html)                                           |        |
+|      00 | **CC Home**                    | [homeIntroduction.html](home/homeIntroduction.html)                                      |   x    |
+|      00 |                                | [homeGuidance.html](home/homeGuidance.html)                                              |   x    |
+|      00 |                                | [homeObjectives.html](home/homeObjectives.html)                                          |   x    |
+|      00 | **Preparation**                | [ccTenTasks.html](preparation/ccTenTasks.html)                                           |   x    |
 |      00 |                                | [ccSoundCheck.html](preparation/ccSoundCheck.html)                                       |        |
 |      00 |                                | [ccInduction.html](preparation/ccInduction.html)                                         |        |
 |      00 |                                | [ccDropIn.html](preparation/ccDropIn.html)                                               |        |
@@ -65,7 +65,6 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccLoops.extra.html](loops/ccLoops.extra.html)                                           |   x    |
 |      06 | **Groups**                     | [ccGroups.html](groups/ccGroups.html)                                                    |   x    |
 |         |                                | [ccGroups.extra.html](groups/ccGroups.extra.html)                                        |   x    |
-|      06 | **Dear Data**                   | [??      ]()                                                     |        |
 |      07 | **Classes & Objects**          | [ccObjects.html](objects/ccObjects.html)                                                 |   x    |
 |         |                                | [ccObjects.extra.html](objects/ccObjects.extra.html)                                     |   x    |
 |         |                                | [ccObjects.balls.html](objects/ccObjects.balls.html)                                     |   x    |
@@ -76,7 +75,7 @@ table tbody tr.session-00:nth-child(even) > td {
 |      09 | **Media: Sound & Video**       | [ccMedia.html](media/ccMedia.html)                                                       |   x    |
 |         |                                | [ccMedia.extra.html](media/ccMedia.extra.html)                                           |   x    |
 |         |                                | [ccMedia.soundTest.html](media/ccMedia.soundTest.html)                                   |   x    |
-|      10 | **Data**                       | [ccData.html](data/ccData.html)                                                          |        |
+|      10 | **Data**                       | [ccData.html](data/ccData.html)                                                          |   x    |
 |      11 | **Data Visualization**         | [ccDataVis.html](datavis/ccDataVis.html)                                                 |        |
 |         |                                | [ccDataVis.extra.html](datavis/ccDataVis.extra.html)                                     |        |
 |      12 | **Creativity**                 | [ccCreativity.html](creativity/ccCreativity.html)                                        |        |
@@ -89,7 +88,7 @@ table tbody tr.session-00:nth-child(even) > td {
 |         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |   x    |
 |         |                                | [ccGraphics.game.html](3d/ccGraphics.game.html)                                          |   x    |
 |      15 | **Computational Thinking**     | [ccThinking.html](data/ccThinking.html)                                                  |   x    |
-|      16 | **Dear Data Denouement** | [ccDenouement.html](denouement/ccDenouement.html)                                              |        |
+|      16 | **Dear Data Denouement**       | [ccDenouement.html](denouement/ccDenouement.html)                                              |        |
 |         |                                | [ccObservationTable.html](denouement/ccObservationTable.html)                            |        |
 |         |                                | [ccQandA.html](denouement/ccQandA.html)                                                  |        |
 
