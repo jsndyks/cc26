@@ -81,7 +81,7 @@ table tbody tr.session-00:nth-child(even) > td {
 |      12 | **Creativity**                 | [ccCreativity.html](creativity/ccCreativity.html)                                        |   x    |
 |      13 | **Art**                        | [ccArt.html](art/ccArt.html)                                                             |   x    |
 |         |                                | [ccArt.extra.html](art/ccArt.extra.html)                                                 |   x    |
-|         |                                | [ccArt.copyright.html](art/ccArt.copyright.html)                                         |        |
+|         |                                | [ccArt.copyright.html](art/ccArt.copyright.html)                                         |   x    |
 |         |                                | [veraMolnar.html](art/veraMolnar.html)                                                   |   x    |
 |      14 | **3D Graphics**                | [ccGraphics.html](3d/ccGraphics.html)                                                    |   x    |
 |         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |   x    |
