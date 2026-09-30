@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v27.css — updated 2026-09-30 10:35 BST */
+/* creativeCoding-FCUS-v28.css — updated 2026-09-30 11:02 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -128,10 +128,39 @@ h3 {
 .rightCol { width: 40%; }
 .sig { clear: both; padding-right: 4em; }
 
-/* Isolate the left content column when it follows a floated right annotation.
-   This prevents clears inside .unit-70-cc from dropping below the right column. */
-.cc-right + .unit-70-cc {
-  display: flow-root;
+/* Right-hand floating illustration rail.
+   Independent of .figCode/.figCore task pairings. */
+.unit-30-cc.cc-right {
+  float: right;
+  clear: right;
+
+  width: 30%;
+  box-sizing: border-box;
+
+  margin: 0 0 2rem 2rem;
+  padding: 0.25em;
+}
+
+.unit-30-cc.cc-right figure {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.unit-30-cc.cc-right figure :is(img, iframe, canvas) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  margin-inline: auto;
+}
+
+.unit-30-cc.cc-right figure figcaption {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
 }
 
 
@@ -1356,6 +1385,24 @@ html.show-lecture-notes .lectureNote::before {
   .homework
 ) {
   clear: both;
+}
+
+/* When a .unit-70-cc follows the structural right-hand rail, semantic
+   boxes may sit beside that rail rather than clearing beneath it.
+   flow-root keeps each box's border/background out from under the float
+   without changing the page's later normal flow. */
+.cc-right + .unit-70-cc :is(
+  .codeTask,
+  .coreTask,
+  .task,
+  .tip,
+  .aside,
+  .challenge,
+  .ddTask,
+  .homework
+) {
+  clear: none;
+  display: flow-root;
 }
 
 /* --- General coloured-box spacing --------------------------------------- */
