@@ -998,7 +998,7 @@ void draw()
                     that array, displaying each word in turn in a different random colour at a vertical position that increments by 12 pixels in each loop iteration - meaning that each successive token is 12 pixels below the previous one. 
                 </p>
 
-                <div class="codeTask" style="width:70%">
+                <div class="codeTask">
                     <h5>Space Splitting</h5>
                     <p>Create a new <em>Processing</em> sketch and copy in the code from the example above.<br />
                         See whether you can explain the code - talk to a colleague, or talk to yourself out
@@ -1008,7 +1008,7 @@ void draw()
                         Have a think, and then give it a try to see whether you were correct.</p>
                 </div>
                 <p>Let's try a few more things out with the same sketch ...</p>
-                <div class="codeTask" style="width:70%">
+                <div class="codeTask">
                     <h5>Varying the Separator</h5>
                     <p>What happens if you change the <i>separator</i> used in the <code>split()</code> statement?</p>
                     <p>Try the following separators, and then make some up for yourself.<br />
@@ -1522,7 +1522,7 @@ void draw()
         <div class="units-row">
             <h5>Bike Map</h5>
 
-            <div class="unit-30-cc annotation cc-right" style="--cc-right-width: 40%;"">
+            <div class="unit-30-cc annotation cc-right" style="--cc-right-width: 50%;"">
                 <figure>
                     <script>loadImage('https://jsndyks.github.io/cc26/images/bikeshareMap.png', 600, 405, 'Bikeshare map');</script>
                     <figcaption>     
@@ -1677,7 +1677,9 @@ void draw()
             we introduced earlier and begin to imagine the kinds of data and the types of sketch and commands that may
             have been used to produce them. It's worth looking back and having a think about how these designs might
             have been implemented now that you know some of the tricks and have engaged with the code.</p>
-        <p>The most important thing is that you know that:</p>
+
+        <div class="summary">
+        <p>The most important thing is that you know the following:</p>
         <ul>
             <li>
                 Data visualization is all about turning data into graphics - depicting data visually.
@@ -1699,6 +1701,8 @@ void draw()
                 We can use <a href="https://processing.org/reference/map_.html"><code>map()</code></a> to re-scale our data from the original numeric range of the data set to a range to a new one that allows us to position shapes in ways that that represent the numbers in screen coordinates.
             </li>
         </ul>
+        </div>
+
         <p>If you do know these things, and you can use these methods and understand how to draw shapes with variables,
             then you are pretty much set - <b>the World is your Data Visualization oyster</b> ...</p>
 
@@ -1745,17 +1749,13 @@ void draw()
                 teachers.</p>
 
             <div class="checkOutcomes">
-                <input type="checkbox" id="sa1"> <label for="sa1">I can drag a data file into <em>Processing</em> so it
-                    can be read by my code<br /></label><br />
-                <input type="checkbox" id="sa2"> <label for="sa2">I can read a simple text file using
-                    <code>loadStrings()</code><br /></label><br />
-                <input type="checkbox" id="sa3"> <label for="sa3">I can parse a line of text into tokens using
-                    <code>split()</code><br /></label><br />
-                <input type="checkbox" id="sa4"> <label for="sa4">I can re-scale a number from one range to another
-                    using <code>map()</code><br /></label><br />
-                <input type="checkbox" id="sa5"> <label for="sa5">I can use these capabilities to change the colour,
-                    size or appearance of graphics according to data read from file in a simple
-                    sketch<br /></label><br />
+                <dl>
+                <dd><input type="checkbox" id="sa1"> <label for="sa1">I can drag a data file into <em>Processing</em> so it can be read by my code<br /></label><br /></dd>
+                <dd><input type="checkbox" id="sa2"> <label for="sa2">I can read a simple text file using <code>loadStrings()</code><br /></label><br /></dd>
+                <dd><input type="checkbox" id="sa3"> <label for="sa3">I can parse a line of text into tokens using <code>split()</code><br /></label><br /></dd>
+                <dd><input type="checkbox" id="sa4"> <label for="sa4">I can re-scale a number from one range to another using <code>map()</code><br /></label><br /></dd>
+                <dd><input type="checkbox" id="sa5"> <label for="sa5">I can use these capabilities to change the colour, size or appearance of graphics according to data read from file in a simple sketch<br /></label><br /></dd>
+                </dl>
 
             </div> <!-- End of checkOutcomes -->
         </div>
