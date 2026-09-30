@@ -2,62 +2,25 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: Data Visualization</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Data Visualization</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
-
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-	<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-    <div id="page">
 
-        <!-- 
 
-Read the lecture through and try the *core* and *coding tasks* as you go - and be sure to play the *movies*.
-The combination of *explanatory text*, *examples* and *self-paced exercises* is intended to help you achieve the learning outcomes.
-
-If you want to test yourself then try the *challenge tasks* and feel free to riff on these a little.
-
-You can access the [Data Visualization Lecture](https://jsndyks.github.io/cityCreativeCoding/html/dataVis/ccDataVis.2024.html) outside of _Moodle_ should you wish to do so.
-
-         -->
-
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-        <!-- Content below -->
+<div id="page">
 
         <div class="intro">
+            <h2>Data Visualization</h2>
 
             <p>
                 This session introduces the idea of <b>data visualization</b> — turning data into graphics.<br/>
@@ -74,7 +37,7 @@ You can access the [Data Visualization Lecture](https://jsndyks.github.io/cityCr
         </div> <!-- End of intro section -->
 
         <hr />
-        <div class="intro" style="padding-top:2em">
+        <div style="padding-top:2em">
 
             <p><strong>If you read through these lecture notes, attempt the tasks and exercises and use the resources
                     that we have made available, then by the end of this session you should be able to:</strong></p>
@@ -104,10 +67,9 @@ You can access the [Data Visualization Lecture](https://jsndyks.github.io/cityCr
             </div>
 
             <p>If you have completed all the work on this page and want to learn more, the try the optional <b><a
-                        href="https://moodle4.city.ac.uk/mod/page/view.php?id=822876">Data Visualization : Extra</a></b> challenges on
+                        href="./ccDataVis.extra.html">Data Visualization : Extra</a></b> challenges on
                 <i>Live Data</i>, <i>Bikes</i> and <i>Books</i>.
-                This could well be fun for some of you and may give you ideas for ways of data visualization in your
-                <i>Dear Data</i> demos.
+                This could well be fun for some of you and may give you ideas for ways of data visualization in your <i>Dear Data</i> work.
             </p>
 
 
@@ -156,22 +118,18 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
 
                     <p>
                         We will be using a simple data file, shown here to the right, when live coding in the lecture - <a
-                            href="https://jsndyks.github.io/cityCreativeCoding/data/namesData.txt"
+                            href="https://jsndyks.github.io/cc26/data/namesData.txt"
                             target="_blank">namesData.txt</a>
                     </p>
-                    <p>It is a text file containing data that are separated on each line by commas - on <i>comma separated value (CSV)</i> form.</p>
+                        <p>It is a text file containing data that are separated on each line by commas - on <i>comma separated value (CSV)</i> form.</p>
+                        <p>So please <strong>download this data file in advance</strong>.</p>
+                        <p>You should right-click the link above to download and save a copy.</p>
+                        <p>It's important that you <strong>make sure you know where the file has been saved</strong> on
+                        your laptop.</p>
+                        <p>You can add the file to a <em>Processing</em> sketch by finding it in <i>Finder</i> (Mac) or <i>File Explorer</i> (Windows) and dragging it into the sketch code window.</p>
+                        <p>The data were created with the <a href="https://www.mockaroo.com">mockaroo</a> Random Data Generator.
                     <p>
-                        So please <strong>download this data file in advance</strong>.<br/>
-                        You should right-click the link above to download and save a copy.<br />
-                        It's important that you <strong>make sure you know where the file has been saved</strong> on
-                        your laptop.
-                        <br />
-                        You can add the file to a <em>Processing</em> sketch by finding it in <i>Finder</i> (Mac) or <i>File Explorer</i> (Windows) and dragging it into the sketch code window.<br />
-                        The data were created with the <a href="https://www.mockaroo.com">mockaroo</a> Random Data
-                        Generator.
-                    </p>
-                    <p>
-                        When you have done so, open a new sketch and use <code>loadStrings("namesData.txt")</code> to
+                        When you have doanloaded the data, open a new sketch and use <code>loadStrings("namesData.txt")</code> to
                         load the contents of the file into an array of <code>String</code>s.<br /></p>
                         <pre class="brush: processing; gutter: false; toolbar: false;">
                             // Read a text file into an array names 'lines' with loadStrings()
@@ -211,7 +169,7 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
           println(lines[1]);    </pre>
                     <p>Adding all of these snippets of code should show you this,
                         and you should be able to figure out how to show the other lines in the data file from the array.</p>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/loadStringsOutput.png" width="600"
+                    <img src="https://jsndyks.github.io/cc26/images/loadStringsOutput.png" width="600"
                         height="80" />
                 </div>
                 <div class="challenge">
@@ -241,7 +199,7 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
     <h5>Splitting a String with <a href="http://processing.org/reference/split_.html"
         target="_blank"><code>split()</code></a> Example:</h5>
 
-                <p>Copy the above code into a new sketch and run it.
+                <p>Create a new version of your sketch, copy the above code into it, and run it.
                     <br/>Experiment a little.</p>
             </div>
         </div>
@@ -251,6 +209,44 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                 <!-- Left column -->
                 <p>So far, so good - you have data and are reading it into a sketch that responds to the data.</p>
                 <p>Let's build this sketch a little, to process and display the data in different ways.</p>
+
+                <ul>
+                    <li>skeleton sketch and data - <a href="https://jsndyks.github.io/cc26/data/namesData.zip">namesData.zip</a></li>
+                </ul>
+                <p>Or by copying this code - remembering to download <a
+                            href="https://jsndyks.github.io/cc26/data/namesData.txt"
+                            target="_blank">namesData.txt</a> and add it into the 'data' folder of the sketch by dragging it into the <i>Processing</i> API:</pre>
+
+<pre>// -- A global variable - an array of Strings
+String[] names; // <-- This is where we will store lines of data from the text file.
+
+void setup()
+{
+  size(800, 500);
+  fill(64);
+  textSize(16);  // -- try changing the size of any text added with text();
+
+  // -- load the text from the file into the array:
+  names = loadStrings("namesData.txt");
+}
+
+void draw()
+{
+  background(255);
+
+  // -- loop through all of the elements in array 'names[]' here :
+  for (int lineNum=0; lineNum&lt;names.length; lineNum++) {
+
+    // -- add println() or text() in the loop :
+    text(names[lineNum], 20+lineNum, 20+lineNum*20);  // &lt;-- positions of text vary with lineNum
+    // -- close the loop :
+  }
+
+  // -- stop the draw() loop for now :
+  noLoop(); // &lt;-- we don't need to print this 60 times per second!
+}</pre>
+            </details>
+
 
             </div>
         </div>
@@ -262,12 +258,8 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
 
                 <div class="codeTask">
                     <h5>Skeleton Split Sketch:</h5>
-                    <p>Download the following skeleton code as the basis of your sketch.</p>
-                    <ul>
-                        <li>skeleton sketch and data - <a
-                                href="https://jsndyks.github.io/cityCreativeCoding/data/namesData.zip">namesData.zip</a></li>
-                    </ul>
-                    <p>Unzip the archive and run the sketch and then extend it so that it will...</p>
+                    <p>Access the skeleton code provide above as the basis of your sketch either by downloading the ZIP archive or copying the code from above.</p>
+                    <p>Then run the sketch and then <b>extend it</b> so that it will...</p>
                     <ol>
                         <li>print <i>every other line</i> of the data file from top to bottom;</li>
                         <li>print each line of the data file <i>from bottom to top</i>;</li>
@@ -306,7 +298,7 @@ void setup()
 {
   size(600,900);
   // -- Use loadStrings() to load text into the dataFile array from an online text file:
-  dataFile = loadStrings("https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt");
+  dataFile = loadStrings("https://jsndyks.github.io/cc26/data/theTimeMachine.txt");
   lineToShow = 0;    
  
   textSize(14);
@@ -346,7 +338,7 @@ void mouseMoved() {
     }
 </pre>
 
-<p>We will be loading a text file containing <a href="https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt">'The Time Machine'</a>, so please download this and drag it into your sketch.</p>
+<p>We will be loading a text file in this sketch that contains <a href="https://jsndyks.github.io/cc26/data/theTimeMachine.txt">'The Time Machine'</a>, so please download this data file too and drag it into your sketch.</p>
 
 
 
@@ -490,7 +482,7 @@ void mouseMoved() {
                 <iframe src="https://player.vimeo.com/video/66477874" width="690" height="387" frameborder="0"
                     webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
                 <p>
-                    <i>We are the city</i> by <a href="http://vimeo.com/jowood" target="_blank">Jo Wood</a> here at the <a href="http://gicentre.org">giCentre</a>.
+                    <i>We are the city</i> by <a href="http://vimeo.com/jowood" target="_blank">Jo Wood</a> here at the <a href="http://gicentre.org">giCentre</a>, our Data Visualization research group.
                 </p>
 
 <!-- 
@@ -570,7 +562,7 @@ void draw()
                 <!-- Right column -->
                 <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/images/names.png', 150, 150, 'output from names sketch');</script>
+                    <script>loadImage('https://jsndyks.github.io/cc26/images/names.png', 150, 150, 'output from names sketch');</script>
                     <figcaption>     
                         <p>Output from the names sketch</p>
                     </figcaption>
@@ -601,7 +593,7 @@ void draw()
                 <div class="codeTask">
                     <h5>From File to Canvas</h5>
                     <p>Try this code for yourself -- copy it into a sketch from above.</p>
-                    <p>Make sure you have a copy of <a href="https://jsndyks.github.io/cityCreativeCoding/data/names.txt"
+                    <p>Make sure you have a copy of <a href="https://jsndyks.github.io/cc26/data/names.txt"
                             target="_blank">names.txt</a>
                         (<i>right-click to save a copy</i>) and that you drag it into your <em>Processing</em> sketch
                         code window.</p>
@@ -651,7 +643,7 @@ void draw()
                 <figure>
                     <img src="https://www.gutenberg.org/cache/epub/35/pg35.cover.medium.jpg" width="150"/>
                     <figcaption>     
-                        <a href="https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt"
+                        <a href="https://jsndyks.github.io/cc26/data/theTimeMachine.txt"
                         target="_blank">The Time Machine</a>
                     </figcaption>
                 </figure>
@@ -666,7 +658,7 @@ void draw()
                     The content of all sorts of interesting books is available as text files.
                     We can use this repository as a source of data for our sketches.</p>
                     <p>Below is a sketch that displays the contents of H.G. Wells' classic book
-                    '<em>The Time Machine</em>' <a href="https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt"
+                    '<em>The Time Machine</em>' <a href="https://jsndyks.github.io/cc26/data/theTimeMachine.txt"
                         target="_blank">stored in a text file</a>.
                 </p>
                 <p>Each line of text in the file contains a whole paragraph, and the sketch reads the file in with <a href="http://processing.org/reference/loadStrings_.html" target="_blank"><code>loadStrings()</code></a> and then displays one line at a time.
@@ -685,7 +677,7 @@ void draw()
             {
               size(600,400);
               // -- Use loadStrings() to load text into the textLines array from an online text file:
-              textLines = loadStrings("https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt");
+              textLines = loadStrings("https://jsndyks.github.io/cc26/data/theTimeMachine.txt");
               lineToDisplay = 142;    
 
               textSize(14);
@@ -707,7 +699,7 @@ void draw()
             <div class="unit-30-cc annotation cc-right">
 
             <figure>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/html/dataVis/img/cc.dataVis.theTimeMachine.png" width="450" />
+                <img src="https://jsndyks.github.io/cc26/html/dataVis/img/cc.dataVis.theTimeMachine.png" width="450" />
                 <figcaption>     
                     <p>Paragraph from The Time Machine sketch.<br />It all sounds a little bit
                         like attending lectures at University ...</p>
@@ -762,9 +754,9 @@ void draw()
                 <div class="codeTask">
                     <p>Open a new <em>Processing</em> sketch and either ...</p>
                     <ul>
-                        <li>download <a href="https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt">the text
+                        <li>download <a href="https://jsndyks.github.io/cc26/data/theTimeMachine.txt">the text
                                 file containing the book</a>, and drag it into the sketch, or</li>
-                        <li>read the file in from the remote URL: <code>https://jsndyks.github.io/cityCreativeCoding/data/theTimeMachine.txt</code></li>
+                        <li>read the file in from the remote URL: <code>https://jsndyks.github.io/cc26/data/theTimeMachine.txt</code></li>
                     </ul>
                     <p>Now copy the two sections of code from the example above into your <em>Processing</em> sketch and try out the
                         interactions specified in <code>keyPressed()</code>.</p>
@@ -802,7 +794,7 @@ void draw()
                     While each line in the file is a sentence or paragraph of the book, and they are in the order in which
                     they should be read, the text within the lines does not have any specific structure.</p>
                     <p>But data are often, and most usefully, stored in text text files with more explicit structure.
-                  Our early examples in <a href="https://jsndyks.github.io/cityCreativeCoding/data/names.txt"
+                  Our early examples in <a href="https://jsndyks.github.io/cc26/data/names.txt"
                           target="_blank">names.txt</a> were like this - data values separated by <b>commas</b>.</p>
                 <p>
                     For example, each line may be a <em>record</em> about a thing that we are interested in,
@@ -829,28 +821,28 @@ void draw()
                     Each contains an elevation (in metres above sea level) and the time at which the recording was made, separated by a comma. 
                     The data shown above are for the first 10 seconds after 4pm when I was climbing pretty steadily and ascended a whole metre!
                     But the GPS captured data more than 7,000 times over the afternoon and you can see all of the records here:
-                <a href="https://jsndyks.github.io/cityCreativeCoding/data/elevationData.txt" target="_blank">elevationData.txt</a><br/>
+                <a href="https://jsndyks.github.io/cc26/data/elevationData.txt" target="_blank">elevationData.txt</a><br/>
 
                 <p>Loading these data into <em>Processing</em> and converting them into graphics is revealing.
                 These are just <code>line()</code>s positioned in x according to time and with the 4th argument (<i>y2</i>) based on elevation.</p>
 
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/elevationTime.noColour.png" width="800" height="67"/>
+                <img src="https://jsndyks.github.io/cc26/images/elevationTime.noColour.png" width="800" height="67"/>
 
                 <p>You don't often see profiles over time. The climbs are lengthened and the descents shortened compared to physical profiles - because I ride quite a lot slower uphill than I descend downhill.
                 This <i>feels</i> much more like the ride itself - with an emphasis on the up, which is where I spend most of my time! 
                 The gaps are at times when the GPS was not tracking me - I was stationary here: having a drink, taking a photo, or in the first case tip-toeing through the house in my cycling cleats to pick up my jacket as I had to turn back and head home to grab it when it started raining!</p>
                 <p>We might use a couple of conditions in the code (<code>if()</code>) to colour the lines according to whether I was climbing or ascending.<br/> We can calculate this by looking at successive data values. We can add an <code>if()</code> to only colour above a certain threshold of gradient, to highlight the steep parts of the ride.<br/>
                     This is achieved with <a href="https://processing.org/reference/colorMode_.html"><code>colorMode(HSB)</code></a>, which enables you to define colours according to their <i>Hue</i>, <i>Saturation</i> and <i>Brightness</i>.</p>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/elevationTime.upAndDown.Steep.png" width="800" height="67"/>
+                <img src="https://jsndyks.github.io/cc26/images/elevationTime.upAndDown.Steep.png" width="800" height="67"/>
                 <p>Or for the entire ride, which looks pretty nice.</p>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/elevationTime.upAndDown.All.png" width="800" height="67"/>
+                <img src="https://jsndyks.github.io/cc26/images/elevationTime.upAndDown.All.png" width="800" height="67"/>
                 <p>Here, I vary the colours according to the data, so that the the intensity and opacity of the colours are dependent on the gradient. Steeper is bluer or redder, and brighter, than shallower which is more washed out.</p>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/elevationTime.upAndDown.Gradient.png" width="800" height="67"/>
+                <img src="https://jsndyks.github.io/cc26/images/elevationTime.upAndDown.Gradient.png" width="800" height="67"/>
                 <p> You can see that it's pretty bumpy near the end. No wonder I got home with tired legs (and soaking wet, despite the 'waterproof' jacket that I picked up).</p>
                     
                 <h5>Heart Rate ❤️</h5>
                 <p style="padding-top:1em">Here is another example.
-                        This text file contains more data per line, and might be the basis of the <em>Year of NikeFuel</em> data visualization we saw earlier - <a href="https://jsndyks.github.io/cityCreativeCoding/data/hourlyBPM.txt"
+                        This text file contains more data per line, and might be the basis of the <em>Year of NikeFuel</em> data visualization we saw earlier - <a href="https://jsndyks.github.io/cc26/data/hourlyBPM.txt"
                         target="_blank">hourlyBPM.txt</a>.
                         Here, each row is a day.
                         Each line contains the name of the day and then 24 numbers that show maximum heart rate for each hour of the day. These are not real data:
@@ -869,10 +861,10 @@ Sunday,55,51,49,62,65,62,127,75,77,140,85,89,105,77,61,66,74,71,73,121,86,114,70
                     But sometimes we may wish to go further than this and extract the individual elements <i>within</i>
                     each line.
                     For example, the words that make up a sentence or the numbers in the kinds of comma separated lists
-                    of numbers (or rows of numbers) in the <a href="https://jsndyks.github.io/cityCreativeCoding/data/elevationData.txt" target="_blank">elevation data</a> or the <a href="https://jsndyks.github.io/cityCreativeCoding/data/hourlyBPM.txt"
+                    of numbers (or rows of numbers) in the <a href="https://jsndyks.github.io/cc26/data/elevationData.txt" target="_blank">elevation data</a> or the <a href="https://jsndyks.github.io/cc26/data/hourlyBPM.txt"
                     target="_blank">heart rate data</a> shown above.
                     These elements are often referred to as <i>tokens</i> and the process of extracting them as <i>parsing</i>.
-                    This is what I did to extract the times and elevations from the <a href="https://jsndyks.github.io/cityCreativeCoding/data/elevationData.txt" target="_blank">elevationData.txt</a>
+                    This is what I did to extract the times and elevations from the <a href="https://jsndyks.github.io/cc26/data/elevationData.txt" target="_blank">elevationData.txt</a>
                     file to convert it into the time profile: I <i>parsed</i> each line of the file, and split it into tokens using the comma as a separator. 
                 </p>
                 <ul>
@@ -984,9 +976,9 @@ void draw()
 }</pre>
             </div>
         </div>
-        <div class="unit-30-cc annotation cc-right" style="width:25%">
+        <div class="unit-30-cc annotation cc-right">
             <figure>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/html/dataVis/img/cc.dataVis.splitText.png" width="200" />
+                <img src="https://jsndyks.github.io/cc26/html/dataVis/img/cc.dataVis.splitText.png" width="200" />
                 <figcaption>     
                     <p>Output from the coloured words sketch.</p>
                 </figcaption>
@@ -1105,7 +1097,7 @@ void draw()
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/images/tempBars1.png', 400, 200, 'Daily temperatures');</script>
+                    <script>loadImage('https://jsndyks.github.io/cc26/images/tempBars1.png', 400, 200, 'Daily temperatures');</script>
                     <figcaption>     
                         <p>Daily temperatures shown as rectangles sized according to numeric temperature values</p>
                     </figcaption>
@@ -1185,7 +1177,7 @@ void draw()
         <div class="units-row">
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/images/tempBars2.png', 400, 200, 'Daily temperatures');</script>
+                    <script>loadImage('https://jsndyks.github.io/cc26/images/tempBars2.png', 400, 200, 'Daily temperatures');</script>
                     <figcaption>     
                         <p>Daily temperatures rescaled with the <a href="http://processing.org/reference/map_.html" target="_blank"><code>map()</code></a> method.</p>
                     </figcaption>
@@ -1303,7 +1295,7 @@ println("The bar needs to be 20/25 wide, which is",barLength,"pixels");</pre>
                 <div class="challenge">
                     <h5>Challenge - Heart Rate Data</h5>
                         Can you create something that looks like the <em>NikeFuel</em> example with the heart rate data
-                        in <a href="https://jsndyks.github.io/cityCreativeCoding/data/hourlyBPM.txt"
+                        in <a href="https://jsndyks.github.io/cc26/data/hourlyBPM.txt"
                             target="_blank">hourlyBPM.txt</a>?</p>
                     <p>
                         Use <code>rect()</code> to create bars, or explore
@@ -1352,7 +1344,7 @@ println("The bar needs to be 20/25 wide, which is",barLength,"pixels");</pre>
                     are docked at a series of docking stations at various points in time.
                     The first few rows and columns of this table of data look like this:
                 </p>
-                <img src="https://jsndyks.github.io/cityCreativeCoding/images/formattedStationStatus.png" width="1530"
+                <img src="https://jsndyks.github.io/cc26/images/formattedStationStatus.png" width="1530"
                     height="427">
 
                 <p style="padding-top:2em">
@@ -1362,7 +1354,7 @@ println("The bar needs to be 20/25 wide, which is",barLength,"pixels");</pre>
 
                 <p>
                     The full table can be downloaded as <a
-                        href="https://jsndyks.github.io/cityCreativeCoding/data/bikeShare.txt"
+                        href="https://jsndyks.github.io/cc26/data/bikeShare.txt"
                         target="_blank">bikeShare.txt</a>
                     (right-click to download).
                     Each bike station has its own line in the file and each value in every row is separated
@@ -1374,12 +1366,12 @@ println("The bar needs to be 20/25 wide, which is",barLength,"pixels");</pre>
             <div align="center">
                 <table width="80%" cellpadding="8" cellspacing="0" border="0">
                     <tr>
-                <td><a href="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.noBikes.jpg"><img
-                        src="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.noBikes.jpg" width="300" /></a></td>
-                <td><a href="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.oneBike.jpg"><img
-                        src="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.oneBike.jpg" width="300" /></a></td>
-                <td><a href="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.manyBikes.jpg"><img
-                        src="https://jsndyks.github.io/cityCreativeCoding/images/bikeStation.manyBikes.jpg" width="300" /></a></td>
+                <td><a href="https://jsndyks.github.io/cc26/images/bikeStation.noBikes.jpg"><img
+                        src="https://jsndyks.github.io/cc26/images/bikeStation.noBikes.jpg" width="300" /></a></td>
+                <td><a href="https://jsndyks.github.io/cc26/images/bikeStation.oneBike.jpg"><img
+                        src="https://jsndyks.github.io/cc26/images/bikeStation.oneBike.jpg" width="300" /></a></td>
+                <td><a href="https://jsndyks.github.io/cc26/images/bikeStation.manyBikes.jpg"><img
+                        src="https://jsndyks.github.io/cc26/images/bikeStation.manyBikes.jpg" width="300" /></a></td>
             </tr>
             <tr>
                 <td style="text-align:center"><p><i>No bikes!</i></p></td>
@@ -1464,10 +1456,10 @@ void draw()
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
         <div class="units-row">
-            <div class="unit-30-cc annotation cc-right" style="width:25%">
+            <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <!-- <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/images/stations25.png', 600, 405, 'Bike station status - bar chart');</script> -->
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/stations25.png" width="100%" />
+                    <!-- <script>loadImage('https://jsndyks.github.io/cc26/images/stations25.png', 600, 405, 'Bike station status - bar chart');</script> -->
+                    <img src="https://jsndyks.github.io/cc26/images/stations25.png" width="100%" />
                     <figcaption>     
                         <p>Output from bikeshare sketch</p>
                     </figcaption>
@@ -1493,9 +1485,9 @@ void draw()
 
             <hr class="hrInvisible"/>
 
-            <div class="unit-30-cc annotation cc-right" style="width:25%">
+            <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <img src="https://jsndyks.github.io/cityCreativeCoding/images/stations55.spine.png" width="100%" />
+                    <img src="https://jsndyks.github.io/cc26/images/stations55.spine.png"/>
                     <figcaption>     
                         <p>Spine plot output from the bikeshare sketch</p>
                     </figcaption>
@@ -1529,7 +1521,7 @@ void draw()
 
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/images/bikeshareMap.png', 600, 405, 'Bikeshare map');</script>
+                    <script>loadImage('https://jsndyks.github.io/cc26/images/bikeshareMap.png', 600, 405, 'Bikeshare map');</script>
                     <figcaption>     
                         <p>Output from the Bike Station Map Sketch</p>
                     </figcaption>
@@ -1644,7 +1636,7 @@ void draw()
 
             <div class="unit-30-cc annotation cc-right">
                 <figure>
-                    <script>loadImage('https://jsndyks.github.io/cityCreativeCoding/html/dataVis/img/cc.expGeovis.jpeg', 200, 200, 'Exploring Geovisualization');</script>
+                    <script>loadImage('https://jsndyks.github.io/cc26/html/dataVis/img/cc.expGeovis.jpeg', 200, 200, 'Exploring Geovisualization');</script>
                     <figcaption>     
                         <p>An Old Book About Geovisualization</p>
                     </figcaption>
@@ -1658,7 +1650,7 @@ void draw()
                     There is plenty more you could do with these data, and you should chat with your colleagues and the
                     teaching staff about possibilities for trying some of these and using geographic data in your sketches.</p>
                 <p>
-                    Some ideas for enhancing and extending these sketches, along with additional challenges, are provided for those who are interested in the <a href=https://moodle4.city.ac.uk/mod/page/view.php?id=822876">Data Visualization : Extra</a> page.
+                    Some ideas for enhancing and extending these sketches, along with additional challenges, are provided for those who are interested in the <a href="./ccDataVis.extra.html">Data Visualization : Extra</a> page.
                 </p>
 
                 <p>
@@ -1766,7 +1758,7 @@ void draw()
         </div>
 
         <p>If you have completed all the work on this page and want to learn more, the try the optional <b><a
-                    href="https://moodle4.city.ac.uk/mod/page/view.php?id=822876">Data Visualization : Extra</a></b> challenges where we look
+                    href="./ccDataVis.extra.html">Data Visualization : Extra</a></b> challenges where we look
             at <i>Bike Maps</i> (with more features), <i>Live Data</i> (yep - what's going on in London right now, today), <i>Refactoring with Classes</i> and <i>Star Wars</i> (kind of, a little bit).</p>
         <p>This could well be fun for some of you and may give you ideas for using data visualization in your sketches.
         </p>
