@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v31.css — updated 2026-09-30 ... BST */
+/* creativeCoding-FCUS-v32.css — updated 2026-09-30 17:25 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -183,6 +183,21 @@ figcaption {
   padding-top: 0.5em;
   color: var(--cc-muted);
   font-size: 90%;
+  text-align: center;
+}
+
+/* Standalone intrinsic-width figure.
+   The media determines the figure width, so the caption centres beneath it. */
+.figImage {
+  display: table;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.figImage figcaption {
+  display: table-caption;
+  caption-side: bottom;
   text-align: center;
 }
 
@@ -1446,3 +1461,6 @@ html.show-lecture-notes .lectureNote::before {
 .threeLists > ol {
   margin: 0;
 }
+
+/* -- Vera Molnár headings -- */
+ h3 .vera {clear:none}

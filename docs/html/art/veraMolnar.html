@@ -2,70 +2,38 @@
 <html>
 
 <head>
-  <title>CreativeCoding Lecture: Vera Molnár</title>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Vera Molnár - (Des) Ordres</title>
 
-<!-- Embedded fonts -->
-<link
-    href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-    rel="stylesheet">
-
-<!-- Custom layout and style -->
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-<!-- General browser compatibility handling -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-<!-- Formatted source code -->
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-<!-- Sketch popups and hidden text-->
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-  
-  <!-- iFrame -->
-  <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
-
-  <style>
-    h3 {clear:none}
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
-  <div id="page">
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    
-<!--     
-    We'd like you to try this exercise in class.
-    Please _attempt each of the exercises_ **before checking the solutions**.
-    Trying things out and _thinking things through_, and _getting things wrong_ before seeing a solution that works is **the best way to learn to code**.
-
-    You can access [this page](https://jsndyks.github.io/cityCreativeCoding/html/art/2023%7C24/copyright.html) outside of _Moodle_ should you wish to do so. 
-  -->
 
 
-    <h2>Vera Molnár - (Des) Ordres</h2>
+<div id="page">
 
-    <div>
+    <div class="intro">
+      <h2>Vera Molnár - (Des) Ordres</h2>
+      <p>
+        We are going to look at an example of the digital work of Vera Molnár, and see whether we can learn about her creative process, intentions and means of expression by using our <i>Processing</i> skills to attempt to recreate some of her work.
+      </p>
+      <p>
+        Follow each step in turn, and please attempt the task before revealing any solutions - this is a learning exercise that relies upon your quick, considered coding efforts, and subsequent reflection upon them.
+      </p>
+    </div>
       
     <p><a href="https://en.wikipedia.org/wiki/Vera_Moln%C3%A1r">Vera Molnár</a> began working with computers in 1968 and established herself as pioneer of algorithmic art by programming pen plotters in Basic and Fortran.
-    <br/>
     She died in late 2023 a few weeks before her 100th birthday.
         This short <a href="https://www.artsy.net/article/artsy-editorial-generative-art-pioneer-vera-molnar-died-aged-99">obituary from Artsy</a> is one of many that confirms and celebrates her vital role in "<i>exploring the relationship between technology and art</i>".
     </p>
-    <p><a href="https://dam.org/museum/artists_ui/artists/molnar-vera/">Her work</a> is showcased in the <a href="https://dam.org/museum/">Digital Art Museum</a>, and I really enjoyed an exhibition hosted at <a href="https://www.dagstuhl.de/en/about-dagstuhl/kunst/">Schloss Dagstuhl</a> in the summer of 2022.</p>
+    <p><a href="https://dam.org/museum/artists_ui/artists/molnar-vera/">Her work</a> is showcased in the <a href="https://dam.org/museum/">Digital Art Museum</a>, and known to me because I really enjoyed an exhibition hosted at <a href="https://www.dagstuhl.de/en/about-dagstuhl/kunst/">Schloss Dagstuhl</a> when I visited for a workshop in the summer of 2022.</p>
     
     <p>I find the <a href="https://dam.org/museum/artists_ui/artists/molnar-vera/des-ordres/">Des Ordres</a> - "<em>some order</em>" and perhaps "<em>disorder</em>" - exhibit particularly compelling.</p>
     <p>The <a href="https://dam.org/museum/">Digital Art Museum</a> describes these pieces as involving ...</p>
@@ -73,8 +41,8 @@
         in order to highlight the contrast between order and disorder
         and create tensions in the orthogonal structure,
         as if the squares were subject to a vibrating force</blockquote>
-    </div>
   
+    <p>You know how to create <i>concentric squares that are randomly disrupted</i>, right?</p>
     <p><b>Let's see whether we can recreate some of this ordered disorder using our <em>Processing</em> skills</b>...<br/>
       and whether we learn anything about order, disorder, aesthetic, what Vera was doing and perhaps <em>Processing</em> in the process.</p>
   
@@ -108,7 +76,7 @@
     </div>
     
 
-    <h3>1. Draw a Square with quad()</h3>
+    <h3 class="vera">1. Draw a Square with quad()</h3>
     <p>Use the <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> method to do so - it takes eight parameters that specify four coordinate pairs (x,y), one for each corner, clockwise from top left.</p>
     <p>Your quad should be square, centred on <code>xPos</code>,<code>yPos</code> and <code>sSize</code> by <code>sSize</code> in dimensions.</p>
     <p>Use this code as the basis of your sketch, and fill in the eight arguments to <code>quad()</code> that will complete the task.</p>
@@ -158,7 +126,7 @@
   <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.02.png" width=125/>
 </div> 
 
-    <h3>2. Create a Method to Draw a vQuad</h3>
+    <h3 class="vera">2. Create a Method to Draw a vQuad</h3>
     <p>Use <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> in your new <code>vQuad()</code> method, which should take three arguments, as shown below to specify the <i>position</i> and <i>size</i> of the square.</p>
     <p>It should, once again create a square, centred on <code>xPos</code>,<code>yPos</code> and be <code>sSize</code> by <code>sSize</code> in dimensions.<br/>So the output should look the same as before.</p>
     <p>You should be able to move most of the code from the first example above into the method.</p>
@@ -204,7 +172,7 @@
   <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.03.png" width=125/>
 </div>
 
-    <h3>3. Give the vQuad some Randomness</h3>
+    <h3 class="vera">3. Give the vQuad some Randomness</h3>
     <p>Adapt your <code>vQuad()</code> method to take a 4th parameter that adds some randomness to the quad coordinates.</p>
     <p>Your <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> will no longer be square, as each coordinate should vary randomly by an amount up to the number given as the 4th argument.</p>
     <p>If your 4th argument, the degree of randomness, is <code>r</code>, then adding <code>random(-r, r)</code> to each of the 8 coordinates will achieve this effect.</p>
@@ -252,7 +220,7 @@
   <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.04.png" width=125/>
 </div>
 
-    <h3>4. Create a Method to Draw vQuads within a vQuad</h3>
+    <h3 class="vera">4. Create a Method to Draw vQuads within a vQuad</h3>
     <p>Now we need a new method <code>vQuads</code> that calls the <code>vQuad</code> method multiple times, each time creating a <code>vQuad</code> in the same position, but of a decreasing size.</p>
     <p>So <code>vQuads</code> will need to take <b>five</b> parameters that in turn specify:
       <br/>the central position in x and y, the size (of the outer <code>vQuad</code>), the randomness to use and the number of <code>vQuad</code>s to be drawn.</p>
@@ -297,7 +265,7 @@
           <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.05.png" width=125/>
         </div>
 
-    <h3>5. Randomly Omit Some of the Quads</h3>
+    <h3 class="vera">5. Randomly Omit Some of the Quads</h3>
     <p>Add a 6th argument to <code>vQuads</code> that is the likelihood that each individual <code>vQuad</code> will be drawn.</p>
     <p>This should vary from 0-1<br/>
       A value of <code>1</code> will mean that every <code>vQuad</code> is drawn, and have no effect.
@@ -353,7 +321,7 @@ void draw()
         <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.06.png" width=125/>
       </div>
 
-      <h3>6. Create a Square Grid of vQuads</h3>
+      <h3 class="vera">6. Create a Square Grid of vQuads</h3>
       <p>Your <code>draw()</code> loop only draws one set of <code>vQuads</code>.</p>
       <p>Adjust this so that for any grid size, <code>gSize</code>, you create a <code>gSize</code> x <code>gSize</code> square grid of <code>vQuads</code>.</p>
         <pre class="brush: processing; gutter: false; toolbar: false; highlight: [11]">
@@ -405,7 +373,7 @@ void draw()
           <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.07.png" width=125/>
         </div>
 
-        <h3>7. Finishing Off - Space and More Randomness</h3>
+        <h3 class="vera">7. Finishing Off - Space and More Randomness</h3>
         <p>What we have, looks quite a lot like <a href="https://dam.org/museum/artists_ui/artists/molnar-vera/des-ordres/">Des Ordres</a>, but still a little too ordered and a bit squished up.</p>
         <p>Can you adapt the <code>vQuads</code> by :</p>
         <ul>
@@ -442,7 +410,7 @@ void draw()
   <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.08.png" width=125/>
 </div>
 
-<h3>8. Go Further - Explain &amp; Explore</h3>
+<h3 class="vera">8. Go Further - Explain &amp; Explore</h3>
 
 <h4>Explain</h4>
 <p>Can you tweak the various parameters and assess the results to try to work out what Vera Molnár was varying when she generated some of the patterns used in <a href="https://dam.org/museum/artists_ui/artists/molnar-vera/des-ordres/">Des Ordres</a>?</p>

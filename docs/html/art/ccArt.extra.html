@@ -23,6 +23,11 @@
 		<h2>Art : Extra Exercises</h2> <p>
       These exercises give you practice working with sound and video media from an artistic perspective.
     </p>
+    <p>
+      They are voluntary and for the enthusiastic. <br/>
+      Be sure that you have fully completed, understood and experimented with the <a href="./ccArt.html">Art : Core</a> materials and exercises first.
+    </p>
+    </div>
 
     <div class="tip">
         <p><b>TIP : This is optional activity!</b></p>
@@ -38,14 +43,14 @@
       <p>Try experimenting with controlling different aspects of the design with random numbers (e.g. size, colour or position
       of shapes).</p>
       <p>Remember you can use <code>random()</code> and or <code>noise()</code> to generate random numbers.
-        See the <i>Randomness</i> section in the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968090">Art : Core</a> materials for more detail.</p>
+        See the <i>Randomness</i> section in the <a href="./ccArt.html">Art : Core</a> materials for more detail.</p>
     </div>
 
     <br /><br />
 
     <div class="challenge">
       <h4>2. Noisy Balls</h4>
-      <p>Enhance the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968056">Objects : Bouncing Ball</a> sketch from the <em>Objects &amp; Classes</em> lecture (reproduced below, but feel free to use your own if you prefer), so that the ball makes a <i>random</i> noise when it changes direction after hitting the edge of the sketch.</p>
+      <p>Enhance the <a href="../objects/ccObjects.balls.html">Objects : Bouncing Ball</a> sketch from the <em>Objects &amp; Classes</em> lecture (reproduced below, but feel free to use your own if you prefer), so that the ball makes a <i>random</i> noise when it changes direction after hitting the edge of the sketch.</p>
       <p>
       <i>Hint:</i> You will need to use the <a href="https://processing.org/reference/libraries/sound/index.html"
         target="_blank"><i>Processing</i> sound library</a> as shown in the lecture notes to load, store and trigger a sample.</p>
@@ -125,8 +130,8 @@ class Ball
 
       Can you extend the noisy ball sketch so it works with multiple balls?
       <br /><br />
-      <iframe src="https://player.vimeo.com/video/107999531" width="400" height="402" frameborder="0"
-        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <!-- <iframe src="https://player.vimeo.com/video/107999531" width="400" height="402" frameborder="0"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
     </div>
 
     <br /><br />
@@ -136,7 +141,7 @@ class Ball
         <p>
       Create some form of display that responds to the sound levels of an audio track.</p>
       <p>You can use the '<i>Responding to Sound</i>'
-      example from the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968090">Art : Core</a> notes as the basis of your sketch.</p>
+      example from the <a href="../media/ccMedia.html">Media : Core</a> notes as the basis of your sketch.</p>
     <p>What type of graphics you create in response to the sound signal is up to you.
     </p>
       <p>This could form the start point for your demo if the idea of a sound visualizer interests you.</p>
@@ -150,9 +155,7 @@ class Ball
       <p>You can use any video file you like, but try not to make it too large otherwise your sketch may load very slowly.
       </p>
       <p>Use your creativity and some <i>randomness</i> to make something edpressive that look and sounds interesting.</p>
-      <p><i>Hint:</i> You can use the simple video sketch in the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968090">Art : Core</a> materials as the basis for this exercise but
-      you will need to use the 5 parameter version of <code><a href="https://processing.org/reference/image_.html"
-        target="_blank">image()</a></code> to set both the position of the video display and to make the video size smaller
+      <p><i>Hint:</i> You can use the simple video sketch in the <a href="./ccArt.html">Art : Core</a> materials as the basis for this exercise but you will need to use the 5 parameter version of <code><a href="https://processing.org/reference/image_.html" target="_blank">image()</a></code> to set both the position of the video display and to make the video size smaller
       than the sketch dimensions.</p>
     </div>
 
@@ -160,25 +163,28 @@ class Ball
 
     <h2>Check on Progress</h2>
     <div class="task">
-      If you want to create a demo with sound, video and randomness, check that each of the following are the case:
-      <br /><br />
+      <p>
+      If you want to create a <i>Dear Data 100</i> sketch with sound, video and randomness, check that each of the following are the case:
+      </p>
 
       <div class="checkOutcomes">
-        <input style="padding:2em" type="checkbox" id="sa1" /> <label style="padding:2em" for="sa1">I can use both <code>random()</code> and <code>noise()</code> to generate randomness in my sketches?</label><br />
-        <input style="padding:2em" type="checkbox" id="sa2" /> <label style="padding:2em" for="sa2">I can load and trigger a sound sample with the <i>Processing</i> sound library?</label><br />
-        <input style="padding:2em" type="checkbox" id="sa3" /> <label style="padding:2em" for="sa3">I can load and display a video file using the <code>Movie</code> class?</label><br />
-        <input style="padding:2em" type="checkbox" id="sa4" /> <label style="padding:2em" for="sa4">I can alter the size, position and appearance of a video file?</label><br />
+        <dl>
+          <dd><input style="padding:2em" type="checkbox" id="sa1" /> <label style="padding:2em" for="sa1">I can use both <code>random()</code> and <code>noise()</code> to generate randomness in my sketches?</label><br /></dd>
+          <dd><input style="padding:2em" type="checkbox" id="sa2" /> <label style="padding:2em" for="sa2">I can load and trigger a sound sample with the <i>Processing</i> sound library?</label><br /></dd>
+          <dd><input style="padding:2em" type="checkbox" id="sa3" /> <label style="padding:2em" for="sa3">I can load and display a video file using the <code>Movie</code> class?</label><br /></dd>
+          <dd><input style="padding:2em" type="checkbox" id="sa4" /> <label style="padding:2em" for="sa4">I can alter the size, position and appearance of a video file?</label><br /></dd>
+        </dl>
       </div> <!-- End of checkOutcomes -->
     </div> <!-- End of task -->
 
     <hr />
-    <div class="sig">
-        <b>Jason DYKES</b><br />
+    <!-- <div class="sig"> -->
+        <!-- <b>Jason DYKES</b><br /> -->
         <!-- <i>10 Oct 2022</i> -->
         <!-- <i>02 Oct 2023</i> -->
         <!-- <i>21 Oct 2025</i> -->
         <!-- <i>25 Oct 2025</i> -->
-    </div>
+    <!-- </div> -->
 
     <div style="padding-bottom:2em;clear:both" />
     <!--- spacer for iFrame -->

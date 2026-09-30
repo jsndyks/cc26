@@ -213,41 +213,47 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                 <p>Let's build this sketch a little, to process and display the data in different ways.</p>
 
                 <ul>
-                    <li>skeleton sketch and data - <a href="https://jsndyks.github.io/cc26/data/namesData.zip">namesData.zip</a></li>
+                    <li>skeleton sketch with data - <a href="https://jsndyks.github.io/cc26/data/namesData.zip">namesData.zip</a></li>
                 </ul>
-                <p>Or by copying this code - remembering to download <a
+                <p>Or by copying this code - but also remembering to download <a
                             href="https://jsndyks.github.io/cc26/data/namesData.txt"
-                            target="_blank">namesData.txt</a> and add it into the 'data' folder of the sketch by dragging it into the <i>Processing</i> API:</pre>
+                            target="_blank">namesData.txt</a> and add it into the 'data' folder of the sketch by dragging it into the <i>Processing</i> API:</p>
+                <ul>
+                    <li>
+                        skeleton sketch without data <span><a href="#" class="link-show-code">Click for Code!</a></span>
+                <div class="prettyprint" style="display: none;">
+                    <pre class="brush: processing; gutter: false; toolbar: false; highlight:[99]">
+    // -- A global variable - an array of Strings
+    String[] names; // &lt;-- This is where we will store lines of data from the text file.
 
-<pre>// -- A global variable - an array of Strings
-String[] names; // <-- This is where we will store lines of data from the text file.
+    void setup()
+    {
+    size(800, 500);
+    fill(64);
+    textSize(16);  // -- try changing the size of any text added with text();
 
-void setup()
-{
-  size(800, 500);
-  fill(64);
-  textSize(16);  // -- try changing the size of any text added with text();
+    // -- load the text from the file into the array:
+    names = loadStrings("namesData.txt");
+    }
 
-  // -- load the text from the file into the array:
-  names = loadStrings("namesData.txt");
-}
+    void draw()
+    {
+    background(255);
 
-void draw()
-{
-  background(255);
+    // -- loop through all of the elements in array 'names[]' here :
+    for (int lineNum=0; lineNum&lt;names.length; lineNum++) {
 
-  // -- loop through all of the elements in array 'names[]' here :
-  for (int lineNum=0; lineNum&lt;names.length; lineNum++) {
+        // -- add println() or text() in the loop :
+        text(names[lineNum], 20+lineNum, 20+lineNum*20);  // &lt;-- positions of text vary with lineNum
+        // -- close the loop :
+    }
 
-    // -- add println() or text() in the loop :
-    text(names[lineNum], 20+lineNum, 20+lineNum*20);  // &lt;-- positions of text vary with lineNum
-    // -- close the loop :
-  }
+    // -- stop the draw() loop for now :
+    noLoop(); // &lt;-- we don't need to print this 60 times per second!
+    }</pre>
+                </div>                    </li>
+                </ul>
 
-  // -- stop the draw() loop for now :
-  noLoop(); // &lt;-- we don't need to print this 60 times per second!
-}</pre>
-            </details>
 
 
             </div>
