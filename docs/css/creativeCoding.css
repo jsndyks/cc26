@@ -618,8 +618,9 @@ blockquote::after {
   float: right;
   width: 45%;
   margin: 0 1rem 0 2rem;
-  padding: 0.5rem;
-  font-size: 67%;
+  padding: 0.5rem 1rem;
+  font-size: 90%;
+  line-height: 1.25rem;
 }
 
 .adviceToStudents { margin-bottom: 0.25em; }
