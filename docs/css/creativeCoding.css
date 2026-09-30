@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v32.css — updated 2026-09-30 17:25 BST */
+/* creativeCoding-FCUS-v33.css — updated 2026-09-30 19:32 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -140,6 +140,14 @@ h3 {
 
   margin: 0 0 2rem 2rem;
   padding: 0.25em;
+}
+
+/* Legacy Kube compatibility:
+   when an old .unit-70 follows our right-hand float, let it behave as
+   normal flowing content instead of as a rigid 70% grid column. */
+.unit-30-cc.cc-right + .unit-70 {
+  float: none;
+  width: auto;
 }
 
 .unit-30-cc.cc-right figure {
