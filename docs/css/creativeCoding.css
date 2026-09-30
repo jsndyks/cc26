@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v28.css — updated 2026-09-30 11:02 BST */
+/* creativeCoding-FCUS-v29.css — updated 2026-09-30 11:25 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -129,7 +129,8 @@ h3 {
 .sig { clear: both; padding-right: 4em; }
 
 /* Right-hand floating illustration rail.
-   Independent of .figCode/.figCore task pairings. */
+   Normal content flows to the left; multiple rail items stack vertically.
+   Independent of .figCode/.figCore and other component pairings. */
 .unit-30-cc.cc-right {
   float: right;
   clear: right;
@@ -1387,21 +1388,26 @@ html.show-lecture-notes .lectureNote::before {
   clear: both;
 }
 
-/* When a .unit-70-cc follows the structural right-hand rail, semantic
-   boxes may sit beside that rail rather than clearing beneath it.
-   flow-root keeps each box's border/background out from under the float
-   without changing the page's later normal flow. */
-.cc-right + .unit-70-cc :is(
+/* Structural right rail: task-style boxes may sit beside it.
+   The !important is intentionally narrow so legacy inline clear:both
+   declarations do not force these boxes below the right-hand rail. */
+.unit-30-cc.cc-right ~ :is(.unit-70, .unit-70-cc) :is(
   .codeTask,
   .coreTask,
   .task,
-  .tip,
-  .aside,
+  .challenge,
+  .ddTask,
+  .homework
+),
+.unit-30-cc.cc-right ~ :is(
+  .codeTask,
+  .coreTask,
+  .task,
   .challenge,
   .ddTask,
   .homework
 ) {
-  clear: none;
+  clear: none !important;
   display: flow-root;
 }
 
