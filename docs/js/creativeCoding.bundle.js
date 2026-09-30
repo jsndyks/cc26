@@ -198,11 +198,22 @@ hs.preserveContent = false;
 hs.enableKeyListener = false;
 
 
+/* ==========================================================================
+   Highslide helpers
+   Updated 30 September 2026
+
+   Changes:
+   - loadSketch() and loadImage() now set Highslide's explicit popup width.
+   - Popup dimensions are still capped to the visible browser window.
+   - Existing function signatures remain unchanged.
+   ========================================================================== */
+
+
 /**
  * Load an interactive sketch in a Highslide iframe.
  *
  * sketchSrc    URL of sketch folder, without /index.html
- * sketchWidth  width of popup iframe
+ * sketchWidth  requested width of popup iframe
  * imgWidth     width of preview image
  * imgSrc       URL of preview image
  * sketchHeight optional popup height; defaults to sketchWidth
@@ -225,6 +236,7 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
         "<div><a href=\"" + sketchSrc + "/index.html\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
+        "width: " + popupWidth + ", " +
         "objectWidth: " + popupWidth + ", " +
         "objectHeight: " + popupHeight + ", " +
         "allowWidthReduction: false, " +
@@ -239,12 +251,13 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
     );
 }
 
+
 /**
  * Load an image in a Highslide iframe.
  *
  * imgFile   URL of image
- * imgWidth  width of popup/image
- * imgHeight height of popup/image
+ * imgWidth  requested width of popup/image
+ * imgHeight requested height of popup/image
  * imgAlt    alternative text
  */
 function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
@@ -260,6 +273,7 @@ function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
         "<div><a href=\"" + imgFile + "\" " +
         "onclick=\"return hs.htmlExpand(this, {" +
         "objectType: 'iframe', " +
+        "width: " + popupWidth + ", " +
         "objectWidth: " + popupWidth + ", " +
         "objectHeight: " + popupHeight + ", " +
         "allowWidthReduction: false, " +
