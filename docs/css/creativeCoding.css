@@ -1427,3 +1427,21 @@ html.show-lecture-notes .lectureNote::before {
 ) {
   margin-top: 2.5rem;
 }
+
+/* -- Creativity &amp; Dear Data -- */
+.dearDataLo {margin-left:10%; padding:1em; padding-left:2%; font-size:100%; color:#999;border-left:1px solid #9998;background-color:#9991; width:80%}
+.dearData   {margin-left:10%;  padding:1em; padding-left:2%; font-size:100%; color:#804040; border-left:1px solid #b448; background-color:#ffffe0; width:80%}
+.bigLetter {font-size:150%;vertical-align: middle;}
+
+/* -- Three Lists -- */
+.threeLists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.threeLists > ul,
+.threeLists > ol {
+  margin: 0;
+}
