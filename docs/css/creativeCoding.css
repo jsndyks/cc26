@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v29.css — updated 2026-09-30 11:25 BST */
+/* creativeCoding-FCUS-v30.css — updated 2026-09-30 11:36 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -135,7 +135,7 @@ h3 {
   float: right;
   clear: right;
 
-  width: 30%;
+  width: var(--cc-right-width, 30%);
   box-sizing: border-box;
 
   margin: 0 0 2rem 2rem;
