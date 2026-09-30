@@ -79,15 +79,15 @@ table tbody tr.session-00:nth-child(even) > td {
 |      11 | **Data**                       | [ccData.html](data/ccData.html)                                                          |   x    |
 |         |                                | [ccDataVis.extra.html](datavis/ccDataVis.extra.html)                                     |   x    |
 |      12 | **Creativity**                 | [ccCreativity.html](creativity/ccCreativity.html)                                        |   x    |
-|      13 | **Art**                        | [ccArt.html](art/ccArt.html)                                                             |        |
-|         |                                | [ccArt.extra.html](art/ccArt.extra.html)                                                 |        |
+|      13 | **Art**                        | [ccArt.html](art/ccArt.html)                                                             |   x    |
+|         |                                | [ccArt.extra.html](art/ccArt.extra.html)                                                 |   x    |
 |         |                                | [ccArt.copyright.html](art/ccArt.copyright.html)                                         |        |
-|         |                                | [veraMolnar.html](art/veraMolnar.html)                                                   |        |
+|         |                                | [veraMolnar.html](art/veraMolnar.html)                                                   |   x    |
 |      14 | **3D Graphics**                | [ccGraphics.html](3d/ccGraphics.html)                                                    |   x    |
 |         |                                | [ccGraphics.extra.html](3d/ccGraphics.extra.html)                                        |   x    |
 |         |                                | [ccGraphics.game.html](3d/ccGraphics.game.html)                                          |   x    |
 |      15 | **Computational Thinking**     | [ccThinking.html](data/ccThinking.html)                                                  |   x    |
-|      16 | **Dear Data Denouement**       | [ccDenouement.html](denouement/ccDenouement.html)                                              |        |
+|      16 | **Dear Data Denouement**       | [ccDenouement.html](denouement/ccDenouement.html)                                        |        |
 |         |                                | [ccObservationTable.html](denouement/ccObservationTable.html)                            |        |
 |         |                                | [ccQandA.html](denouement/ccQandA.html)                                                  |        |
 
