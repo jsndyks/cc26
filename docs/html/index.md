@@ -90,6 +90,9 @@ table tbody tr.session-00:nth-child(even) > td {
 |      16 | **Dear Data Denouement**       | [ccDenouement.html](denouement/ccDenouement.html)                                        |        |
 |         |                                | [ccObservationTable.html](denouement/ccObservationTable.html)                            |        |
 |         |                                | [ccQandA.html](denouement/ccQandA.html)                                                  |        |
+|      00 | **Resources**                  | [bootCamp.resources.bouncingBalls.html](resources/bootCamp.resources.bouncingBalls.html) |        |
+|         |                                | [bootCamp.resources.randomness.html](resources/bootCamp.resources.randomness.html)       |        |
+|         |                                | [bootCamp.resources.unitTesting.html](resources/bootCamp.unitTesting.randomness.html)    |        |
 
 <div style="align:right; text-align:right; padding-right:4rem">
 
