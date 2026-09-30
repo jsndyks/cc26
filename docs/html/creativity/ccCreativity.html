@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CreativeCoding Lecture: Creativity</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Embedded fonts -->
+	<link
+			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
+			rel="stylesheet">
+
+	<!-- Custom layout and style -->
+	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
+	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
+	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
+	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
+	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
+
+	<!-- General browser compatibility handling -->
+	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
+
+	<!-- Formatted source code -->
+	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
+	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
+
+	<!-- Sketch popups and hidden text-->
+	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
+	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
+	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
+
+	<!-- JD Extras! -->
+    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
+    
+    <!-- iFrame -->
+    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <style>
+        .dearDataLo {margin-left:10%; padding:1em; padding-left:2%; font-size:100%; color:#999;border-left:1px solid #9998;background-color:#9991; width:80%}
+        .dearData   {margin-left:10%;  padding:1em; padding-left:2%; font-size:100%; color:#804040; border-left:1px solid #b448; background-color:#ffffe0; width:80%}
+        .bigLetter {font-size:150%;vertical-align: middle;}
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
+        <!-- Content below -->
+
+        <div class="intro">
+
+            <p>Here we introduce and summarise some of what was / will be discussed in the session on 'Creativity'.</p>
+            <p>We encourage you to use the SCAMPER framework to use existing stimuli as the basis for creative data depiction.</p>
+                <!-- It is not a complete record of all that was / will be discussed in a somewhat unstructured lecture that features little new content. -->
+                <!-- The lecture was / will be a summary, a send-off and an attempt to inspire.  -->
+        </div>
+        <!-- End of intro section -->
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+        <h3>1. Creative Data Depiction and Generative Design</h3>
+
+        <p>I want to think a little about <i>creativity</i>, <i>generative art</i> and <i>data depiction</i> to bring things together a little.</p>
+
+        <p>The <a href="https://dictionary.cambridge.org/dictionary/english/creativity">Cambridge Dictionary</a> describes <i>creativity</i> as ...</p>
+        <blockquote>
+            the ability to produce original and unusual ideas, or to make something new or imaginative
+        </blockquote>
+
+        <p>This is a bit more helpful than the <a href="https://www.oed.com/dictionary/creativity_n">Oxford English Dictionary</a>, which gives us ...
+        </p>
+
+        <blockquote>
+            The faculty of being creative; ability or power to create.
+        </blockquote>
+
+        <p>
+            <a href="https://www.britannica.com/topic/creativity">Britannica</a> offers a very full and specific definition with some examples ...
+        </p>
+        <blockquote>
+            the ability to make or otherwise bring into existence something new,<br/>
+            whether a new solution to a problem,<br/>
+            a new method or device,<br/>or a new artistic object or form.
+        </blockquote>
+
+        <p>Putting these views together should enable us to create a perspective on what the essence of creativity is 😉.</p>
+        
+        <p>OK - let's try out some code!</p>
+        <pre class="brush: processing; gutter: false; toolbar: false; highlight:[1,2]">
+// -- Generative Design Grid
+// -- Generative Art : Line Interference
+ 
+int lines  = 40;      // &lt;-- number of static lines
+int linesR = 40;      // &lt;-- number of rotated lines
+float yTop, yBot ;
+ 
+ 
+void setup () {
+ 
+  size(300, 300);
+  translate(width/2, height/2);  // &lt;-- translate origin to centre of canvas
+ 
+  yTop = -height*0.4;  // &lt;-- min y position of lines (after translation)
+  yBot =  height*0.4;   // &lt;-- max y position of lines (after translation)
+}
+ 
+ 
+void draw () {
+ 
+  background(255);
+ 
+  translate(width/2, height/2);
+   
+  strokeWeight(map(mouseY, height,0, 12,1));
+ 
+  // -- vertical lines:
+  for (int i=0; i&lt;lines; i++) {
+    float x = map (i, 0, lines-1, -width*0.4, width*0.4);
+    line (x, yTop, x, yBot);
+  }
+  
+  strokeWeight(map(mouseX, width,0, 12,1));
+
+  // -- rotated lines :
+  rotate(map(mouseX, 0, width, 0, 2*TWO_PI));
+ 
+  for (int i=0; i&lt;linesR; i++) {
+    float x = map (i, 0, linesR-1, -width*0.4, width*0.4);
+    line (x, yTop, x, yBot);
+  }
+}
+ 
+ 
+void mouseClicked () {
+  // -- change number of lines based upon mouse position:
+  lines  = int(map(mouseX, 0,width,  3,100));
+  linesR = int(map(mouseY, 0,height, 3,100));
+}        </pre>
+
+            <div class="codeTask">
+            <h5>Patterns for Data Depiction</h5>
+            <p>
+                Check the code above and work out how you might interact with the sketch: mouse movement and clicks.<br/>
+                Copy the code into a new sketch and interact with the shapes.
+            </p>
+            </div>
+
+        <p>Here are a few pictures - output from the above, generated by interacting with this sketch.</p>
+            <figure>
+				<table style="width: 90%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+					<tr>  
+                      <td style="width: 20%; height: 100px;"><img src="./img/artGrid.01.png" alt="1-1" style="width: 100%; height: auto;"></td>
+					  <td style="width: 20%; height: 100px;"><img src="./img/artGrid.02.png" alt="1-2" style="width: 100%; height: auto;"></td>
+					  <td style="width: 20%; height: 100px;"><img src="./img/artGrid.03.png" alt="1-3" style="width: 100%; height: auto;"></td>
+					  <td style="width: 20%; height: 100px;"><img src="./img/artGrid.04.png" alt="1-4" style="width: 100%; height: auto;"></td>
+					  <td style="width: 20%; height: 100px;"><img src="./img/artGrid.05.png" alt="1-5" style="width: 100%; height: auto;"></td>
+					</tr>
+				  </table>
+				  <figcaption>     
+					<p>Canvases saved from the above sketch, with different visual characteristics. How do they vary?</p>
+                </figcaption>
+            </figure>
+            <p>
+                I'd like you to think about the <i>information carrying capacity</i> of these graphics.<br/>
+                How can we represent numbers in this graphic form?<br/>
+                All of the graphics have similar structure, and are generated by the same algorithm.<br/>
+                And yet they vary in many ways, and might vary in others - such as
+                where they are positioned, their colour, their size, the line pattern (dashed, dotted, etc.)</p>
+
+            <div class="coreTask">
+            <h5>Patterns and Data Depiction</h5>
+            <p>If you captured (coded) this kind of pattern in a <code>class</code>, say a <code>RotatingGrid</code>, how many <i>fields</i> do you think you could add to the class that might then be used for data depiction, to visually differentiate different instances (objects) of the class?</p>
+            <p>Write a few down, discuss with your colleagues - there might be as many as 10 data carrying possibilities here.</p>
+            </div>
+
+            <p>But this is just one creative stimulus!<br/>
+                Think about other visual forms that you might be able to vary interestingly to represent information by modelling in a <i>Processing</i> class - some that you have seen and used already, some that you have not:</p>
+            <ul><li>Dogs, Elephants, Flowers, Letters, Cars, Coffee Cups, Stars, Bananas, Rectangles, Leaves, Robots, PImages, Croissants, Lines, Underground Signs, Faces, Jumpers?</li>
+            </ul>
+            <p>Or the <a href="http://www.generative-gestaltung.de/2/#sketches">Generative Design Sketches?</a>.</p>
+            <p>Or how about ...</p>
+            <ul>
+            <li>Funny little spidery monsters?</li>
+            <li>Supercool wavy tiles?</li>
+            <li>Cracks and weeds in the pavement?</li>
+            <li>Daisies?</li>
+            </ul>
+
+            <p>I mention these final four because I was looking for some inspiration for a design project on our favourite <i><a href="">source for visuals</a></i> over the weekend.</p>
+
+            <figure>
+				<table style="width: 90%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+					<tr>  
+                      <td style="width: 90%; height: 100px;"><a href="https://unsplash.com/photos/white-and-gray-illustration-73LVfWy-t0A"><img src="./img/cc.spideryMonsters.png" alt="1-1" style="width: 100%; height: auto;"></a></td>
+					</tr>
+				  </table>
+				  <figcaption>     
+					<p>Funny little spidery monsters that I came across on <a href="https://unsplash.com">Unsplash</a>, with different visual characteristics. How do they vary?<br/>
+                    Credit: <a href="https://unsplash.com/@ninjason">Jason Leung</a>, Source : <a href="https://unsplash.com/photos/white-and-gray-illustration-73LVfWy-t0A">Unsplash</a><br/>
+                    Published on March 24, 2018; Canon, EOS 80D; Free to use under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+                </figcaption>
+            </figure>
+
+            <figure>
+				<table style="width: 90%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+					<tr>  
+                      <td style="width: 90%; height: 100px;"><a href="https://unsplash.com/photos/a-black-and-white-pattern-with-wavy-lines-_MXhqtvExl8"><img src="./img/cc.supercoolWavyTiles.png" alt="1-1" style="width: 100%; height: auto;"></a></td>
+					</tr>
+				  </table>
+				  <figcaption>     
+					<p>Supercool wavy tiles that I came across on <a href="https://unsplash.com">Unsplash</a>, with different visual characteristics. How do they vary?<br/>
+                    Credit: <a href="https://unsplash.com/@osarugue">Osarugue Igbinoba</a>, Source : <a href="https://unsplash.com/photos/a-black-and-white-pattern-with-wavy-lines-_MXhqtvExl8">Unsplash</a><br/>
+                    Published on October 24, 2022; Licensed under the <a href="https://unsplash.com/plus/license">Unsplash+ License</a>.</p>
+                </figcaption>
+            </figure>
+
+            <figure>
+				<table style="width: 90%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+					<tr>  
+                      <td style="width: 90%; height: 100px;"><a href="https://unsplash.com/photos/a-white-tiled-surface-SxbGx_9eNj8"><img src="./img/cc.pavementCracksAndWeeds.png" alt="1-1" style="width: 100%; height: auto;"></a></td>
+					</tr>
+				  </table>
+				  <figcaption>     
+					<p>Cracks and weeds in the pavement that I came across on <a href="https://unsplash.com">Unsplash</a>, with different visual characteristics. How do they vary?<br/>
+                    Credit: <a href="https://unsplash.com/@phito">Philipp Torres</a>, Source : <a href="https://unsplash.com/photos/a-white-tiled-surface-SxbGx_9eNj8">Unsplash</a><br/>
+                    Published on July 5, 2022; Free to use under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+                </figcaption>
+            </figure>
+
+            <figure>
+				<table style="width: 90%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+					<tr>  
+                      <td style="width: 90%; height: 100px;"><a href="https://unsplash.com/photos/black-and-white-floral-textile-Y7YJL3de2zA"><img src="./img/cc.differentDaisies.png" alt="1-1" style="width: 100%; height: auto;"></a></td>
+					</tr>
+				  </table>
+				  <figcaption>     
+					<p>A collection of daisies that I came across on <a href="https://unsplash.com">Unsplash</a>, with different visual characteristics. How do they vary?<br/>
+                    Credit: <a href="https://unsplash.com/@leochane">Leo Chane</a>, Source : <a href="https://unsplash.com/photos/black-and-white-floral-textile-Y7YJL3de2zA">Unsplash</a><br/>
+                    Published on August 12, 2020; Free to use under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+                </figcaption>
+            </figure>
+
+
+            <div class="coreTask">
+            <h5>Patterns Data Depiction and Creative Ideas</h5>
+            <p>Use websites, posters, TV shows, music and your observation of the World around you to come up with ideas for visual objects that might depict and carry the data that you collect in interesting ways.</p>
+            <p>Keep a note of them.<br/>Keep your eyes open, keep your notebook open, keep thinking about ideas!</p>
+            </div>
+            
+        <hr class="hrInvisible"/>
+
+        <h3>2. SCAMPER as as stimulus for Creative Thinking ...</h3>
+
+        <p>
+            Whatever <i>creativity</i> is exactly, we are very keen to encourage you to embrace it and to be creative and expressive in your visual depiction of data in the sketches that you produce.
+        </p>
+        <p>
+            We have introduced capital <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER</a> as a framework through which this can be achieved.<br/>
+Let's see whether we can apply it to the tasking hand, the task of creative, expressive, visual data depiction.
+        </p>
+        <p>Here are some examples of the way in which <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER</a> techniques might be applied.</p>
+        <table>
+        <tbody>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>S</strong></td>
+        <td style="text-align:left; vertical-align:middle">ubstitute</td>
+        <td style="text-align:left; vertical-align:middle"><em>Dear Data used triangles for dogs ... why don&apos;t I use them for aeroplanes?</em></td>
+        </tr>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>C</strong></td>
+        <td style="text-align:left; vertical-align:middle">ombine</td>
+        <td style="text-align:left; vertical-align:middle"><em>Use depictions and ideas from different Dear Data weeks, or from some inspiring generative art</em></td>
+        </tr>
+        <tr style="vertical-align: top">
+        <td style="text-align:right" class="bigLetter"><strong>A</strong></td>
+        <td style="text-align:left; vertical-align:middle">dapt</td>
+        <td style="text-align:left; vertical-align:middle"><em>Can I add sound or do this in 3D?</em></td>
+        </tr>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>M</strong></td>
+        <td style="text-align:left; vertical-align:middle">odify (Magnify, Minify)</td>
+        <td style="text-align:left; vertical-align:middle"><em>Why not use a circle instead of a line - or switch colours?<br>Change the parameters used in generative design examples</em></td>
+        </tr>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>P</strong></td>
+        <td style="text-align:left; vertical-align:middle">ut to Another Use</td>
+        <td style="text-align:left; vertical-align:middle"><em>Have you seen an advert, some clothing, a card, some curtains or tiles, with an interesting colour scheme or pattern? Use it!<br>Hang out in galleries, clothes shops and card retailers!</em></td>
+        </tr>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>E</strong></td>
+        <td style="text-align:left; vertical-align:middle">liminate</td>
+        <td style="text-align:left; vertical-align:middle"><em>Remove components of existing designs and sketches that interest and inspire you.<br>Comment out code in the generative art examples and see what happens</em></td>
+        </tr>
+        <tr>
+        <td style="text-align:right" class="bigLetter"><strong>R</strong></td>
+        <td style="text-align:left; vertical-align:middle">earrange (Reverse)</td>
+        <td style="text-align:left; vertical-align:middle"><em>With graphics we can translate, rotate, squish, squeeze, flip ... see what you get!</em></td>
+        </tr>
+        </tbody>
+        </table>
+
+        <p>Can you apply these to your work?</p>
+        <p>We are going to try a task, but before we do, it may be an idea to read a little on <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER</a> to remember how the technique works.<br/>
+        It is a loosely defined set of prompts for creative ideation, and is nicely documented in a few short articles that are worth a look.<br/>Try one or more of the following:</p>
+
+<table>
+<tbody>
+<tr>
+<td style="text-align:right; vertical-align:middle"><strong>Interaction Design Foundation</strong></td>
+<td style="text-align:left; vertical-align:middle"><a href="https://www.interaction-design.org/literature/article/learn-how-to-use-the-best-ideation-methods-scamper">Scamper: How to Use the Best Ideation Methods</a></td>
+<td style="text-align:left; vertical-align:middle">While predominantly about business and product design, this introduction by <em>Rikke Friis Dam</em> and <em>Teo Yu Siang</em> can easily be applied to Generative Art and Data Design.</td>
+</tr>
+<tr>
+<td style="text-align:right; vertical-align:middle"><strong>BitSize Learning</strong></td>
+<td style="text-align:left; vertical-align:middle"><a href="https://www.bitesizelearning.co.uk/resources/scamper-model-creativity">The SCAMPER creativity model, explained</a></td>
+<td style="text-align:left; vertical-align:middle">A quick, clear, colourful explanation that is probably my favourite as it includes a fox. &#x1F98A;</td>
+</tr>
+<tr>
+<td style="text-align:right; vertical-align:middle"><strong>Ardhendu Das</strong></td>
+<td style="text-align:left; vertical-align:middle"><a href="https://ardhendudas1.medium.com/scamper-framework-for-effective-problem-solving-1d2495ee781f">SCAMPER Framework for effective Problem-Solving</a></td>
+<td style="text-align:left; vertical-align:middle">A very concise and helpful medium article on <em>SCAMPER</em> - flagged as a <i>3 minute</i> read. It has excellent question-based prompts to help you with your thinking. No foxes though.</td>
+</tr>
+</tbody>
+</table>
+
+            <div class="coreTask">
+            <h5>SCAMPER for Data Depiction</h5>
+            <p>
+                Find a friend.<br/>
+                Both take out your sketchbooks and pens and draw a means of depicting data that you are considering using in your <i>Dear Data 100</i> efforts.
+            </p>
+            <p>
+                Each select a <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER</a> technique for the other and ask them to make a creative suggestion that varies <i>their design</i>.
+                <br/>Try to draw the results in the sketchbook.
+            </p>
+            <p>Now do the same again, but this time ask your friend to make a creative suggestion that varies <i>your design</i>.
+            </p>
+            <p>Now do the whole thing again, both rounds, but with different <a href="https://rl.talis.com/3/city/items/33961998-4f2b-46a4-b164-08904a3190c6.html">SCAMPER</a> techniques.</p>
+            <p>Have a think about that you have both ended up with :</p>
+            <ul>
+                <li>Is is creative, original?</li>
+                <li>Is it interesting?</li>
+                <li>Could it have aesthetic and expressive quality? Is it, can it be, beautiful?</li>
+                <li>Can you use it?</li>
+                <li>Can you code it, or something like it?</li>
+                <li>Can you build on it with more creativity?</li>
+            </ul>
+            </div>
+
+
+        <hr class="hrInvisible"/>
+
+        <h3>3. Creative (Dear Data 100) Design Process ...</h3>
+
+        <p>I want to say something about <i>Design Process</i> and the way that we hope and expect you to use your data and ideas in the <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967984"><i>Dear Data 100</i></a> demo.</p>
+
+        <p>
+            It aligns with something that <a href="https://ardhendudas1.medium.com/scamper-framework-for-effective-problem-solving-1d2495ee781f"><strong>Ardhendu Das</strong></a> says in the <i>Medium</i> article mentioned above.
+        </p>
+
+        <blockquote>
+            Remember, SCAMPER is <b>not a linear process</b>. Jump between its prompts, combine them, and let your imagination run wild.<br/>By embracing this playful approach to problem-solving, you can uncover unexpected solutions, unlock innovation, and watch your creative potential soar.<br/>So, grab your thinking cap, put on your SCAMPER shoes, and prepare to be amazed by the power of creative problem-solving!
+        </blockquote>
+
+        <p>It's also important to remember that in <i>Dear Data</i>, Giorgia Lupi and Stefanie Posavec see data as an informative inspiring starting point for play and expression that helps us (you) engage with the world ...</p>
+
+            <!--- Column RIGHT --->
+            <!-- <div class="unit-30-cc"> -->
+                <figure>
+                <a href="https://jsndyks.github.io/cityCreativeCoding/html/dearData/img/dearData.creativeMaterial.jpg"><img
+                    src="https://jsndyks.github.io/cityCreativeCoding/html/dearData/img/dearData.creativeMaterial.jpg" width="900"
+                    /></a>
+                    <figcaption>A New View on Data</figcaption>
+                </figure>
+            <!-- </div> -->
+
+            <p>So we want you to be experimental, <b>play with data</b> and your <i>Processing</i> skills and knowledge to learn and figure out what works and what doesn't.
+                Be inspired by what you see in the various examples that you have engaged with, in the module and elsewhere, to try things out.
+                Sketch in your <i>Notes &amp; Sketches</i> books, and play with the code to see what happens as you try to depict data in different ways - and work out which are interesting.
+            </p>
+            <p>Damien Newman's <i>Design Squiggle</i> in often used to capture the directed chaos of iterative design, and we would like you to design and develop your <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967984">Dear Data 100</a> demo sketches. Embrace the experimental - see what happens. Let the design process lead you to something that feels interesting.
+            </p>
+
+        <!-- 13:50 - 16:30 https://moodle4.city.ac.uk/mod/url/view.php?id=836206 -->
+
+                <!-- Creative Process -->
+                    <figure>
+                        <img src="https://jsndyks.github.io/cityCreativeCoding/html/creativity/img/thedesignsquiggle.DamienNewman2003.jpg" width="900" />
+                        <figcaption>
+                            The Design Squiggle,
+                            Damien Newman (2003)<br/>
+                            Reproduced under a Creative Commons Attribution-No Derivative Works 3.0 United States License.<br/>
+                            <a href="https://thedesignsquiggle.com">https://thedesignsquiggle.com</a> 
+                    
+                        </figcaption>
+                    </figure>
+        
+                <p>The <i>Design Squiggle</i> is intended to capture the chaos and refinement of the design process when your ultimate output is unknown - exactly what we are doing here in <i>Dear Data</i> sketching.</p>
+                <p>Newman talks about moving from <i>Uncertainty</i> at the start of the process (left) to <i>Clarity &amp; Focus</i> at the end (right), but the path is by no means smooth (squiggle)!</p>
+                <p>He uses the terms <i>Abstract</i> -> <i>Concept</i> -> <i>Design</i> to capture the process as we move (chaotically, unexpectedly, non-linearly) from left to right.</p>
+                <p>As I consider all of this to be '<i>design</i>' (verb) process ... that results in a '<i>design</i>' (noun) artefacts, I prefer to use the terms <i>Brainstorming</i> -> <i>Refining</i> -> <i>Finishing</i> to describe ways that the design process might follow the squiggle to generate an interesting design, rather than <i>Abstract</i> -> <i>Concept</i> -> <i>Design</i>.
+                And in your <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967984">Dear Data 100</a> demo sketch you may only get as far as the brainstorming and produce a part-sketch that is incomplete and best used as the basis for better ideas.
+                That's OK! That's progress! That's learning!</p>
+
+                <p>Indeed for <code>#CreativeCoding</code> we might consider the stages of any squiggly progress towards your demo to be ...</p>
+
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>Fun Failure</i> - <span style="color:#808080"><i>Gah! Nothing Works!</i></span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>Find Focus</i> - <span style="color:#808080"><i>OK - That Might be Interesting!</i></span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>Submit Something</i> - <span style="color:#808080"><i>Here's What I Have Managed!</i></span>
+                </p>
+
+
+                <p>You may have noticed above that I used the phrase: <i>when your ultimate output is unknown</i>.<br/>
+                This is an important part of this task and the <code>#CreativeCoding</code> activity.
+                We said at the outset that we are trying to promote and give you experience of a means of learning and a form of activity that may not be typical of your experience at school. We are not providing model answers. We are presenting the notion that each student has a perfectly viable different good answer that meets the needs of the activity. We know that you are good at producing a solution when given an example and that you have been trained to do this. Here we are giving you material, skills, knowledge, instructions, a vague specification and the space to do something that brings these things together into a unique solution that you have designed. So, there is no model answer, there are just answers, and many of them. We expect (and indeed hope for) all sorts of diverse submissions that are only constrained by your imagination. This kind of creative problem solving is a useful capability to have and is much in demand.</p>
+
+                <figure>
+                    <table style="width: 100%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+                        <tr>  
+                            <td style="width: 50%; height: 100px;"><img src="./img/cc.modelAnswer.top.jpeg" alt="top" style="width: 100%; height: auto;"></td>
+                            <td style="width: 50%; height: 100px;"><img src="./img/cc.modelAnswer.bot.jpeg" alt="top" style="width: 100%; height: auto;"></td>
+                        </tr> 
+                    </table>
+                    <figcaption>
+                        Alternative ways of specifying a solution: top down, with a target and model solution (left); bottom up, with some guidelines and ideas that develop from them(right).
+                    </figcaption>
+                </figure>
+
+                <p>These sketches try to show how this works diagrammatically, building a little on <i>The Design Squiggle</i> but moving from bottom to top instead of left to right, and there is a reason for this!</p>
+                <p>On the left we see a 'Model Answer' approach. We provide a solution, at the top, and ask you to achieve it. The boxes at the bottom are students, efforts. The arrows show progress. What we find, unsurprisingly, when we use this model, is that most students _converge_ to the same model answer. We find that this happens even if we have an open task, and even if we suggest some solutions through which it might be achieved. Most students will, perhaps understandably, converge to a piece of work that is very heavily based upon one of the examples. There is safety in this and when marks and progression and your degree are at stake - well, safety first is understandable. But a few of us have noticed that this limits creativity, the kind of creativity that employers seek.</p>
+
+                <p>On the right we see the 'Idea Specification' approach. This is the one where we tell you what we want (see Section 1 above) at the outset, equip you with the skills and experience and capability to work on it (see <code>#CreativeCoding</code> activity) and ask you to come up with something that fits. People (the boxes at the bottom once again) make progress in their own way and at their own pace towards a <i>unique solution</i> (something at the top of the page) in a non-linear way and might end up somewhere unexpected. There is less convergence, and more likelihood of different, new and creative outputs. We see alternative emphases, preferences and approaches that address the task in different ways. We see the kind of diversity that is so important to progress.
+
+                This 'Idea Specification' approach has its costs and challenges.
+                Some people may get a little lost, and the solutions that are produced are varied in terms of complexity, focus, approach, satisfaction, success and pretty much any other criteria we might think of. We end up with a diverse set of outputs. Now this activity is about creativity so we expect you to be creative and help you with some ideas and processes to support this.
+                <!-- - see the <a href="https://moodle4.city.ac.uk/mod/url/view.php?id=836206">Creativity : Lecture</a> in which I explain and use (re-interpret and modify) the SCAMPER from <code>08:00 - 13:50</code>. -->
+                </p>
+                <p>Now, we understand that this bottom up approach, in which we specify what we are looking for and ask you to work without the comfort of a known target against which to check your efforts, is hard, and risky and there is no guarantee that you will get anywhere at all. This is why <code>#CreativeCoding</code> is voluntary, not graded, bears no credit and as such offers a risk-free space in which to try this approach, an approach in which you produce something original that is specific to you. We think it's important. We are making it safe. While the activity is <i>pointless</i> in terms of grades, we think that it's far from <i>worthless</i> in terms of experience, learning and opportunity. And there are some tangible rewards too: <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=967976">What's the Point?</a></p>
+
+                <p>Or maybe it's not that hard?<br/>
+                See (and read and consider and discuss) <a href="https://rl.talis.com/3/city/items/4551ab37-962c-400e-aba3-5053d168fd75.html">Dear Data - To DRAW is to REMEMBER</a>, which is flagged as <i>Essential Reading</i> on the <a href="https://rl.talis.com/3/city/lists/C2D88FE1-918A-7FAF-AB7A-A2E0EC9BB741.html">Reading List</a>.</p>
+
+                <hr class="hrInvisible"/>
+
+  
+
+        <!-- End of content : clear floats -->
+        <div style="padding-bottom:2em;clear:both" />
+
+        <div style="text-align:right;width:90%">
+            Jason <b>DYKES</b><br/>
+            16/11/25<br/>
+            🦊
+        </div>
+        
+        <!--- spacer for iFrame -->
+        <p style="padding-top:1em"><hr/></p>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    </div> <!-- end of page -->
+    <script type="text/javascript">SyntaxHighlighter.all()</script>
+</body>
+
+</html>
