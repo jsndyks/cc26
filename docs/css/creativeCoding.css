@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v30.css — updated 2026-09-30 11:36 BST */
+/* creativeCoding-FCUS-v31.css — updated 2026-09-30 ... BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -1408,6 +1408,7 @@ html.show-lecture-notes .lectureNote::before {
   .homework
 ) {
   clear: none !important;
+  width: auto !important;
   display: flow-root;
 }
 
