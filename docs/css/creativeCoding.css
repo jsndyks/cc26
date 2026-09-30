@@ -1435,6 +1435,7 @@ html.show-lecture-notes .lectureNote::before {
 
 /* -- Three Lists -- */
 .threeLists {
+  margin: 0.5rem 4rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
