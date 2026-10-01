@@ -212,42 +212,89 @@ hs.enableKeyListener = false;
 /**
  * Load an interactive sketch in a Highslide iframe.
  *
- * sketchSrc    URL of sketch folder, without /index.html
- * sketchWidth  requested width of popup iframe
- * imgWidth     width of preview image
- * imgSrc       URL of preview image
- * sketchHeight optional popup height; defaults to sketchWidth
+ * LEGACY:
+ *   loadSketch(sketchURL, sketchWidth, imageWidth, imageURL, sketchHeight)
+ *
+ * NEW:
+ *   loadSketch(sketchURL, sketchWidth, sketchHeight,
+ *              imageURL, imageWidth, imageHeight)
+ *
+ * In the new form the popup dimensions are based directly on
+ * sketchWidth × sketchHeight.
  */
-function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
+function loadSketch(
+    sketchSrc,
+    arg2,
+    arg3,
+    arg4,
+    arg5,
+    arg6
+)
 {
-    if (sketchHeight === undefined) {
-        sketchHeight = sketchWidth;
+    var sketchWidth;
+    var sketchHeight;
+    var imgSrc;
+    var imgWidth;
+    var imgHeight;
+
+    /*
+     * NEW six-argument form:
+     * URL, sketchWidth, sketchHeight, imageURL, imageWidth, imageHeight
+     */
+    if (arguments.length >= 6) {
+        sketchWidth  = arg2;
+        sketchHeight = arg3;
+        imgSrc       = arg4;
+        imgWidth     = arg5;
+        imgHeight    = arg6;
+    }
+
+    /*
+     * LEGACY form:
+     * URL, sketchWidth, imageWidth, imageURL, sketchHeight
+     */
+    else {
+        sketchWidth = arg2;
+        imgWidth    = arg3;
+        imgSrc      = arg4;
+
+        sketchHeight = (arg5 === undefined)
+            ? sketchWidth
+            : arg5;
+
+        /*
+         * Legacy calls specified only preview width,
+         * so preserve the image's natural aspect ratio.
+         */
+        imgHeight = undefined;
     }
 
     // Keep the popup inside the visible browser window.
-    // The margins leave room for Highslide's frame/header/controls.
-    var maxWidth = window.innerWidth - 60;
+    var maxWidth  = window.innerWidth  - 60;
     var maxHeight = window.innerHeight - 80;
 
-    var popupWidth = Math.min(sketchWidth, maxWidth);
+    var popupWidth  = Math.min(sketchWidth,  maxWidth);
     var popupHeight = Math.min(sketchHeight, maxHeight);
 
-document.write(
-    "<div><a href=\"" + sketchSrc + "/index.html\" " +
-    "onclick=\"return hs.htmlExpand(this, {" +
-    "objectType: 'iframe', " +
-    "objectLoadTime: 'after', " +
-    "width: " + popupWidth + ", " +
-    "objectWidth: " + popupWidth + ", " +
-    "objectHeight: " + popupHeight + ", " +
-    "allowWidthReduction: false, " +
-    "allowHeightReduction: false" +
-    "})\">"
-); 
     document.write(
-        "<img src=\"" + imgSrc +
-        "\" width=\"" + imgWidth +
-        "\" alt=\"click to see sketch\" /></a></div>"
+        "<div><a href=\"" + sketchSrc + "/index.html\" " +
+        "onclick=\"return hs.htmlExpand(this, {" +
+        "objectType: 'iframe', " +
+        "width: " + popupWidth + ", " +
+        "objectWidth: " + popupWidth + ", " +
+        "objectHeight: " + popupHeight + ", " +
+        "allowWidthReduction: false, " +
+        "allowHeightReduction: false" +
+        "})\">"
+    );
+
+    document.write(
+        "<img src=\"" + imgSrc + "\" " +
+        "width=\"" + imgWidth + "\" " +
+        (imgHeight !== undefined
+            ? "height=\"" + imgHeight + "\" "
+            : "") +
+        "alt=\"click to see sketch\" /></a></div>"
     );
 }
 
@@ -255,19 +302,61 @@ document.write(
 /**
  * Load an image in a Highslide iframe.
  *
- * imgFile   URL of image
- * imgWidth  requested width of popup/image
- * imgHeight requested height of popup/image
- * imgAlt    alternative text
+ * LEGACY:
+ *   loadImage(imageURL, imageWidth, imageHeight, altText)
+ *
+ * NEW:
+ *   loadImage(imageURL, popupWidth, popupHeight,
+ *             previewWidth, previewHeight, altText)
  */
-function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
+function loadImage(
+    imgFile,
+    arg2,
+    arg3,
+    arg4,
+    arg5,
+    arg6
+)
 {
+    var popupWidth;
+    var popupHeight;
+    var imgWidth;
+    var imgHeight;
+    var imgAlt;
+
+    /*
+     * NEW six-argument form:
+     * URL, popupWidth, popupHeight, previewWidth, previewHeight, altText
+     */
+    if (arguments.length >= 6) {
+        popupWidth  = arg2;
+        popupHeight = arg3;
+        imgWidth    = arg4;
+        imgHeight   = arg5;
+        imgAlt      = arg6;
+    }
+
+    /*
+     * LEGACY form:
+     * URL, imageWidth, imageHeight, altText
+     *
+     * Historically the preview and popup used the same dimensions.
+     */
+    else {
+        imgWidth    = arg2;
+        imgHeight   = arg3;
+        imgAlt      = arg4;
+
+        popupWidth  = imgWidth;
+        popupHeight = imgHeight;
+    }
+
     // Keep the popup inside the visible browser window.
-    var maxWidth = window.innerWidth - 60;
+    var maxWidth  = window.innerWidth  - 60;
     var maxHeight = window.innerHeight - 80;
 
-    var popupWidth = Math.min(imgWidth, maxWidth);
-    var popupHeight = Math.min(imgHeight, maxHeight);
+    popupWidth  = Math.min(popupWidth,  maxWidth);
+    popupHeight = Math.min(popupHeight, maxHeight);
 
     document.write(
         "<div><a href=\"" + imgFile + "\" " +
@@ -282,10 +371,9 @@ function loadImage(imgFile, imgWidth, imgHeight, imgAlt)
     );
 
     document.write(
-        "<img src=\"" + imgFile +
-        "\" width=\"" + imgWidth +
-        "\" height=\"" + imgHeight +
-        "\" alt=\"" + imgAlt +
-        "\" /></a></div>"
+        "<img src=\"" + imgFile + "\" " +
+        "width=\"" + imgWidth + "\" " +
+        "height=\"" + imgHeight + "\" " +
+        "alt=\"" + imgAlt + "\" /></a></div>"
     );
 }
