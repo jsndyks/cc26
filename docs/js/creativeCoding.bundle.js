@@ -243,7 +243,7 @@ document.write(
     "allowWidthReduction: false, " +
     "allowHeightReduction: false" +
     "})\">"
-);
+); 
     document.write(
         "<img src=\"" + imgSrc +
         "\" width=\"" + imgWidth +
