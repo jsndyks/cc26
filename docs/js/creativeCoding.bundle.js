@@ -232,18 +232,18 @@ function loadSketch(sketchSrc, sketchWidth, imgWidth, imgSrc, sketchHeight)
     var popupWidth = Math.min(sketchWidth, maxWidth);
     var popupHeight = Math.min(sketchHeight, maxHeight);
 
-    document.write(
-        "<div><a href=\"" + sketchSrc + "/index.html\" " +
-        "onclick=\"return hs.htmlExpand(this, {" +
-        "objectType: 'iframe', " +
-        "width: " + popupWidth + ", " +
-        "objectWidth: " + popupWidth + ", " +
-        "objectHeight: " + popupHeight + ", " +
-        "allowWidthReduction: false, " +
-        "allowHeightReduction: false" +
-        "})\">"
-    );
-
+document.write(
+    "<div><a href=\"" + sketchSrc + "/index.html\" " +
+    "onclick=\"return hs.htmlExpand(this, {" +
+    "objectType: 'iframe', " +
+    "objectLoadTime: 'after', " +
+    "width: " + popupWidth + ", " +
+    "objectWidth: " + popupWidth + ", " +
+    "objectHeight: " + popupHeight + ", " +
+    "allowWidthReduction: false, " +
+    "allowHeightReduction: false" +
+    "})\">"
+);
     document.write(
         "<img src=\"" + imgSrc +
         "\" width=\"" + imgWidth +
