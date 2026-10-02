@@ -181,42 +181,39 @@ $(function()
  * Site-wide configuration of the Highslide window appearance
  * Original: Jo Wood, 10th September 2014
  *
- * Updated: 25th September 2026
- * - Highslide graphics moved to:
+ * Updated: 2 October 2026 11:53 BST
+ *
+ * - Highslide graphics are served from:
  *   https://jsndyks.github.io/cc26/js/city/graphics/
- * - loadSketch() now sets iframe objectWidth and objectHeight.
- * - Existing four-argument loadSketch() calls remain compatible:
- *   sketchHeight defaults to sketchWidth.
- * - loadImage() now sets iframe objectWidth and objectHeight explicitly.
+ *
+ * - loadSketch() uses a Highslide iframe.
+ * - loadImage() uses native Highslide image expansion.
+ * - Legacy loadSketch()/loadImage() calls remain supported.
+ * - New six-argument forms support height=0 for proportional sizing.
+ * - CC26 popups use the class "cc26-highslide" so that the
+ *   CC26 Highslide CSS can be scoped independently of a host page.
  */
 
-hs.graphicsDir = 'https://jsndyks.github.io/cc26/js/city/graphics/';
+
+/* --------------------------------------------------------------------------
+   Highslide configuration
+   -------------------------------------------------------------------------- */
+
+hs.graphicsDir =
+    'https://jsndyks.github.io/cc26/js/city/graphics/';
+
 hs.showCredits = false;
 hs.outlineType = 'rounded-white';
-/*
- * Removed 02/10/26 following scoped CC26 version of highslide.css.
- hs.preserveContent = false;
- */
-
 hs.enableKeyListener = false;
 
 
 /* ==========================================================================
-   Highslide helpers
-   Updated 30 September 2026
-
-   Changes:
-   - loadSketch() and loadImage() now set Highslide's explicit popup width.
-   - Popup dimensions are still capped to the visible browser window.
-   - Existing function signatures remain unchanged.
-   ========================================================================== */
-
-/* ==========================================================================
    CC26 Highslide helpers
-   Updated 2 October 2026
+   Updated 2 October 2026 11:53 BST
 
    PURPOSE
    -------
+
    loadSketch()
        Opens an interactive sketch in a Highslide iframe.
 
@@ -224,6 +221,7 @@ hs.enableKeyListener = false;
        Opens an image using Highslide's native image expansion.
 
    Both functions remain compatible with the older CC26 calling conventions.
+
 
    --------------------------------------------------------------------------
    PREFERRED NEW SYNTAX
@@ -240,16 +238,18 @@ hs.enableKeyListener = false;
        previewHeight
    );
 
+
    Example:
 
    loadSketch(
        "https://jsndyks.github.io/cc26/p5js/jwo/randSquares",
        1200,
-       150,
+       0,
        "https://jsndyks.github.io/cc26/images/randSquares.png",
        600,
        0
    );
+
 
    IMAGE:
 
@@ -262,6 +262,7 @@ hs.enableKeyListener = false;
        altText
    );
 
+
    Example:
 
    loadImage(
@@ -273,6 +274,7 @@ hs.enableKeyListener = false;
        "Bike station status"
    );
 
+
    --------------------------------------------------------------------------
    HEIGHT = 0
    --------------------------------------------------------------------------
@@ -281,19 +283,27 @@ hs.enableKeyListener = false;
 
        preserve the natural aspect ratio.
 
-   For loadImage(), the actual image aspect ratio is used.
 
-   For loadSketch(), the preview image aspect ratio is used when
-   sketchHeight is 0.
+   For loadImage():
 
-   Therefore:
+       The actual image aspect ratio is used.
+
+
+   For loadSketch():
+
+       The preview image aspect ratio is used when sketchHeight is 0.
+
+
+   For example:
 
        popup width  = 900
        popup height = 0
 
    means:
 
-       make the popup 900px wide and calculate its height proportionally.
+       make the popup up to 900px wide and calculate its height
+       proportionally.
+
 
    Likewise:
 
@@ -303,6 +313,12 @@ hs.enableKeyListener = false;
    means:
 
        show a 300px-wide preview with its natural proportional height.
+
+
+   If an automatically-sized popup would be taller than the browser
+   viewport, BOTH its width and height are reduced proportionally.
+   The aspect ratio therefore remains correct.
+
 
    --------------------------------------------------------------------------
    LEGACY SYNTAX — STILL SUPPORTED
@@ -316,8 +332,10 @@ hs.enableKeyListener = false;
        sketchHeight
    );
 
+
    If sketchHeight was omitted in an old call, it still defaults to
    sketchWidth as before.
+
 
    loadImage(
        imageURL,
@@ -326,99 +344,186 @@ hs.enableKeyListener = false;
        altText
    );
 
+
    In legacy loadImage() calls, the preview and popup initially use
    the same requested dimensions.
+
 
    --------------------------------------------------------------------------
    HIGHSLIDE ISOLATION
    --------------------------------------------------------------------------
 
-   Our popups are given:
+   Every popup created by these functions is given:
 
        wrapperClassName: "draggable-header cc26-highslide"
 
-   This gives CC26 Highslide popups their own identifiable wrapper so that
-   CC26-specific Highslide CSS can be scoped to .cc26-highslide and need not
-   interfere with Highslide controls belonging to a containing/host page.
 
-   Avoid setting this globally if these pages share a document with another
-   Highslide installation:
+   The CC26 highslide.css is scoped to .cc26-highslide.
+
+   This prevents CC26-specific Highslide CSS from styling Highslide
+   controls belonging to a containing/host page.
+
+
+   Do NOT set this globally:
 
        hs.wrapperClassName = "draggable-header";
 
-   The functions below set the wrapper class per popup instead.
+
+   These functions set the wrapper class separately for each popup.
    ========================================================================== */
 
 
 /* --------------------------------------------------------------------------
-   Open a sketch
+   ccOpenSketch()
    --------------------------------------------------------------------------
 
-   This helper is called when the preview image is clicked.
+   Called when a sketch preview is clicked.
 
-   sketchHeight = 0:
-       calculate popup height from the natural aspect ratio of the
-       preview image.
+   sketchHeight > 0
+       Use the requested popup height.
 
-   The popup is capped to the current browser viewport.
+   sketchHeight = 0
+       Calculate the popup height from the natural aspect ratio
+       of the preview image.
+
+   The popup is constrained to the available browser viewport.
+
+   If proportional sizing would make the popup too tall, width and
+   height are reduced together so that the aspect ratio is preserved.
    -------------------------------------------------------------------------- */
 
 function ccOpenSketch(anchor, sketchWidth, sketchHeight)
 {
     var img = anchor.querySelector("img");
 
-    var maxWidth  = Math.max(100, window.innerWidth  - 60);
-    var maxHeight = Math.max(100, window.innerHeight - 80);
+    var maxWidth =
+        Math.max(100, window.innerWidth - 60);
 
-    var popupWidth = Math.min(sketchWidth, maxWidth);
+    var maxHeight =
+        Math.max(100, window.innerHeight - 80);
+
+
+    /*
+     * Width can never exceed the available viewport.
+     */
+
+    var popupWidth =
+        Math.min(sketchWidth, maxWidth);
+
     var popupHeight;
 
 
-    /* Automatic proportional height. */
+    /* ----------------------------------------------------------------------
+       AUTOMATIC PROPORTIONAL HEIGHT
+       ---------------------------------------------------------------------- */
 
     if (sketchHeight === 0) {
+
+        /*
+         * Use the natural dimensions of the preview image
+         * as the aspect ratio for the sketch window.
+         */
 
         if (
             img &&
             img.naturalWidth > 0 &&
             img.naturalHeight > 0
         ) {
+
             popupHeight = Math.round(
                 popupWidth *
                 img.naturalHeight /
                 img.naturalWidth
             );
         }
+
         else {
-            /* Safe fallback if image dimensions are unavailable. */
+
+            /*
+             * Safe fallback if the natural image dimensions
+             * are somehow unavailable.
+             */
+
             popupHeight = popupWidth;
+        }
+
+
+        /*
+         * If the proportional popup is too tall for the viewport,
+         * scale BOTH dimensions.
+         *
+         * This is important: simply clipping popupHeight would
+         * change the aspect ratio.
+         */
+
+        if (popupHeight > maxHeight) {
+
+            var scale =
+                maxHeight / popupHeight;
+
+            popupHeight =
+                maxHeight;
+
+            popupWidth =
+                Math.round(
+                    popupWidth * scale
+                );
         }
     }
 
-    /* Explicit sketch height. */
+
+    /* ----------------------------------------------------------------------
+       EXPLICIT HEIGHT
+       ---------------------------------------------------------------------- */
 
     else {
-        popupHeight = sketchHeight;
+
+        popupHeight =
+            Math.min(
+                sketchHeight,
+                maxHeight
+            );
     }
 
 
-    popupHeight = Math.min(popupHeight, maxHeight);
+    /* ----------------------------------------------------------------------
+       OPEN THE SKETCH
+       ---------------------------------------------------------------------- */
 
+    return hs.htmlExpand(
+        anchor,
+        {
+            objectType: "iframe",
 
-    return hs.htmlExpand(anchor, {
+            width: popupWidth,
 
-        objectType: "iframe",
+            objectWidth: popupWidth,
+            objectHeight: popupHeight,
 
-        width: popupWidth,
+            allowWidthReduction: false,
+            allowHeightReduction: false,
 
-        objectWidth: popupWidth,
-        objectHeight: popupHeight,
+            /*
+             * Destroy the iframe when the popup closes.
+             *
+             * This prevents a p5 sketch, animation, sound, etc.
+             * continuing to run invisibly after the Highslide
+             * window has been closed.
+             */
 
-        allowWidthReduction: false,
-        allowHeightReduction: false,
+            preserveContent: false,
 
-        wrapperClassName: "draggable-header cc26-highslide"
-    });
+            /*
+             * Identifies this popup as belonging to CC26.
+             *
+             * The scoped highslide.css styles this class rather
+             * than globally styling all Highslide windows.
+             */
+
+            wrapperClassName:
+                "draggable-header cc26-highslide"
+        }
+    );
 }
 
 
@@ -428,22 +533,34 @@ function ccOpenSketch(anchor, sketchWidth, sketchHeight)
 
    NEW — six arguments:
 
-       URL,
-       sketchWidth,
-       sketchHeight,
-       previewURL,
-       previewWidth,
-       previewHeight
+       loadSketch(
+           sketchURL,
+           sketchWidth,
+           sketchHeight,
+           previewURL,
+           previewWidth,
+           previewHeight
+       );
 
 
    LEGACY:
 
-       URL,
-       sketchWidth,
-       previewWidth,
-       previewURL,
-       sketchHeight
+       loadSketch(
+           sketchURL,
+           sketchWidth,
+           previewWidth,
+           previewURL,
+           sketchHeight
+       );
 
+
+   NEW FORM:
+
+       sketchHeight = 0
+           Derive popup height from preview image aspect ratio.
+
+       previewHeight = 0
+           Preserve preview image's natural aspect ratio.
    -------------------------------------------------------------------------- */
 
 function loadSketch(
@@ -464,22 +581,30 @@ function loadSketch(
 
 
     /* ----------------------------------------------------------------------
-       NEW six-argument form.
+       NEW SIX-ARGUMENT FORM
        ---------------------------------------------------------------------- */
 
     if (arguments.length >= 6) {
 
-        sketchWidth  = arg2;
-        sketchHeight = arg3;
+        sketchWidth =
+            arg2;
 
-        imgSrc       = arg4;
-        imgWidth     = arg5;
-        imgHeight    = arg6;
+        sketchHeight =
+            arg3;
+
+        imgSrc =
+            arg4;
+
+        imgWidth =
+            arg5;
+
+        imgHeight =
+            arg6;
     }
 
 
     /* ----------------------------------------------------------------------
-       LEGACY form.
+       LEGACY FORM
 
        URL,
        sketchWidth,
@@ -490,17 +615,20 @@ function loadSketch(
 
     else {
 
-        sketchWidth = arg2;
+        sketchWidth =
+            arg2;
 
-        imgWidth = arg3;
-        imgSrc   = arg4;
+        imgWidth =
+            arg3;
+
+        imgSrc =
+            arg4;
 
 
         /*
-         * Preserve the old behaviour:
+         * Preserve the old behaviour.
          *
-         * if sketchHeight was not supplied,
-         * make the popup square.
+         * If no sketch height was supplied, make the popup square.
          */
 
         sketchHeight =
@@ -510,59 +638,88 @@ function loadSketch(
 
 
         /*
-         * Old calls did not specify preview height separately.
+         * Legacy calls did not explicitly specify preview height.
          *
-         * Leaving it automatic preserves the preview image's
-         * natural aspect ratio.
+         * Height 0 means that no HTML height attribute is written,
+         * so the browser preserves the natural aspect ratio.
          */
 
         imgHeight = 0;
     }
 
 
-    /*
-     * Remove any trailing slash before adding /index.html.
-     *
-     * Both:
-     *
-     *     .../mySketch
-     *
-     * and:
-     *
-     *     .../mySketch/
-     *
-     * therefore work cleanly.
-     */
+    /* ----------------------------------------------------------------------
+       BUILD SKETCH URL
+
+       Remove trailing slash(es) first, then add /index.html.
+
+       Both:
+
+           .../mySketch
+
+       and:
+
+           .../mySketch/
+
+       therefore work.
+       ---------------------------------------------------------------------- */
 
     var sketchURL =
-        sketchSrc.replace(/\/+$/, "") + "/index.html";
+        sketchSrc.replace(/\/+$/, "") +
+        "/index.html";
 
+
+    /* ----------------------------------------------------------------------
+       WRITE LINK
+       ---------------------------------------------------------------------- */
 
     document.write(
         "<div>" +
-        "<a href=\"" + sketchURL + "\" " +
+
+        "<a href=\"" +
+        sketchURL +
+        "\" " +
+
         "onclick=\"return ccOpenSketch(this, " +
-        sketchWidth + ", " +
+        sketchWidth +
+        ", " +
         sketchHeight +
         ")\">"
     );
 
 
+    /* ----------------------------------------------------------------------
+       WRITE PREVIEW IMAGE
+       ---------------------------------------------------------------------- */
+
     var imgTag =
-        "<img src=\"" + imgSrc + "\" " +
-        "width=\"" + imgWidth + "\" ";
+        "<img src=\"" +
+        imgSrc +
+        "\" " +
+
+        "width=\"" +
+        imgWidth +
+        "\" ";
 
 
     /*
-     * Height 0 means:
-     * do not write a height attribute.
+     * Height 0:
      *
-     * The browser therefore preserves the natural image ratio.
+     * do NOT write a height attribute.
+     *
+     * The browser will therefore calculate the correct height
+     * from the natural image aspect ratio.
      */
 
-    if (imgHeight && imgHeight > 0) {
+    if (
+        imgHeight &&
+        imgHeight > 0
+    ) {
+
         imgTag +=
-            "height=\"" + imgHeight + "\" ";
+            "height=\"" +
+            imgHeight +
+            "\" ";
     }
 
 
@@ -577,69 +734,160 @@ function loadSketch(
 
 
 /* --------------------------------------------------------------------------
-   Open an image
+   ccOpenImage()
    --------------------------------------------------------------------------
 
-   Native Highslide image expansion — NOT an iframe.
+   Opens an image using native Highslide image expansion.
 
-   popupHeight = 0:
-       calculate the required height from the actual image's natural
-       aspect ratio.
+   This is deliberately NOT an iframe.
 
-   Since the preview uses the same image file, naturalWidth/naturalHeight
-   give us the actual image aspect ratio.
+   Benefits include:
+
+       - transparent PNGs remain transparent
+       - no iframe document surrounds the image
+       - Highslide handles it as an image rather than HTML content
+
+
+   requestedHeight > 0
+       Use the explicitly requested popup height.
+
+   requestedHeight = 0
+       Calculate the popup height from the actual image aspect ratio.
+
+   If proportional sizing would exceed the viewport height,
+   BOTH dimensions are reduced proportionally.
    -------------------------------------------------------------------------- */
 
-function ccOpenImage(anchor, requestedWidth, requestedHeight)
+function ccOpenImage(
+    anchor,
+    requestedWidth,
+    requestedHeight
+)
 {
-    var img = anchor.querySelector("img");
+    var img =
+        anchor.querySelector("img");
 
-    var maxWidth  = Math.max(100, window.innerWidth  - 60);
-    var maxHeight = Math.max(100, window.innerHeight - 80);
 
-    var popupWidth = Math.min(requestedWidth, maxWidth);
+    var maxWidth =
+        Math.max(
+            100,
+            window.innerWidth - 60
+        );
+
+
+    var maxHeight =
+        Math.max(
+            100,
+            window.innerHeight - 80
+        );
+
+
+    var popupWidth =
+        Math.min(
+            requestedWidth,
+            maxWidth
+        );
+
+
     var popupHeight;
 
 
-    /* Automatic proportional height. */
+    /* ----------------------------------------------------------------------
+       AUTOMATIC PROPORTIONAL HEIGHT
+       ---------------------------------------------------------------------- */
 
     if (requestedHeight === 0) {
+
+        /*
+         * The preview uses the same image file as the popup,
+         * so naturalWidth/naturalHeight give us the actual
+         * image aspect ratio.
+         */
 
         if (
             img &&
             img.naturalWidth > 0 &&
             img.naturalHeight > 0
         ) {
-            popupHeight = Math.round(
-                popupWidth *
-                img.naturalHeight /
-                img.naturalWidth
-            );
+
+            popupHeight =
+                Math.round(
+                    popupWidth *
+                    img.naturalHeight /
+                    img.naturalWidth
+                );
         }
+
         else {
-            popupHeight = popupWidth;
+
+            /*
+             * Safe fallback if natural image dimensions
+             * are unavailable.
+             */
+
+            popupHeight =
+                popupWidth;
+        }
+
+
+        /*
+         * If the image would be too tall for the viewport,
+         * scale BOTH dimensions so the aspect ratio remains
+         * unchanged.
+         */
+
+        if (popupHeight > maxHeight) {
+
+            var scale =
+                maxHeight / popupHeight;
+
+
+            popupHeight =
+                maxHeight;
+
+
+            popupWidth =
+                Math.round(
+                    popupWidth * scale
+                );
         }
     }
 
-    /* Explicit popup height. */
+
+    /* ----------------------------------------------------------------------
+       EXPLICIT HEIGHT
+       ---------------------------------------------------------------------- */
 
     else {
-        popupHeight = requestedHeight;
+
+        popupHeight =
+            Math.min(
+                requestedHeight,
+                maxHeight
+            );
     }
 
 
-    popupHeight = Math.min(popupHeight, maxHeight);
+    /* ----------------------------------------------------------------------
+       OPEN NATIVE HIGHSLIDE IMAGE
+       ---------------------------------------------------------------------- */
 
+    return hs.expand(
+        anchor,
+        {
+            width:
+                popupWidth,
 
-    return hs.expand(anchor, {
+            height:
+                popupHeight,
 
-        width: popupWidth,
-        height: popupHeight,
+            allowSizeReduction:
+                true,
 
-        allowSizeReduction: true,
-
-        wrapperClassName: "draggable-header cc26-highslide"
-    });
+            wrapperClassName:
+                "draggable-header cc26-highslide"
+        }
+    );
 }
 
 
@@ -649,24 +897,38 @@ function ccOpenImage(anchor, requestedWidth, requestedHeight)
 
    NEW — six arguments:
 
-       imageURL,
-       popupWidth,
-       popupHeight,
-       previewWidth,
-       previewHeight,
-       altText
+       loadImage(
+           imageURL,
+           popupWidth,
+           popupHeight,
+           previewWidth,
+           previewHeight,
+           altText
+       );
 
 
    LEGACY — four arguments:
 
-       imageURL,
-       imageWidth,
-       imageHeight,
-       altText
+       loadImage(
+           imageURL,
+           imageWidth,
+           imageHeight,
+           altText
+       );
 
 
-   In a legacy call the popup initially uses the same requested dimensions
-   as the preview, maintaining the historical behaviour.
+   NEW FORM:
+
+       popupHeight = 0
+           Preserve the actual image aspect ratio.
+
+       previewHeight = 0
+           Preserve the preview image's natural aspect ratio.
+
+
+   LEGACY FORM:
+
+       Preview and popup initially use the same requested dimensions.
    -------------------------------------------------------------------------- */
 
 function loadImage(
@@ -688,23 +950,30 @@ function loadImage(
 
 
     /* ----------------------------------------------------------------------
-       NEW six-argument form.
+       NEW SIX-ARGUMENT FORM
        ---------------------------------------------------------------------- */
 
     if (arguments.length >= 6) {
 
-        popupWidth  = arg2;
-        popupHeight = arg3;
+        popupWidth =
+            arg2;
 
-        imgWidth  = arg4;
-        imgHeight = arg5;
+        popupHeight =
+            arg3;
 
-        imgAlt = arg6;
+        imgWidth =
+            arg4;
+
+        imgHeight =
+            arg5;
+
+        imgAlt =
+            arg6;
     }
 
 
     /* ----------------------------------------------------------------------
-       LEGACY four-argument form.
+       LEGACY FOUR-ARGUMENT FORM
 
        imageURL,
        imageWidth,
@@ -714,44 +983,88 @@ function loadImage(
 
     else {
 
-        imgWidth  = arg2;
-        imgHeight = arg3;
-        imgAlt    = arg4;
+        imgWidth =
+            arg2;
 
-        popupWidth  = imgWidth;
-        popupHeight = imgHeight;
+        imgHeight =
+            arg3;
+
+        imgAlt =
+            arg4;
+
+
+        /*
+         * Preserve historical behaviour:
+         *
+         * popup starts with the same requested dimensions
+         * as the preview.
+         */
+
+        popupWidth =
+            imgWidth;
+
+        popupHeight =
+            imgHeight;
     }
 
 
+    /* ----------------------------------------------------------------------
+       WRITE LINK
+       ---------------------------------------------------------------------- */
+
     document.write(
         "<div>" +
-        "<a href=\"" + imgFile + "\" " +
+
+        "<a href=\"" +
+        imgFile +
+        "\" " +
+
         "onclick=\"return ccOpenImage(this, " +
-        popupWidth + ", " +
+        popupWidth +
+        ", " +
         popupHeight +
         ")\">"
     );
 
 
+    /* ----------------------------------------------------------------------
+       WRITE PREVIEW IMAGE
+       ---------------------------------------------------------------------- */
+
     var imgTag =
-        "<img src=\"" + imgFile + "\" " +
-        "width=\"" + imgWidth + "\" ";
+        "<img src=\"" +
+        imgFile +
+        "\" " +
+
+        "width=\"" +
+        imgWidth +
+        "\" ";
 
 
     /*
-     * Height 0 means:
-     * omit the height attribute and allow the browser to preserve
-     * the natural image aspect ratio.
+     * Preview height 0:
+     *
+     * omit the height attribute so the browser uses the
+     * image's natural aspect ratio.
      */
 
-    if (imgHeight && imgHeight > 0) {
+    if (
+        imgHeight &&
+        imgHeight > 0
+    ) {
+
         imgTag +=
-            "height=\"" + imgHeight + "\" ";
+            "height=\"" +
+            imgHeight +
+            "\" ";
     }
 
 
     imgTag +=
-        "alt=\"" + imgAlt + "\" />" +
+        "alt=\"" +
+        imgAlt +
+        "\" />" +
+
         "</a>" +
         "</div>";
 
