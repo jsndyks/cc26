@@ -193,8 +193,11 @@ $(function()
 hs.graphicsDir = 'https://jsndyks.github.io/cc26/js/city/graphics/';
 hs.showCredits = false;
 hs.outlineType = 'rounded-white';
-hs.wrapperClassName = 'draggable-header';
-hs.preserveContent = false;
+/*
+ * Removed 02/10/26 following scoped CC26 version of highslide.css.
+ hs.preserveContent = false;
+ */
+
 hs.enableKeyListener = false;
 
 
