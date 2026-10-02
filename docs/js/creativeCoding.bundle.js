@@ -1178,18 +1178,3 @@ function loadImage(
     );
 }
 
-function ccEnsureHighslideCSS()
-{
-    if (document.getElementById("cc26-highslide-css")) {
-        return;
-    }
-
-    var link = document.createElement("link");
-
-    link.id = "cc26-highslide-css";
-    link.rel = "stylesheet";
-    link.href =
-        "https://jsndyks.github.io/cc26/js/city/css/highslide.css";
-
-    document.head.appendChild(link);
-}
