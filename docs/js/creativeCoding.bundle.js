@@ -195,32 +195,47 @@ $(function()
  */
 
 
-/* --------------------------------------------------------------------------
-   Highslide configuration
-   -------------------------------------------------------------------------- */
-
-hs.graphicsDir =
-    'https://jsndyks.github.io/cc26/js/city/graphics/';
-
-hs.showCredits = false;
-hs.outlineType = 'rounded-white';
-hs.enableKeyListener = false;
-
-
 /* ==========================================================================
    CC26 Highslide helpers
-   Updated 2 October 2026 11:53 BST
+   Updated 2 October 2026
 
-   PURPOSE
-   -------
+   --------------------------------------------------------------------------
+   IMPORTANT: HIGHSLIDE ISOLATION
+   --------------------------------------------------------------------------
 
-   loadSketch()
-       Opens an interactive sketch in a Highslide iframe.
+   creativeCoding.css should NOT import highslide.css.
 
-   loadImage()
-       Opens an image using Highslide's native image expansion.
+   In other words, REMOVE this from creativeCoding.css:
 
-   Both functions remain compatible with the older CC26 calling conventions.
+       @import url(
+           "https://jsndyks.github.io/cc26/js/city/css/highslide.css"
+       );
+
+
+   This code loads the CC26 Highslide stylesheet only on pages that actually
+   use loadSketch() or loadImage().
+
+   The stylesheet itself is scoped to:
+
+       .cc26-highslide
+
+
+   There are also NO site-wide hs.* assignments when this bundle loads.
+
+   Previously we had things such as:
+
+       hs.graphicsDir = "...";
+       hs.showCredits = false;
+       hs.outlineType = "rounded-white";
+       hs.enableKeyListener = false;
+
+   at top level.
+
+   Those settings are now applied only immediately before a CC26 popup
+   is opened.
+
+   This greatly reduces interference when creativeCoding.bundle.js is
+   included in a page which also uses Highslide independently.
 
 
    --------------------------------------------------------------------------
@@ -229,50 +244,50 @@ hs.enableKeyListener = false;
 
    SKETCH:
 
-   loadSketch(
-       sketchURL,
-       sketchWidth,
-       sketchHeight,
-       previewImageURL,
-       previewWidth,
-       previewHeight
-   );
+       loadSketch(
+           sketchURL,
+           popupWidth,
+           popupHeight,
+           previewImageURL,
+           previewWidth,
+           previewHeight
+       );
 
 
    Example:
 
-   loadSketch(
-       "https://jsndyks.github.io/cc26/p5js/jwo/randSquares",
-       1200,
-       0,
-       "https://jsndyks.github.io/cc26/images/randSquares.png",
-       600,
-       0
-   );
+       loadSketch(
+           "https://jsndyks.github.io/cc26/p5js/jwo/randSquares",
+           1200,
+           0,
+           "https://jsndyks.github.io/cc26/images/randSquares.png",
+           600,
+           0
+       );
 
 
    IMAGE:
 
-   loadImage(
-       imageURL,
-       popupWidth,
-       popupHeight,
-       previewWidth,
-       previewHeight,
-       altText
-   );
+       loadImage(
+           imageURL,
+           popupWidth,
+           popupHeight,
+           previewWidth,
+           previewHeight,
+           altText
+       );
 
 
    Example:
 
-   loadImage(
-       "https://jsndyks.github.io/cc26/images/stations25.png",
-       900,
-       0,
-       300,
-       0,
-       "Bike station status"
-   );
+       loadImage(
+           "https://jsndyks.github.io/cc26/images/stations25.png",
+           900,
+           0,
+           300,
+           0,
+           "Bike station status"
+       );
 
 
    --------------------------------------------------------------------------
@@ -284,40 +299,26 @@ hs.enableKeyListener = false;
        preserve the natural aspect ratio.
 
 
-   For loadImage():
+   loadImage():
 
-       The actual image aspect ratio is used.
+       popupHeight = 0
+           Uses the actual image aspect ratio.
 
-
-   For loadSketch():
-
-       The preview image aspect ratio is used when sketchHeight is 0.
-
-
-   For example:
-
-       popup width  = 900
-       popup height = 0
-
-   means:
-
-       make the popup up to 900px wide and calculate its height
-       proportionally.
+       previewHeight = 0
+           Uses the browser's natural image aspect ratio.
 
 
-   Likewise:
+   loadSketch():
 
-       preview width  = 300
-       preview height = 0
+       sketchHeight = 0
+           Uses the preview image aspect ratio for the sketch popup.
 
-   means:
+       previewHeight = 0
+           Uses the browser's natural image aspect ratio.
 
-       show a 300px-wide preview with its natural proportional height.
 
-
-   If an automatically-sized popup would be taller than the browser
-   viewport, BOTH its width and height are reduced proportionally.
-   The aspect ratio therefore remains correct.
+   If an automatically calculated popup is too tall for the viewport,
+   BOTH width and height are reduced proportionally.
 
 
    --------------------------------------------------------------------------
@@ -333,10 +334,6 @@ hs.enableKeyListener = false;
    );
 
 
-   If sketchHeight was omitted in an old call, it still defaults to
-   sketchWidth as before.
-
-
    loadImage(
        imageURL,
        imageWidth,
@@ -344,71 +341,168 @@ hs.enableKeyListener = false;
        altText
    );
 
-
-   In legacy loadImage() calls, the preview and popup initially use
-   the same requested dimensions.
-
-
-   --------------------------------------------------------------------------
-   HIGHSLIDE ISOLATION
-   --------------------------------------------------------------------------
-
-   Every popup created by these functions is given:
-
-       wrapperClassName: "draggable-header cc26-highslide"
-
-
-   The CC26 highslide.css is scoped to .cc26-highslide.
-
-   This prevents CC26-specific Highslide CSS from styling Highslide
-   controls belonging to a containing/host page.
-
-
-   Do NOT set this globally:
-
-       hs.wrapperClassName = "draggable-header";
-
-
-   These functions set the wrapper class separately for each popup.
    ========================================================================== */
 
 
-/* --------------------------------------------------------------------------
-   ccOpenSketch()
-   --------------------------------------------------------------------------
+/* ==========================================================================
+   Load the scoped CC26 Highslide stylesheet
+   ========================================================================== */
 
-   Called when a sketch preview is clicked.
-
-   sketchHeight > 0
-       Use the requested popup height.
-
-   sketchHeight = 0
-       Calculate the popup height from the natural aspect ratio
-       of the preview image.
-
-   The popup is constrained to the available browser viewport.
-
-   If proportional sizing would make the popup too tall, width and
-   height are reduced together so that the aspect ratio is preserved.
-   -------------------------------------------------------------------------- */
-
-function ccOpenSketch(anchor, sketchWidth, sketchHeight)
+/**
+ * Make sure the CC26 Highslide stylesheet is present.
+ *
+ * The stylesheet is NOT loaded merely because creativeCoding.css
+ * or creativeCoding.bundle.js has been included.
+ *
+ * It is inserted only when loadSketch() or loadImage() is actually
+ * used on the page.
+ *
+ * Calling this function repeatedly is safe.
+ */
+function ccEnsureHighslideCSS()
 {
-    var img = anchor.querySelector("img");
-
-    var maxWidth =
-        Math.max(100, window.innerWidth - 60);
-
-    var maxHeight =
-        Math.max(100, window.innerHeight - 80);
+    /*
+     * If we have already added it, do nothing.
+     */
+    if (
+        document.getElementById(
+            "cc26-highslide-css"
+        )
+    ) {
+        return;
+    }
 
 
     /*
-     * Width can never exceed the available viewport.
+     * Create the stylesheet link.
+     */
+    var link =
+        document.createElement("link");
+
+
+    link.id =
+        "cc26-highslide-css";
+
+    link.rel =
+        "stylesheet";
+
+    link.href =
+        "https://jsndyks.github.io/cc26/js/city/css/highslide.css";
+
+
+    /*
+     * Put it in <head>.
+     */
+    document.head.appendChild(link);
+}
+
+
+/* ==========================================================================
+   Prepare Highslide for a CC26 popup
+   ========================================================================== */
+
+/**
+ * Apply the settings needed by a CC26 Highslide popup.
+ *
+ * IMPORTANT:
+ *
+ * These settings are no longer applied when the bundle itself loads.
+ *
+ * They are applied only when the user actually opens a CC26 sketch
+ * or image.
+ *
+ * Highslide 4 uses a global `hs` object, so complete JavaScript isolation
+ * is not possible if two independent Highslide systems deliberately share
+ * the same document.
+ *
+ * This approach nevertheless prevents CC26 from altering Highslide merely
+ * because the CC26 bundle has been included.
+ */
+function ccPrepareHighslide()
+{
+    /*
+     * Safety check.
+     *
+     * Normally the CSS has already begun loading when loadSketch()
+     * or loadImage() generated the preview.
+     */
+    ccEnsureHighslideCSS();
+
+
+    /*
+     * These settings are applied only now — when a CC26 popup
+     * is actually requested.
      */
 
+    hs.graphicsDir =
+        "https://jsndyks.github.io/cc26/js/city/graphics/";
+
+    hs.showCredits =
+        false;
+
+    hs.outlineType =
+        "rounded-white";
+
+    hs.enableKeyListener =
+        false;
+}
+
+
+/* ==========================================================================
+   ccOpenSketch()
+   ========================================================================== */
+
+/**
+ * Open an interactive sketch in a Highslide iframe.
+ *
+ * sketchHeight > 0
+ *     Use that requested height.
+ *
+ * sketchHeight = 0
+ *     Calculate the height from the preview image's natural aspect ratio.
+ *
+ * If proportional sizing would make the popup too tall for the browser,
+ * width and height are reduced together.
+ */
+function ccOpenSketch(
+    anchor,
+    sketchWidth,
+    sketchHeight
+)
+{
+    /*
+     * Apply CC26 Highslide configuration only now.
+     */
+    ccPrepareHighslide();
+
+
+    var img =
+        anchor.querySelector("img");
+
+
+    var maxWidth =
+        Math.max(
+            100,
+            window.innerWidth - 60
+        );
+
+
+    var maxHeight =
+        Math.max(
+            100,
+            window.innerHeight - 80
+        );
+
+
+    /*
+     * Never request a popup wider than the available viewport.
+     */
     var popupWidth =
-        Math.min(sketchWidth, maxWidth);
+        Math.min(
+            sketchWidth,
+            maxWidth
+        );
+
 
     var popupHeight;
 
@@ -420,53 +514,51 @@ function ccOpenSketch(anchor, sketchWidth, sketchHeight)
     if (sketchHeight === 0) {
 
         /*
-         * Use the natural dimensions of the preview image
-         * as the aspect ratio for the sketch window.
+         * Use the natural aspect ratio of the preview image.
          */
-
         if (
             img &&
             img.naturalWidth > 0 &&
             img.naturalHeight > 0
         ) {
 
-            popupHeight = Math.round(
-                popupWidth *
-                img.naturalHeight /
-                img.naturalWidth
-            );
+            popupHeight =
+                Math.round(
+                    popupWidth *
+                    img.naturalHeight /
+                    img.naturalWidth
+                );
         }
 
         else {
 
             /*
-             * Safe fallback if the natural image dimensions
-             * are somehow unavailable.
+             * Safe fallback if image dimensions are unavailable.
              */
-
-            popupHeight = popupWidth;
+            popupHeight =
+                popupWidth;
         }
 
 
         /*
          * If the proportional popup is too tall for the viewport,
-         * scale BOTH dimensions.
-         *
-         * This is important: simply clipping popupHeight would
-         * change the aspect ratio.
+         * reduce BOTH dimensions.
          */
-
         if (popupHeight > maxHeight) {
 
             var scale =
-                maxHeight / popupHeight;
+                maxHeight /
+                popupHeight;
+
 
             popupHeight =
                 maxHeight;
 
+
             popupWidth =
                 Math.round(
-                    popupWidth * scale
+                    popupWidth *
+                    scale
                 );
         }
     }
@@ -487,39 +579,46 @@ function ccOpenSketch(anchor, sketchWidth, sketchHeight)
 
 
     /* ----------------------------------------------------------------------
-       OPEN THE SKETCH
+       OPEN SKETCH
        ---------------------------------------------------------------------- */
 
     return hs.htmlExpand(
         anchor,
         {
-            objectType: "iframe",
+            objectType:
+                "iframe",
 
-            width: popupWidth,
+            width:
+                popupWidth,
 
-            objectWidth: popupWidth,
-            objectHeight: popupHeight,
+            objectWidth:
+                popupWidth,
 
-            allowWidthReduction: false,
-            allowHeightReduction: false,
+            objectHeight:
+                popupHeight,
+
+            allowWidthReduction:
+                false,
+
+            allowHeightReduction:
+                false,
+
 
             /*
-             * Destroy the iframe when the popup closes.
+             * Destroy the iframe when the window closes.
              *
-             * This prevents a p5 sketch, animation, sound, etc.
-             * continuing to run invisibly after the Highslide
-             * window has been closed.
+             * This stops p5 sketches, animations, sounds, timers etc.
+             * continuing invisibly after the popup has disappeared.
              */
+            preserveContent:
+                false,
 
-            preserveContent: false,
 
             /*
-             * Identifies this popup as belonging to CC26.
+             * Identifies this as OUR Highslide window.
              *
-             * The scoped highslide.css styles this class rather
-             * than globally styling all Highslide windows.
+             * The CC26 highslide.css is scoped to this class.
              */
-
             wrapperClassName:
                 "draggable-header cc26-highslide"
         }
@@ -527,42 +626,42 @@ function ccOpenSketch(anchor, sketchWidth, sketchHeight)
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    loadSketch()
-   --------------------------------------------------------------------------
+   ========================================================================== */
 
-   NEW — six arguments:
-
-       loadSketch(
-           sketchURL,
-           sketchWidth,
-           sketchHeight,
-           previewURL,
-           previewWidth,
-           previewHeight
-       );
-
-
-   LEGACY:
-
-       loadSketch(
-           sketchURL,
-           sketchWidth,
-           previewWidth,
-           previewURL,
-           sketchHeight
-       );
-
-
-   NEW FORM:
-
-       sketchHeight = 0
-           Derive popup height from preview image aspect ratio.
-
-       previewHeight = 0
-           Preserve preview image's natural aspect ratio.
-   -------------------------------------------------------------------------- */
-
+/**
+ * NEW:
+ *
+ *     loadSketch(
+ *         sketchURL,
+ *         popupWidth,
+ *         popupHeight,
+ *         previewURL,
+ *         previewWidth,
+ *         previewHeight
+ *     );
+ *
+ *
+ * LEGACY:
+ *
+ *     loadSketch(
+ *         sketchURL,
+ *         sketchWidth,
+ *         previewWidth,
+ *         previewURL,
+ *         sketchHeight
+ *     );
+ *
+ *
+ * NEW FORM:
+ *
+ *     popupHeight = 0
+ *         derive popup height proportionally
+ *
+ *     previewHeight = 0
+ *         preserve preview image aspect ratio
+ */
 function loadSketch(
     sketchSrc,
     arg2,
@@ -572,6 +671,16 @@ function loadSketch(
     arg6
 )
 {
+    /*
+     * This page actually uses CC26 Highslide, so begin loading
+     * the scoped stylesheet now.
+     *
+     * Doing this while the page is being constructed means the CSS
+     * should already be available by the time the preview is clicked.
+     */
+    ccEnsureHighslideCSS();
+
+
     var sketchWidth;
     var sketchHeight;
 
@@ -626,11 +735,10 @@ function loadSketch(
 
 
         /*
-         * Preserve the old behaviour.
+         * Preserve legacy behaviour:
          *
-         * If no sketch height was supplied, make the popup square.
+         * if no popup height was supplied, make it square.
          */
-
         sketchHeight =
             (arg5 === undefined)
                 ? sketchWidth
@@ -638,34 +746,37 @@ function loadSketch(
 
 
         /*
-         * Legacy calls did not explicitly specify preview height.
+         * Legacy calls did not separately specify preview height.
          *
-         * Height 0 means that no HTML height attribute is written,
-         * so the browser preserves the natural aspect ratio.
+         * Zero means natural proportional height.
          */
-
-        imgHeight = 0;
+        imgHeight =
+            0;
     }
 
 
     /* ----------------------------------------------------------------------
        BUILD SKETCH URL
-
-       Remove trailing slash(es) first, then add /index.html.
-
-       Both:
-
-           .../mySketch
-
-       and:
-
-           .../mySketch/
-
-       therefore work.
        ---------------------------------------------------------------------- */
 
+    /*
+     * Remove any trailing slash before adding /index.html.
+     *
+     * Thus both:
+     *
+     *     .../mySketch
+     *
+     * and:
+     *
+     *     .../mySketch/
+     *
+     * work.
+     */
     var sketchURL =
-        sketchSrc.replace(/\/+$/, "") +
+        sketchSrc.replace(
+            /\/+$/,
+            ""
+        ) +
         "/index.html";
 
 
@@ -703,14 +814,12 @@ function loadSketch(
 
 
     /*
-     * Height 0:
+     * Height zero means:
      *
-     * do NOT write a height attribute.
+     * do not write a height attribute.
      *
-     * The browser will therefore calculate the correct height
-     * from the natural image aspect ratio.
+     * The browser then preserves the image's natural aspect ratio.
      */
-
     if (
         imgHeight &&
         imgHeight > 0
@@ -729,41 +838,42 @@ function loadSketch(
         "</div>";
 
 
-    document.write(imgTag);
+    document.write(
+        imgTag
+    );
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    ccOpenImage()
-   --------------------------------------------------------------------------
+   ========================================================================== */
 
-   Opens an image using native Highslide image expansion.
-
-   This is deliberately NOT an iframe.
-
-   Benefits include:
-
-       - transparent PNGs remain transparent
-       - no iframe document surrounds the image
-       - Highslide handles it as an image rather than HTML content
-
-
-   requestedHeight > 0
-       Use the explicitly requested popup height.
-
-   requestedHeight = 0
-       Calculate the popup height from the actual image aspect ratio.
-
-   If proportional sizing would exceed the viewport height,
-   BOTH dimensions are reduced proportionally.
-   -------------------------------------------------------------------------- */
-
+/**
+ * Open an image using native Highslide image expansion.
+ *
+ * This deliberately uses hs.expand(), NOT hs.htmlExpand().
+ *
+ * requestedHeight > 0
+ *     use the requested height
+ *
+ * requestedHeight = 0
+ *     calculate height using the image's natural aspect ratio
+ *
+ * If the result is too tall for the browser, both dimensions
+ * are reduced proportionally.
+ */
 function ccOpenImage(
     anchor,
     requestedWidth,
     requestedHeight
 )
 {
+    /*
+     * Apply CC26 Highslide configuration only now.
+     */
+    ccPrepareHighslide();
+
+
     var img =
         anchor.querySelector("img");
 
@@ -799,11 +909,9 @@ function ccOpenImage(
     if (requestedHeight === 0) {
 
         /*
-         * The preview uses the same image file as the popup,
-         * so naturalWidth/naturalHeight give us the actual
-         * image aspect ratio.
+         * The preview uses the same image file, so these are
+         * the actual image dimensions.
          */
-
         if (
             img &&
             img.naturalWidth > 0 &&
@@ -821,25 +929,21 @@ function ccOpenImage(
         else {
 
             /*
-             * Safe fallback if natural image dimensions
-             * are unavailable.
+             * Safe fallback.
              */
-
             popupHeight =
                 popupWidth;
         }
 
 
         /*
-         * If the image would be too tall for the viewport,
-         * scale BOTH dimensions so the aspect ratio remains
-         * unchanged.
+         * Preserve the aspect ratio if viewport height is limiting.
          */
-
         if (popupHeight > maxHeight) {
 
             var scale =
-                maxHeight / popupHeight;
+                maxHeight /
+                popupHeight;
 
 
             popupHeight =
@@ -848,7 +952,8 @@ function ccOpenImage(
 
             popupWidth =
                 Math.round(
-                    popupWidth * scale
+                    popupWidth *
+                    scale
                 );
         }
     }
@@ -869,7 +974,7 @@ function ccOpenImage(
 
 
     /* ----------------------------------------------------------------------
-       OPEN NATIVE HIGHSLIDE IMAGE
+       OPEN IMAGE
        ---------------------------------------------------------------------- */
 
     return hs.expand(
@@ -891,46 +996,41 @@ function ccOpenImage(
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    loadImage()
-   --------------------------------------------------------------------------
+   ========================================================================== */
 
-   NEW — six arguments:
-
-       loadImage(
-           imageURL,
-           popupWidth,
-           popupHeight,
-           previewWidth,
-           previewHeight,
-           altText
-       );
-
-
-   LEGACY — four arguments:
-
-       loadImage(
-           imageURL,
-           imageWidth,
-           imageHeight,
-           altText
-       );
-
-
-   NEW FORM:
-
-       popupHeight = 0
-           Preserve the actual image aspect ratio.
-
-       previewHeight = 0
-           Preserve the preview image's natural aspect ratio.
-
-
-   LEGACY FORM:
-
-       Preview and popup initially use the same requested dimensions.
-   -------------------------------------------------------------------------- */
-
+/**
+ * NEW:
+ *
+ *     loadImage(
+ *         imageURL,
+ *         popupWidth,
+ *         popupHeight,
+ *         previewWidth,
+ *         previewHeight,
+ *         altText
+ *     );
+ *
+ *
+ * LEGACY:
+ *
+ *     loadImage(
+ *         imageURL,
+ *         imageWidth,
+ *         imageHeight,
+ *         altText
+ *     );
+ *
+ *
+ * NEW FORM:
+ *
+ *     popupHeight = 0
+ *         preserve actual image aspect ratio
+ *
+ *     previewHeight = 0
+ *         preserve preview aspect ratio
+ */
 function loadImage(
     imgFile,
     arg2,
@@ -940,6 +1040,13 @@ function loadImage(
     arg6
 )
 {
+    /*
+     * This page actually uses CC26 Highslide, so begin loading
+     * the scoped stylesheet now.
+     */
+    ccEnsureHighslideCSS();
+
+
     var popupWidth;
     var popupHeight;
 
@@ -996,10 +1103,9 @@ function loadImage(
         /*
          * Preserve historical behaviour:
          *
-         * popup starts with the same requested dimensions
+         * popup initially uses the same requested dimensions
          * as the preview.
          */
-
         popupWidth =
             imgWidth;
 
@@ -1042,12 +1148,10 @@ function loadImage(
 
 
     /*
-     * Preview height 0:
+     * Height zero:
      *
-     * omit the height attribute so the browser uses the
-     * image's natural aspect ratio.
+     * omit the HTML height attribute.
      */
-
     if (
         imgHeight &&
         imgHeight > 0
@@ -1069,5 +1173,23 @@ function loadImage(
         "</div>";
 
 
-    document.write(imgTag);
+    document.write(
+        imgTag
+    );
+}
+
+function ccEnsureHighslideCSS()
+{
+    if (document.getElementById("cc26-highslide-css")) {
+        return;
+    }
+
+    var link = document.createElement("link");
+
+    link.id = "cc26-highslide-css";
+    link.rel = "stylesheet";
+    link.href =
+        "https://jsndyks.github.io/cc26/js/city/css/highslide.css";
+
+    document.head.appendChild(link);
 }
