@@ -858,6 +858,70 @@ function loadSketch(
 
 
 /* ==========================================================================
+   Explicit Highslide image content sizing
+   ========================================================================== */
+
+/**
+ * Highslide's native image expander does not enlarge an image beyond its
+ * natural pixel dimensions merely because useBox/width/height are larger.
+ *
+ * The six-argument loadImage() API, however, defines popupWidth/popupHeight
+ * as the DISPLAYED image-content size. Install a very small compatibility
+ * hook so only those explicit-size CC26 image expanders may upscale (or
+ * downscale) the actual expanded <img> before Highslide measures it.
+ *
+ * Legacy four-argument loadImage() calls do not set the custom marker and
+ * therefore retain Highslide's historical native-image behaviour unchanged.
+ */
+function ccInstallHighslideImageContentSizing()
+{
+    if (
+        typeof hs === "undefined" ||
+        !hs.Expander ||
+        !hs.Expander.prototype ||
+        hs.Expander.prototype.cc26ImageContentSizingInstalled
+    ) {
+        return;
+    }
+
+
+    var expanderPrototype =
+        hs.Expander.prototype;
+
+
+    var originalContentLoaded =
+        expanderPrototype.contentLoaded;
+
+
+    expanderPrototype.contentLoaded = function()
+    {
+        if (
+            this.isImage &&
+            this.custom &&
+            this.custom.cc26ExplicitImageContentSize &&
+            this.content
+        ) {
+            this.content.width =
+                this.custom.cc26ContentWidth;
+
+            this.content.height =
+                this.custom.cc26ContentHeight;
+        }
+
+
+        return originalContentLoaded.apply(
+            this,
+            arguments
+        );
+    };
+
+
+    expanderPrototype.cc26ImageContentSizingInstalled =
+        true;
+}
+
+
+/* ==========================================================================
    ccOpenImage()
    ========================================================================== */
 
@@ -1027,9 +1091,38 @@ function ccOpenImage(
     }
 
 
+    var expandCustom =
+        null;
+
+
+    if (explicitContentSize) {
+
+        /*
+         * Highslide normally refuses to enlarge a native image beyond its
+         * natural pixel dimensions. For the six-argument API only, make the
+         * expanded <img> itself use the requested displayed content size.
+         */
+        ccInstallHighslideImageContentSizing();
+
+
+        expandCustom =
+            {
+                cc26ExplicitImageContentSize:
+                    true,
+
+                cc26ContentWidth:
+                    contentWidth,
+
+                cc26ContentHeight:
+                    contentHeight
+            };
+    }
+
+
     return hs.expand(
         anchor,
-        expandOptions
+        expandOptions,
+        expandCustom
     );
 }
 
