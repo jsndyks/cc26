@@ -129,7 +129,9 @@
 
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyBig/", 300, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyBig.png");</script>
+                        <script>
+                            loadSketch("https://jsndyks.github.io/cc26/p5js/keyBig/", 300, 0,
+                            "https://jsndyks.github.io/cc26/images/interaction/p5js.keyBig.png", 200, 0);</script>
                         <!-- <div style="clear:both"/> -->
                         <figcaption><b>Key Example</b><br/>Press keys on the keyboard to see how the value of <b>key</b> changes<br/>based upon your interaction with the sketch through the keyboard.<br/>Voila! Interaction!</figcaption>
                     </figure>   
@@ -220,7 +222,7 @@
                 <!-- Left column -->
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedRandom/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedRand.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedRandom/", 420, 420, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedRand.png");</script>
                         <figcaption>Click the image to see and try a solution.</figcaption>
                     </figure>
                 </div>
@@ -329,7 +331,7 @@
                 <!-- Left column -->
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                     <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedX/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedX.png");</script>
+                     <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedX/", 420, 420, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedX.png");</script>
                       <figcaption>KeyPressed with Order Example</b>.<br />Click to activate and press keys on the keyboard.<br/>
                     Keep typing keys until you get beyond the right hand side. Then stop.</figcaption>
                     </figure>
@@ -385,7 +387,8 @@
                 <!-- Left column -->
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                    <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedSpace/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedSpace.png");</script>
+                    <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedSpace/", 420, 420,
+                    "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedSpace.png", 200, 200);</script>
                     <figcaption><b>KeyPressed with Condition Example</b><br />
                     Click to activate, and be sure to make the
                     window big enough to see all of the sketch.<br/>
@@ -512,7 +515,7 @@ void draw() {
             <div class="unit-70-cc">
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                    <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/colourKey/", 250, 250, "https://jsndyks.github.io/cc26/html/interaction/img/cc.colourKey.png");</script>
+                    <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/colourKey/", 220, 220, "https://jsndyks.github.io/cc26/html/interaction/img/cc.colourKey.png",200,200);</script>
                      <figcaption><b>ColourKey Example</b><br />Click to activate and try pressing the 'R', 'G' and 'B' keys.</figcaption>
                     </figure>
                 </div>
@@ -629,14 +632,16 @@ void draw() {
                 <div class="figRight" style="width:225">
                     <!--- https://www.notion.so/cdn-cgi/image/w=200,q=100/https://images.ctfassets.net/spoqsaf9291f/59pwajkZivZw28kkjUlYUo/55f9dc0c7623470f87b7b72381276c82/STU-11.jpeg -->
                     <figure>
-                    <img src="./img/notion2021.ctfassets.STU-11.jpeg"
-                    width="200" />
+                        <script>
+                        loadImage('./img/notion2021.ctfassets.STU-11.jpeg',
+                        500,0, 200,0,
+                        'Stu Card with an early mouse');
+                        </script>
                         <figcaption>
                             Stu Card with an early mouse.<br />What a great way to interact with a computer!<br />
                             <!-- Source: <a href="https://web.archive.org/web/20210323215123/https://www.notion.so/blog/stu-card">Notion Labs, Inc.</a><br/> -->
                             <a href="https://web.archive.org/web/20210323215123/https://www.notion.so/blog/stu-card">©2021 Notion Labs, Inc.</a>,
                             <br/><span class="i4i">reproduced here for the purpose of <i>illustration for instruction</i>.</span>
-
                         </figcaption>
                     </figure>
                 </div>
@@ -714,16 +719,19 @@ void draw() {
 
                     <div class="figAside" style="margin-top:1em">
                         <figure>
-                            <img src="https://jsndyks.github.io/cc26/images/interaction/stuCard.171003.small.jpg"
-                            width="200" />
-                            <figcaption style="width:300">
+                            <script>
+                                loadImage('https://jsndyks.github.io/cc26/images/interaction/stuCard.171003.small.jpg',
+                                400, 0, 200, 0,
+                                'Stu Card at IEEE VIS in 2017');
+                            </script>
+                            <figcaption>
                             A photo of Stu Card taking a photo of<br/>
                             the 'data trophy' that we made for him at IEEE VIS.<br/>
                             This was taken in 2017, shortly after his<br/>
-                            <a href="https://www.gicentre.net/jsndyks/infovistestoftime1997">wonderfully inspiring acceptance speech</a><br/>
-                            about 🐢s &amp; 🐇s<br />
-                                    Source: Jason Dykes.
-                            </figcaption></figure>
+                            <a href="https://www.gicentre.net/jsndyks/infovistestoftime1997">wonderfully inspiring acceptance speech</a><br/> about 🐢s &amp; 🐇s<br />
+                                Source: Jason Dykes.
+                            </figcaption>
+                        </figure>
                     </div>
                     <p>
                         Well, doing some background reading about the subjects, technologies and people you are learning with and about will help you greatly in your time as a student. It's informative, and fun. It gives you context and grounds your learning.
@@ -854,7 +862,9 @@ void draw() {
                 <div class="codeTask">
                     <div class="figCode" style="margin-top:1em">
                         <figure>
-                            <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouse/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouse.png");</script>
+                            <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouse/",
+                             420, 420, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouse.png",
+                             200,200);</script>
                             <figcaption><b>KeyPressed Move Example</b><br />Click to activate, click to focus in the sketch and then<br/>press keys on the keyboard.
                                 <br />Move mouse to position subsequent text.
                                 <br />Click to clear the text.</figcaption>
@@ -947,7 +957,8 @@ void mouseClicked() {
 }</pre>
 <div class="figRight" style="margin-top:1em">
     <figure>
-        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouseState/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouseState.png");</script>
+        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouseState/", 420, 420,
+        "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouseState.png", 200, 200);</script>
         <figcaption>
             <b>KeyPressed Mouse State Example</b><br />Click to activate and press keys on the keyboard.
             <br />Move the mouse to position subsequent text.
@@ -1048,7 +1059,8 @@ void mouseClicked() {
             <div class="unit-70-cc">
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouseStateExercise/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouseStateExercise.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouseStateExercise/", 420, 420,
+                         "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouseStateExercise.png",200,200);</script>
                         <figcaption>
                             <b>KeyPressed Mouse State Example</b><br />Click to activate and press keys on the keyboard.<br/>
                             Move the mouse (cursor) to reposition subsequent text.
@@ -1110,7 +1122,8 @@ void mouseClicked() {
 
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                <script>loadSketch("https://jsndyks.github.io/cc26/p5js/clickCount/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.clickCount.png");</script>
+                <script>loadSketch("https://jsndyks.github.io/cc26/p5js/clickCount/", 320, 320, 
+                        "https://jsndyks.github.io/cc26/images/interaction/p5js.clickCount.png",200,200);</script>
                 <figcaption><b>ClickCount Example</b><br />Click to activate and click in the sketch.
                     <br />This sketch achieves some of what we ask for ...<br/>but we'd like you to extend it further!
                     </figcaption>
@@ -1286,7 +1299,8 @@ void mouseClicked()
                 <!-- Left column -->
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/checkButtonV0/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.checkButtonV0.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/checkButtonV0/", 300, 0,
+                        "https://jsndyks.github.io/cc26/images/interaction/p5js.checkButtonV0.png",200,200);</script>
                         <figcaption><b>CheckButton Example</b><br />Click to activate and click in the sketch.
                         <br />A lonely checkButton.<br />It's just a rectangle that changes colour when you interact with it.<br/>Give it a try!
                         </figcaption>
@@ -1324,7 +1338,7 @@ void mouseClicked()
 
                 <div class="figCore" style="margin-top:3em">
                     <figure>
-                      <script>loadSketch("https://jsndyks.github.io/cc26/p5js/checkButtonCrazy/", 250, 250, "https://jsndyks.github.io/cc26/images/interaction/p5js.checkButtonCrazy.gif");</script>
+                      <script>loadSketch("https://jsndyks.github.io/cc26/p5js/checkButtonCrazy/", 420, 420, "https://jsndyks.github.io/cc26/images/interaction/p5js.checkButtonCrazy.gif",200,200);</script>
                       <figcaption><b>Another CheckButton Example</b><br />Click to activate and click in the sketch.
                         <br />Here's an example of a dynamic sketch that responds to 🐁 interaction!
                       </figcaption>
@@ -1380,8 +1394,8 @@ void mouseClicked()
                 <div class="figRight" style="margin-top:1em">
                     <figure>
                      <script>
-                        loadSketch("https://jsndyks.github.io/cc26/p5js/moveMouse/", 250, 0,
-                        "https://jsndyks.github.io/cc26/images/interaction/p5js.moveMouse.png", 200,0);
+                        loadSketch("https://jsndyks.github.io/cc26/p5js/moveMouse/", 420, 420,
+                        "https://jsndyks.github.io/cc26/images/interaction/p5js.moveMouse.png", 200,2000);
                         </script>
                       <figcaption><b>Mouse Move Example</b><br />Here's one final sketch that<br/> responds to interaction through the  🐁.
                   <br/><br/>Try keyboard interaction<br/>(<span class="key">t</span>, <span class="key">r</span>, etc.)<br/> oh,  and mouse clicks.
