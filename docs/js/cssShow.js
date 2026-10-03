@@ -5,6 +5,11 @@
  *   ?ln=true
  *   ?ln=1
  *
+ * Plain-text lecture-note authoring form:
+ *   <div class="lectureNote">#1 : Title : explanatory text</div>
+ *
+ * Existing lectureNote markup is left untouched for backward compatibility.
+ *
  * CSS diagnostic:
  *   ?css=show
  *   ?css=true
@@ -28,8 +33,72 @@
     params.get("lectureNote") === "true" ||
     isTruthyParam(params.get("ln"));
 
+  const parseLectureNotes = () => {
+    document.querySelectorAll(".lectureNote").forEach(note => {
+      /*
+       * Backward compatibility:
+       * if the note already contains HTML, leave it exactly as supplied.
+       */
+      if (
+        note.classList.contains("lectureNote-parsed") ||
+        note.children.length > 0
+      ) {
+        return;
+      }
+
+      const source = note.textContent.replace(/\s+/g, " ").trim();
+      const firstColon = source.indexOf(":");
+      const secondColon =
+        firstColon === -1
+          ? -1
+          : source.indexOf(":", firstColon + 1);
+
+      if (firstColon === -1 || secondColon === -1) {
+        return;
+      }
+
+      const number = source.slice(0, firstColon).trim();
+      const title = source.slice(firstColon + 1, secondColon).trim();
+      const bodyText = source.slice(secondColon + 1).trim();
+
+      /* Only transform the explicit #number : title : text form. */
+      if (!/^#\s*\d+$/.test(number) || !title || !bodyText) {
+        return;
+      }
+
+      const numberSpan = document.createElement("span");
+      numberSpan.className = "lectureNote-number";
+      numberSpan.textContent = number.replace(/\s+/g, "");
+
+      const body = document.createElement("span");
+      body.className = "lectureNote-body";
+
+      const titleSpan = document.createElement("span");
+      titleSpan.className = "lectureNote-title";
+      titleSpan.textContent = title;
+
+      const textSpan = document.createElement("span");
+      textSpan.className = "lectureNote-text";
+      textSpan.textContent = bodyText;
+
+      body.appendChild(titleSpan);
+      body.appendChild(textSpan);
+
+      note.textContent = "";
+      note.classList.add("lectureNote-parsed");
+      note.appendChild(numberSpan);
+      note.appendChild(body);
+    });
+  };
+
   if (showLectureNotes) {
     document.documentElement.classList.add("show-lecture-notes");
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", parseLectureNotes, { once: true });
+    } else {
+      parseLectureNotes();
+    }
   }
 
 

@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v38.css — updated 2026-10-03 13:31 BST */
+/* creativeCoding-FCUS-v39.css — updated 2026-10-03 13:52 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -897,6 +897,19 @@ blockquote::after {
 /* ==========================================================================
    Lecture notes
    Hidden normally; shown with ?lectureNote=true via cssShow.js
+
+   New plain-text authoring form:
+     #1 : Processing Variables : useful - internally held
+
+   Wide screens:
+     note sits in left margin;
+     number top-left;
+     title and text stacked and right-aligned.
+
+   Narrower screens:
+     note sits above following content;
+     full page width with 5% horizontal padding;
+     title and text run across the page with a hanging layout.
    ========================================================================== */
 
 .lectureNote {
@@ -907,8 +920,8 @@ html.show-lecture-notes .lectureNote {
   display: block;
   box-sizing: border-box;
 
-  background: #eef8ff;
-  color: #34566f;
+  background: #f4fbff;
+  color: #46545f;
 
   border: 1px solid #c3e9ff;
   border-left: 4px solid var(--cc-blue);
@@ -916,12 +929,38 @@ html.show-lecture-notes .lectureNote {
   border-radius: 3px;
   box-shadow: 2px 3px 5px rgb(0 0 0 / 10%);
 
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
 
-/* Wide screen: note sits beside the content that follows it. */
+/* Parsed #number : title : text notes. */
+
+html.show-lecture-notes .lectureNote-number {
+  display: block;
+
+  color: var(--cc-blue-dark);
+
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 0.95;
+
+  text-align: left;
+}
+
+html.show-lecture-notes .lectureNote-title {
+  font-weight: 600;
+}
+
+html.show-lecture-notes .lectureNote-title::after {
+  content: "";
+}
+
+
+/* --------------------------------------------------------------------------
+   Wide screen: left-margin annotation
+   -------------------------------------------------------------------------- */
+
 @media (min-width: 1401px) {
 
   html.show-lecture-notes .lectureNote {
@@ -931,10 +970,10 @@ html.show-lecture-notes .lectureNote {
 
     /*
      * #page is centred at max-width: 1000px.
-     * Put the note 1rem to the left of it.
+     * Put the note immediately to its left with a 1rem gap.
      *
-     * No top value is supplied deliberately:
-     * its vertical position follows its location in the HTML.
+     * No top is specified deliberately: the vertical position follows
+     * the location of the lectureNote element in the HTML.
      */
     left: calc(50% - 500px - 12rem);
 
@@ -946,17 +985,38 @@ html.show-lecture-notes .lectureNote {
     transform: rotate(-1deg);
     z-index: 10;
   }
+
+  html.show-lecture-notes .lectureNote-number {
+    margin-bottom: 0.35rem;
+  }
+
+  html.show-lecture-notes .lectureNote-body {
+    display: block;
+    text-align: right;
+  }
+
+  html.show-lecture-notes .lectureNote-title,
+  html.show-lecture-notes .lectureNote-text {
+    display: block;
+  }
+
+  html.show-lecture-notes .lectureNote-title {
+    margin-bottom: 0.1rem;
+  }
 }
 
 
-/* Less horizontal room: note becomes a full-width block immediately
-   above the content that follows it. */
+/* --------------------------------------------------------------------------
+   Less horizontal room: annotation immediately above following content
+   -------------------------------------------------------------------------- */
+
 @media (max-width: 1400px) {
 
   html.show-lecture-notes .lectureNote {
     position: static;
 
     width: 100%;
+
     margin: 1rem 0 1.5rem;
     padding: 1rem 5%;
 
@@ -964,28 +1024,62 @@ html.show-lecture-notes .lectureNote {
 
     transform: none;
   }
+
+  html.show-lecture-notes .lectureNote-number {
+    margin-bottom: 0.35rem;
+  }
+
+  /*
+   * Title occupies the first column and explanatory text the second.
+   * Wrapped explanatory text therefore aligns beneath itself rather than
+   * returning to the far left.
+   */
+  html.show-lecture-notes .lectureNote-body {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 0.4em;
+    align-items: baseline;
+
+    text-align: left;
+  }
+
+  html.show-lecture-notes .lectureNote-title {
+    grid-column: 1;
+  }
+
+  html.show-lecture-notes .lectureNote-title::after {
+    content: " :";
+    font-weight: 400;
+  }
+
+  html.show-lecture-notes .lectureNote-text {
+    grid-column: 2;
+    min-width: 0;
+  }
 }
 
 
-/* Optional manual note number supplied as data-note="03". */
-html.show-lecture-notes .lectureNote::before {
+/* Preserve optional legacy data-note numbering. */
+html.show-lecture-notes
+.lectureNote[data-note]:not(.lectureNote-parsed)::before {
   content: attr(data-note);
 
-  float: left;
+  display: block;
 
-  margin-right: 0.65rem;
   margin-bottom: 0.35rem;
 
   color: var(--cc-blue-dark);
 
   font-size: 2.2rem;
   font-weight: 600;
-  line-height: 0.9;
+  line-height: 0.95;
+
+  text-align: left;
 }
 
 
-/* focusHash/focusNum are normally very pale blue (#c3e9ff).
-   Darken them inside a pale-blue lecture note so they remain readable. */
+/* Existing old-style lecture notes may still contain focusHash/focusNum.
+   Make those readable against the new pale-blue background. */
 html.show-lecture-notes .lectureNote .focusHash,
 html.show-lecture-notes .lectureNote .focusNum {
   color: var(--cc-blue-dark);
