@@ -7,6 +7,7 @@
  *
  * Plain-text lecture-note authoring form:
  *   <div class="lectureNote">#1 : Title : explanatory text\nmore text</div>
+ *   <div class="lectureNote">#4.1 : Title : explanatory text</div>
  *
  * Existing lectureNote markup is left untouched for backward compatibility.
  *
@@ -82,14 +83,31 @@
         .trim()
         .replace(/\\n/g, "\n");
 
-      /* Only transform the explicit #number : title : text form. */
-      if (!/^#\s*\d+$/.test(number) || !title || !bodyText) {
+      /*
+       * Only transform the explicit #number : title : text form.
+       * Decimal-style note numbers such as #4.1 are also supported.
+       */
+      const numberMatch =
+        number.match(/^#\s*(\d+)(\.\d+)?$/);
+
+      if (!numberMatch || !title || !bodyText) {
         return;
       }
 
       const numberSpan = document.createElement("span");
       numberSpan.className = "lectureNote-number";
-      numberSpan.textContent = number.replace(/\s+/g, "");
+
+      const numberMajor = document.createElement("span");
+      numberMajor.className = "lectureNote-number-major";
+      numberMajor.textContent = "#" + numberMatch[1];
+      numberSpan.appendChild(numberMajor);
+
+      if (numberMatch[2]) {
+        const numberMinor = document.createElement("span");
+        numberMinor.className = "lectureNote-number-minor";
+        numberMinor.textContent = numberMatch[2];
+        numberSpan.appendChild(numberMinor);
+      }
 
       const body = document.createElement("span");
       body.className = "lectureNote-body";
