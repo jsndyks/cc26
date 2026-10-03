@@ -6,7 +6,7 @@
  *   ?ln=1
  *
  * Plain-text lecture-note authoring form:
- *   <div class="lectureNote">#1 : Title : explanatory text</div>
+ *   <div class="lectureNote">#1 : Title : explanatory text\nmore text</div>
  *
  * Existing lectureNote markup is left untouched for backward compatibility.
  *
@@ -77,7 +77,10 @@
 
       const number = source.slice(0, firstColon).trim();
       const title = source.slice(firstColon + 1, secondColon).trim();
-      const bodyText = source.slice(secondColon + 1).trim();
+      const bodyText = source
+        .slice(secondColon + 1)
+        .trim()
+        .replace(/\\n/g, "\n");
 
       /* Only transform the explicit #number : title : text form. */
       if (!/^#\s*\d+$/.test(number) || !title || !bodyText) {

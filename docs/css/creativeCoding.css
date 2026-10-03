@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v39.css — updated 2026-10-03 13:52 BST */
+/* creativeCoding-FCUS-v40.css — updated 2026-10-03 14:36 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -914,6 +914,10 @@ blockquote::after {
 
 .lectureNote {
   display: none;
+}
+
+html.show-lecture-notes .lectureNote-text {
+  white-space: pre-line;
 }
 
 html.show-lecture-notes .lectureNote {
