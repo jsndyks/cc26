@@ -1,5 +1,5 @@
-/* highslide.css — CC26 scoped Highslide skin — updated 2026-10-02 10:58 BST
- *
+/* highslide-cc26-scoped.css — updated 2026-10-03 15:04 BST */
+/*
  * Based on Highslide CSS 4.1.9.
  *
  * This stylesheet is intentionally scoped to popups whose wrapper contains:
@@ -858,3 +858,4 @@ body:has(.highslide-wrapper.cc26-highslide) .highslide-viewport .highslide-thumb
 .highslide-wrapper.cc26-highslide .highslide-thumbstrip-float .highslide-marker {
 	display: none;
 }
+
