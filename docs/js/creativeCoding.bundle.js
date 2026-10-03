@@ -865,7 +865,8 @@ function loadSketch(
 function ccOpenImage(
     anchor,
     requestedWidth,
-    requestedHeight
+    requestedHeight,
+    forceRequestedSize
 )
 {
     /*
@@ -977,33 +978,41 @@ function ccOpenImage(
        OPEN IMAGE
        ---------------------------------------------------------------------- */
 
-    return hs.expand(
-        anchor,
+    var expandOptions =
         {
-            /*
-             * useBox makes the requested width/height the image box size
-             * rather than treating the source image's intrinsic dimensions
-             * as the expansion size.
-             */
-            useBox:
-                true,
-
             width:
                 popupWidth,
 
             height:
                 popupHeight,
 
-            /* Centre this CC26 popup without changing Highslide globally. */
-            align:
-                "center",
-
             allowSizeReduction:
                 true,
 
             wrapperClassName:
                 "draggable-header cc26-highslide"
-        }
+        };
+
+
+    /*
+     * The six-argument loadImage() form explicitly separates popup size
+     * from preview size, so honour the requested popup box and centre it.
+     *
+     * Legacy four-argument calls deliberately keep the previous native
+     * Highslide behaviour and positioning.
+     */
+    if (forceRequestedSize) {
+        expandOptions.useBox =
+            true;
+
+        expandOptions.align =
+            "center";
+    }
+
+
+    return hs.expand(
+        anchor,
+        expandOptions
     );
 }
 
@@ -1066,6 +1075,13 @@ function loadImage(
     var imgHeight;
 
     var imgAlt;
+
+    /*
+     * Only the six-argument form opts into the newer explicit popup-size
+     * behaviour. This keeps old four-argument calls backward compatible.
+     */
+    var forceRequestedSize =
+        arguments.length >= 6;
 
 
     /* ----------------------------------------------------------------------
@@ -1131,7 +1147,7 @@ function loadImage(
        ---------------------------------------------------------------------- */
 
     document.write(
-        "<div>" +
+        "<div class=\"cc26-image-preview\">" +
 
         "<a href=\"" +
         imgFile +
@@ -1141,6 +1157,8 @@ function loadImage(
         popupWidth +
         ", " +
         popupHeight +
+        ", " +
+        forceRequestedSize +
         ")\">"
     );
 
