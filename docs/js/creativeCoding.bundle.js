@@ -4,6 +4,11 @@
    Source files are concatenated in dependency order. Third-party packed/
    minified source is intentionally preserved to avoid changing behaviour.
    Original licence/header comments are retained below.
+
+   CC26 helper revision 2026-10-03 12:12 BST:
+   in six-argument loadSketch()/loadImage() calls, the requested popup
+   dimensions describe the displayed sketch/image content. Highslide adds
+   its own header, padding, outline and other chrome around that content.
    ========================================================================== */
 
 
@@ -466,8 +471,8 @@ function ccPrepareHighslide()
  */
 function ccOpenSketch(
     anchor,
-    sketchWidth,
-    sketchHeight
+    requestedContentWidth,
+    requestedContentHeight
 )
 {
     /*
@@ -495,23 +500,24 @@ function ccOpenSketch(
 
 
     /*
-     * Never request a popup wider than the available viewport.
+     * The requested width is the iframe/sketch content width.
+     * Leave enough viewport room for Highslide to add its own chrome.
      */
-    var popupWidth =
+    var contentWidth =
         Math.min(
-            sketchWidth,
+            requestedContentWidth,
             maxWidth
         );
 
 
-    var popupHeight;
+    var contentHeight;
 
 
     /* ----------------------------------------------------------------------
        AUTOMATIC PROPORTIONAL HEIGHT
        ---------------------------------------------------------------------- */
 
-    if (sketchHeight === 0) {
+    if (requestedContentHeight === 0) {
 
         /*
          * Use the natural aspect ratio of the preview image.
@@ -522,9 +528,9 @@ function ccOpenSketch(
             img.naturalHeight > 0
         ) {
 
-            popupHeight =
+            contentHeight =
                 Math.round(
-                    popupWidth *
+                    contentWidth *
                     img.naturalHeight /
                     img.naturalWidth
                 );
@@ -535,8 +541,8 @@ function ccOpenSketch(
             /*
              * Safe fallback if image dimensions are unavailable.
              */
-            popupHeight =
-                popupWidth;
+            contentHeight =
+                contentWidth;
         }
 
 
@@ -544,20 +550,20 @@ function ccOpenSketch(
          * If the proportional popup is too tall for the viewport,
          * reduce BOTH dimensions.
          */
-        if (popupHeight > maxHeight) {
+        if (contentHeight > maxHeight) {
 
             var scale =
                 maxHeight /
-                popupHeight;
+                contentHeight;
 
 
-            popupHeight =
+            contentHeight =
                 maxHeight;
 
 
-            popupWidth =
+            contentWidth =
                 Math.round(
-                    popupWidth *
+                    contentWidth *
                     scale
                 );
         }
@@ -570,9 +576,9 @@ function ccOpenSketch(
 
     else {
 
-        popupHeight =
+        contentHeight =
             Math.min(
-                sketchHeight,
+                requestedContentHeight,
                 maxHeight
             );
     }
@@ -580,6 +586,10 @@ function ccOpenSketch(
 
     /* ----------------------------------------------------------------------
        OPEN SKETCH
+
+       objectWidth/objectHeight are the actual iframe (sketch) dimensions.
+       Highslide measures its header/footer/padding around that object, so the
+       outer popup is naturally a little larger than the sketch itself.
        ---------------------------------------------------------------------- */
 
     return hs.htmlExpand(
@@ -589,13 +599,13 @@ function ccOpenSketch(
                 "iframe",
 
             width:
-                popupWidth,
+                contentWidth,
 
             objectWidth:
-                popupWidth,
+                contentWidth,
 
             objectHeight:
-                popupHeight,
+                contentHeight,
 
             allowWidthReduction:
                 false,
@@ -635,8 +645,8 @@ function ccOpenSketch(
  *
  *     loadSketch(
  *         sketchURL,
- *         popupWidth,
- *         popupHeight,
+ *         contentWidth,
+ *         contentHeight,
  *         previewURL,
  *         previewWidth,
  *         previewHeight
@@ -647,17 +657,20 @@ function ccOpenSketch(
  *
  *     loadSketch(
  *         sketchURL,
- *         sketchWidth,
+ *         contentWidth,
  *         previewWidth,
  *         previewURL,
- *         sketchHeight
+ *         contentHeight
  *     );
  *
  *
  * NEW FORM:
  *
- *     popupHeight = 0
- *         derive popup height proportionally
+ *     contentWidth/contentHeight describe the displayed sketch (iframe),
+ *     not the outer Highslide window. Highslide wraps its own chrome around it.
+ *
+ *     contentHeight = 0
+ *         derive sketch content height proportionally
  *
  *     previewHeight = 0
  *         preserve preview image aspect ratio
@@ -681,8 +694,8 @@ function loadSketch(
     ccEnsureHighslideCSS();
 
 
-    var sketchWidth;
-    var sketchHeight;
+    var contentWidth;
+    var contentHeight;
 
     var imgSrc;
     var imgWidth;
@@ -695,10 +708,10 @@ function loadSketch(
 
     if (arguments.length >= 6) {
 
-        sketchWidth =
+        contentWidth =
             arg2;
 
-        sketchHeight =
+        contentHeight =
             arg3;
 
         imgSrc =
@@ -716,15 +729,15 @@ function loadSketch(
        LEGACY FORM
 
        URL,
-       sketchWidth,
+       contentWidth,
        previewWidth,
        previewURL,
-       sketchHeight
+       contentHeight
        ---------------------------------------------------------------------- */
 
     else {
 
-        sketchWidth =
+        contentWidth =
             arg2;
 
         imgWidth =
@@ -739,9 +752,9 @@ function loadSketch(
          *
          * if no popup height was supplied, make it square.
          */
-        sketchHeight =
+        contentHeight =
             (arg5 === undefined)
-                ? sketchWidth
+                ? contentWidth
                 : arg5;
 
 
@@ -792,9 +805,9 @@ function loadSketch(
         "\" " +
 
         "onclick=\"return ccOpenSketch(this, " +
-        sketchWidth +
+        contentWidth +
         ", " +
-        sketchHeight +
+        contentHeight +
         ")\">"
     );
 
@@ -864,9 +877,9 @@ function loadSketch(
  */
 function ccOpenImage(
     anchor,
-    requestedWidth,
-    requestedHeight,
-    forceRequestedSize
+    requestedContentWidth,
+    requestedContentHeight,
+    explicitContentSize
 )
 {
     /*
@@ -893,21 +906,21 @@ function ccOpenImage(
         );
 
 
-    var popupWidth =
+    var contentWidth =
         Math.min(
-            requestedWidth,
+            requestedContentWidth,
             maxWidth
         );
 
 
-    var popupHeight;
+    var contentHeight;
 
 
     /* ----------------------------------------------------------------------
        AUTOMATIC PROPORTIONAL HEIGHT
        ---------------------------------------------------------------------- */
 
-    if (requestedHeight === 0) {
+    if (requestedContentHeight === 0) {
 
         /*
          * The preview uses the same image file, so these are
@@ -919,9 +932,9 @@ function ccOpenImage(
             img.naturalHeight > 0
         ) {
 
-            popupHeight =
+            contentHeight =
                 Math.round(
-                    popupWidth *
+                    contentWidth *
                     img.naturalHeight /
                     img.naturalWidth
                 );
@@ -932,28 +945,28 @@ function ccOpenImage(
             /*
              * Safe fallback.
              */
-            popupHeight =
-                popupWidth;
+            contentHeight =
+                contentWidth;
         }
 
 
         /*
          * Preserve the aspect ratio if viewport height is limiting.
          */
-        if (popupHeight > maxHeight) {
+        if (contentHeight > maxHeight) {
 
             var scale =
                 maxHeight /
-                popupHeight;
+                contentHeight;
 
 
-            popupHeight =
+            contentHeight =
                 maxHeight;
 
 
-            popupWidth =
+            contentWidth =
                 Math.round(
-                    popupWidth *
+                    contentWidth *
                     scale
                 );
         }
@@ -966,9 +979,9 @@ function ccOpenImage(
 
     else {
 
-        popupHeight =
+        contentHeight =
             Math.min(
-                requestedHeight,
+                requestedContentHeight,
                 maxHeight
             );
     }
@@ -976,15 +989,18 @@ function ccOpenImage(
 
     /* ----------------------------------------------------------------------
        OPEN IMAGE
+
+       In the six-argument form, width/height are the requested image content
+       box. useBox keeps that box distinct from Highslide's surrounding chrome.
        ---------------------------------------------------------------------- */
 
     var expandOptions =
         {
             width:
-                popupWidth,
+                contentWidth,
 
             height:
-                popupHeight,
+                contentHeight,
 
             allowSizeReduction:
                 true,
@@ -995,13 +1011,14 @@ function ccOpenImage(
 
 
     /*
-     * The six-argument loadImage() form explicitly separates popup size
-     * from preview size, so honour the requested popup box and centre it.
+     * The six-argument loadImage() form explicitly separates displayed image
+     * size from preview size. Honour that image-content box; Highslide adds
+     * its own outline/chrome outside it.
      *
      * Legacy four-argument calls deliberately keep the previous native
      * Highslide behaviour and positioning.
      */
-    if (forceRequestedSize) {
+    if (explicitContentSize) {
         expandOptions.useBox =
             true;
 
@@ -1026,8 +1043,8 @@ function ccOpenImage(
  *
  *     loadImage(
  *         imageURL,
- *         popupWidth,
- *         popupHeight,
+ *         contentWidth,
+ *         contentHeight,
  *         previewWidth,
  *         previewHeight,
  *         altText
@@ -1046,7 +1063,10 @@ function ccOpenImage(
  *
  * NEW FORM:
  *
- *     popupHeight = 0
+ *     contentWidth/contentHeight describe the displayed image content,
+ *     not the outer Highslide window. Highslide wraps its own chrome around it.
+ *
+ *     contentHeight = 0
  *         preserve actual image aspect ratio
  *
  *     previewHeight = 0
@@ -1068,8 +1088,8 @@ function loadImage(
     ccEnsureHighslideCSS();
 
 
-    var popupWidth;
-    var popupHeight;
+    var contentWidth;
+    var contentHeight;
 
     var imgWidth;
     var imgHeight;
@@ -1080,7 +1100,7 @@ function loadImage(
      * Only the six-argument form opts into the newer explicit popup-size
      * behaviour. This keeps old four-argument calls backward compatible.
      */
-    var forceRequestedSize =
+    var explicitContentSize =
         arguments.length >= 6;
 
 
@@ -1090,10 +1110,10 @@ function loadImage(
 
     if (arguments.length >= 6) {
 
-        popupWidth =
+        contentWidth =
             arg2;
 
-        popupHeight =
+        contentHeight =
             arg3;
 
         imgWidth =
@@ -1134,10 +1154,10 @@ function loadImage(
          * popup initially uses the same requested dimensions
          * as the preview.
          */
-        popupWidth =
+        contentWidth =
             imgWidth;
 
-        popupHeight =
+        contentHeight =
             imgHeight;
     }
 
@@ -1154,11 +1174,11 @@ function loadImage(
         "\" " +
 
         "onclick=\"return ccOpenImage(this, " +
-        popupWidth +
+        contentWidth +
         ", " +
-        popupHeight +
+        contentHeight +
         ", " +
-        forceRequestedSize +
+        explicitContentSize +
         ")\">"
     );
 
