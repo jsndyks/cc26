@@ -33,8 +33,26 @@
     params.get("lectureNote") === "true" ||
     isTruthyParam(params.get("ln"));
 
+  const lectureNoteTilt = note => {
+    /*
+     * Stable pseudo-random tilt derived from the note text.
+     * Each note gets a slightly different angle, but the same note
+     * keeps the same angle on every reload.
+     */
+    const text = note.textContent.replace(/\s+/g, " ").trim();
+    let hash = 0;
+
+    for (let i = 0; i < text.length; i += 1) {
+      hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
+    }
+
+    const steps = [-1.7, -1.2, -0.8, -0.4, 0.4, 0.8, 1.2, 1.7];
+    return steps[Math.abs(hash) % steps.length] + "deg";
+  };
+
   const parseLectureNotes = () => {
     document.querySelectorAll(".lectureNote").forEach(note => {
+      note.style.setProperty("--lecture-note-tilt", lectureNoteTilt(note));
       /*
        * Backward compatibility:
        * if the note already contains HTML, leave it exactly as supplied.
