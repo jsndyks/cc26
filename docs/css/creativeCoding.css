@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v37.css — updated 2026-10-03 12:12 BST */
+/* creativeCoding-FCUS-v38.css — updated 2026-10-03 13:31 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -905,36 +905,69 @@ blockquote::after {
 
 html.show-lecture-notes .lectureNote {
   display: block;
-
-  /* Remove from normal vertical flow so following content does not move down. */
-  position: absolute;
-
-  width: 11rem;
   box-sizing: border-box;
 
-  /* Place in the left margin with a little extra breathing room. */
-  left: calc(50% - 49rem);
+  background: #eef8ff;
+  color: #34566f;
 
-  margin: 0;
-  padding: 0.8rem 0.9rem;
+  border: 1px solid #c3e9ff;
+  border-left: 4px solid var(--cc-blue);
 
-  background: #fff3a6;
-  color: #555;
-
-  border: 1px solid #e5d47c;
-  border-radius: 2px;
-
-  box-shadow: 2px 3px 5px rgb(0 0 0 / 15%);
+  border-radius: 3px;
+  box-shadow: 2px 3px 5px rgb(0 0 0 / 10%);
 
   font-size: 0.82rem;
-  line-height: 1.35;
-  text-align: right;
-
-  transform: rotate(-1deg);
-  z-index: 10;
+  line-height: 1.4;
 }
 
-/* Manual note number supplied in HTML, e.g. data-note="03". */
+
+/* Wide screen: note sits beside the content that follows it. */
+@media (min-width: 1401px) {
+
+  html.show-lecture-notes .lectureNote {
+    position: absolute;
+
+    width: 11rem;
+
+    /*
+     * #page is centred at max-width: 1000px.
+     * Put the note 1rem to the left of it.
+     *
+     * No top value is supplied deliberately:
+     * its vertical position follows its location in the HTML.
+     */
+    left: calc(50% - 500px - 12rem);
+
+    margin: 0;
+    padding: 0.8rem 0.9rem;
+
+    text-align: right;
+
+    transform: rotate(-1deg);
+    z-index: 10;
+  }
+}
+
+
+/* Less horizontal room: note becomes a full-width block immediately
+   above the content that follows it. */
+@media (max-width: 1400px) {
+
+  html.show-lecture-notes .lectureNote {
+    position: static;
+
+    width: 100%;
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 5%;
+
+    text-align: left;
+
+    transform: none;
+  }
+}
+
+
+/* Optional manual note number supplied as data-note="03". */
 html.show-lecture-notes .lectureNote::before {
   content: attr(data-note);
 
@@ -942,27 +975,21 @@ html.show-lecture-notes .lectureNote::before {
 
   margin-right: 0.65rem;
   margin-bottom: 0.35rem;
-  padding-bottom: 0.25rem;
 
-  color: #b29d42;
+  color: var(--cc-blue-dark);
 
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 0.9;
-
-  text-align: left;
 }
 
-/* On narrower screens, keep notes inside the normal page flow. */
-@media (max-width: 1100px) {
-  html.show-lecture-notes .lectureNote {
-    position: static;
-    width: auto;
-    margin: 1rem 2rem 2rem;
-    transform: none;
-  }
-}
 
+/* focusHash/focusNum are normally very pale blue (#c3e9ff).
+   Darken them inside a pale-blue lecture note so they remain readable. */
+html.show-lecture-notes .lectureNote .focusHash,
+html.show-lecture-notes .lectureNote .focusNum {
+  color: var(--cc-blue-dark);
+}
 
 /* ==========================================================================
    CSS diagnostic panel
