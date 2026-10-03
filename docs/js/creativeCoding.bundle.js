@@ -980,11 +980,23 @@ function ccOpenImage(
     return hs.expand(
         anchor,
         {
+            /*
+             * useBox makes the requested width/height the image box size
+             * rather than treating the source image's intrinsic dimensions
+             * as the expansion size.
+             */
+            useBox:
+                true,
+
             width:
                 popupWidth,
 
             height:
                 popupHeight,
+
+            /* Centre this CC26 popup without changing Highslide globally. */
+            align:
+                "center",
 
             allowSizeReduction:
                 true,
