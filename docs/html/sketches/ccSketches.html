@@ -21,12 +21,15 @@
 
 <div id="page">
 
+			<div class="lectureNote">
+				#0 : Welcome : Academic Autonomy\nMoodleTrailer!
+			</div>
 
 	<div class="intro">
 		<h2>Sketches</h2>
 		<p>
 			This session introduces <i>Processing</i> : a coding platform for creating graphical and interactive applications known as <b>Sketches</b>.
-			<i>Processing</i> is a great environment for learning to code and developing your programming skills and you will usew these pages to create a <i>sketchbook</i> of <b>Sketches</b> throughout the term.
+			<i>Processing</i> is a great environment for learning to code and developing your programming skills and you will use these pages to create a <i>sketchbook</i> of <b>Sketches</b> throughout the term.
 		</p>
 
 		<p><strong>Having worked through these notes and participated in the in-person lecture you should be able to:</strong></p>
@@ -47,9 +50,6 @@
 
 	<div class="units-row">
 		<div class="unit-70-cc">
-			<div class="lectureNote">
-				#1 : Welcome : Academic Autonomy\nPAROT Talk
-			</div>
 
 			<!-- Left column -->
 			<h3>1. How to use these pages</h3>
@@ -65,6 +65,11 @@
 			</p>
 
 			<h4>Coding tasks</h4>
+
+			<div class="lectureNote">
+				#1.1: Coding Task : PAROT approach 
+			</div>
+
 
 			<div class="codeTask">
 				<p>
@@ -84,6 +89,11 @@
 			</div>
 
 			<h4>Core tasks</h4>
+
+			<div class="lectureNote">
+				#1.2: Core Task : Thinking
+			</div>
+
 			<div class="coreTask">
 				<p>
 				These are 'core tasks' that are not necessarily to do with coding, but are set to directly develop and test the core skills introduced in each session.</p>
@@ -112,6 +122,10 @@
 -->
 
 			<h4>Challenges</h4>
+
+			<div class="lectureNote">
+				#1.3: Challenges : Room to stretch and play 
+			</div>
 
 			<div class="challenge">
 				<p>
@@ -143,6 +157,9 @@
 			</div>
 
 			<h4>Copying code</h4>
+			<div class="lectureNote">
+				#1.4: Code : Copy It! 
+			</div>
 
 			<p>
 				The programs you will be writing with <i>Processing</i> are known as <i>Sketches</i>.<br/>In the lecture notes
@@ -189,6 +206,10 @@ void draw()
 
 		</div> <!-- End of left column -->
 
+			<div class="lectureNote">
+				#1.5: Popup Sketches : Experiment! 
+			</div>
+
 		<div class="unit-30-cc annotation">
 			<!-- Right column -->
 			<figure>
@@ -229,8 +250,10 @@ void draw()
 				But first let's start with something simple.
 			</p>
 
+			<h3>Rectangles</h3>
+
 			<div class="lectureNote">
-				#2.1: First Sketch : Boring Rectangle
+				#2.1: First Sketch : Boring Rectangle\nClap!
 			</div>
 
 			<div class="codeTask">
@@ -298,7 +321,7 @@ rect(20,30,70,35);
 
 			<div class="codeTask">
 			<h5>A More Exciting and Original Rectangle</h5>
-			<p>Replace your original <code>rect()</code> instruction with new arguments, that you think will not be repeated in class.<br/>
+			<p>Replace your original <code>rect()</code> instruction with new arguments, that you think <b>will not be repeated in by anyone else in class</b>.<br/>
 			Think about <i>why</i> this rectangle might be original.</p>
 			<pre class="brush: processing; gutter: false; toolbar: false; ">rect(x-coordinate,y-coordinate,wide,high);</pre>
 			<p>Note that the rectangle must be fully visible on the <i>Processing</i> canvas - fully within the 100 x 100 square.</p>
@@ -323,6 +346,7 @@ rect(20,30,70,35);
 			 </figure>
 			</div> -->
 
+			<h3>Other Shapes</h3>
 
 			<p>
 				To get a better sense of how the <i>Processing</i> language works, lets add a little more to our program:
@@ -337,6 +361,9 @@ rect(20,30,70,35);
 	<div class="units-row">
 		<div class="unit-70-cc">
 			<!-- Left column -->
+			<div class="lectureNote">
+				#2.3: Two Shapes : Vary Order\nVary Fill\nVary Opacity
+			</div>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; ">
 // -- Two commands - each draws a shape on the canvas:
@@ -415,14 +442,14 @@ circle(62,60,40);</pre>
 			</p>
 
 			<div class="lectureNote">
-				#2.3: No Overlap : Try this too\nand record\nin the form
+				#2.4: No Overlap : Try this too\nand record\nin the form
 			</div>
 
 			<div class="codeTask">
 				<h5>Avoiding The Overlap</h5>
 				<p>Replace your original <code>circle()</code> instruction with new arguments, that will ensure that the circle does not overlap the rectangle.<br/>
 				Think about <i>where</i> you might put the circle to make this happen.</p>
-				<pre class="brush: processing; gutter: false; toolbar: false; ">circle(x-coordinate,y-coordinate,radius);</pre>
+				<pre class="brush: processing; gutter: false; toolbar: false; ">circle(x-coordinate,y-coordinate,diameter);</pre>
 				<p>Note that the circle must be fully visible on the <i>Processing</i> canvas - fully within the 100 x 100 square.</p>
 				<p>When you have produced a valid circle, that does not overlap, enter the arguments in this form and we can compare your solution with others:</p>
 				<ul>
@@ -564,7 +591,7 @@ circle(62,60,40);</pre>
 		</div> <!-- End of left column -->
 
 		<div class="lectureNote">
-				#3: Coordinates : Fun With Shapes
+				#3.1: Coordinates : Fun With Shapes\nCoordinate system & sketching
 		</div>
 
 		<div class="unit-30-cc annotation">
@@ -589,6 +616,10 @@ circle(62,60,40);</pre>
 	<div class="units-row">
 		<div class="unit-70-cc">
 			<!-- Left column -->
+
+		<div class="lectureNote">
+				#3.2: Shapes : Try Changing ...\ncoordinates
+		</div>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; ">size(400, 300);
 
@@ -680,7 +711,7 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 			</div>
 
 			<div class="lectureNote">
-				#4.2 : Colour : Fun with Colour!\nTools...\nColor selector...
+				#4.2 : Colour : Fun with Colour!\nTools>\nColor selector...\n\ncolor(r,g,b)\nTwo pens
 			</div>
 
 			<p>
@@ -861,6 +892,9 @@ quad(30,20, 150,50, 110,110, 40,90);</pre>
 			<p>
 				The code to create these two methods looks like this:
 			</p>
+			<div class="lectureNote">
+				#5.1: SetUp &amp; Draw : Copy\nuse println(); 
+			</div>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; ">void setup()
 {
@@ -898,7 +932,7 @@ void draw()
 			<!-- <div class="lectureNote"><code><span class="focusHash">#</span><span class="focusNum">5</span> - <b>There is no FIVE!</b> : (you killed it on the train))</code></div> -->
 
 			<div class="lectureNote">
-				#5: Movement &amp; Change : SetUp first\n&amp; then Draw\n PAROT approach 
+				#5.2: Movement &amp; Change : SetUp first\nDraw next\n Programme Flow\n\ntext()\nframeCount()\nmodulo\nframeRate()\n\nPAROT approach 
 			</div>
 
 			<pre class="brush: processing; gutter: false; toolbar: false; ">void setup()
@@ -964,6 +998,9 @@ void draw()
 				Replacing the first two numbers in the <code>rect()</code> command with two special words
 				<code>mouseX</code> and <code>mouseY</code> gives us our first dynamic sketch:
 			</p>
+			<div class="lectureNote">
+				#5.3: Movement &amp; Change : \nvariables!\nbackground()\n
+			</div>
 			<pre class="brush: processing; gutter: false; toolbar: false; ">void setup()
 {
   size(400, 300);
@@ -1028,7 +1065,7 @@ void draw()
 			<h3>6. Exercises</h3>
 
 			<div class="lectureNote">
-				#6: Exercises : Try things out\nUse the labs\nChat to TAs!
+				#6.1: Basic Sketch : Experiment!
 			</div>
 
 			<p>
@@ -1068,6 +1105,9 @@ void draw()
 			</div>
 		
 			<br><br>
+			<div class="lectureNote">
+				#6.2 : Exercises : Work through\nthese tasks\n\nUse your sketch books\n\nUse the labs\nChat to TAs!
+			</div>
 		
 			<div class="codeTask">
 				<h5>Underground Sign</h5>
@@ -1156,6 +1196,10 @@ void draw()
 			<!-- Left column -->
 
 			<h3>7. Summary and Further Information</h3>
+
+			<div class="lectureNote">
+				#7: Summary : Check on learning!
+			</div>
 
 			<div class="summary">
 				<h5>In Summary ...</h5>
