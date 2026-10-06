@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v41.css — updated 2026-10-03 14:36 BST */
+/* creativeCoding-FCUS-v42.css — updated 2026-10-06 11:55 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -916,14 +916,21 @@ blockquote::after {
   display: none;
 }
 
-html.show-lecture-notes .lectureNote-number-minor {
-  font-size: 0.55em;
-  vertical-align: 0.28em;
-  margin-left: 0.04em;
-}
+/* ==========================================================================
+   Lecture notes
+   Hidden normally; shown with ?lectureNote=true via cssShow.js
 
-html.show-lecture-notes .lectureNote-text {
-  white-space: pre-line;
+   Plain-text authoring:
+     #1   : Processing Variables : useful - internally held
+     #4.1 : Colour               : Fun with Colour!
+
+   Literal \n markers:
+     margin note   -> line break
+     full-width    -> ";  "
+   ========================================================================== */
+
+.lectureNote {
+  display: none;
 }
 
 html.show-lecture-notes .lectureNote {
@@ -944,7 +951,7 @@ html.show-lecture-notes .lectureNote {
 }
 
 
-/* Parsed #number : title : text notes. */
+/* --- Parsed number ------------------------------------------------------- */
 
 html.show-lecture-notes .lectureNote-number {
   display: block;
@@ -958,6 +965,15 @@ html.show-lecture-notes .lectureNote-number {
   text-align: left;
 }
 
+html.show-lecture-notes .lectureNote-number-minor {
+  font-size: 0.55em;
+  vertical-align: 0.28em;
+  margin-left: 0.04em;
+}
+
+
+/* --- Parsed title/text --------------------------------------------------- */
+
 html.show-lecture-notes .lectureNote-title {
   font-weight: 600;
 }
@@ -966,6 +982,185 @@ html.show-lecture-notes .lectureNote-title::after {
   content: "";
 }
 
+
+/* ==========================================================================
+   Wide / medium-wide screen: left-margin annotation
+   ========================================================================== */
+
+@media (min-width: 1301px) {
+
+  html.show-lecture-notes .lectureNote {
+    position: absolute;
+
+    /*
+     * Allow the note to become slightly narrower as the available
+     * left margin shrinks.
+     */
+    width: clamp(
+      8rem,
+      calc((100vw - 1000px) / 2 - 1rem),
+      11rem
+    );
+
+    /*
+     * Pin the note's right edge 1rem to the left of the centred
+     * 1000px page rather than calculating its left edge.
+     */
+    right: calc(50% + 500px + 1rem);
+    left: auto;
+
+    margin: 0;
+    padding: 0.8rem 0.9rem;
+
+    text-align: right;
+
+    transform: rotate(var(--lecture-note-tilt, -1deg));
+    z-index: 10;
+  }
+
+
+  /*
+   * Small pointer at the top-right of the note, pointing towards
+   * the content to which the annotation applies.
+   */
+  html.show-lecture-notes .lectureNote::after {
+    content: "";
+
+    position: absolute;
+    top: 0.8rem;
+    right: -0.45rem;
+
+    width: 0.8rem;
+    height: 0.8rem;
+
+    background: #f4fbff;
+
+    border-top: 1px solid #c3e9ff;
+    border-right: 1px solid #c3e9ff;
+
+    transform: rotate(45deg);
+  }
+
+
+  html.show-lecture-notes .lectureNote-number {
+    margin-bottom: 0.35rem;
+  }
+
+  html.show-lecture-notes .lectureNote-body {
+    display: block;
+    text-align: right;
+  }
+
+  html.show-lecture-notes .lectureNote-title,
+  html.show-lecture-notes .lectureNote-text {
+    display: block;
+  }
+
+  html.show-lecture-notes .lectureNote-title {
+    margin-bottom: 0.1rem;
+  }
+
+
+  /* A literal \n becomes a line break in a margin note. */
+  html.show-lecture-notes .lectureNote-break {
+    display: block;
+    height: 0;
+  }
+}
+
+
+/* ==========================================================================
+   Narrower screen: annotation immediately above following content
+   ========================================================================== */
+
+@media (max-width: 1300px) {
+
+  html.show-lecture-notes .lectureNote {
+    position: static;
+
+    width: 100%;
+
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 5%;
+
+    text-align: left;
+
+    transform: none;
+  }
+
+
+  /* No sideways pointer when the note is above the content. */
+  html.show-lecture-notes .lectureNote::after {
+    content: none;
+  }
+
+
+  html.show-lecture-notes .lectureNote-number {
+    margin-bottom: 0.35rem;
+  }
+
+  html.show-lecture-notes .lectureNote-body {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 0.4em;
+    align-items: baseline;
+
+    text-align: left;
+  }
+
+  html.show-lecture-notes .lectureNote-title {
+    grid-column: 1;
+  }
+
+  html.show-lecture-notes .lectureNote-title::after {
+    content: " :";
+    font-weight: 400;
+  }
+
+  html.show-lecture-notes .lectureNote-text {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+
+  /* A literal \n becomes ";  " in the full-width form. */
+  html.show-lecture-notes .lectureNote-break {
+    display: inline;
+    height: auto;
+  }
+
+  html.show-lecture-notes .lectureNote-break::after {
+    content: ";  ";
+    white-space: pre;
+  }
+}
+
+
+/* --- Legacy lecture-note support ---------------------------------------- */
+
+html.show-lecture-notes
+.lectureNote[data-note]:not(.lectureNote-parsed)::before {
+  content: attr(data-note);
+
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color: var(--cc-blue-dark);
+
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 0.95;
+
+  text-align: left;
+}
+
+
+/* Existing old-style notes may still contain focusHash/focusNum. */
+html.show-lecture-notes .lectureNote .focusHash,
+html.show-lecture-notes .lectureNote .focusNum {
+  color: var(--cc-blue-dark);
+}
 
 /* --------------------------------------------------------------------------
    Wide screen: left-margin annotation
