@@ -2,8 +2,13 @@
  *
  * Lecture notes:
  *   ?lectureNote=true
+ *   ?lectureNote=1
+ *   ?lectureNotes=true
+ *   ?lectureNotes=1
  *   ?ln=true
  *   ?ln=1
+ *   ?lN=true
+ *   ?lN=1
  *
  * Plain-text lecture-note authoring form:
  *   <div class="lectureNote">#1 : Title : explanatory text\nmore text</div>
@@ -35,8 +40,8 @@
   // -----------------------------------------------------------------------
 
   const showLectureNotes =
-    params.get("lectureNote") === "true" ||
-    isTruthyParam(params.get("ln"));
+    ["lectureNote", "lectureNotes", "ln", "lN"]
+      .some(name => isTruthyParam(params.get(name)));
 
   const lectureNoteTilt = note => {
     /*

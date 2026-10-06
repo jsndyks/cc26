@@ -1166,7 +1166,7 @@ html.show-lecture-notes .lectureNote .focusNum {
    Wide screen: left-margin annotation
    -------------------------------------------------------------------------- */
 
-@media (min-width: 1401px) {
+@media (min-width: 1201px) {
 
   html.show-lecture-notes .lectureNote {
     position: absolute;
@@ -1215,7 +1215,7 @@ html.show-lecture-notes .lectureNote .focusNum {
    Less horizontal room: annotation immediately above following content
    -------------------------------------------------------------------------- */
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
 
   html.show-lecture-notes .lectureNote {
     position: static;
