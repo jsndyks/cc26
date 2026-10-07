@@ -7,7 +7,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
     <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
 	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
 	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
@@ -78,7 +78,6 @@
                 <p>Let's start with the keyboard - a handy device that you may have used from time to time - that
                     enables us to use keys to select from a series of characters (letters, numbers and weird symbols like '@'), that are detected by the computer and used as input to various programmes and apps and sketches that it runs!</p>
 
-                <hr />
                 <h3>2. Keyboard Input</h3>
                 <p>
                     Happily, <i>Processing</i> sketches are aware of what's going on with the keyboard.
@@ -95,6 +94,9 @@
 
                 <h4>Key Sketch</h4>
                 <p class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">2</span> - <b>key</b> : a variable that contains the last key pressed</code></p>
+        <div class="lectureNote">
+				#1: key : println()\ntext()\nrandom()
+		</div>
                 <p>
                     Here's a sketch that takes advantage of the way that <code>key</code> is updated from the keyboard.
                     It shows any interactions made through the keyboard on the canvas.
@@ -191,6 +193,10 @@
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
+
+        <div class="lectureNote">
+				#2: keyPressed : 'key' in draw\ncondition / boolean
+		</div>
 
                 <pre class="brush: processing; gutter: false; toolbar: false; ">
     // -- set up the things that don't change ...
@@ -554,6 +560,11 @@ void draw() {
                     You'll note that we haven't covered everything, so you should follow up on this in your own time.</p>
                 <p>For example, <code><a href="https://processing.org/reference/keyCode.html">keyCode</a></code> is a
                     useful variable that enables us to use keys other than the character keys.</p>
+
+        <div class="lectureNote">
+				#2.1: Event Handling : keyboard capability\ncheck these out\try them all
+		</div>
+
                 <h4>Event handling : keyboard</h4>
                 <table>
                     <tr>
@@ -605,7 +616,7 @@ void draw() {
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
-                <hr />
+
                 <h3>3. What About the Mouse?</h3>
                 <p>
                     So, we have a useful series of variables and methods to enable us to interact with and through the
@@ -772,7 +783,12 @@ void draw() {
                 <p>These methods and variables are in some ways similar to those used with the keyboard. 
                     And you know some of them and have already used them in some of your sketches.
                     Let's start with a summary table.</p>
-                <h4>Event handling : mouse</h4>
+
+        <div class="lectureNote">
+				#3.1: Event Handling : mouse capability\ncheck these out\try them all
+		</div>
+
+        <h4>Event handling : mouse</h4>
                 <table>
                     <tr>
                         <td rowspan="4"><b>Variables</b></td>
@@ -885,7 +901,72 @@ void draw() {
 void mouseClicked() {
     // -- clear the screen:
     background(220);
-}</pre>
+}</pre> 
+                                </div>
+
+                <p>Here is a skeleton sketch defines many of the mouse event handling methods.</p>
+
+                <div class="lectureNote">
+				#3.2: Event Handling : try this out!
+		        </div>
+                    <pre class="brush: processing; gutter: false; toolbar: false; ">
+float x, y, r;                                     // &lt;-- variables define the shape
+boolean isYellow, isRed, isInside, showMousePos;   // &lt;-- variables capture the state
+
+void setup () {
+  size(600, 600);
+  x = random(width*0.1, width*0.9); // &lt;-- position in x is random, not at edge
+  y = random(width*0.1, width*0.9); // &lt;-- position in y is random, not at edge
+  r = random(40, 80);                // &lt;-- radius is random, not tiny, not huge
+}
+
+void draw () {
+  background(250);
+  // -- if inside - fill:
+  
+  ellipse (x, y, r, r);
+}
+
+void mouseClicked() {
+  // -- move ellipse - to mouseY,mouseX
+
+  // -- if inside : isRed
+  if (isInside) {
+    isRed = true;
+  }
+}
+
+void mousePressed() {
+  // -- isYellow
+
+}
+
+void mouseReleased() {
+}
+
+void mouseMoved() {
+  // -- showMousePos
+
+  // -- isInside?
+}
+
+void mouseDragged() {
+  // -- move ellipse : to mouseX,mouseY
+}
+</pre>
+        <p>We will play with this a little in class and you should too!</p>
+
+                <div class="codeTask">
+                    <h5>Mouse Interaction - lots of methods</h5>
+                    <p>Ok, let's experiment and see whether we can:</p>
+                    <ol style="padding-left:3rem">
+                        <li>use <code>dist()</code> in <code>draw()</code> condition to set <code>isInside</code> to true if the mouse/cursor is inside the ellipse</li>
+                        <li>colour the ellipse differently if this is <code>true</code></li>
+                        <li>set the <code>background</code> to yellow while the mouse button is pressed</li>
+                        <li>show the mouse position with <code>text()</code> when the mouse is moved</li>
+                        <li>move the <code>dist()</code> condition from <code>draw()</code> to <code>mouseMoved()</code> </li>
+                        <li>change the position of the ellipse if the mouse is dragged when the mouse/cursor is in the ellipse</li>
+                    </ol>
                 </div>
             </div> <!-- End of left column -->
         </div> <!-- End of row -->
@@ -897,8 +978,13 @@ void mouseClicked() {
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
-                <hr />
+
                 <h3>4. Interaction and State?</h3>
+
+                <div class="lectureNote">
+				#4.1: Software Design Pattern : computational thinking
+		        </div>
+
 
                 <p>You should by now have your sketches working in all sorts of ways in response to interactions made through your keyboard and mouse.<br/>
                     That's great.</p>
@@ -927,6 +1013,11 @@ void mouseClicked() {
                     These methods are best for changing and recording <i>system state</i> - the way the sketch is configured at any time by an interaction (an intervention from a sketch user).<br />
                     The <code>draw()</code> loop is then the place to act on that state - to do the things required by the interaction, requested by the user through their intervention.</p>
                 <p>In summary ... actually read through this code 👇 ...</p>
+
+                <div class="lectureNote">
+				#4.2: Software Design Pattern : Check the example
+		        </div>
+
                 <pre class="brush: processing; gutter: false; toolbar: false; ">
 // -- GLOBAL VARIABLES
 // -- Declare and initialise variables that describe
@@ -955,8 +1046,17 @@ void mouseClicked() {
   // --   based upon interactions and input.
   // -- These will be acted on in the draw() loop.
 }</pre>
+    
+                <p>So ... even more bluntly ... </p>
+                <div class="tip"><b>Don't draw things in the event handling methods!</b>.</div>
+
+            </div> <!-- End of left column -->
+        </div> <!-- End of row -->
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ New row ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="units-row">
 <div class="figRight" style="margin-top:1em">
-    <figure>
+        <figure>
         <script>loadSketch("https://jsndyks.github.io/cc26/p5js/keyPressedMouseState/", 420, 420,
         "https://jsndyks.github.io/cc26/images/interaction/p5js.keyPressedMouseState.png", 200, 200);</script>
         <figcaption>
@@ -966,22 +1066,15 @@ void mouseClicked() {
             <br />Try pressing the 'r' key.        
         </figcaption>
     </figure>
-</div>
-
-                <p>So ... even more bluntly ... <b>Don't draw things in the event handling methods!</b>.</p>
+</div>            <div class="unit-70-cc">
+                <!-- Left column -->
                 <p>Here is a refactoring of the <code>keyPressed</code> sketches that structures things as we advise
                     above.</p>
                 <p>The code is reproduced below and the sketch should be over to the right 👉</p>
                 <p>The code itself is a little longer than the other examples, but should be readable.<br/>
                     Take your time to read it through carefully and see how we have refactored things in line with this new advice.</p>
-            </div> <!-- End of left column -->
-        </div> <!-- End of row -->
 
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ New row ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <div class="units-row">
-            <div class="unit-70-cc">
-                <!-- Left column -->
-                <pre class="brush: processing; gutter: false; toolbar: false; ">
+                    <pre class="brush: processing; gutter: false; toolbar: false; ">
 // -- GLOBALS : declare and initialise global variables
 // --   that describe system state - false before interaction:
 boolean clearScreen = false;  // -- do we clear the screen in the draw() method?
@@ -1365,10 +1458,14 @@ void mouseClicked()
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
-                <hr />
+
                 <h3>5. Practice and Exercises</h3>
                 
-                <p>We have set a series of <b>Four Core Tasks</b> on the <a href="./ccInt.extra.html">Interaction : Exercises & Extras</a> page.</p>
+                <div class="lectureNote">
+				#5: Exercises : Fun things to do.\nExtra things to do.
+		        </div>
+
+                <p>We have set a series of <b>Four Core Tasks</b> on the <a href="./ccInt.exercises.html">Interaction : Exercises</a> page.</p>
                 <ol>
                     <li><b>Move</b></li>
                     <li><b>Colour</b></li>
@@ -1386,7 +1483,6 @@ void mouseClicked()
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
-                <hr />
                 <h3>6. Summary </h3>
 
                 <p class="focusOFF"><code><span class="focusHash">#</span><span class="focusNum">10</span> - <b>Session Summary</b> : go make interactive sketches!</code></p>
@@ -1473,7 +1569,6 @@ void mouseClicked()
         <div class="units-row">
             <div class="unit-70-cc">
                 <!-- Left column -->
-                <hr />
 
           <h2>7. Check on Progress</h2>
           <p>We have introduced lots of possibilities in this session, and even though the mechanisms through which we achieve interaction are relatively straightforward, the world of possibilities that they enable can be a little overwhelming, even to a hardened <i>Processing</i> scripter like the ones who are teaching you.</p>
@@ -1483,6 +1578,9 @@ void mouseClicked()
   
             <div class="task">
               <div class="checkOutcomes">
+                <div class="lectureNote">
+				#7: Progress : Worth a read!
+		        </div>
                 <p>Having completed the lecture materials and exercises, and attended the class, I can ...</p>
                 <dl>
                   <dd><input type="checkbox" id="sa1"> <label for="sa1"> ... get a sketch to do something (anything!) based upon the key that was last pressed?<br /></label></dd>
