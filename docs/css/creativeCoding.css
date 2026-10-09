@@ -949,10 +949,6 @@ html.show-lecture-notes .lectureNote {
   font-size: 0.9rem;
   line-height: 1.4;
 }
-html.show-lecture-notes
-.lectureNote-title-only .lectureNote-title::after {
-  content: "";
-}
 
 
 /* --- Parsed number ------------------------------------------------------- */
@@ -975,6 +971,10 @@ html.show-lecture-notes .lectureNote-number-minor {
   margin-left: 0.04em;
 }
 
+html.show-lecture-notes
+.lectureNote-title-only .lectureNote-title::after {
+  content: "";
+}
 
 /* --- Parsed title/text --------------------------------------------------- */
 
