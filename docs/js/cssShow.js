@@ -10,8 +10,12 @@
  *   ?lN=true
  *   ?lN=1
  *
- * Plain-text lecture-note authoring form:
+ * Plain-text lecture-note authoring forms:
  *   <div class="lectureNote">#1 : Title : explanatory text\nmore text</div>
+ *   <div class="lectureNote">#0.1 : draw a robot!</div>
+ *
+ * The short #number : title form is supported as well as the full
+ * #number : title : explanatory text form.
  *
  * Literal \n markers are emitted as .lectureNote-break spans so CSS can
  * render them as line breaks in margin notes and as semicolon separators
@@ -76,29 +80,38 @@
 
       const source = note.textContent.replace(/\s+/g, " ").trim();
       const firstColon = source.indexOf(":");
-      const secondColon =
-        firstColon === -1
-          ? -1
-          : source.indexOf(":", firstColon + 1);
 
-      if (firstColon === -1 || secondColon === -1) {
+      if (firstColon === -1) {
         return;
       }
 
+      const secondColon = source.indexOf(":", firstColon + 1);
       const number = source.slice(0, firstColon).trim();
-      const title = source.slice(firstColon + 1, secondColon).trim();
-      const bodyText = source
-        .slice(secondColon + 1)
-        .trim();
 
       /*
-       * Only transform the explicit #number : title : text form.
-       * Decimal-style note numbers such as #4.1 are also supported.
+       * Support both:
+       *   #number : title
+       *   #number : title : explanatory text
+       *
+       * Only the first two colons are structural. Any later colons remain
+       * part of the explanatory text.
+       */
+      const title = source
+        .slice(firstColon + 1, secondColon === -1 ? source.length : secondColon)
+        .trim();
+
+      const bodyText =
+        secondColon === -1
+          ? ""
+          : source.slice(secondColon + 1).trim();
+
+      /*
+       * Decimal-style note numbers such as #0.1 and #4.1 are supported.
        */
       const numberMatch =
         number.match(/^#\s*(\d+)(\.\d+)?$/);
 
-      if (!numberMatch || !title || !bodyText) {
+      if (!numberMatch || !title || (secondColon !== -1 && !bodyText)) {
         return;
       }
 
@@ -124,33 +137,40 @@
       titleSpan.className = "lectureNote-title";
       titleSpan.textContent = title;
 
-      const textSpan = document.createElement("span");
-      textSpan.className = "lectureNote-text";
-
-      /*
-       * A literal \n in the source becomes a neutral separator span.
-       * CSS decides how that separator is rendered at each breakpoint:
-       *   margin note  -> line break
-       *   full-width   -> ";  "
-       */
-      bodyText.split(/\\n/g).forEach((part, index) => {
-        if (index > 0) {
-          const separator = document.createElement("span");
-          separator.className = "lectureNote-break";
-          separator.setAttribute("aria-hidden", "true");
-          textSpan.appendChild(separator);
-        }
-
-        textSpan.appendChild(
-          document.createTextNode(part.trim())
-        );
-      });
-
       body.appendChild(titleSpan);
-      body.appendChild(textSpan);
+
+      if (bodyText) {
+        const textSpan = document.createElement("span");
+        textSpan.className = "lectureNote-text";
+
+        /*
+         * A literal \n in the source becomes a neutral separator span.
+         * CSS decides how that separator is rendered at each breakpoint:
+         *   margin note  -> line break
+         *   full-width   -> ";  "
+         */
+        bodyText.split(/\\n/g).forEach((part, index) => {
+          if (index > 0) {
+            const separator = document.createElement("span");
+            separator.className = "lectureNote-break";
+            separator.setAttribute("aria-hidden", "true");
+            textSpan.appendChild(separator);
+          }
+
+          textSpan.appendChild(
+            document.createTextNode(part.trim())
+          );
+        });
+
+        body.appendChild(textSpan);
+      }
 
       note.textContent = "";
       note.classList.add("lectureNote-parsed");
+
+      if (!bodyText) {
+        note.classList.add("lectureNote-title-only");
+      }
       note.appendChild(numberSpan);
       note.appendChild(body);
     });

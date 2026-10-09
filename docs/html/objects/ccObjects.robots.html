@@ -7,11 +7,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding-clean.css?v=1455">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
     <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
-	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
-	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
-
+    <script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+    <script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+    <script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
 </head>
 
 <body>
@@ -92,7 +92,7 @@
               </figure>
             </div>
 
-            <p>Sketch a robot head with less than fove simple shapes - here I use four ... a rectangle, two circles and a line.</p>
+            <p>Sketch a robot head with less than five simple shapes - here I use four ... a rectangle, two circles and a line.</p>
             <p>Find the coordinates of the robot head centred around the origin (0,0).<br/>
             Note that in this sketch, for no sensible reason at all, other than that I kinda forgot when I drew it ... we are using <i>standard coordinates</i>.
             Of course, in <i>Processing</i> the vertical <i>Y-axis</i> increases from top to bottom with the origin at the <i>top-left</i>.</p>
@@ -170,6 +170,10 @@ void setup () {
     }
             </pre>
 
+            <p class="lectureNote">
+                #0.1 : draw a robot! :
+            </p>
+
             <p>If you have declared and initialised variables to contain your data, and then add a call to this <i>method</i> in the <code>draw()</code> <i>method</i> of your sketch, with some values for <code>x</code> and <code>y</code> - try integers as above, or something interactive like <code>mouseX,mouseY</code> - then the sketch should draw the robot.</p>
             <pre class="brush: processing; gutter: false; toolbar: false;highlight: [7]">// -- Method approach to drawing:
 
@@ -179,6 +183,10 @@ void draw () {
 
     drawRobot(x,y, wide,high, eyeD, eyeR, mLong, mDown);
 }            </pre>
+
+            <p class="lectureNote">
+                #0.2 : draw more robots! :
+            </p>
 
 
             <p>So, we can draw a robot, and we could draw more with different configurations by calling the <i>method</i> multiple times with different input parameters.</p>
@@ -193,7 +201,7 @@ void draw () {
 
   // -- Draw robots with parameters that vary in a loop:
   for (int i=100; i&lt;width; i+=100) {
-    drawRobot(i, y-120, wide/2, high/2, i/100*eyeD/3, 2+i/100, mLong/3-2*i/100, mDown/2.5);
+        drawRobot(i, y-120, wide/2, high/2, i/100*eyeD/10, 2+i/100, mLong/3-2*i/100, mDown/2.5);
   }</pre>
 
             <div class="figRight" style="padding:1em; padding-left:4em">
@@ -210,13 +218,20 @@ void draw () {
             <p>But... this is <i>just a collection of shapes</i>.<br/>Our robot does not have behaviours.</p>
 
 
+
             <h3>1. Mark 1 - The Simplest 'Nothing' Class</h3>
+            <p class="lectureNote">
+                #1.1 : class() : &raquo; check the ref doc!
+            </p>
 
             <p>So let's create a robot <i>class</i>, which will enable us to address this.
                 Remember that the <i>Processing</i> documentation helpfully and effectively defines a <code><a href="https://processing.org/reference/class.html">class</a></code> as:</p>
             <blockquote>a composite of fields (data) and methods (functions that are a part of the class) which may be instantiated as objects.</blockquote>
 
             <p>We use the <code><a href="https://processing.org/reference/class.html">class</a></code> keyword to define one of these composites, and here's the simplest example I can come up with of a robot class that takes advantage of this <i>Processing</i> capability and uses the expected syntax - the class is called <code>RobotMk1</code> and we can use it to make <code>RobotMk1</code> objects:</p>
+            <p class="lectureNote">
+                #1.2 : Define : Basic Robot class
+            </p>
 
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Very Basic Robot class that does ... er ... nothing!
 // -- Useless!
@@ -238,12 +253,22 @@ void draw () {
             Or at least it could be if we had defined a class with fields and methods.
             But we chose not to. This current class, our <i>Mark 1</i> basic robot, has no data or methods. So it's pretty useless.</p>
             <p>We can still declare and instantiate variables of this type though.<br/>Try adding the class to your sketch in a new tab titled <i>RobotMk1</i> and declaring an instance or two in <code>setup()</code> to see that it is possible:</p>
+
+            <p class="lectureNote">
+                #1.3 : Declare : And initialise three\nRobot objects
+            </p>
+
+            
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Very Basic Robot class that does ... er ... nothing!
     RobotMk1 r  = new RobotMk1();
     RobotMk1 r2 = new RobotMk1();
     RobotMk1 c3po = new RobotMk1();</pre>
             <p>We now have three robots in our sketch, but they don't contain any data that describes them or allows us to differentiate them (variables), or do anything like draw themselves or move (methods).</p>
-            <p>But we can easily add this kind of thing now that we can see how easy it is to make a class. Let's try a more sophisticated and functional <i>Mark2</i> robot.</p>
+            <p class="lectureNote">
+                #1.4 : Extend : Add constructor\nAdd data\nAdd functionality
+            </p>
+            <p>But we can easily add this kind of thing now that we can see how easy it is to make a class.</p>
+            <p>Let's try a more sophisticated and functional <i>Mark2</i> robot.</p>
 
 
             <h3>2. Mark 2 - A Class that Does Something (not much) - the 'Something' Class</h3>
@@ -260,6 +285,10 @@ void draw () {
             <p>You can see them declared here in this more sophisticated <i>RobotMk2</i> <code>class</code>, and then instantiated in the constructor method that runs whenever an instance of the <code>class</code> is declared.</p>
             <p>Now we add a <i>method</i> to the <code>class</code> to give it behaviours. The example <i>method</i> here is called <code>draw()</code> and you should be able to see what it does - it draws a rectangle, the position of which is defined by the values of the two instance variables associated with each particular object.
             Remember, an object is an instance of the class that is declared and instantiated in any sketch.</p>
+            <p class="lectureNote">
+                #2.1 : Functionailty: Add a method\nto the class.
+            </p>
+
             <pre class="brush: processing; gutter: false; toolbar: false; highlight: [7,11,12]">// -- Very Basic Robot class that holds data and has a method to draw itself.
 // -- Unsatisfactory!
     
@@ -289,8 +318,12 @@ RobotMk2 r = new RobotMk2();</pre>
 <pre class="brush: processing; gutter: false; toolbar: false;">// -- Call the draw() method of the 'r' object:
 r.draw();</pre>
 
-            <p>These robots are not particularly impressive, but they do contain positional data and functionality to draw themselves. Try playing with the initial settings for the <code>x</code> and <code>y</code> instance variables, and create and draw a few robot instances (objects) in your sketch.<br/> You may want to declare and instantiate robots through multiple statements, or you may try to use and <i>array</i> and a <i>loop</i>.
-            Use the code that follows to help achieve this in your sketch.</p>
+            <p>These robots are not particularly impressive, but they do contain positional data and functionality to draw themselves.
+              Try playing with the initial settings for the <code>x</code> and <code>y</code> instance variables, and create and draw a few robot instances (objects) in your sketch.<br/> You may want to declare and instantiate robots through multiple statements, or you may try to use and <i>array</i> and a <i>loop</i>.
+              Use the code that follows to help achieve this in your sketch.</p>
+            <p class="lectureNote">
+                #2.2 : Array: Make an array of\n10 RobotMk2s.\n50 RobotMk2s!
+            </p>
 
             <pre class="brush: processing; gutter: false; toolbar: false;">// -- Make some more robot instances - we could make an array of robots.
 
@@ -322,6 +355,10 @@ r.draw();</pre>
 
             <p>All we have to do here is define the arguments and their <i>type</i> in the brackets that hold arguments for the constructor, as shown below.</p>
             <p>In this <code>class</code>, we have <code>x</code> and <code>y</code> as <i>fields</i> or <i>instance variables</i> that are defined at the top of the class definition. We also have local variables that are passed into the constructor that are used to set these <i>fields</i> or <i>instance variables</i>. In this case theses have <i>the same name</i>, which means that they need to be differentiated, so in the constructor we refer to the  <i>fields</i> or <i>instance variables</i> with the prefix <code>this</code>.</p>
+
+            <p class="lectureNote">
+                #3 : Control / Arguments : Make each robot\nobject different!\n-\nInstance vars\nFields
+            </p>
 
             <pre class="brush: processing; gutter: false; toolbar: false; highlight: [6,8,9,10,11]">// -- Very Basic Robot class that accepts arguments ... now with eyes!
 // -- OK - we are getting somewhere!
@@ -399,6 +436,10 @@ RobotMk3 r2d4 = new RobotMk3(250, 150);</pre>
             We could add <i>methods</i> to our robot <code>class</code> to make the robot objects make noises, chase other robots, fire lasers ... whatever, and we could add fields to determine blink rate, velocity, movement direction, and various other visual characteristics. We could add more shapes to the <code>draw()</code> method in the <i>RobotMk4</i> class to give the robots a body - legs, wheels, rocket boosters, it's basically down to your needs and imagination! 
             How do you want your robot to be? Or do you want to model something else by creating a different kind of class?</p>
         <p>Here's the more sophisticated <i>RobotMk4</i> <code>class</code>, with four arguments and two methods:</p>
+
+        <p class="lectureNote">
+            #4 : Information : Objects can carry and depict lots of information.\n-\nNew  behaviour!</p>
+
             <pre class="brush: processing; gutter: false; toolbar: false; highlight: [10,11,12,13,14,15,38,39,40,41]">// -- More sophisticated Basic Robot class with multiple arguments (fields, instance variables) ... and methods!
 // -- OK - this Robot can contain and depict (dear) data!
     
@@ -633,13 +674,17 @@ RobotMk5 r5d1, r5d2, r5d3, r5d4;
       <div class="figRight" style="padding:1em; padding-left:4em">
         <figure>
         <img src="./img/cc.objects.robotHead.robotMk6.png" width="200" alt="A Robot produced via a class"/>
-        <figcaption>A Robot Class.<br/>Our RobotMk6 class only draws<br/>active robots and enables you to<br/>switch robots off with a c lick.</figcaption>
+        <figcaption>A Robot Class.<br/>Our RobotMk6 class only draws<br/>active robots and enables you to<br/>switch robots off with a click.</figcaption>
         </figure>
     </div>
 
     <p>When we start repeating code like this you should be thinking about some refactoring.<br/>
     You should be thinking about groups and loops!<br/>
     Well, that's good as we can have <a href="https://processing.org/reference/Array.html"><code>arrays</code></a> and <a href="https://processing.org/reference/ArrayList.html"><code>ArrayLists</code></a> of robots, just as we can <code>Strings</code>, <code>PImages</code> and <code>PVectors</code>.</p>
+
+    <p class="lectureNote">
+      #6 : 100  Robots : -\ndynamic!\ninteractive!\ninformation rich!\nexpressive?
+    </p>
 
     <p>Here we create an array of 100 <i>RobotMk6</i> objects using an updated <code>class</code> that adds ...
     </p>
