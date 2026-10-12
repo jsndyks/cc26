@@ -56,9 +56,9 @@
         </div>
         </div>
 
-<div class="lectureNote" data-note="03">
+<!-- <div class="lectureNote" data-note="03">
     Mention that velocity is represented by a vector here, and be sure to add a PostIt.
-</div>
+</div> -->
 
         <div class="units-row">
             <div class="unit-70-cc">
@@ -75,6 +75,10 @@
                     also has its own methods for doing stuff with the data it stores. You can access those methods by
                     using the 'dot operator' appended to the name of the variable. For example:
                 </p>
+
+        <div class="lectureNote">
+				#1.1: String : look - a method!
+		</div>
 
                 <pre class="brush: processing; gutter: false; toolbar: false; ">String moduleTitle = "Creative Coding";
 println(moduleTitle);
@@ -99,6 +103,10 @@ println(moduleTitle.length());</pre>
                     The <code>String</code> class has plenty of other useful methods for doing things with text. Here
                     are just a few of them:
                 </p>
+
+        <div class="lectureNote">
+				#1.2: String : more String methods method!
+		</div>
 
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [3,4,6,11,16,21]">    String moduleTitle = "Creative Coding";
  
@@ -147,6 +155,9 @@ Fishy food words found!</pre>
                         String reference</a> for further details.
                 </p>
 
+        <div class="lectureNote">
+				#1.3: Important : Classes & Objects\n& PVectors\n&Images & Radu!
+		</div>
                 <p>
                     The important point to take from these examples is that ...</p>
                 <blockquote>
@@ -212,7 +223,8 @@ void mousePressed()
 
                 <div class="figRight" style="width:225">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pVector1", 200, 200, "https://jsndyks.github.io/cc26/html/objects/img/cc.pvector1.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pVector1", 400, 300,
+                        "https://jsndyks.github.io/cc26/html/objects/img/cc.pvector1.png",200,200);</script>
                     <figcaption>
                         Output from simple line sketch<br/><i>(click to activate<br/>then click points on the sketch)</i>
                     </figcaption>
@@ -312,7 +324,8 @@ void mousePressed()
 
     <div class="figRight" style="width:225">
         <figure>
-            <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pVector2", 200, 200, "https://jsndyks.github.io/cc26/html/objects/img/cc.pvector2.png");</script>
+            <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/pVector2", 400, 300,
+            "https://jsndyks.github.io/cc26/html/objects/img/cc.pvector2.png", 200,200);</script>
             <figcaption>
                 Output from the multi-line sketch<br/><i>(click to activate<br/>then click points on the sketch)</i>
             </figcaption>
@@ -416,7 +429,8 @@ void draw()
                 <!-- Left column -->
                 <div class="figRight" style="width:225">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball1", 200, 200, "https://jsndyks.github.io/cc26/html/objects/img/cc.ball1.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball1", 400, 300,
+                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball1.png", 200,200);</script>
                         <figcaption>
                             Moving ball sketch<br/><i>(click to activate)</i>
                         </figcaption>
@@ -512,8 +526,8 @@ void draw()
                 -->
                 <div class="figCode" style="margin-top:3em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball2", 200, 200,
-                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball2.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball2", 400, 300,
+                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball2.png", 200,200);</script>
                         <figcaption>
                             Moving ball that bounces<br/>off the edges of the sketch<br/><i>(click to activate)</i>.
                         </figcaption>
@@ -732,7 +746,8 @@ void draw()
 
 <div class="figRight" style="width:225">
     <figure>
-        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball3", 200, 200, "https://jsndyks.github.io/cc26/html/objects/img/cc.ball2.png");</script>
+        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball3", 400, 300,
+        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball2.png", 200,200);</script>
     <figcaption>
         Moving ball refactored to use<br/>a class and an object.<br/><i>(click to activate)</i>.
     </figcaption>
@@ -770,7 +785,8 @@ void draw()
                 <!-- Left column -->
                 <div class="figRight" style="width:225">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball4", 200, 200, "https://jsndyks.github.io/cc26/html/objects/img/cc.ball4.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball4", 400, 300,
+                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball4.png", 200,200);</script>
                     <figcaption>
                         4 moving balls using 4 objects.<br/><i>(click to activate)</i>.
                     </figcaption>
@@ -862,8 +878,8 @@ void draw()
             <div class="unit-70-cc">
                 <div class="figCode" style="margin-top:1em">
                     <figure>
-                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball5", 200, 200,
-                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball5.png");</script>
+                        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball5", 400, 300,
+                        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball5.png", 200, 200);</script>
                         <figcaption>
                             Many moving balls using<br/>an array of ball objects.<br/><i>(click to activate)</i>.
                         </figcaption>
@@ -1036,13 +1052,17 @@ void draw()
 
 <div class="figCode" style="margin-top:3em">
     <figure>
-        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball6", 200, 200,
-        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball6.png");</script>
+        <script>loadSketch("https://jsndyks.github.io/cc26/p5js/jwo/ball6", 400, 300,
+        "https://jsndyks.github.io/cc26/html/objects/img/cc.ball6.png", 200,200);</script>
         <figcaption>
             One infected ball begins to infect all others.<br/><i>(click to activate)</i>.
         </figcaption>
     </figure>   
 </div>
+
+        <div class="lectureNote">
+				#2: Ball! : run the sketch
+		</div>
 
 
 <div class="codeTask">
