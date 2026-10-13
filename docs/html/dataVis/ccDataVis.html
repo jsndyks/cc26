@@ -42,11 +42,15 @@
             <p><strong>If you read through these lecture notes, attempt the tasks and exercises and use the resources
                     that we have made available, then by the end of this session you should be able to:</strong></p>
 
+                    <div class="lectureNote">
+                        #1 : Split String : println();\nprintArray();\nString.length();\nfloat();\nmap();
+                    </div>
             <ul>
                 <li>Drag and drop data files into your <em>Processing</em> code window to make them accessible to your sketches;</li>
                 <li>Create a sketch to read a text file using <a href="http://processing.org/reference/loadStrings_.html"
                     target="_blank"><code>loadStrings()</code></a>;</li>
-                <li>Split a line of text into <i>tokens</i> representing individual words or numbers;</li>
+                <li><a href="https://processing.org/reference/split_.html"><code>split()</code></a> a line of text into <i>tokens</i> representing individual words or numbers;</li>
+                <li>convert a <i>String</i> read from a line of text into a <i>floating point number</i> with <a href="https://processing.org/reference/float.html"><code>float()</code></a></li>
                 <li>Rescale a number from one range to another using the <a href="https://processing.org/reference/map_.html"><code>map()</code></a> command;</li>
                 <li>Use data that you have read from a file to change the colour, size or appearance of
                     graphics to depict the data in your sketch.</li>
@@ -134,7 +138,7 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                         When you have doanloaded the data, open a new sketch and use <code>loadStrings("namesData.txt")</code> to
                         load the contents of the file into an array of <code>String</code>s.<br /></p>
                         <pre class="brush: processing; gutter: false; toolbar: false;">
-                            // Read a text file into an array names 'lines' with loadStrings()
+                            // Read a text file into an array named 'lines' with loadStrings()
                             String[] lines = loadStrings("namesData.txt");</pre>
                         <p>
                         Each line of the data file will be loaded into an element of the array, in turn.</p>
@@ -215,6 +219,11 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                 <ul>
                     <li>skeleton sketch with data - <a href="https://jsndyks.github.io/cc26/data/namesData.zip">namesData.zip</a></li>
                 </ul>
+
+                <div class="lectureNote">
+                    #2 : Skeleton : get namesData.txt\n-\nloadStrings();\nsplit();\nfloat();\nmap();
+                </div>
+
                 <p>Or by copying this code - but also remembering to download <a
                             href="https://jsndyks.github.io/cc26/data/namesData.txt"
                             target="_blank">namesData.txt</a> and add it into the 'data' folder of the sketch by dragging it into the <i>Processing</i> API:</p>
@@ -222,35 +231,42 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                     <li>
                         skeleton sketch without data <span><a href="#" class="link-show-code">Click for Code!</a></span>
                 <div class="prettyprint" style="display: none;">
-                    <pre class="brush: processing; gutter: false; toolbar: false; highlight:[99]">
-    // -- A global variable - an array of Strings
-    String[] names; // &lt;-- This is where we will store lines of data from the text file.
+                    <pre class="brush: processing; gutter: false; toolbar: false; highlight:[2,12]">
+// -- A global variable - an array of Strings
+String[] names; // &lt;-- This is where we will store lines of data from the text file.
 
-    void setup()
-    {
-    size(800, 500);
-    fill(64);
-    textSize(16);  // -- try changing the size of any text added with text();
+void setup()
+{
+  size(800, 500);
+  fill(64);
+  textSize(16);            // &lt;-- try changing the size of any text added with text();
+  textAlign(LEFT,CENTER);  // &lt;-- changes text alignment
 
-    // -- load the text from the file into the array:
-    names = loadStrings("namesData.txt");
-    }
+  // -- load the text from the file into the array:
+  names = loadStrings("namesData.txt");
+}
 
-    void draw()
-    {
-    background(255);
+void draw()
+{
+  background(255);
 
-    // -- loop through all of the elements in array 'names[]' here :
-    for (int lineNum=0; lineNum&lt;names.length; lineNum++) {
+  // -- loop through all of the elements in array 'names[]' here :
+  for (int lineNum=0; lineNum&lt;names.length; lineNum++) {
 
-        // -- add println() or text() in the loop :
-        text(names[lineNum], 20+lineNum, 20+lineNum*20);  // &lt;-- positions of text vary with lineNum
-        // -- close the loop :
-    }
+    // -- add println() or text() in the loop :
+    text(names[lineNum], 20+lineNum, 20+lineNum*20);  // &lt;-- positions of text vary with lineNum
+    
+    // -- split()
+    
+    // -- float()  -&gt; 1, 4
+    
+    // -- map()
+  }
 
-    // -- stop the draw() loop for now :
-    noLoop(); // &lt;-- we don't need to print this 60 times per second!
-    }</pre>
+  // -- stop the draw() loop for now :
+  noLoop(); // &lt;-- we don't need to print this 60 times per second!
+}
+</pre>
                 </div>                    </li>
                 </ul>
 
@@ -297,10 +313,15 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                 </p>
         <!--- Add Book Here -->
         <h5>BookVis</h5>
-        <p>I would also like you to copy this code into a sketch for use in the Lecture on Data Vis:</p>
+
+        <div class="lectureNote">
+            #3.1 : The Time Machine : Check Gutenberg\n-\nget ...\ntheTimeMachine.txt\n-\nadd ...\nextra commands
+        </div>
+
+                <p>I would also like you to copy this code into a sketch for use in the Lecture on Data Vis:</p>
 <pre class="brush: processing; gutter: false; toolbar: false;">
-String [] dataFile;  // -- Lines of text will be loaded into this Array of Strings from file.
-int lineToShow;
+String [] dataFile;  // -- Lines of text will be loaded into this array of Strings from file.
+int lineToShow;      // -- The line in the data file (paragraph of the book, element of the array) to show.
  
 void setup()
 {
@@ -315,10 +336,10 @@ void setup()
  
 void draw()
 {
-  background(255);
+  background(250);
   
   println(dataFile[lineToShow]);
-  text(dataFile[lineToShow],  100,5,  width-110,height-10);
+  text(dataFile[lineToShow],  100,5,  width-150,height-10);
   noLoop();
 }
 
@@ -327,7 +348,12 @@ void mouseMoved() {
   lineToShow = int(lineFromMouseY);
   loop();
 }</pre>
-        <p>And ... these extra commands to add in during the lecture!</p>        
+
+<p>And ... these extra commands to add in during the lecture!</p>        
+        <div class="lectureNote">
+            #3.2 : The Time Machine : add ...\nextra commands
+        </div>
+
 <pre class="brush: processing; gutter: false; toolbar: false;">
 // -- 1: show bars - add this to the draw() loop:
   int i=0;
@@ -649,7 +675,7 @@ void draw()
             <div class="unit-30-cc annotation cc-right">
                 <!-- Right column -->
                 <figure>
-                    <img src="https://www.gutenberg.org/cache/epub/35/pg35.cover.medium.jpg" width="150"/>
+                    <img src="./img/cc.theTimemachine.pg35.cover.medium.jpg" width="150"/>
                     <figcaption>     
                         <a href="https://jsndyks.github.io/cc26/data/theTimeMachine.txt"
                         target="_blank">The Time Machine</a>

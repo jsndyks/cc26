@@ -1,41 +1,54 @@
-# DATA VISUALIZATION 10/10/2025
+# DATA VISUALIZATION 13/10/2026
 
-## 05. MOVIES                                       05 - 00 » 05
+## 00-10 >> MOVIES
 
 - Fathom : NikeFuel            -  1:10
 - CodeSwarm : Eclipse Commits  -  3:24
 - Cycle Scheme : Journeys      - 25:23
 
-## 15. DATA VISUALIZATION & ME                      10 - 05 » 15
+## 10-20 >> STRING SPLIT
 
-- VisSoc slides +
+ - println();
+ - printArray();
+ - String.length();
+ - float();
+ -  map();
 
-## 25. NAMES DATA                                   10 - 15 » 25
+## 20-30 >> NAMES DATA
 
-- lecture **0. Before we start** 
-> loadStrings();
-> printArray();
-> println();
-
-- **namesData_lectureSketch.pde** <PDE>
-> split @
-> println()
+- **Click for Code** <PDE>
+> loadStrings()
 > text()
 > split()
 > rect()
-> int()
+> float() : 1,4
 > map()
-> keyPressed()
 
-## 35. BOOK DATA                                    10 - 25 » 35
+## 30-40 >> VIS BOOK
 
-- **bookDataVis.pde** <PDE>
+> Check Gutenberg
+> get theTimeMachine.txt
+> explain mouseMoved();
+> add extra commands
 
-## 40. DATA & CREATIVITY                            05 - 35 » 40
+## 40-50 >> OBJECT >> DATA ROBOT
+
+- **robotTest**
+> add instantiation
+> add r.move();
+
+- **robotTestData**
+> arrayList
+> 6 arguments / constructor
+> loadData
+
+## FIN
 
 > Data, Depiction, Discovery
-> DESIGN PROCESS
-> CORE & CODING TASKS
+> Outcomes
+> image();
+> sound();
+> data - loadStrings();
 
 
 --
