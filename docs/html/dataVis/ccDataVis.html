@@ -43,7 +43,7 @@
                     that we have made available, then by the end of this session you should be able to:</strong></p>
 
                     <div class="lectureNote">
-                        #1 : Split String : println();\nprintArray();\nString.length();\nfloat();\nmap();
+                        #1 : Split String : split();\nprintln();\nprintArray();\n-\nsetup();\nString.length();\nfloat();\nmap();
                     </div>
             <ul>
                 <li>Drag and drop data files into your <em>Processing</em> code window to make them accessible to your sketches;</li>
@@ -135,7 +135,7 @@ Alfonso Crole,2,4,1151,1965,Male,XS,#39b676,acrolej@archive.org</pre>
                         <p>You can add the file to a <em>Processing</em> sketch by finding it in <i>Finder</i> (Mac) or <i>File Explorer</i> (Windows) and dragging it into the sketch code window.</p>
                         <p>The data were created with the <a href="https://www.mockaroo.com">mockaroo</a> Random Data Generator.
                     <p>
-                        When you have doanloaded the data, open a new sketch and use <code>loadStrings("namesData.txt")</code> to
+                        When you have downloaded the data, open a new sketch and use <code>loadStrings("namesData.txt")</code> to
                         load the contents of the file into an array of <code>String</code>s.<br /></p>
                         <pre class="brush: processing; gutter: false; toolbar: false;">
                             // Read a text file into an array named 'lines' with loadStrings()
@@ -243,7 +243,7 @@ void setup()
   textAlign(LEFT,CENTER);  // &lt;-- changes text alignment
 
   // -- load the text from the file into the array:
-  names = loadStrings("namesData.txt");
+  names = loadStrings("namesData.txt"); // &lt;-- or "https://jsndyks.github.io/cc26/data/namesData.txt"
 }
 
 void draw()
