@@ -23,31 +23,67 @@
 
   <!-- This line removes any default padding and style.
        You might only need one of these values set. -->
-  <style>
-    body {
-      padding: 1rem;
-      margin: 1rem;
-      background-color: #E7E2D4;
-    }
+<style>
+  body {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #E7E2D4;
+  }
 
-    #sequencer {
-      display: flex;
-      justify-content: center;
-    }
-    .scamper {
-     font-size:90%;
-     color:#ffffff;
-          background-color: #61513D;
-     background-color: #F5B301;
-     padding:0.5rem 2rem;
-    }
-  </style>
+  .intro {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .introText {
+    flex: 1;
+  }
+
+  .qr {
+    width: 300px;
+    margin: 2rem;
+  }
+  #sequencer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .scamper {
+    font-size: 90%;
+    color: #ffffff;
+    background-color: #F5B301;
+    padding: 0.5rem 2rem;
+  }
+</style>
 </head>
 
 <body>
-  <p>Jo Wood's marvelous <b>Step Sequencer</b> - click the image and press &lt;SPACE&gt; to start and stop.</p>
-  <p>Click 1️⃣, 2️⃣, 3️⃣, 4️⃣ or 5️⃣ for a preset beat and then <b>be creative</b>.</p>
+
+  <div class="intro">
+
+    <div class="introText">
+      <p>
+        Jo Wood's marvelous <b>Step Sequencer</b> -
+        click the image and press &lt;SPACE&gt; to start and stop.
+      </p>
+
+      <p>
+        Click 1️⃣, 2️⃣, 3️⃣, 4️⃣ or 5️⃣ for a preset beat
+        and then <b>be creative</b>.
+      </p>
+    </div>
+
+    <img
+      class="qr"
+      src="./images/qr.stepSequencer.png"
+      alt="QR code for Step Sequencer"
+    />
+
+  </div>
+
   <div id="sequencer"></div>
+
   <ul>
     <li><b class="scamper"><b>S</b>&nbsp;ubstitute</b> one channel (row) for another;</li>
     <li><b class="scamper"><b>C</b>&nbsp;ombine</b> beats from two of the different presets;</li>
