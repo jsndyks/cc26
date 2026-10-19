@@ -119,7 +119,9 @@ class Track {
 }
 
 function setup() {
-  createCanvas(900, 520);
+  let canvas = createCanvas(900, 520);
+  canvas.parent("sequencer");
+
   borderLeft = 100;
   borderTop = 120;
   textSize(18);
@@ -142,7 +144,6 @@ function setup() {
 
   resetClock();
 }
-
 function draw() {
   background(232, 226, 211);
   image(logo, width - 0.5 * borderLeft - 240, 20, 240, 65);
