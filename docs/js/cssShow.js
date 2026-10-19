@@ -22,7 +22,8 @@
  * when the note moves above the main content.
  *   <div class="lectureNote">#4.1 : Title : explanatory text</div>
  *
- * Existing lectureNote markup is left untouched for backward compatibility.
+ * Plain text plus <br> is parsed; <br> is treated like a literal \n marker.
+ * Other existing lectureNote markup is left untouched for backward compatibility.
  *
  * CSS diagnostic:
  *   ?css=show
@@ -69,16 +70,41 @@
       note.style.setProperty("--lecture-note-tilt", lectureNoteTilt(note));
       /*
        * Backward compatibility:
-       * if the note already contains HTML, leave it exactly as supplied.
+       *
+       * Plain text notes are parsed as before. A <br> is also allowed and is
+       * treated exactly like a literal \n marker. If the note contains any other
+       * HTML element, leave it untouched as legacy markup.
        */
-      if (
-        note.classList.contains("lectureNote-parsed") ||
-        note.children.length > 0
-      ) {
+      if (note.classList.contains("lectureNote-parsed")) {
         return;
       }
 
-      const source = note.textContent.replace(/\s+/g, " ").trim();
+      let source = "";
+      let hasUnsupportedMarkup = false;
+
+      note.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          source += node.textContent;
+        }
+        else if (
+          node.nodeType === Node.ELEMENT_NODE &&
+          node.tagName === "BR"
+        ) {
+          source += "\\n";
+        }
+        else if (node.nodeType !== Node.COMMENT_NODE) {
+          hasUnsupportedMarkup = true;
+        }
+      });
+
+      if (hasUnsupportedMarkup) {
+        return;
+      }
+
+      source = source
+        .replace(/[ \t\r\f]+/g, " ")
+        .replace(/ *\\n */g, "\\n")
+        .trim();
       const firstColon = source.indexOf(":");
 
       if (firstColon === -1) {
