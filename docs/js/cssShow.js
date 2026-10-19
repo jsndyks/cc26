@@ -15,7 +15,8 @@
  *   <div class="lectureNote">#0.1 : draw a robot!</div>
  *
  * The short #number : title form is supported as well as the full
- * #number : title : explanatory text form.
+ * #number : title : explanatory text form. A deliberately blank third
+ * section (for example, : &nbsp;) is also valid.
  *
  * Literal \n markers are emitted as .lectureNote-break spans so CSS can
  * render them as line breaks in margin notes and as semicolon separators
@@ -137,7 +138,7 @@
       const numberMatch =
         number.match(/^#\s*(\d+)(\.\d+)?$/);
 
-      if (!numberMatch || !title || (secondColon !== -1 && !bodyText)) {
+      if (!numberMatch || !title) {
         return;
       }
 
@@ -165,7 +166,13 @@
 
       body.appendChild(titleSpan);
 
-      if (bodyText) {
+      /*
+       * If a second colon is present, create the explanatory-text section
+       * even when it is intentionally blank (for example, written as &nbsp;).
+       * This keeps #number : title : blank-note authoring distinct from the
+       * shorter #number : title form.
+       */
+      if (secondColon !== -1) {
         const textSpan = document.createElement("span");
         textSpan.className = "lectureNote-text";
 
@@ -175,18 +182,20 @@
          *   margin note  -> line break
          *   full-width   -> ";  "
          */
-        bodyText.split(/\\n/g).forEach((part, index) => {
-          if (index > 0) {
-            const separator = document.createElement("span");
-            separator.className = "lectureNote-break";
-            separator.setAttribute("aria-hidden", "true");
-            textSpan.appendChild(separator);
-          }
+        if (bodyText) {
+          bodyText.split(/\\n/g).forEach((part, index) => {
+            if (index > 0) {
+              const separator = document.createElement("span");
+              separator.className = "lectureNote-break";
+              separator.setAttribute("aria-hidden", "true");
+              textSpan.appendChild(separator);
+            }
 
-          textSpan.appendChild(
-            document.createTextNode(part.trim())
-          );
-        });
+            textSpan.appendChild(
+              document.createTextNode(part.trim())
+            );
+          });
+        }
 
         body.appendChild(textSpan);
       }
@@ -194,7 +203,7 @@
       note.textContent = "";
       note.classList.add("lectureNote-parsed");
 
-      if (!bodyText) {
+      if (secondColon === -1) {
         note.classList.add("lectureNote-title-only");
       }
       note.appendChild(numberSpan);
