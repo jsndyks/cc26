@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>cc26 : Art Code</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
+</head>
+
+<body>
+
+
+<div id="page">
+    
+        <div class="intro">
+            <h2>Art Code</h2>
+                <p>Here are some quick sketches that I showed in the <b>ART</b> lecture.</p>
+                <p>Feel free to play with these to get to know some of the concepts that I introduced.</p>
+        </div>
+
+        <p>Click the <code>View Code!</code> buttons for annotated code that you should be able to paste and run in a <i>Processing</i> sketch.</p>
+
+        <p>For further explanation and examples see the <a href="../resources/bootCamp.resources.randomness.html">Adding Randomness to Sketches</a> page.</p>
+
+        <h3>1. Seeing Randomness and Noise </h3>
+        <p>An example that shows how the methods in <i>Processing</i> for random number generation vary.</p>
+        <span><a href="#" class="link-show-code">View Code!</a></span>
+        <div class="prettyprint" style="display: none;">
+          <p>Check the comments and interactions to see how to use <code>noise()</code>, and how it varies from <code>random()</code> and <code>randomGaussian()</code>.</p>
+    <pre class="brush: processing; gutter: false; toolbar: false; highlight: []">
+// -- System State Variables : Globals
+
+boolean showRand = true;
+boolean showGauss = false;
+boolean showNoise = false;
+boolean showNoiseMore = false;
+boolean showNoiseLess = false;
+boolean showNoiseMouse = false;
+
+
+void setup () {
+
+  size(1200, 200);
+  strokeWeight(3);
+  background(250);
+}
+
+
+void draw() {
+  float x=frameCount/2.0;                      // &lt;-- x will be used for point position and is half of frameCount
+  x = x%width;                                 // &lt;-- divide x by width and return the remainder
+  
+  // -- random value
+  if (showRand) {
+    float r = random(1);
+    stroke(16, 64);
+    point(x, map(r, 0, 1, 0, height));   // &lt;-- map 'r' to the range of the height of the canvas
+  }
+
+  // -- random value
+  if (showGauss) {
+    float g = randomGaussian();
+    stroke(64, 200, 64, 200);
+    point(x, map(g, -4, 4, 0, height));   // &lt;-- map 'g' to the range of the height of the canvas
+  }
+  
+  float sampleDistance=0.05;                   // &lt;-- sampling distance scaling
+
+  // -- 1D strip of noise across x, with y scaled from 0-1 to 0-height:
+  if (showNoise) {
+    float n = noise(x*sampleDistance);         // &lt;-- 'n' is a value from the noise curve based on x
+    stroke(255, 128, 0, 200);
+    point(x, map(n, 0, 1, 0, height));   // &lt;-- map 'n' to the range of the height of the canvas
+  }
+
+  // -- Sample along noise curve less frequently - successive values are less related:
+  if (showNoiseLess) {
+    float nLo = noise(x*sampleDistance / 10.0);// &lt;-- smaller number given to noise()
+    stroke(180, 32, 32, 200);
+    point(x, map(nLo, 0, 1, 0, height));
+  }
+
+  // -- Sample along noise curve more frequently - successive values are more related:
+  if (showNoiseMore) {
+    float nHi = noise(x*sampleDistance * 10.0);// &lt;-- larger number given to noise()
+    stroke(255, 32, 0, 200);
+    point(x, map(nHi, 0, 1, 0, height));
+  }
+
+  // -- Vary sampling along noise curve based upon mouse position in X:
+  if (showNoiseMouse) {
+    float nMx = noise(x*map(pow(mouseX, 4), 0, pow(width, 4), 0.001, 1));
+    stroke(32, 128, 180, 200);
+    point(x, map(nMx, 0, 1, 0, height));
+  }
+}
+
+
+// -- Interaction:
+
+void keyPressed () {
+  if (key == 'r') showRand = !showRand;
+  if (key == 'g') showGauss = !showGauss;
+  if (key == 'n') showNoise = !showNoise;
+  if (key == 'm') showNoiseMore = !showNoiseMore;
+  if (key == 'l') showNoiseLess = !showNoiseLess;
+}
+
+void mouseClicked () {
+  showNoiseMouse = !showNoiseMouse;
+}
+    </pre>
+        </div>
+        
+        <h3>2. Using Randomness and Noise - Dancing and Jiggling Quads</h3>
+        <p>A further example that shows how the methods in <i>Processing</i> for random number generation vary and the effects that they have .</p>
+        <span><a href="#" class="link-show-code">View Code!</a></span>
+        <div class="prettyprint" style="display: none;">
+          <p>Check the comments and interactions to see how to use <code>noise()</code> to vary coordinates.</p>
+          <p>Press a key to switch the <code>noise()</code> on and off, move the mouse to change the scaling of our random variation.</p>
+<pre class="brush: processing; gutter: false; toolbar: false; highlight: []">
+// -- System State Variables : Globals
+
+boolean shake = true;      // -- Do we want the rectangles to jitter?
+boolean useNoise = false;  // -- Do we want to use noise in our jittering?
+
+
+void setup()
+{
+  size(860, 200);
+}
+
+
+void draw()
+{
+  background(255);
+  noStroke();
+  fill(0, 0, 200, 100);   // -- Semi-transparent blue
+
+  // -- The number here is not important - but the random number sequence used in the draw() loop
+  // --  will always start at the same point (and follow the same sequence) if we add randomSeed().
+  if (!shake) {
+    randomSeed(224846);   
+  }
+
+  // -- Default positions and size of the quads:
+  float xPos      = 40;
+  float yPos      = 50;
+  float quadSize  = 90;
+  
+  // -- Make random range dependent upon x position of mouse
+  float rnd    = map(mouseX, 0, width, 0, quadSize/2f);
+  
+  // -- Do different things depending upon whether or not useNoise is true:
+  if (useNoise) {
+    
+    // -- Arrays to hold positions along the noise() curve for each of the 8 quads and the 8 coords used in each quad:
+    float [] noisyPoints = new float [8];  // -- positions on the noise curve for each point
+    float [] noisyQuads  = new float [8];  // -- positions on the noise curve for each quad
+    
+    // -- Fill the noisyPoints array - one position for each of the 8 coordinates:
+    for (int i=0; i&lt;noisyPoints.length; i++) {
+      noisyPoints[i] = i*10000 + frameCount*0.01;
+    }
+    
+    // -- Fill the noisyQuads array based on a number that changes as the sketch progresses (to move us along the noise curve) :
+    for (int q=0; q&lt;noisyQuads.length; q++) {
+      noisyQuads[q] = q*1000 + frameCount*0.01;
+    }
+    
+    // -- Draw the quads, one at a time!
+    for (int q=0; q&lt;noisyQuads.length; q++) {
+      float [] noisyCoords  = new float [8];            // -- A new array that will define a position on the noise curve for each point of this quad.
+      float scaleFactor = map(mouseX, 0, width, 0, 2);  // -- Our random noise element will be scaled according to mouse position. 
+      for (int p=0; p&lt;8; p++) {
+        float noisePosition = noise(noisyQuads[q]+noisyPoints[p]);    // -- Add the quad position and the noise position to find the position for this specific point on this particular quad.
+        noisePosition = map(noisePosition, 0,1, -1,1);                // -- noise() returns 0 to 1, and we want to map this to a -1 to 1 range so that our noise  can have positive or negative effects on coordinate positions.
+        noisyCoords[p] = noisePosition * scaleFactor *  quadSize/2f;  // -- The coordinate itself is scaled by the mouse-based scaleFactor and quadSize.
+      }
+      
+      // -- Add the noise to the quad coordinates and draw the quad:
+      quad(xPos         + noisyCoords[0], yPos            + noisyCoords[1],
+        xPos + quadSize + noisyCoords[2], yPos            + noisyCoords[3],
+        xPos + quadSize + noisyCoords[4], yPos + quadSize + noisyCoords[5],
+        xPos            + noisyCoords[6], yPos + quadSize + noisyCoords[7]);
+        
+      xPos = xPos + 100;
+    }
+  } else {
+
+    // -- Draw each quad in turn:
+    for (int i=0; i&lt;8; i=i+1)
+    {
+      // -- Add a random number to each coordinate component for each quad in turn:
+      quad(xPos         + random(-rnd, rnd), yPos            + random(-rnd, rnd),
+        xPos + quadSize + random(-rnd, rnd), yPos            + random(-rnd, rnd),
+        xPos + quadSize + random(-rnd, rnd), yPos + quadSize + random(-rnd, rnd),
+        xPos            + random(-rnd, rnd), yPos + quadSize + random(-rnd, rnd));
+
+      xPos = xPos + 100;
+    }
+  }
+}
+
+void keyPressed() {
+  useNoise = !useNoise;
+}
+
+void mouseClicked () {
+  shake = !shake;  // &lt;-- change the boolean value to the inverse on a mouse click
+}
+</pre>
+</div>        
+
+
+        <div style="padding-bottom:2em;clear:both"></div>
+        
+        <!--- spacer for iFrame -->
+        <p style="padding-top:1em"><hr/></p>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+</div> <!-- End of page div -->
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+</body>
+
+</html>
