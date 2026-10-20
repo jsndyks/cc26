@@ -1854,16 +1854,14 @@ html.show-lecture-notes .lectureNote .focusNum {
   margin: 0;
 }
 
-/* -- Vera Molnár headings -- */
- h3 .vera {clear:none}
  /* -- Vera Molnár headings and images -- */
+ h3 .vera {clear:none}
 
 h3.vera {
-  clear: both;
+  clear: none;
 }
 
 .veraImage {
   float: right;
-  margin: 0 0 1em 1em;
-  padding-top: 0.5em;
+  margin: 4.5em 0 1em 1em;
 }

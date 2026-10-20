@@ -71,12 +71,12 @@
 
     <hr/>
 
+    <div class="veraImage">
+      <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.01.png" width=125/>
+    </div>
     
 
     <h3 class="vera">1. Draw a Square with quad()</h3>
-    <div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-      <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.01.png" width=125/>
-    </div>
     <p>Use the <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> method to do so - it takes eight parameters that specify four coordinate pairs (x,y), one for each corner, clockwise from top left.</p>
     <p>Your quad should be square, centred on <code>xPos</code>,<code>yPos</code> and <code>sSize</code> by <code>sSize</code> in dimensions.</p>
     <p>Use this code as the basis of your sketch, and fill in the eight arguments to <code>quad()</code> that will complete the task.</p>
@@ -121,12 +121,11 @@
           </div>
 
 <hr/>
-
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.02.png" width=125/>
+</div> 
 
     <h3 class="vera">2. Create a Method to Draw a vQuad</h3>
-<div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-  <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.02.png" width=125/>
-</div> 
     <p>Use <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> in your new <code>vQuad()</code> method, which should take three arguments, as shown below to specify the <i>position</i> and <i>size</i> of the square.</p>
     <p>It should, once again create a square, centred on <code>xPos</code>,<code>yPos</code> and be <code>sSize</code> by <code>sSize</code> in dimensions.<br/>So the output should look the same as before.</p>
     <p>You should be able to move most of the code from the first example above into the method.</p>
@@ -167,12 +166,11 @@
           </pre>
           </div>
  <hr/>
-
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.03.png" width=125/>
+</div>
 
     <h3 class="vera">3. Give the vQuad some Randomness</h3>
-<div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-  <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.03.png" width=125/>
-</div>
     <p>Adapt your <code>vQuad()</code> method to take a 4th parameter that adds some randomness to the quad coordinates.</p>
     <p>Your <code><a href="https://processing.org/reference/quad_.html">quad()</a></code> will no longer be square, as each coordinate should vary randomly by an amount up to the number given as the 4th argument.</p>
     <p>If your 4th argument, the degree of randomness, is <code>r</code>, then adding <code>random(-r, r)</code> to each of the 8 coordinates will achieve this effect.</p>
@@ -215,11 +213,11 @@
           </div>
 
 <hr/>
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.04.png" width=125/>
+</div>
 
     <h3 class="vera">4. Create a Method to Draw vQuads within a vQuad</h3>
-<div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-  <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.04.png" width=125/>
-</div>
     <p>Now we need a new method <code>vQuads</code> that calls the <code>vQuad</code> method multiple times, each time creating a <code>vQuad</code> in the same position, but of a decreasing size.</p>
     <p>So <code>vQuads</code> will need to take <b>five</b> parameters that in turn specify:
       <br/>the central position in x and y, the size (of the outer <code>vQuad</code>), the randomness to use and the number of <code>vQuad</code>s to be drawn.</p>
@@ -259,12 +257,11 @@
         </div>
 
         <hr/>
-
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.05.png" width=125/>
+</div>
 
     <h3 class="vera">5. Randomly Omit Some of the Quads</h3>
-        <div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-          <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.05.png" width=125/>
-        </div>
     <p>Add a 6th argument to <code>vQuads</code> that is the likelihood that each individual <code>vQuad</code> will be drawn.</p>
     <p>This should vary from 0-1<br/>
       A value of <code>1</code> will mean that every <code>vQuad</code> is drawn, and have no effect.
@@ -315,12 +312,11 @@ void draw()
       </div>
 
       <hr/>
-
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.06.png" width=125/>
+</div>
 
       <h3 class="vera">6. Create a Square Grid of vQuads</h3>
-      <div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-        <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.06.png" width=125/>
-      </div>
       <p>Your <code>draw()</code> loop only draws one set of <code>vQuads</code>.</p>
       <p>Adjust this so that for any grid size, <code>gSize</code>, you create a <code>gSize</code> x <code>gSize</code> square grid of <code>vQuads</code>.</p>
         <pre class="brush: processing; gutter: false; toolbar: false; highlight: [11]">
@@ -367,12 +363,11 @@ void draw()
         </div>      
 
         <hr/>
-
+<div class="veraImage">
+      <img src="https://jsndyks.github.io/cc26/images/vera.07.png" width=125/>
+</div>
 
         <h3 class="vera">7. Finishing Off - Space and More Randomness</h3>
-        <div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-          <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.07.png" width=125/>
-        </div>
         <p>What we have, looks quite a lot like <a href="https://dam.org/museum/artists_ui/artists/molnar-vera/des-ordres/">Des Ordres</a>, but still a little too ordered and a bit squished up.</p>
         <p>Can you adapt the <code>vQuads</code> by :</p>
         <ul>
@@ -404,12 +399,11 @@ void draw()
               </pre>
             </div>
 <hr/>
-
+<div class="veraImage">
+    <img src="https://jsndyks.github.io/  08.png" width=125/>
+</div>
 
 <h3 class="vera">8. Go Further - Explain &amp; Explore</h3>
-<div style="float:right; padding-left:1em;padding-bottom:1em;padding-top:2em">
-  <img src="https://jsndyks.github.io/cityCreativeCoding/images/vera.08.png" width=125/>
-</div>
 
 <h4>Explain</h4>
 <p>Can you tweak the various parameters and assess the results to try to work out what Vera Molnár was varying when she generated some of the patterns used in <a href="https://dam.org/museum/artists_ui/artists/molnar-vera/des-ordres/">Des Ordres</a>?</p>
