@@ -1,4 +1,4 @@
-/* creativeCoding-FCUS-v43.css — updated 2026-10-09 17:17 BST */
+/* creativeCoding-FCUS-v44.css — updated 2026-10-20 08:37 BST */
 /* ==========================================================================
    Creative Coding — lean stylesheet
    Keeps existing class names and HTML structure.
@@ -1856,3 +1856,14 @@ html.show-lecture-notes .lectureNote .focusNum {
 
 /* -- Vera Molnár headings -- */
  h3 .vera {clear:none}
+ /* -- Vera Molnár headings and images -- */
+
+h3.vera {
+  clear: both;
+}
+
+.veraImage {
+  float: right;
+  margin: 0 0 1em 1em;
+  padding-top: 0.5em;
+}
