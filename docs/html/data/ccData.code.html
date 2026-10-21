@@ -98,18 +98,18 @@ void draw() {
   // -- split current line into a new array:
   String [] tokens = split(lines[myLine], ",");
 
-  int t = 0;                         // &lt;-- counts the token number as we loop through the array of tokens
+  int t = 0;                           // &lt;-- counts the token number as we loop through the array of tokens
   y = map(myLine, 0, 99, 0, height); // &lt;-- height at which line will be shown (based on myLine)
 
   for (String token : tokens) {
 
-    float z = float(token);          // &lt;-- converts String to float
+    float z = float(token);           // &lt;-- converts String to float
     float x = t*8;
 
     if (showRect) {
       fill(z);
       noStroke();
-      rect(x, y, 8, 8);              // -- try a rectangle (coloured by z)
+      rect(x, y, 8, 8);               // -- try a rectangle (coloured by z)
     }
 
     if (showLine) {
@@ -120,7 +120,7 @@ void draw() {
     if (showCircle) {
       noFill();
       stroke(32);
-      circle(x, y, z/35);            // -- try a circle (sized in proportion to z)
+      circle(x, y, z/35);             // -- try a circle (sized in proportion to z)
     }
 
     t++;
