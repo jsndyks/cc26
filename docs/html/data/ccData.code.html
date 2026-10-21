@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>cc26 : Data Code</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
+</head>
+
+<body>
+
+
+<div id="page">
+    
+        <div class="intro">
+            <h2>Data Code</h2>
+                <p>The sketches and examples used in the <b>DATA</b> lecture are provided here.</p>
+                <p>Copy them into blank <i>Processing</i> sketches, read the comments and experiment with the code.</p>
+                <p>This will enable you to see how we can load data into sketches and use it to vary graphics on screen.</p>
+        </div>
+
+        <p>Click the <code>View Code!</code> buttons for annotated code that you should be able to paste and run in a <i>Processing</i> sketch.</p>
+
+        <p>There are more examples of simple classes and objects on the <a href="../resources/bootCamp.resources.bouncingBalls.html">Bouncing Balls</a> page.</p>
+
+        <h3>1. Loading Data </h3>
+        <p>An example that uses <code>loadStrings()</code> to fill an array with dat, and <code>split()</code> to spit this up into tokens that can be converted into numbers that are then <code>map()</code>ped to a range that we can use in positioning, colouring or sizing graphical elements on screen.</p>
+        <span><a href="#" class="link-show-code">View Code!</a></span>
+        <div class="prettyprint" style="display: none;">
+          <p>Check the comments and the interactions in <code>keyPressed()</code> to vary what is shown and how.</p>
+    <pre class="brush: processing; gutter: false; toolbar: false; highlight: []">
+// -- System State Variables : Global - change in Event methods
+
+boolean doBackground = true;
+boolean runAutomatically = false;
+boolean useLinePosition = false;
+boolean showLine = true;
+boolean showCircle = false;
+boolean showRect = false;
+boolean showText = true;
+
+
+String [] lines;
+int myLine=0;
+
+
+void setup() {
+  size(800, 800);
+  rectMode(CENTER);
+  ellipseMode(CENTER);
+
+  // -- Push data into 'lines' array from file - one file line per array element:
+  lines = loadStrings("someData.csv");
+  println(myLine, lines.length);
+}
+
+
+void draw() {
+
+  if (doBackground) {
+    background(250);
+  }
+
+  if (runAutomatically) {
+    // -- Base the selected line (myLine) on a variable that increases automatically - like frameCount
+    myLine = int(frameCount/5f)%100;
+  }
+
+  float y=20;
+
+  if (useLinePosition) {
+    y = map(myLine, 0, 99, 0, height);
+  } else {
+    if (showText) {
+      // -- add background for text:
+      fill(250);
+      noStroke();
+      rect(width/2, y+8, width, 16);
+    }
+  }
+
+  println(lines[myLine]);
+
+  if (showText) {
+    fill(255, 32, 32, 200);
+    text(myLine, 4, y+10);
+    fill(32, 200);
+    text(lines[myLine], 20, y+10);
+  }
+
+  // -- split current line into a new array:
+  String [] tokens = split(lines[myLine], ",");
+
+  int t = 0;                         // &lt;-- counts the token number as we loop through the array of tokens
+  y = map(myLine, 0, 99, 0, height); // &lt;-- height at which line will be shown (based on myLine)
+
+  for (String token : tokens) {
+
+    float z = float(token);          // &lt;-- converts String to float
+    float x = t*8;
+
+    if (showRect) {
+      fill(z);
+      noStroke();
+      rect(x, y, 8, 8);              // -- try a rectangle (coloured by z)
+    }
+
+    if (showLine) {
+      stroke(32);
+      line(x, y, x, y-map(z, 0, 255, 0, 50));
+    }
+
+    if (showCircle) {
+      noFill();
+      stroke(32);
+      circle(x, y, z/35);            // -- try a circle (sized in proportion to z)
+    }
+
+    t++;
+  }
+}</pre>
+        </div>
+        
+        <h3>2. Data, Classes &amp; Objects</h3>
+        <p>This example defines and uses a <code>Robot</code> class into which we can pass arguments that are used to depict the <code>Robot</code> in its <code>draw()</code> method.</p>
+        <span><a href="#" class="link-show-code">View Main Code!</a></span>
+        <div class="prettyprint" style="display: none;">
+          <p>Check the comments to see how we can load data using <code>loadStrings()</code> and then loop through the array that is produced to create an object that contains data from each line of our file.</p>
+<pre class="brush: processing; gutter: false; toolbar: false; highlight: []">
+// -- Globals : available anywhere in the sketch
+
+boolean moveThem=false;      // -- State variable : do Robots move?
+
+float wide=50, high=25;      // -- Width and height of Robot's head
+
+// -- Empty ArrayList of Robots - learn to use these expandable collections of objects! 
+ArrayList&lt;Robot&gt; robots = new ArrayList&lt;Robot&gt;();
+
+
+// -- SetUp : runs once when the sketch starts
+
+void setup () {
+
+  size(800, 1000);
+
+  // -- Load data from the file into an array - one line per array element:
+  String [] names = loadStrings("namesData.txt");
+  
+  // -- Loop through the array one line at a time:
+  for (String name : names) {
+    // -- Split the line at each comma and put the items into a new array - toks:
+    String [] toks = split(name, ",");
+    // -- Use the content of the toks array to initialise some local variables with data values: 
+    float mouthWidth = float(toks[1]);
+    mouthWidth = map(mouthWidth, 0,6, 0,wide*0.4);
+    float speed = float(toks[2]);
+    String myName = toks[0];
+    String gender = toks[5];
+    // -- Use random values for other local variables: 
+    float x = random(50, width-50);
+    float y = random(10, 200);
+    color k = color(random(180,220));
+
+    // -- Set colour based on the value of the gender String (toks[5]): 
+    if (gender.equals("Female")) {
+      k = color(255, 255, 180);
+    } else {
+      k = color(180, 255, 255);
+    }
+
+    // -- Instantiate a new Robot with arguments based on the above:
+    Robot r = new Robot(x, y, wide, high, mouthWidth, speed, myName, k);
+    // -- Add it to the ArrayList of robots:
+    robots.add(r);
+  }
+
+  // -- Make sure that any rectangles are centred on the first two arguments we give to rect();
+  rectMode(CENTER);
+  // -- Align and size text :
+  textSize(10);
+  textAlign(CENTER, CENTER);
+}
+
+
+// -- Draw : runs 60 times a second afteer SetUp is executed
+
+void draw() {
+  
+  background(250);
+  
+  // -- Loop through each of the Robots in robots - assigning each to the local variable r in turn:
+  for (Robot r : robots) {
+    // -- Call the draw() method of the robot object:
+    r.draw();
+    // -- If moveThem is true, call the move() method of the robot object:
+    if (moveThem) {
+      r.move();
+    }
+  }
+}
+
+
+// -- Event Handlers : triggered by mouse and keyboard events
+
+void keyPressed () {
+  // -- When any key is pressed, make moveThem the opposite of moveThem (toggle):
+  moveThem =! moveThem;
+}
+</pre>
+</div> 
+          <p>Add this <code>class</code> definition to a new tab called <code>Robot</code> in your sketch, and save.</p>
+        <span><a href="#" class="link-show-code">View Class Code!</a></span>
+        <div class="prettyprint" style="display: none;">
+          <p>Press the any key to make the <code>Robots</code> move.</p>
+<pre class="brush: processing; gutter: false; toolbar: false; highlight: []">
+// -- More sophisticated Robot class with multiple arguments (fields, instance variables) ... and methods!
+// -- OK - this Robot can contain and depict (dear) data!
+
+class Robot {
+
+  // -- Instance variables - held by each instance (object) of the Robot class:
+  float x, y;
+  float wide, high;
+  float mw, speed;
+  String name;
+  color k;
+
+  // -- Constructor method - runs each time a new instance (object) of the Robot class is assigned:
+  Robot (float x, float y, float wide, float high,
+    float mw, float speed, String name, color k) {
+    // -- Fields have the same names as arguments, so use the 'this' prefix to differentiate:
+    this.x = x;
+    this.y = y;
+    this.wide = wide;
+    this.high = high;
+    this.mw = mw;
+    this.speed = speed;
+    this.name = name;
+    this.k = k;
+    // -- Print to the console every time the cosntructor is called:
+    println("New Robot:", name, x, y, wide, high, mw, k);
+  }
+
+  // -- Method that plots the Robot on the canvas:
+  void draw() {
+    // -- draw the head:
+    fill(k);
+    strokeWeight(1);
+    rect(x, y, wide, high);
+    fill(32);
+
+    //-- animation : blink?
+    if (frameCount%60 &lt;5) {
+      line(x-8, y-2, x-4, y-2);
+      line(x+8, y-2, x+4, y-2);
+    } else {
+      circle(x-6, y-2, 4);
+      circle(x+6, y-2, 4);
+    }
+
+    // -- draw the mouth:
+    line(x-mw, y+6, x+mw, y+6);
+
+    // -- show the name:
+    text(name, x, y-high/2-8);
+  }
+
+  // -- Method that changes the 'y' instance variable by a random amount:
+  void move() {
+    if (random(1) &lt;0.2) {
+      this.y=this.y+random(-1, 2);                // &lt;-- move down with a stuttering jitter!
+    } else {
+      this.y=this.y+random(0, speed);             // &lt;-- move down with a stuttering jitter!
+    }
+    
+    this.y=constrain(this.y, 0, height-high/2-5); // &lt;-- stop 5px from bottom of screen
+    
+    // -- Move Robot along the screen to exit if it is at the bottom: 
+    if (this.y &gt;= height-high/2-5) {
+      if (this.x &gt; width/2f) {
+        // -- Move right (with jitter):
+        this.x+= random(-1,3);
+      } else {
+        // -- Move left (with jitter):
+        this.x-= random(-1,3);
+      }
+    }
+  }
+}
+</pre>
+</div> 
+
+
+        <div style="padding-bottom:2em;clear:both"></div>
+        
+        <!--- spacer for iFrame -->
+        <p style="padding-top:1em"><hr/></p>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+</div> <!-- End of page div -->
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+</body>
+
+</html>
