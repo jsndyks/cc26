@@ -5,7 +5,7 @@
    minified source is intentionally preserved to avoid changing behaviour.
    Original licence/header comments are retained below.
 
-   CC26 helper revision 2026-10-23 16:51 BST:
+   CC26 helper revision 2026-10-23 17:15 BST:
    - six-argument loadSketch()/loadImage() calls use explicit content sizing;
      Highslide adds its own chrome around that content.
    - loadHTML() added for scalable HTML/DOM-fragment previews and popups.
@@ -19,6 +19,9 @@
    - loadHTML() now crops fragment previews to the selected DOM object itself,
      removing source-page layout margins before scaling; previews and popups
      therefore use their requested width for the actual selected content.
+   - loadHTML() preview and popup now render independently at their own
+     viewport widths, allowing responsive source CSS to reflow and keep text
+     more legible in smaller previews instead of scaling the popup layout down.
    ========================================================================== */
 
 
@@ -1368,7 +1371,10 @@ function loadImage(
  * element whose class contains the exact class name some-name.
  * Without a fragment identifier, the source document body is shown.
  *
- * Heights are measured automatically. Fragment previews are cropped to the
+ * Heights are measured automatically. Preview and popup are laid out
+ * independently at their own viewport widths, so responsive source CSS can
+ * reflow and resize text for the smaller preview instead of receiving a
+ * scaled copy of the popup layout. Fragment previews are cropped to the
  * selected object's true visual bounds before scaling, so empty source-page
  * margins do not make the preview content unnecessarily small. If the popup
  * would not fit in the browser viewport, it is scaled proportionally.
@@ -1626,14 +1632,33 @@ function ccHTMLResolveRecordWidths(record)
             : document.documentElement;
 
 
-    record.baseWidth =
+    var requestedPopupWidth =
+        Math.max(
+            1,
+            ccHTMLResolveWidth(
+                record.popupWidthSpec,
+                "popup",
+                null
+            )
+        );
+
+
+    var availablePopupWidth =
+        Math.max(
+            1,
+            (window.innerWidth ||
+             document.documentElement.clientWidth ||
+             1) - 60
+        );
+
+
+    record.popupRenderWidth =
         Math.max(
             1,
             Math.round(
-                ccHTMLResolveWidth(
-                    record.popupWidthSpec,
-                    "popup",
-                    null
+                Math.min(
+                    requestedPopupWidth,
+                    availablePopupWidth
                 )
             )
         );
@@ -1680,6 +1705,28 @@ function ccHTMLResolveRecordWidths(record)
     if (iframe) {
         iframe.style.width =
             record.previewWidth +
+            "px";
+    }
+
+
+    var measureIframe =
+        document.getElementById(
+            record.measureIframeId
+        );
+
+
+    if (measureIframe) {
+        measureIframe.style.width =
+            record.popupRenderWidth +
+            "px";
+
+        measureIframe.style.height =
+            Math.max(
+                100,
+                (window.innerHeight ||
+                 document.documentElement.clientHeight ||
+                 800) - 80
+            ) +
             "px";
     }
 }
@@ -1835,7 +1882,6 @@ function ccHTMLBuildViewerDocument(
     sourceDocument,
     sourceFileURL,
     fragmentId,
-    baseWidth,
     recordId
 )
 {
@@ -1915,9 +1961,6 @@ function ccHTMLBuildViewerDocument(
         "left:0;" +
         "top:0;" +
         "box-sizing:border-box!important;" +
-        "width:" +
-        baseWidth +
-        "px;" +
         "margin:0!important;" +
         "transform-origin:0 0!important;" +
         "}" +
@@ -1933,9 +1976,6 @@ function ccHTMLBuildViewerDocument(
         "</div>" +
         "<script>" +
         "(function(){" +
-        "var baseWidth=" +
-        baseWidth +
-        ";" +
         "var recordId=\"" +
         ccEscapeHTMLAttribute(recordId) +
         "\";" +
@@ -1943,10 +1983,12 @@ function ccHTMLBuildViewerDocument(
         "var content=document.getElementById('cc26-html-content');" +
         "var stage=document.getElementById('cc26-html-stage');" +
         "if(!content||!stage){return;}" +
+        "var renderWidth=Math.max(1,window.innerWidth||document.documentElement.clientWidth||1);" +
         "content.style.transform='none';" +
         "content.style.left='0px';" +
         "content.style.top='0px';" +
-        "stage.style.width=baseWidth+'px';" +
+        "content.style.width=renderWidth+'px';" +
+        "stage.style.width=renderWidth+'px';" +
         "stage.style.height='0px';" +
         "var contentRect=content.getBoundingClientRect();" +
         "var target=content.querySelector('[data-cc26-html-target]')||content.firstElementChild||content;" +
@@ -1980,7 +2022,8 @@ function ccHTMLBuildViewerDocument(
         "type:'cc26-html-size'," +
         "recordId:recordId," +
         "naturalWidth:naturalWidth," +
-        "naturalHeight:naturalHeight" +
+        "naturalHeight:naturalHeight," +
+        "renderWidth:renderWidth" +
         "},'*');" +
         "}catch(e){}" +
         "}" +
@@ -2043,8 +2086,8 @@ function ccHTMLSizePreview(record)
 {
     if (
         !record ||
-        !record.naturalWidth ||
-        !record.naturalHeight
+        !record.previewNaturalWidth ||
+        !record.previewNaturalHeight
     ) {
         return;
     }
@@ -2066,9 +2109,15 @@ function ccHTMLSizePreview(record)
     }
 
 
+    /*
+     * The preview document is laid out at the preview iframe's own width.
+     * The selected object may itself be narrower than that layout width, so
+     * scale only enough to make the selected object's visual bounds fill the
+     * requested preview width.
+     */
     var previewScale =
         record.previewWidth /
-        record.naturalWidth;
+        record.previewNaturalWidth;
 
 
     iframe.style.width =
@@ -2079,7 +2128,7 @@ function ccHTMLSizePreview(record)
         Math.max(
             1,
             Math.ceil(
-                record.naturalHeight *
+                record.previewNaturalHeight *
                 previewScale
             )
         ) +
@@ -2140,69 +2189,91 @@ function ccHTMLHandleSizeMessage(event)
     }
 
 
+    var naturalWidth =
+        Number(
+            data.naturalWidth
+        );
+
+    var naturalHeight =
+        Number(
+            data.naturalHeight
+        );
+
+
+    if (
+        !isFinite(naturalWidth) ||
+        naturalWidth <= 0 ||
+        !isFinite(naturalHeight) ||
+        naturalHeight <= 0
+    ) {
+        return;
+    }
+
+
     var iframe =
         document.getElementById(
             record.iframeId
         );
 
 
-    /*
-     * Only accept measurements from this preview iframe.
-     * Highslide popup copies of the same Blob document may send identical
-     * messages later; those should not resize the page preview.
-     */
-    if (
-        !iframe ||
-        event.source !== iframe.contentWindow
-    ) {
-        return;
-    }
-
-
-    record.naturalWidth =
-        Number(data.naturalWidth);
-
-    record.naturalHeight =
-        Number(data.naturalHeight);
-
-
-    if (
-        !isFinite(record.naturalWidth) ||
-        record.naturalWidth <= 0 ||
-        !isFinite(record.naturalHeight) ||
-        record.naturalHeight <= 0
-    ) {
-        return;
-    }
-
-
-    ccHTMLSizePreview(
-        record
-    );
-
-
-    var anchor =
+    var measureIframe =
         document.getElementById(
-            record.anchorId
+            record.measureIframeId
         );
 
 
-    if (anchor) {
-        anchor.href =
-            record.viewerURL;
+    if (
+        iframe &&
+        event.source === iframe.contentWindow
+    ) {
+        record.previewNaturalWidth =
+            naturalWidth;
 
-        anchor.onclick = function()
-        {
-            return ccOpenHTML(
-                this,
-                record.popupWidthSpec,
-                record.naturalWidth,
-                record.naturalHeight
+        record.previewNaturalHeight =
+            naturalHeight;
+
+        ccHTMLSizePreview(
+            record
+        );
+
+        return;
+    }
+
+
+    if (
+        measureIframe &&
+        event.source === measureIframe.contentWindow
+    ) {
+        record.popupNaturalWidth =
+            naturalWidth;
+
+        record.popupNaturalHeight =
+            naturalHeight;
+
+
+        var anchor =
+            document.getElementById(
+                record.anchorId
             );
-        };
 
-        anchor.style.cursor =
-            "pointer";
+
+        if (anchor) {
+            anchor.href =
+                record.viewerURL;
+
+            anchor.onclick = function()
+            {
+                return ccOpenHTML(
+                    this,
+                    record.popupWidthSpec,
+                    record.popupNaturalWidth,
+                    record.popupNaturalHeight
+                );
+            };
+
+            anchor.style.cursor =
+                "pointer";
+        }
     }
 }
 
@@ -2306,12 +2377,23 @@ function ccLoadHTMLSource(recordId)
                 );
 
 
+            /*
+             * The same viewer document is used in three different iframe
+             * viewports:
+             *
+             *   1. the visible preview iframe,
+             *   2. a hidden popup-measurement iframe,
+             *   3. the Highslide popup iframe.
+             *
+             * Because the viewer lays itself out from window.innerWidth, each
+             * viewport gets a genuinely independent responsive layout rather
+             * than a scaled copy of the popup-width layout.
+             */
             var viewerHTML =
                 ccHTMLBuildViewerDocument(
                     sourceDocument,
                     record.sourceFileURL,
                     record.fragmentId,
-                    record.baseWidth,
                     recordId
                 );
 
@@ -2338,13 +2420,22 @@ function ccLoadHTMLSource(recordId)
                 );
 
 
-            if (!iframe) {
-                return;
+            var measureIframe =
+                document.getElementById(
+                    record.measureIframeId
+                );
+
+
+            if (iframe) {
+                iframe.src =
+                    record.viewerURL;
             }
 
 
-            iframe.src =
-                record.viewerURL;
+            if (measureIframe) {
+                measureIframe.src =
+                    record.viewerURL;
+            }
         })
 
         .catch(function(error)
@@ -2535,6 +2626,10 @@ function loadHTML(
         recordId +
         "-iframe";
 
+    var measureIframeId =
+        recordId +
+        "-measure";
+
     var captionId =
         recordId +
         "-caption";
@@ -2554,8 +2649,8 @@ function loadHTML(
             previewWidthSpec:
                 previewWidthSpec,
 
-            baseWidth:
-                0,
+            popupRenderWidth:
+                1,
 
             previewWidth:
                 1,
@@ -2572,16 +2667,25 @@ function loadHTML(
             iframeId:
                 iframeId,
 
+            measureIframeId:
+                measureIframeId,
+
             captionId:
                 captionId,
 
             viewerURL:
                 null,
 
-            naturalWidth:
+            previewNaturalWidth:
                 0,
 
-            naturalHeight:
+            previewNaturalHeight:
+                0,
+
+            popupNaturalWidth:
+                0,
+
+            popupNaturalHeight:
                 0
         };
 
@@ -2591,9 +2695,9 @@ function loadHTML(
      * gives this helper the same intrinsic-width/caption behaviour as
      * loadImage() and loadSketch().
      *
-     * The iframe begins at 1px wide; once the figure exists in the page,
-     * ccHTMLResolveRecordWidths() can resolve percentages against the actual
-     * containing element before the HTML viewer is loaded.
+     * The visible iframe is the responsive preview. A second iframe is kept
+     * off-screen and rendered at popupWidth solely so that the popup's
+     * automatic height can be measured independently of the preview layout.
      */
     document.write(
         "<figure id=\"" +
@@ -2622,7 +2726,14 @@ function loadHTML(
         captionId +
         "\"></figcaption>" +
 
-        "</figure>"
+        "</figure>" +
+
+        "<iframe id=\"" +
+        measureIframeId +
+        "\" title=\"\" aria-hidden=\"true\" tabindex=\"-1\" scrolling=\"no\" " +
+        "style=\"position:fixed;left:-100000px;top:0;width:1px;height:1px;" +
+        "visibility:hidden;pointer-events:none;border:0;overflow:hidden;\">" +
+        "</iframe>"
     );
 
 
@@ -2651,4 +2762,3 @@ function loadHTML(
         0
     );
 }
-
