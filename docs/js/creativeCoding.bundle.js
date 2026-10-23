@@ -10,6 +10,12 @@
      Highslide adds its own chrome around that content.
    - loadHTML() added for scalable HTML/DOM-fragment previews and popups.
    - loadHTML() fragments now match id first, then exact class name.
+   - loadHTML() source fetch uses cache: "no-store" so edited HTML
+     fragments are picked up immediately during local/GitHub development.
+   - loadHTML() widths now accept px, %, rem, em, vw and vh as well as
+     plain pixel numbers; preview percentages use the containing page width.
+   - loadHTML() measures descendant visual bounds so wide/tall child content
+     is scaled into the preview/popup instead of being clipped.
    ========================================================================== */
 
 
@@ -1340,6 +1346,11 @@ function loadImage(
  *         caption
  *     );
  *
+ * Widths may be positive pixel numbers or CSS-style strings using:
+ * px, %, rem, em, vw or vh. For example: 800, "80%", "50rem".
+ * Popup percentages are relative to the browser viewport. Preview
+ * percentages are relative to the containing page element.
+ *
  * Example:
  *
  *     loadHTML(
@@ -1373,6 +1384,299 @@ function ccEscapeHTMLAttribute(value)
         .replace(/"/g, "&quot;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
+}
+
+
+function ccHTMLNormaliseWidthSpec(
+    value,
+    label
+)
+{
+    if (
+        typeof value === "number"
+    ) {
+        if (
+            !isFinite(value) ||
+            value <= 0
+        ) {
+            throw new Error(
+                "loadHTML(): " +
+                label +
+                " must be greater than zero."
+            );
+        }
+
+        return {
+            value: value,
+            unit: "px",
+            original: value
+        };
+    }
+
+
+    if (
+        typeof value !== "string"
+    ) {
+        throw new Error(
+            "loadHTML(): " +
+            label +
+            " must be a positive number or a width such as '80%', '50rem' or '350px'."
+        );
+    }
+
+
+    var text =
+        value.trim();
+
+
+    var match =
+        text.match(
+            /^([+]?(?:\d+(?:\.\d+)?|\.\d+))\s*(px|%|rem|em|vw|vh)?$/i
+        );
+
+
+    if (!match) {
+        throw new Error(
+            "loadHTML(): unsupported " +
+            label +
+            " '" +
+            value +
+            "'. Use px, %, rem, em, vw or vh."
+        );
+    }
+
+
+    var numericValue =
+        Number(match[1]);
+
+
+    if (
+        !isFinite(numericValue) ||
+        numericValue <= 0
+    ) {
+        throw new Error(
+            "loadHTML(): " +
+            label +
+            " must be greater than zero."
+        );
+    }
+
+
+    return {
+        value: numericValue,
+        unit: (match[2] || "px").toLowerCase(),
+        original: value
+    };
+}
+
+
+function ccHTMLContextWidth(contextElement)
+{
+    var element =
+        contextElement ||
+        document.documentElement;
+
+
+    var width = 0;
+
+
+    if (
+        element &&
+        element.getBoundingClientRect
+    ) {
+        width =
+            element.getBoundingClientRect().width;
+    }
+
+
+    if (
+        (!width || width <= 0) &&
+        element
+    ) {
+        width =
+            element.clientWidth;
+    }
+
+
+    if (
+        !width ||
+        width <= 0
+    ) {
+        width =
+            document.documentElement.clientWidth ||
+            window.innerWidth ||
+            1;
+    }
+
+
+    return width;
+}
+
+
+function ccHTMLResolveWidth(
+    widthSpec,
+    mode,
+    contextElement
+)
+{
+    var value =
+        widthSpec.value;
+
+    var unit =
+        widthSpec.unit;
+
+
+    if (unit === "px") {
+        return value;
+    }
+
+
+    if (unit === "%") {
+        if (mode === "popup") {
+            return (
+                (window.innerWidth ||
+                 document.documentElement.clientWidth ||
+                 1) *
+                value /
+                100
+            );
+        }
+
+        return (
+            ccHTMLContextWidth(
+                contextElement
+            ) *
+            value /
+            100
+        );
+    }
+
+
+    if (unit === "vw") {
+        return (
+            (window.innerWidth ||
+             document.documentElement.clientWidth ||
+             1) *
+            value /
+            100
+        );
+    }
+
+
+    if (unit === "vh") {
+        return (
+            (window.innerHeight ||
+             document.documentElement.clientHeight ||
+             1) *
+            value /
+            100
+        );
+    }
+
+
+    if (unit === "rem") {
+        var rootSize =
+            parseFloat(
+                window.getComputedStyle(
+                    document.documentElement
+                ).fontSize
+            ) || 16;
+
+        return value * rootSize;
+    }
+
+
+    if (unit === "em") {
+        var emElement =
+            contextElement ||
+            document.body ||
+            document.documentElement;
+
+        var emSize =
+            parseFloat(
+                window.getComputedStyle(
+                    emElement
+                ).fontSize
+            ) || 16;
+
+        return value * emSize;
+    }
+
+
+    return value;
+}
+
+
+function ccHTMLResolveRecordWidths(record)
+{
+    var figure =
+        document.getElementById(
+            record.figureId
+        );
+
+
+    var contextElement =
+        figure && figure.parentElement
+            ? figure.parentElement
+            : document.documentElement;
+
+
+    record.baseWidth =
+        Math.max(
+            1,
+            Math.round(
+                ccHTMLResolveWidth(
+                    record.popupWidthSpec,
+                    "popup",
+                    null
+                )
+            )
+        );
+
+
+    var requestedPreviewWidth =
+        Math.max(
+            1,
+            ccHTMLResolveWidth(
+                record.previewWidthSpec,
+                "preview",
+                contextElement
+            )
+        );
+
+
+    var availablePreviewWidth =
+        Math.max(
+            1,
+            ccHTMLContextWidth(
+                contextElement
+            )
+        );
+
+
+    record.previewWidth =
+        Math.max(
+            1,
+            Math.round(
+                Math.min(
+                    requestedPreviewWidth,
+                    availablePreviewWidth
+                )
+            )
+        );
+
+
+    var iframe =
+        document.getElementById(
+            record.iframeId
+        );
+
+
+    if (iframe) {
+        iframe.style.width =
+            record.previewWidth +
+            "px";
+    }
 }
 
 
@@ -1625,8 +1929,17 @@ function ccHTMLBuildViewerDocument(
         "stage.style.width=baseWidth+'px';" +
         "stage.style.height='auto';" +
         "var rect=content.getBoundingClientRect();" +
-        "var naturalWidth=Math.max(baseWidth,Math.ceil(content.scrollWidth),Math.ceil(rect.width));" +
-        "var naturalHeight=Math.max(1,Math.ceil(content.scrollHeight),Math.ceil(rect.height));" +
+        "var maxRight=Math.max(rect.right,rect.left+content.scrollWidth);" +
+        "var maxBottom=Math.max(rect.bottom,rect.top+content.scrollHeight);" +
+        "var descendants=content.querySelectorAll('*');" +
+        "for(var i=0;i<descendants.length;i++){" +
+        "var childRect=descendants[i].getBoundingClientRect();" +
+        "if(!childRect){continue;}" +
+        "if(isFinite(childRect.right)){maxRight=Math.max(maxRight,childRect.right);}" +
+        "if(isFinite(childRect.bottom)){maxBottom=Math.max(maxBottom,childRect.bottom);}" +
+        "}" +
+        "var naturalWidth=Math.max(baseWidth,Math.ceil(content.scrollWidth),Math.ceil(maxRight-rect.left));" +
+        "var naturalHeight=Math.max(1,Math.ceil(content.scrollHeight),Math.ceil(maxBottom-rect.top));" +
         "var scale=Math.min(window.innerWidth/naturalWidth,window.innerHeight/naturalHeight);" +
         "if(!isFinite(scale)||scale<=0){scale=1;}" +
         "content.style.transform='scale('+scale+')';" +
@@ -1707,6 +2020,11 @@ function ccHTMLSizePreview(record)
     }
 
 
+    ccHTMLResolveRecordWidths(
+        record
+    );
+
+
     var iframe =
         document.getElementById(
             record.iframeId
@@ -1737,7 +2055,6 @@ function ccHTMLSizePreview(record)
         ) +
         "px";
 }
-
 
 function ccHTMLHandleSizeMessage(event)
 {
@@ -1820,7 +2137,7 @@ function ccHTMLHandleSizeMessage(event)
         {
             return ccOpenHTML(
                 this,
-                record.popupWidth,
+                record.popupWidthSpec,
                 record.naturalWidth,
                 record.naturalHeight
             );
@@ -1832,6 +2149,27 @@ function ccHTMLHandleSizeMessage(event)
 }
 
 
+function ccHTMLRefreshPreviewWidths()
+{
+    for (
+        var recordId in ccHTMLPreviewRecords
+    ) {
+        if (
+            Object.prototype.hasOwnProperty.call(
+                ccHTMLPreviewRecords,
+                recordId
+            )
+        ) {
+            ccHTMLSizePreview(
+                ccHTMLPreviewRecords[
+                    recordId
+                ]
+            );
+        }
+    }
+}
+
+
 if (
     typeof window !== "undefined" &&
     !window.cc26HTMLSizeMessageInstalled
@@ -1839,6 +2177,11 @@ if (
     window.addEventListener(
         "message",
         ccHTMLHandleSizeMessage
+    );
+
+    window.addEventListener(
+        "resize",
+        ccHTMLRefreshPreviewWidths
     );
 
     window.cc26HTMLSizeMessageInstalled =
@@ -1859,11 +2202,23 @@ function ccLoadHTMLSource(recordId)
     }
 
 
+    ccHTMLResolveRecordWidths(
+        record
+    );
+
+
     fetch(
         record.sourceFileURL,
         {
             credentials:
-                "same-origin"
+                "same-origin",
+
+            /*
+             * HTML teaching resources are frequently edited in place.
+             * Do not let a stale browser cache hide newly added ids/classes.
+             */
+            cache:
+                "no-store"
         }
     )
         .then(function(response)
@@ -1898,7 +2253,7 @@ function ccLoadHTMLSource(recordId)
                     sourceDocument,
                     record.sourceFileURL,
                     record.fragmentId,
-                    record.popupWidth,
+                    record.baseWidth,
                     recordId
                 );
 
@@ -1951,12 +2306,20 @@ function ccLoadHTMLSource(recordId)
 
 function ccOpenHTML(
     anchor,
-    requestedContentWidth,
+    requestedWidthSpec,
     naturalWidth,
     naturalHeight
 )
 {
     ccPrepareHighslide();
+
+
+    var requestedContentWidth =
+        ccHTMLResolveWidth(
+            requestedWidthSpec,
+            "popup",
+            null
+        );
 
 
     var maxWidth =
@@ -1975,7 +2338,7 @@ function ccOpenHTML(
 
     /*
      * Start with the width requested by the caller, then scale the complete
-     * HTML object down if either viewport dimension would otherwise overflow.
+     * measured HTML object down if either viewport dimension would overflow.
      */
     var scale =
         Math.min(
@@ -2060,23 +2423,18 @@ function loadHTML(
     ccEnsureHighslideCSS();
 
 
-    popupWidth =
-        Number(popupWidth);
-
-    previewWidth =
-        Number(previewWidth);
-
-
-    if (
-        !isFinite(popupWidth) ||
-        popupWidth <= 0 ||
-        !isFinite(previewWidth) ||
-        previewWidth <= 0
-    ) {
-        throw new Error(
-            "loadHTML(): popupWidth and previewWidth must be positive numbers."
+    var popupWidthSpec =
+        ccHTMLNormaliseWidthSpec(
+            popupWidth,
+            "popupWidth"
         );
-    }
+
+
+    var previewWidthSpec =
+        ccHTMLNormaliseWidthSpec(
+            previewWidth,
+            "previewWidth"
+        );
 
 
     var source =
@@ -2103,6 +2461,10 @@ function loadHTML(
         (++ccHTMLPreviewCounter);
 
 
+    var figureId =
+        recordId +
+        "-figure";
+
     var previewId =
         recordId +
         "-preview";
@@ -2128,11 +2490,20 @@ function loadHTML(
             fragmentId:
                 fragmentId,
 
-            popupWidth:
-                popupWidth,
+            popupWidthSpec:
+                popupWidthSpec,
+
+            previewWidthSpec:
+                previewWidthSpec,
+
+            baseWidth:
+                0,
 
             previewWidth:
-                previewWidth,
+                1,
+
+            figureId:
+                figureId,
 
             previewId:
                 previewId,
@@ -2161,9 +2532,15 @@ function loadHTML(
      * Reuse the existing cc26-image-preview class so the current figure CSS
      * gives this helper the same intrinsic-width/caption behaviour as
      * loadImage() and loadSketch().
+     *
+     * The iframe begins at 1px wide; once the figure exists in the page,
+     * ccHTMLResolveRecordWidths() can resolve percentages against the actual
+     * containing element before the HTML viewer is loaded.
      */
     document.write(
-        "<figure class=\"cc26-html-figure\">" +
+        "<figure id=\"" +
+        figureId +
+        "\" class=\"cc26-html-figure\">" +
 
         "<div id=\"" +
         previewId +
@@ -2177,9 +2554,7 @@ function loadHTML(
         "<iframe id=\"" +
         iframeId +
         "\" title=\"HTML preview\" scrolling=\"no\" " +
-        "style=\"display:block;width:" +
-        previewWidth +
-        "px;height:1px;pointer-events:none;background:transparent;overflow:hidden;\">" +
+        "style=\"display:block;width:1px;height:1px;pointer-events:none;background:transparent;overflow:hidden;\">" +
         "</iframe>" +
 
         "</a>" +
