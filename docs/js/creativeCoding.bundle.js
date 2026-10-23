@@ -5,10 +5,10 @@
    minified source is intentionally preserved to avoid changing behaviour.
    Original licence/header comments are retained below.
 
-   CC26 helper revision 2026-10-03 12:12 BST:
-   in six-argument loadSketch()/loadImage() calls, the requested popup
-   dimensions describe the displayed sketch/image content. Highslide adds
-   its own header, padding, outline and other chrome around that content.
+   CC26 helper revision 2026-10-23 14:06 BST:
+   - six-argument loadSketch()/loadImage() calls use explicit content sizing;
+     Highslide adds its own chrome around that content.
+   - loadHTML() added for scalable HTML/DOM-fragment previews and popups.
    ========================================================================== */
 
 
@@ -1321,3 +1321,862 @@ function loadImage(
     );
 }
 
+
+/* ==========================================================================
+   loadHTML()
+   ========================================================================== */
+
+/*
+ * Render an HTML document, or one element from it, as a scalable preview.
+ * Clicking the preview opens the same HTML content in a CC26 Highslide iframe.
+ *
+ * Preferred form:
+ *
+ *     loadHTML(
+ *         sourceURL,
+ *         popupWidth,
+ *         previewWidth,
+ *         caption
+ *     );
+ *
+ * Example:
+ *
+ *     loadHTML(
+ *         "ccCreativityModelx.html#creative-model--scamper",
+ *         800,
+ *         350,
+ *         "SCAMPER creativity model"
+ *     );
+ *
+ * If sourceURL contains #some-id, only that element is shown.
+ * Without a fragment identifier, the source document body is shown.
+ *
+ * Heights are measured automatically. If the requested popup would not fit
+ * in the browser viewport, the complete HTML object is scaled proportionally.
+ *
+ * The source HTML must be fetchable by the browser. Same-origin URLs are the
+ * most reliable. Cross-origin URLs require the remote server to permit CORS.
+ */
+
+var ccHTMLPreviewCounter = 0;
+
+var ccHTMLPreviewRecords = {};
+
+
+function ccEscapeHTMLAttribute(value)
+{
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+
+function ccHTMLRemoveScripts(root)
+{
+    if (!root || !root.querySelectorAll) {
+        return;
+    }
+
+
+    var scripts =
+        root.querySelectorAll("script");
+
+
+    for (
+        var i = 0;
+        i < scripts.length;
+        i++
+    ) {
+        scripts[i].parentNode.removeChild(
+            scripts[i]
+        );
+    }
+}
+
+
+function ccHTMLBuildSelectedMarkup(
+    sourceDocument,
+    fragmentId
+)
+{
+    if (!fragmentId) {
+
+        var bodyClone =
+            sourceDocument.body.cloneNode(true);
+
+        ccHTMLRemoveScripts(
+            bodyClone
+        );
+
+        return bodyClone.innerHTML;
+    }
+
+
+    var target =
+        sourceDocument.getElementById(
+            fragmentId
+        );
+
+
+    if (!target) {
+        throw new Error(
+            "loadHTML(): cannot find #" +
+            fragmentId
+        );
+    }
+
+
+    /*
+     * Keep the target's ancestor chain as far as <body>.
+     *
+     * This preserves useful class/id context for CSS selectors such as:
+     *
+     *     .some-parent .creative-model { ... }
+     *
+     * without copying unrelated siblings from the source document.
+     */
+    var selected =
+        target.cloneNode(true);
+
+    ccHTMLRemoveScripts(
+        selected
+    );
+
+
+    var parent =
+        target.parentElement;
+
+
+    while (
+        parent &&
+        parent !== sourceDocument.body
+    ) {
+
+        var parentClone =
+            parent.cloneNode(false);
+
+        parentClone.appendChild(
+            selected
+        );
+
+        selected =
+            parentClone;
+
+        parent =
+            parent.parentElement;
+    }
+
+
+    return selected.outerHTML;
+}
+
+
+function ccHTMLBuildViewerDocument(
+    sourceDocument,
+    sourceFileURL,
+    fragmentId,
+    baseWidth,
+    recordId
+)
+{
+    var headParts = [];
+
+
+    /*
+     * Preserve source styles, but deliberately do not copy source scripts.
+     * The preview/popup is intended to present HTML content rather than run a
+     * second copy of the source page's JavaScript application.
+     */
+    var styleNodes =
+        sourceDocument.querySelectorAll(
+            'link[rel~="stylesheet"], style'
+        );
+
+
+    for (
+        var i = 0;
+        i < styleNodes.length;
+        i++
+    ) {
+        headParts.push(
+            styleNodes[i].outerHTML
+        );
+    }
+
+
+    var selectedMarkup =
+        ccHTMLBuildSelectedMarkup(
+            sourceDocument,
+            fragmentId
+        );
+
+
+    var htmlClass =
+        sourceDocument.documentElement
+            ? sourceDocument.documentElement.className
+            : "";
+
+
+    var bodyClass =
+        sourceDocument.body
+            ? sourceDocument.body.className
+            : "";
+
+
+    return (
+        "<!DOCTYPE html>" +
+        "<html class=\"" +
+        ccEscapeHTMLAttribute(htmlClass) +
+        "\">" +
+        "<head>" +
+        "<meta charset=\"utf-8\">" +
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+        "<base href=\"" +
+        ccEscapeHTMLAttribute(sourceFileURL) +
+        "\">" +
+        headParts.join("") +
+        "<style>" +
+        "html,body{" +
+        "margin:0!important;" +
+        "padding:0!important;" +
+        "border:0!important;" +
+        "background:transparent!important;" +
+        "overflow:hidden!important;" +
+        "}" +
+        "#cc26-html-stage{" +
+        "position:relative!important;" +
+        "margin:0!important;" +
+        "padding:0!important;" +
+        "border:0!important;" +
+        "overflow:visible!important;" +
+        "}" +
+        "#cc26-html-content{" +
+        "box-sizing:border-box!important;" +
+        "width:" +
+        baseWidth +
+        "px;" +
+        "margin:0!important;" +
+        "transform-origin:0 0!important;" +
+        "}" +
+        "</style>" +
+        "</head>" +
+        "<body class=\"" +
+        ccEscapeHTMLAttribute(bodyClass) +
+        "\">" +
+        "<div id=\"cc26-html-stage\">" +
+        "<div id=\"cc26-html-content\">" +
+        selectedMarkup +
+        "</div>" +
+        "</div>" +
+        "<script>" +
+        "(function(){" +
+        "var baseWidth=" +
+        baseWidth +
+        ";" +
+        "var recordId=\"" +
+        ccEscapeHTMLAttribute(recordId) +
+        "\";" +
+        "function measure(){" +
+        "var content=document.getElementById('cc26-html-content');" +
+        "var stage=document.getElementById('cc26-html-stage');" +
+        "if(!content||!stage){return;}" +
+        "content.style.transform='none';" +
+        "stage.style.width=baseWidth+'px';" +
+        "stage.style.height='auto';" +
+        "var rect=content.getBoundingClientRect();" +
+        "var naturalWidth=Math.max(baseWidth,Math.ceil(content.scrollWidth),Math.ceil(rect.width));" +
+        "var naturalHeight=Math.max(1,Math.ceil(content.scrollHeight),Math.ceil(rect.height));" +
+        "var scale=Math.min(window.innerWidth/naturalWidth,window.innerHeight/naturalHeight);" +
+        "if(!isFinite(scale)||scale<=0){scale=1;}" +
+        "content.style.transform='scale('+scale+')';" +
+        "stage.style.width=Math.ceil(naturalWidth*scale)+'px';" +
+        "stage.style.height=Math.ceil(naturalHeight*scale)+'px';" +
+        "try{" +
+        "parent.postMessage({" +
+        "type:'cc26-html-size'," +
+        "recordId:recordId," +
+        "naturalWidth:naturalWidth," +
+        "naturalHeight:naturalHeight" +
+        "},'*');" +
+        "}catch(e){}" +
+        "}" +
+        "window.addEventListener('load',function(){" +
+        "measure();" +
+        "setTimeout(measure,50);" +
+        "setTimeout(measure,250);" +
+        "});" +
+        "window.addEventListener('resize',measure);" +
+        "if(document.fonts&&document.fonts.ready){" +
+        "document.fonts.ready.then(measure);" +
+        "}" +
+        "})();" +
+        "<\/script>" +
+        "</body>" +
+        "</html>"
+    );
+}
+
+
+function ccHTMLShowError(
+    record,
+    message
+)
+{
+    var preview =
+        document.getElementById(
+            record.previewId
+        );
+
+
+    if (preview) {
+        preview.innerHTML =
+            "<div style=\"" +
+            "box-sizing:border-box;" +
+            "width:" +
+            record.previewWidth +
+            "px;" +
+            "max-width:100%;" +
+            "padding:0.75em;" +
+            "border:1px dashed #c66;" +
+            "color:#844;" +
+            "background:#fff8f8;" +
+            "font:0.9rem/1.4 sans-serif;" +
+            "\">" +
+            ccEscapeHTMLAttribute(message) +
+            "</div>";
+    }
+
+
+    if (window.console && console.error) {
+        console.error(
+            message
+        );
+    }
+}
+
+
+function ccHTMLSizePreview(record)
+{
+    if (
+        !record ||
+        !record.naturalWidth ||
+        !record.naturalHeight
+    ) {
+        return;
+    }
+
+
+    var iframe =
+        document.getElementById(
+            record.iframeId
+        );
+
+
+    if (!iframe) {
+        return;
+    }
+
+
+    var previewScale =
+        record.previewWidth /
+        record.naturalWidth;
+
+
+    iframe.style.width =
+        record.previewWidth +
+        "px";
+
+    iframe.style.height =
+        Math.max(
+            1,
+            Math.ceil(
+                record.naturalHeight *
+                previewScale
+            )
+        ) +
+        "px";
+}
+
+
+function ccHTMLHandleSizeMessage(event)
+{
+    var data =
+        event.data;
+
+
+    if (
+        !data ||
+        data.type !== "cc26-html-size" ||
+        !data.recordId
+    ) {
+        return;
+    }
+
+
+    var record =
+        ccHTMLPreviewRecords[
+            data.recordId
+        ];
+
+
+    if (!record) {
+        return;
+    }
+
+
+    var iframe =
+        document.getElementById(
+            record.iframeId
+        );
+
+
+    /*
+     * Only accept measurements from this preview iframe.
+     * Highslide popup copies of the same Blob document may send identical
+     * messages later; those should not resize the page preview.
+     */
+    if (
+        !iframe ||
+        event.source !== iframe.contentWindow
+    ) {
+        return;
+    }
+
+
+    record.naturalWidth =
+        Number(data.naturalWidth);
+
+    record.naturalHeight =
+        Number(data.naturalHeight);
+
+
+    if (
+        !isFinite(record.naturalWidth) ||
+        record.naturalWidth <= 0 ||
+        !isFinite(record.naturalHeight) ||
+        record.naturalHeight <= 0
+    ) {
+        return;
+    }
+
+
+    ccHTMLSizePreview(
+        record
+    );
+
+
+    var anchor =
+        document.getElementById(
+            record.anchorId
+        );
+
+
+    if (anchor) {
+        anchor.href =
+            record.viewerURL;
+
+        anchor.onclick = function()
+        {
+            return ccOpenHTML(
+                this,
+                record.popupWidth,
+                record.naturalWidth,
+                record.naturalHeight
+            );
+        };
+
+        anchor.style.cursor =
+            "pointer";
+    }
+}
+
+
+if (
+    typeof window !== "undefined" &&
+    !window.cc26HTMLSizeMessageInstalled
+) {
+    window.addEventListener(
+        "message",
+        ccHTMLHandleSizeMessage
+    );
+
+    window.cc26HTMLSizeMessageInstalled =
+        true;
+}
+
+
+function ccLoadHTMLSource(recordId)
+{
+    var record =
+        ccHTMLPreviewRecords[
+            recordId
+        ];
+
+
+    if (!record) {
+        return;
+    }
+
+
+    fetch(
+        record.sourceFileURL,
+        {
+            credentials:
+                "same-origin"
+        }
+    )
+        .then(function(response)
+        {
+            if (!response.ok) {
+                throw new Error(
+                    "HTTP " +
+                    response.status +
+                    " loading " +
+                    record.sourceFileURL
+                );
+            }
+
+            return response.text();
+        })
+
+        .then(function(sourceText)
+        {
+            var parser =
+                new DOMParser();
+
+
+            var sourceDocument =
+                parser.parseFromString(
+                    sourceText,
+                    "text/html"
+                );
+
+
+            var viewerHTML =
+                ccHTMLBuildViewerDocument(
+                    sourceDocument,
+                    record.sourceFileURL,
+                    record.fragmentId,
+                    record.popupWidth,
+                    recordId
+                );
+
+
+            var blob =
+                new Blob(
+                    [viewerHTML],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+
+            record.viewerURL =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            var iframe =
+                document.getElementById(
+                    record.iframeId
+                );
+
+
+            if (!iframe) {
+                return;
+            }
+
+
+            iframe.src =
+                record.viewerURL;
+        })
+
+        .catch(function(error)
+        {
+            ccHTMLShowError(
+                record,
+                "loadHTML(): " +
+                error.message
+            );
+        });
+}
+
+
+/* ==========================================================================
+   ccOpenHTML()
+   ========================================================================== */
+
+function ccOpenHTML(
+    anchor,
+    requestedContentWidth,
+    naturalWidth,
+    naturalHeight
+)
+{
+    ccPrepareHighslide();
+
+
+    var maxWidth =
+        Math.max(
+            100,
+            window.innerWidth - 60
+        );
+
+
+    var maxHeight =
+        Math.max(
+            100,
+            window.innerHeight - 80
+        );
+
+
+    /*
+     * Start with the width requested by the caller, then scale the complete
+     * HTML object down if either viewport dimension would otherwise overflow.
+     */
+    var scale =
+        Math.min(
+            1,
+            requestedContentWidth / naturalWidth,
+            maxWidth / naturalWidth,
+            maxHeight / naturalHeight
+        );
+
+
+    if (
+        !isFinite(scale) ||
+        scale <= 0
+    ) {
+        scale =
+            1;
+    }
+
+
+    var contentWidth =
+        Math.max(
+            1,
+            Math.round(
+                naturalWidth *
+                scale
+            )
+        );
+
+
+    var contentHeight =
+        Math.max(
+            1,
+            Math.round(
+                naturalHeight *
+                scale
+            )
+        );
+
+
+    return hs.htmlExpand(
+        anchor,
+        {
+            objectType:
+                "iframe",
+
+            width:
+                contentWidth,
+
+            objectWidth:
+                contentWidth,
+
+            objectHeight:
+                contentHeight,
+
+            allowWidthReduction:
+                false,
+
+            allowHeightReduction:
+                false,
+
+            preserveContent:
+                false,
+
+            wrapperClassName:
+                "draggable-header cc26-highslide"
+        }
+    );
+}
+
+
+/* ==========================================================================
+   loadHTML()
+   ========================================================================== */
+
+function loadHTML(
+    sourceURL,
+    popupWidth,
+    previewWidth,
+    caption
+)
+{
+    ccEnsureHighslideCSS();
+
+
+    popupWidth =
+        Number(popupWidth);
+
+    previewWidth =
+        Number(previewWidth);
+
+
+    if (
+        !isFinite(popupWidth) ||
+        popupWidth <= 0 ||
+        !isFinite(previewWidth) ||
+        previewWidth <= 0
+    ) {
+        throw new Error(
+            "loadHTML(): popupWidth and previewWidth must be positive numbers."
+        );
+    }
+
+
+    var source =
+        new URL(
+            sourceURL,
+            document.baseURI
+        );
+
+
+    var fragmentId =
+        source.hash
+            ? decodeURIComponent(
+                source.hash.substring(1)
+              )
+            : "";
+
+
+    source.hash =
+        "";
+
+
+    var recordId =
+        "cc26-html-" +
+        (++ccHTMLPreviewCounter);
+
+
+    var previewId =
+        recordId +
+        "-preview";
+
+    var anchorId =
+        recordId +
+        "-anchor";
+
+    var iframeId =
+        recordId +
+        "-iframe";
+
+    var captionId =
+        recordId +
+        "-caption";
+
+
+    ccHTMLPreviewRecords[recordId] =
+        {
+            sourceFileURL:
+                source.href,
+
+            fragmentId:
+                fragmentId,
+
+            popupWidth:
+                popupWidth,
+
+            previewWidth:
+                previewWidth,
+
+            previewId:
+                previewId,
+
+            anchorId:
+                anchorId,
+
+            iframeId:
+                iframeId,
+
+            captionId:
+                captionId,
+
+            viewerURL:
+                null,
+
+            naturalWidth:
+                0,
+
+            naturalHeight:
+                0
+        };
+
+
+    /*
+     * Reuse the existing cc26-image-preview class so the current figure CSS
+     * gives this helper the same intrinsic-width/caption behaviour as
+     * loadImage() and loadSketch().
+     */
+    document.write(
+        "<figure class=\"cc26-html-figure\">" +
+
+        "<div id=\"" +
+        previewId +
+        "\" class=\"cc26-image-preview cc26-html-preview\">" +
+
+        "<a id=\"" +
+        anchorId +
+        "\" href=\"#\" onclick=\"return false;\" " +
+        "style=\"display:block;cursor:progress;\">" +
+
+        "<iframe id=\"" +
+        iframeId +
+        "\" title=\"HTML preview\" scrolling=\"no\" " +
+        "style=\"display:block;width:" +
+        previewWidth +
+        "px;height:1px;pointer-events:none;background:transparent;overflow:hidden;\">" +
+        "</iframe>" +
+
+        "</a>" +
+        "</div>" +
+
+        "<figcaption id=\"" +
+        captionId +
+        "\"></figcaption>" +
+
+        "</figure>"
+    );
+
+
+    var captionElement =
+        document.getElementById(
+            captionId
+        );
+
+
+    if (captionElement) {
+        captionElement.textContent =
+            caption || "";
+    }
+
+
+    /*
+     * Fetch asynchronously after document.write() has inserted the figure.
+     */
+    window.setTimeout(
+        function()
+        {
+            ccLoadHTMLSource(
+                recordId
+            );
+        },
+        0
+    );
+}
+         
