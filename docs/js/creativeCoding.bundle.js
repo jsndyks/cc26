@@ -5,7 +5,7 @@
    minified source is intentionally preserved to avoid changing behaviour.
    Original licence/header comments are retained below.
 
-   CC26 helper revision 2026-10-23 14:06 BST:
+   CC26 helper revision 2026-10-23 16:51 BST:
    - six-argument loadSketch()/loadImage() calls use explicit content sizing;
      Highslide adds its own chrome around that content.
    - loadHTML() added for scalable HTML/DOM-fragment previews and popups.
@@ -16,6 +16,9 @@
      plain pixel numbers; preview percentages use the containing page width.
    - loadHTML() measures descendant visual bounds so wide/tall child content
      is scaled into the preview/popup instead of being clipped.
+   - loadHTML() now crops fragment previews to the selected DOM object itself,
+     removing source-page layout margins before scaling; previews and popups
+     therefore use their requested width for the actual selected content.
    ========================================================================== */
 
 
@@ -1365,8 +1368,10 @@ function loadImage(
  * element whose class contains the exact class name some-name.
  * Without a fragment identifier, the source document body is shown.
  *
- * Heights are measured automatically. If the requested popup would not fit
- * in the browser viewport, the complete HTML object is scaled proportionally.
+ * Heights are measured automatically. Fragment previews are cropped to the
+ * selected object's true visual bounds before scaling, so empty source-page
+ * margins do not make the preview content unnecessarily small. If the popup
+ * would not fit in the browser viewport, it is scaled proportionally.
  *
  * The source HTML must be fetchable by the browser. Same-origin URLs are the
  * most reliable. Cross-origin URLs require the remote server to permit CORS.
@@ -1783,6 +1788,16 @@ function ccHTMLBuildSelectedMarkup(
     var selected =
         target.cloneNode(true);
 
+    /*
+     * Mark the actual requested object before wrapping it in cloned ancestors.
+     * The viewer uses this marker to crop away layout space belonging only to
+     * the source page (for example a centred 75% parent container).
+     */
+    selected.setAttribute(
+        "data-cc26-html-target",
+        ""
+    );
+
     ccHTMLRemoveScripts(
         selected
     );
@@ -1893,9 +1908,12 @@ function ccHTMLBuildViewerDocument(
         "margin:0!important;" +
         "padding:0!important;" +
         "border:0!important;" +
-        "overflow:visible!important;" +
+        "overflow:hidden!important;" +
         "}" +
         "#cc26-html-content{" +
+        "position:absolute!important;" +
+        "left:0;" +
+        "top:0;" +
         "box-sizing:border-box!important;" +
         "width:" +
         baseWidth +
@@ -1926,22 +1944,34 @@ function ccHTMLBuildViewerDocument(
         "var stage=document.getElementById('cc26-html-stage');" +
         "if(!content||!stage){return;}" +
         "content.style.transform='none';" +
+        "content.style.left='0px';" +
+        "content.style.top='0px';" +
         "stage.style.width=baseWidth+'px';" +
-        "stage.style.height='auto';" +
-        "var rect=content.getBoundingClientRect();" +
-        "var maxRight=Math.max(rect.right,rect.left+content.scrollWidth);" +
-        "var maxBottom=Math.max(rect.bottom,rect.top+content.scrollHeight);" +
-        "var descendants=content.querySelectorAll('*');" +
+        "stage.style.height='0px';" +
+        "var contentRect=content.getBoundingClientRect();" +
+        "var target=content.querySelector('[data-cc26-html-target]')||content.firstElementChild||content;" +
+        "var targetRect=target.getBoundingClientRect();" +
+        "var minLeft=targetRect.left;" +
+        "var minTop=targetRect.top;" +
+        "var maxRight=Math.max(targetRect.right,targetRect.left+target.scrollWidth);" +
+        "var maxBottom=Math.max(targetRect.bottom,targetRect.top+target.scrollHeight);" +
+        "var descendants=target.querySelectorAll('*');" +
         "for(var i=0;i<descendants.length;i++){" +
         "var childRect=descendants[i].getBoundingClientRect();" +
         "if(!childRect){continue;}" +
+        "if(isFinite(childRect.left)){minLeft=Math.min(minLeft,childRect.left);}" +
+        "if(isFinite(childRect.top)){minTop=Math.min(minTop,childRect.top);}" +
         "if(isFinite(childRect.right)){maxRight=Math.max(maxRight,childRect.right);}" +
         "if(isFinite(childRect.bottom)){maxBottom=Math.max(maxBottom,childRect.bottom);}" +
         "}" +
-        "var naturalWidth=Math.max(baseWidth,Math.ceil(content.scrollWidth),Math.ceil(maxRight-rect.left));" +
-        "var naturalHeight=Math.max(1,Math.ceil(content.scrollHeight),Math.ceil(maxBottom-rect.top));" +
+        "var naturalWidth=Math.max(1,Math.ceil(maxRight-minLeft));" +
+        "var naturalHeight=Math.max(1,Math.ceil(maxBottom-minTop));" +
+        "var offsetX=minLeft-contentRect.left;" +
+        "var offsetY=minTop-contentRect.top;" +
         "var scale=Math.min(window.innerWidth/naturalWidth,window.innerHeight/naturalHeight);" +
         "if(!isFinite(scale)||scale<=0){scale=1;}" +
+        "content.style.left=(-offsetX*scale)+'px';" +
+        "content.style.top=(-offsetY*scale)+'px';" +
         "content.style.transform='scale('+scale+')';" +
         "stage.style.width=Math.ceil(naturalWidth*scale)+'px';" +
         "stage.style.height=Math.ceil(naturalHeight*scale)+'px';" +
@@ -2054,6 +2084,34 @@ function ccHTMLSizePreview(record)
             )
         ) +
         "px";
+
+
+    var preview =
+        document.getElementById(
+            record.previewId
+        );
+
+
+    if (preview) {
+        preview.style.width =
+            record.previewWidth +
+            "px";
+    }
+
+
+    var figure =
+        document.getElementById(
+            record.figureId
+        );
+
+
+    if (figure) {
+        figure.style.width =
+            "fit-content";
+
+        figure.style.maxWidth =
+            "100%";
+    }
 }
 
 function ccHTMLHandleSizeMessage(event)
@@ -2337,12 +2395,12 @@ function ccOpenHTML(
 
 
     /*
-     * Start with the width requested by the caller, then scale the complete
-     * measured HTML object down if either viewport dimension would overflow.
+     * Start with the width requested by the caller. The selected object may
+     * be enlarged as well as reduced, while the viewport still caps the final
+     * popup size.
      */
     var scale =
         Math.min(
-            1,
             requestedContentWidth / naturalWidth,
             maxWidth / naturalWidth,
             maxHeight / naturalHeight
@@ -2593,3 +2651,4 @@ function loadHTML(
         0
     );
 }
+
