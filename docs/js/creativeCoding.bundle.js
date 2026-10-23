@@ -5,7 +5,7 @@
    minified source is intentionally preserved to avoid changing behaviour.
    Original licence/header comments are retained below.
 
-   CC26 helper revision 2026-10-23 18:25 BST:
+   CC26 helper revision 2026-10-23 18:36 BST:
    - six-argument loadSketch()/loadImage() calls use explicit content sizing;
      Highslide adds its own chrome around that content.
    - loadHTML() loads a whole HTML body or a #fragment selected by id first,
@@ -17,8 +17,12 @@
    - the preview keeps the stable popup-width layout, then scales tight bounds
      to fill the requested figure width.
    - preview and popup are measured separately. Preview typography receives a
-     non-linear width-sensitive boost; popup typography receives the modest
-     full-size boost, so preview readability cannot corrupt popup auto-height.
+     stronger non-linear width-sensitive boost: large initials grow more,
+     subtitles grow more, and small/body copy grows most as preview width tightens.
+   - preview line-height grows more slowly than font size, using spare vertical
+     room inside fixed card geometry rather than unnecessarily increasing height.
+   - popup typography keeps the modest full-size boost, so preview readability
+     cannot corrupt popup auto-height.
    - the rejected independent responsive-preview reflow branch is not used.
    ========================================================================== */
 
@@ -1332,9 +1336,9 @@ function loadImage(
     );
 }
 
-/* loadHTML-helper — updated 2026-10-23 18:25 BST
+/* loadHTML-helper — updated 2026-10-23 18:36 BST
    Consolidated branch: tight-fill painted bounds + separate preview/popup
-   measurement + adaptive typography. */
+   measurement + stronger small-preview typography without changing card geometry. */
 
 /* ==========================================================================
    loadHTML()
@@ -2037,9 +2041,14 @@ function ccHTMLBuildViewerDocument(
         "if(!isFinite(ratio)||ratio<=0){ratio=1;}" +
         "ratio=Math.max(0.35,Math.min(1,ratio));" +
         "}" +
-        "var responsive=viewerMode==='preview'?(1+(1-ratio)*0.20):1;" +
-        "var baseBoost=baseSize<18?1.20:(baseSize<32?1.14:1.10);" +
-        "return Math.min(1.38,baseBoost*responsive);" +
+        "var squeeze=viewerMode==='preview'?(1-ratio):0;" +
+        "if(baseSize<18){" +
+        "return Math.min(1.68,1.20*(1+squeeze*0.68));" +
+        "}" +
+        "if(baseSize<32){" +
+        "return Math.min(1.50,1.14*(1+squeeze*0.48));" +
+        "}" +
+        "return Math.min(1.36,1.10*(1+squeeze*0.32));" +
         "}" +
         "function applyAdaptiveTypography(root){" +
         "captureTypography(root);" +
@@ -2053,7 +2062,10 @@ function ccHTMLBuildViewerDocument(
         "var mult=typographyMultiplier(base);" +
         "el.style.fontSize=(base*mult)+\'px\';" +
         "var baseLine=parseFloat(el.getAttribute(\'data-cc26-base-line-height\'));" +
-        "if(isFinite(baseLine)&&baseLine>0){el.style.lineHeight=(baseLine*mult)+\'px\';}" +
+        "if(isFinite(baseLine)&&baseLine>0){" +
+        "var lineMult=1+(mult-1)*(viewerMode===\'preview\'?0.70:0.85);" +
+        "el.style.lineHeight=(baseLine*lineMult)+\'px\';" +
+        "}" +
         "}" +
         "}" +
         "function measure(){" +
