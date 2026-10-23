@@ -9,6 +9,7 @@
    - six-argument loadSketch()/loadImage() calls use explicit content sizing;
      Highslide adds its own chrome around that content.
    - loadHTML() added for scalable HTML/DOM-fragment previews and popups.
+   - loadHTML() fragments now match id first, then exact class name.
    ========================================================================== */
 
 
@@ -1348,7 +1349,9 @@ function loadImage(
  *         "SCAMPER creativity model"
  *     );
  *
- * If sourceURL contains #some-id, only that element is shown.
+ * If sourceURL contains #some-name, loadHTML() first looks for an element
+ * whose id is some-name. If no such id exists, it falls back to the first
+ * element whose class contains the exact class name some-name.
  * Without a fragment identifier, the source document body is shown.
  *
  * Heights are measured automatically. If the requested popup would not fit
@@ -1414,16 +1417,52 @@ function ccHTMLBuildSelectedMarkup(
     }
 
 
+    /*
+     * URL fragments normally refer to element ids, so try that first.
+     *
+     * Many older Creative Coding pages identify reusable display objects
+     * with classes instead. For backwards compatibility, if there is no
+     * matching id, treat the fragment text as an exact class name and use
+     * the first matching element.
+     *
+     * Example:
+     *
+     *     ccCreativityModelx.html#creative-model--scamper
+     *
+     * can therefore select either:
+     *
+     *     id="creative-model--scamper"
+     *
+     * or:
+     *
+     *     class="creative-model creative-model--scamper"
+     */
     var target =
         sourceDocument.getElementById(
             fragmentId
         );
 
 
+    if (
+        !target &&
+        sourceDocument.getElementsByClassName
+    ) {
+        var classMatches =
+            sourceDocument.getElementsByClassName(
+                fragmentId
+            );
+
+        if (classMatches.length) {
+            target = classMatches[0];
+        }
+    }
+
+
     if (!target) {
         throw new Error(
-            "loadHTML(): cannot find #" +
-            fragmentId
+            "loadHTML(): cannot find id or class '" +
+            fragmentId +
+            "'"
         );
     }
 
@@ -2179,4 +2218,3 @@ function loadHTML(
         0
     );
 }
-         
