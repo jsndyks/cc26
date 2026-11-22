@@ -2,41 +2,16 @@
 <html>
 
 <head>
-    <title>CreativeCoding Lecture: Denouement</title>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cc26 : Art</title>
 
-	<!-- Embedded fonts -->
-	<link
-			href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Shadows+Into+Light|Source+Code+Pro&display=swap"
-			rel="stylesheet">
-
-	<!-- Custom layout and style -->
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shCore.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/shThemeDefault.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/kube.min.css" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/master.css?rnd=123" type="text/css" />
-	<link rel="stylesheet" href="https://www.staff.city.ac.uk/~jwo/moodle/css/highslide.css" type="text/css" />
-
-	<!-- General browser compatibility handling -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/jquery-3.1.0.slim.min.js"></script>
-
-	<!-- Formatted source code -->
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shCore.js"></script>
-	<script type="text/javascript" src="https://www.staff.city.ac.uk/~jwo/moodle/js/shBrushProcessing.js"></script>
-
-	<!-- Sketch popups and hidden text-->
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-with-html.packed.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/highslide-cfg.js"></script>
-	<script src="https://www.staff.city.ac.uk/~jwo/moodle/js/master.js"></script>
-
-	<!-- JD Extras! -->
-    <link rel="stylesheet" href="https://jsndyks.github.io/cityCreativeCoding/css/creativeCoding.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="../../css/creativeCoding.css" type="text/css" /> -->
-    
-    <!-- iFrame -->
-    <script type="text/javascript" src="https://jsndyks.github.io/cityCreativeCoding/js/iframeResizer.contentWindow.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jsndyks.github.io/cc26/css/creativeCoding.css">
+    <link rel="icon" type="image/svg" href="https://jsndyks.github.io/cc26/svg/cc26.svg">
+	<script src="https://jsndyks.github.io/cc26/js/creativeCoding.bundle.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/iframeResizer.contentWindow.min.js"></script>
+	<script src="https://jsndyks.github.io/cc26/js/cssShow.js"></script>
     <style>
         .dearDataLo {margin-left:10%; padding:1em; padding-left:2%; font-size:100%; color:#999;border-left:1px solid #9998;background-color:#9991; width:80%}
         .dearData   {margin-left:10%;  padding:1em; padding-left:2%; font-size:100%; color:#804040; border-left:1px solid #b448; background-color:#ffffe0; width:80%}
@@ -44,12 +19,12 @@
 </head>
 
 <body>
-    <div id="page">
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Introduction ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- TITLE HEADING OF PAGE SHOULD BE VIA MOODLE, NOT HERE -->
-        <!-- Content below -->
+
+
+<div id="page">
 
         <div class="intro">
+            <h2>Denouement</h2>
 
             <p>This page provides details of the <i>Denouement</i> session in which a few loose ends are tidied up and a few examples shared.
             </p>
@@ -71,13 +46,115 @@
 
         <p>I didn't explain <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> very well in class.
         <br/>
-        The method  returns a value between 0 and 1, but each successive value is informed by / related to the last. </p>
+        The method  returns a value between 0 and 1, but each successive value is informed by and related to the last. </p>
         <p>
-        The extent of this relationship depends upon how similar the successive parameters to noise are - more similar gives a more related random number, less similar gives a less related one. Probably!
+        The extent of this relationship depends upon how similar the successive parameters to <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> are - more similar gives a more related random number, less similar gives a less related one. Probably!
         </p>
-        <p>So it's not wholly random, more subtly so and we can control the subtlety.</p>
+        <p>So it's not wholly random, more subtly so and we can control the subtlety.<br/>This gives us great potential for being expressive in our sketches.</p>
         <p> 
-        Do have a look at the documentation and examples online. And have a play with this simple sketch that uses <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> in two dimensions to vary the position of a shape.</p>
+        Do have a look at the <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> documentation and examples online.
+        </p>
+
+        <h4>1.1 Noise Experiments</h4>
+        <p>
+        Firstly, try copying this <code>noiseExperiments.pde</code> code into a sketch that uses <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> in different ways in 5 <i>modes</i>.<br/>Click any key to change mode.
+        </p>
+
+            &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>noiseExperiments.pde</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
+            <div class="prettyprint" style="display: none;">
+                <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1,2]">
+// -- Noise Experiments: Jason Dykes, 22 November 2026
+
+// -- Global System State Variables ...
+float   scaleFactor;
+int     mode =0, modes=5;
+boolean isKeyPressed = false;
+
+void setup () {
+  size(800, 800);
+  background(250);
+  textSize(24);
+  textAlign(RIGHT);
+
+  scaleFactor = 0.01;  // &lt;-- vary this, it controls how different successive valls to noise() are.
+}
+
+
+void draw() {
+
+  if (isKeyPressed) {
+    background(250);
+    isKeyPressed = false;
+  }
+
+  float noisePosition = frameCount*scaleFactor;
+  
+  float x = width  * noise(noisePosition, 0);
+  float y = height * noise(0, noisePosition);
+
+  fill(255);
+  stroke(4);
+
+  // -- draw circles in different positions depending on value of mode:
+  if (mode ==0) {
+    //-- single circle, only varies (with noise) in y:
+    circle(width/2, y, 25);
+    //-- bkank out previous text:
+    fill(250);
+    noStroke();
+    //-- show noise value as text:
+    rect(0,0,width/2-25,height);
+    fill(32);
+    text(y/height,width/2-60,y);
+    
+  } else if (mode == 1) {
+    //-- single circle, varies with time in x and with noise in y:
+    circle(frameCount%width, y, 25);
+    
+  } else if (mode == 2) {
+    //-- single circle, varies with noise in x and y:
+    circle(x, y, 25);
+    
+  } else if (mode == 3) {
+    //-- two circles, vary with noise in x and y:
+    float x2 = width  * noise(noisePosition, 1);
+    float y2 = height * noise(1, noisePosition);
+    circle(x, y, 25);
+    circle(x2, y2, 25);
+    
+  } else if (mode == 4) {
+    //-- multiple circles, vary with noise in x and y:
+    for (int i=0; i&lt;50; i++) {
+      float xI = width  * noise(noisePosition+i, 1);
+      float yI = height * noise(1, noisePosition+i);
+      circle(xI, yI, 25);
+    }
+  }
+}
+
+
+// -- flip between five draw modes on keyPress:
+
+void keyPressed () {
+  mode++;
+  mode = mode%modes;
+  println("mode:", mode,"of", modes);
+  isKeyPressed=true;
+}
+                </pre>
+            </div>
+
+        <div class="codeTask">
+            <h5>Noise Experiments</h5>
+            <p>Try the code provided above by copying it into a new sketch.<br/>Vary the <i>mode</i> with a key press and the <code>scaleFactor</code> with edits.</p>
+            <p>The smaller the steps between the values of the parameters given to successive calls to <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> the more alike successive values are likely to be.</p>
+            <p>See how this affects what you see in the 5 <i>modes</i> available through the sketch.<br/>Each uses <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> in slightly different ways to position shapes in the <code>draw()</code> loop.</p>
+        </div>
+
+
+        <h4>1.2 2D Noise</h4>
+        <p>
+        We can break the sketch down a little into a simpler single mode sketch that uses <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> in two dimensions to vary the position of a shape - <i>mode 2</i> from the <code>noiseExperiments.pde</code> that we tried above.</p>
 
 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [12,13]">
 float scaleFactor;
@@ -86,7 +163,7 @@ void setup () {
   size(800,800);
   background(250);
   
-  scaleFactor = 0.01;  // <-- vary this!
+  scaleFactor = 0.01;  // &lt;-- vary this!
 }
 
 void draw() {
@@ -103,7 +180,8 @@ void draw() {
             <p>The smaller the steps between the values of the parameters given to successive calls to <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> the more alike successive values are likely to be.</p>
         </div>
 
-        <p>Here is an additional example that varies <code>scaleFactor</code> interactively and uses the randomness to change colours too.</p>
+        <p>Here is an additional example that varies <code>scaleFactor</code> interactively according to the position of the mouse (<code>mouseX</code>).
+            <br/>It also uses the randomness - the value betweenm 0 and 1 returned by a call to <code><a href="https://processing.org/reference/noise_.html">noise()</a></code> to change the <code>fill()</code> colour used.</p>
 
 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [16,17]">
 float scaleFactor;
@@ -114,7 +192,7 @@ void setup () {
   
   stroke(64,64);
   
-  scaleFactor = 0.01;  // <-- vary this!
+  scaleFactor = 0.01;  // &lt;-- vary this!
 }
 
 void draw() {
@@ -132,8 +210,8 @@ void draw() {
   circle(x,y,25); 
 }</pre>
 
-        <p>Of course there is nothing to say that we have to draw a circle at the noise-generated position.
-            We could use this position as the moving point of a triangle with two fixed points.<br/>Try replacing the <code>circle()</code> with this. 
+        <p>Of course there is nothing to say that we have to draw a circle at the noise-generated position.<br/>
+            We could use this position as the moving point of a <code><a href="https://processing.org/reference/triangle_.html">triangle()</a></code> that is anchored by two fixed points.<br/>Try replacing the <code>circle()</code> with this. 
         </p>
 
 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [3]">
@@ -155,7 +233,7 @@ void draw() {
 &nbsp;
 </pre>
 
-        <p>Experiment!<br/> And see the excellent page on <a href="../resources/bootCamp.resources.randomness.html">Randomness</a> for a more thorough explanation.</p>
+        <p>Experiment!<br/> And see <b>Jo Wood's</b> excellent page on <a href="../resources/bootCamp.resources.randomness.html">Randomness</a> for a more thorough explanation.</p>
 
         <!-- Wobblers -->
 
@@ -178,16 +256,32 @@ void draw() {
             </figure>
 
         <p>
-            Now let's have a think about it ...
+            Now let's have a think about it ... and let's do so using concepts and terminology introduced when we began considering aspects of <a href="../thinking/ccThinking.html">Computational Thinking</a>:
         </p>
+
+        <ul>
+            <li class="spacedList"><strong><b>Abstraction</b>:</strong>
+                The removal of the unnecessary details that describe a solution or a problem.<br/>
+                <i>Can you describe what is happening here in broad terms?</i><br/><br/>
+            </li>
+            <li class="spacedList"><strong><b>Decomposition</b>:</strong> Break down a problem into a series of more easily solvable problems<br/>
+                <i>Can you describe what you need to be able to do to recreate something like this?</i><br/><br/>
+            </li>
+            <li class="spacedList"><strong><b>Creativity</b>:</strong> The ability to think more widely about the nature of a problem or solution and to come up with new and original ideas.<br/>
+                <i>Can you think of ways in which these 'wobblers' could vary to carry information, and so depict (your?) data?<br/><br/></i>
+            </li>
+        </ul>
+
 
         <div class="coreTask">
             <h5>Sketch Thinking</h5>
-            <p>I want to get you thinking about two aspects of the sketch:</p>
+            <p>I want to get you thinking about three aspects of the sketch:</p>
             <ol>
-                <li><b>How Does it Work?</b> - not in detail, but in general terms. <br/>
-                    <i>Which of the concepts that you have studied might be being used?</i></li>
-                <li><b>How Could it Convey Information?</b> - a key theme in our <code>#CreativeCoding</code> efforts. <br/>
+                <li><b>Abstraction What Does it Do?</b> - in general terms, how would you fully, but briefly, describe what we have here?<br/>
+                    <i>Can you come up with a compact but complete descriptipion?</i><br/><br/></li>
+                <li><b>Decomposition : How Does it Work?</b> - not in detail, but in general terms. <br/>
+                    <i>Which of the concepts that you have studied might be being used?</i><br/><br/></li>
+                <li><b>Creativity : How Could it Convey Information?</b> - a key theme in our <code>#CreativeCoding</code> efforts. <br/>
                     <i>Which of the variations might we use to depict the data that we have collected?</i></li>
             </ol>
         </div>
@@ -195,14 +289,9 @@ void draw() {
         <div class="codeTask">
             <h5>Wobbler Sketch</h5>
             <p>
-                I have tried to implement something similar in a <i>Processing</i> sketch that includes a <code>Wobbler</code> class : <a href="http://jsndyks.github.io/cityCreativeCoding/html/denouement/pde/weekWobblers.zip">weekWobblers.zip</a>
+                I have tried to implement something similar in a <i>Processing</i> sketch that includes a <code>Wobbler</code> class.
             </p>
-            <p>
-                Download it, unzip it, have a look and have a play!
-            </p>
-            <p>
-                Here's the v2 <code>Wobbler</code> class : <a href="http://jsndyks.github.io/cityCreativeCoding/html/denouement/pde/weekWobblersV2.zip">weekWobblersV2.zip</a>
-            </p>
+            <ul><li><a href="./pde/weekWobblers26.zip">weekWobblers26.zip</a></li></ul>
             <p>
                 Download it, unzip it, have a look and have a play!
             </p>
@@ -216,6 +305,7 @@ void draw() {
             <li>reading data from file</li>
             <li>creating a class that contains and depicts data</li>
             <li>animation and randomness</li>
+            <li>expressive creative data visualization</li>
         </ul>
 
         
@@ -227,7 +317,7 @@ void draw() {
 
         <p>Having said all of that we understand the need to demonstrate some of the ways in which the things you are learning can be put together to begin to address the task in hand. One of the important concepts that we want you to consider and use is the <code>class</code> capability in <i>Processing</i>.
         Classes enable  us to define and instantiate <i>objects</i> that hold and depict data about particular phenomena - such as the ones that you are recording data about.<br/>
-        We provide a simple example of how this might be achieved in the progressively sophisticated <i>Robot</i> classes presented in <a href="https://moodle4.city.ac.uk/mod/page/view.php?id=968054">Objects : Robots</a>.<br/>
+        We provide a simple example of how this might be achieved in the progressively sophisticated <i>Robot</i> classes presented in <a href="../objects/ccObjects.robots.html">Objects : Robots</a>.<br/>
         But you could create any kind of objects to capture and display your data.</p>
 
         <p>Here's another example.
@@ -238,19 +328,19 @@ void draw() {
             The code is based the <a href="https://www.dear-data.com/by-week/#/week-34-a-week-of-urban-wildlife/">Week 34 : A week of urban wildlife</a>: and specifies a class of <i>Data Dogs</i> from which we can generate varies instances (objects).
         </p>
 
-            <figure>
-                <table style="width: 100%; margin: 0 auto; border-collapse: collapse; text-align: center;">
-                    <tr>  
-                        <td style="width: 100%; height: 100px;"><img src="./img/cc.DataDogs.dd.jpg" alt="top" style="width: 100%; height: auto;"></td>
-                    </tr>
-                    <tr>  
-                        <td style="width: 100%; height: 100px;"><img src="./img/cc.DataDogs.jd.jpg" alt="top" style="width: 100%; height: auto;"></td>
-                    </tr>
-                </table>
+        <figure>
+            <table style="width: 100%; margin: 0 auto; border-collapse: collapse; text-align: center;">
+                <tr>  
+                    <td style="height: 100px;"><img src="./img/cc.DataDogs.dd.jpg" alt="top" style="height: auto;"></td>
+                </tr>
+                <tr>  
+                    <td style="height: 100px;"><img src="./img/cc.DataDogs.jd.26.jpg" alt="top" style="height: auto;"></td>
+                </tr>
+            </table>
             <figcaption>
-                    Data Dogs - based upon <i>Giorgia Lupi's</i> efforts in <a href="https://www.dear-data.com/by-week/#/week-34-a-week-of-urban-wildlife/">Week 34 : A week of urban wildlife</a> (top) and my limited efforts at hacking <i>Processing</i> to make interactive symbols that depict data and bark (bottom).
-                </figcaption>
-            </figure>
+                Data Dogs - based upon <i>Giorgia Lupi's</i> efforts in <a href="https://www.dear-data.com/by-week/#/week-34-a-week-of-urban-wildlife/">Week 34 : A week of urban wildlife</a> (top)<br/>and my limited efforts at hacking <i>Processing</i> to make interactive symbols that depict data and bark (bottom).
+            </figcaption>
+        </figure>
 
         <!-- <p>You can watch the <a href="https://moodle4.city.ac.uk/mod/url/view.php?id=836206">Creativity : Lecture</a> (<code>24:54 - 30:00</code>) to see how this all works, but basically...</p> -->
 
@@ -268,11 +358,11 @@ import processing.sound.*;
  
 // -- Let's keep the sound file names in an array of Strings : should auto detect them in the future: 
 String []      soundFiles = {"107190__praesius__dog_barking.wav", "115535__puniho__single-bark.wav", "242413__noctaro__small-dog-bark-02.wav", "277058__kwahmah_02__single-dog-bark.wav", "372524__glitchedtones__dog-shih-tzu-bark-single-01.wav", "420449__mrthenoronha__barking-2.wav", "502655__joviansounds__single-dog-bark-king-charles-spaniel.wav", "699822__8bitmyketison__dog-bark.wav", "368009__trngle__meow-1.wav", "242402__noctaro__midsized-dog-bark-01.wav"};
-ArrayList<Dog> dogs = new ArrayList<Dog>();  // <-- our dog objects will be stored in an ArrayList of Dogs
-boolean        isWagging = false;                   // <-- system state variable - do we wag the tails at all?
-boolean        allBark = false;                     // <-- system state variable - is there barking chaos?
-boolean        showLicenses = false;                // <-- do we show sound licenses?
-int            dogsDrawn = 0;                       // <-- how many dogs from the arraylist to we draw?
+ArrayList&lt;Dog&gt; dogs = new ArrayList&lt;Dog&gt;();  // &lt;-- our dog objects will be stored in an ArrayList of Dogs
+boolean        isWagging = false;                   // &lt;-- system state variable - do we wag the tails at all?
+boolean        allBark = false;                     // &lt;-- system state variable - is there barking chaos?
+boolean        showLicenses = false;                // &lt;-- do we show sound licenses?
+int            dogsDrawn = 0;                       // &lt;-- how many dogs from the arraylist to we draw?
 
 // -- We will keep the SoundFiles in an array - hard-coded to contain 10 items as that's how many .wav files we have  
 SoundFile []   barkSounds = new SoundFile [10];
@@ -295,7 +385,7 @@ void setup () {
     Dog pup     = new Dog ("Sammy", pos, 45, color(128, 96, 32, 128), 25, true, 3, 5, 30);
     pup.isDrawn=true;
     dogs.add(pup);
-    dogs.get(0).printFields();    // <-- use this method in Dog class to output information about first dog to console.
+    dogs.get(0).printFields();    // &lt;-- use this method in Dog class to output information about first dog to console.
 
     // -- Get data from file and create the ArrayList of data dogs!
     readData(); 
@@ -305,14 +395,14 @@ void setup () {
 void draw() {
     background(250);
  
-    randomSeed(289186);       // <-- useful - means that 'random' numbers are the same in all draw loops!
+    randomSeed(289186);       // &lt;-- useful - means that 'random' numbers are the same in all draw loops!
  
-    int i=1;                  // <-- counter - used to position dogs in a line (I like tidy dogs)
+    int i=1;                  // &lt;-- counter - used to position dogs in a line (I like tidy dogs)
  
     // -- loop through all Dogs in the dogs ArrayList one at a time:
     for (Dog dog : dogs) {
-        dog.position.x = 90*i;  // <-- update dog's x position based upon it's position in the ArrayList;
-        dog.draw();             // <-- draw the dog on the canvas with it's draw() method
+        dog.position.x = 90*i;  // &lt;-- update dog's x position based upon it's position in the ArrayList;
+        dog.draw();             // &lt;-- draw the dog on the canvas with it's draw() method
         i++;
     }
      
@@ -320,7 +410,8 @@ void draw() {
     if (showLicenses) {
         showLicenses();
     }
-}</pre></div>
+}
+</pre></div>
 
             <p>A second tab contains the Dog class, with fields, a constructor and methods to <code>draw()</code> (canvas) and <code>print()</code> (console) characteristics of the object.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>Dog</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
@@ -362,8 +453,8 @@ class Dog {
     this.isAwake = false;
     this.isDrawn = false;
     this.ownerF = ownerF;
-    this.fur = constrain(fur, 0, 3);   // <-- constrains value to the range 0-3
-    this.bark = constrain(bark, 0, 5); // <-- constrains value to the range 0-5
+    this.fur = constrain(fur, 0, 3);   // &lt;-- constrains value to the range 0-3
+    this.bark = constrain(bark, 0, 5); // &lt;-- constrains value to the range 0-5
     this.wagSpeed = wag;
 
     // -- Find positions of triangle corners;
@@ -400,7 +491,7 @@ class Dog {
     }
 
 
-    stroke(32, 128);  // <-- soft outlines for shapes:
+    stroke(32, 128);  // &lt;-- soft outlines for shapes:
     strokeWeight(1);
     textAlign(CENTER, CENTER);
     textSize(16);
@@ -418,9 +509,9 @@ class Dog {
         showLicense = true;
         licenseTime = millis();
       }
-      fill(255, 255, 128);                   // <-- the dog's colour (transparent)!
+      fill(255, 255, 128);                   // &lt;-- the dog's colour (transparent)!
     } else {
-      fill(colour);                          // <-- the dog's colour!
+      fill(colour);                          // &lt;-- the dog's colour!
     }
 
     // -- If this system variable is true, the sounds anyway, unlesds it is already playing:
@@ -431,7 +522,7 @@ class Dog {
     }
 
     // -- Draw the body:
-    triangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y); // <-- the dog's body!
+    triangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y); // &lt;-- the dog's body!
 
     // -- woman or man as owner? (as recorded and depicted by Giorgia)
     if (ownerF) {
@@ -442,8 +533,8 @@ class Dog {
     circle(p2.x, p2.y-10, 5);
 
     // -- how furry? (as recorded and almost as depicted by Giorgia)
-    for (int i=0; i<fur; i++) {
-      float yT = p1.y+2*(i+1);    // <-- calculate y-position of fur symbols
+    for (int i=0; i&lt;fur; i++) {
+      float yT = p1.y+2*(i+1);    // &lt;-- calculate y-position of fur symbols
       line(p1.x+3, yT, p3.x-3, yT);
     }
 
@@ -455,7 +546,7 @@ class Dog {
     }
 
     // -- add tail : (Giorgia's dogs had no tails)
-    PVector tailEnd = new PVector (p2.x, p1.y+tail);  // <-- initial endpoint of tail!
+    PVector tailEnd = new PVector (p2.x, p1.y+tail);  // &lt;-- initial endpoint of tail!
     strokeWeight(1);
     stroke(32, 128);
 
@@ -467,7 +558,7 @@ class Dog {
     // -- rudimentary tail-wagging capability based on frameCount
     if (isWagging && isAwake) {
       // -- calculate tail end point based upon whether we have odd or even numbers of wags!
-      int isEven = frameCount/wagSpeed;        // <-- is tail moving left or right?
+      int isEven = frameCount/wagSpeed;        // &lt;-- is tail moving left or right?
       if (isEven%2==1) {
         tailEnd.x = p2.x + sin(QUARTER_PI-a) * tail;
         tailEnd.y = p1.y + cos(QUARTER_PI-a) * tail;
@@ -526,9 +617,9 @@ void mousePressed() {
 
   if (keyPressed && key=='a') {
     // -- add 1 to number of dogs draw, but constrain to data range:
-    dogsDrawn = constrain(dogsDrawn+1, 0, dogs.size()-1);
+    dogsDrawn = (dogsDrawn+1)%(dogs.size());
     println("dogsDrawn:", dogsDrawn);
-    dogs.get(dogsDrawn).position.x = mouseX;
+    dogs.get(dogsDrawn).position.x = mouseX+5;
     dogs.get(dogsDrawn).position.y = mouseY;
     dogs.get(dogsDrawn).calcPosition();
     dogs.get(dogsDrawn).isDrawn = true;
@@ -536,7 +627,7 @@ void mousePressed() {
 }
 </pre></div>
 
-            <p>Here we read the data thaty describes the dogs from a '.csv' file - a text file of comma separated values.</p>
+            <p>Here we read the data that describes the dogs from a '.csv' file - a text file of comma separated values.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>readData</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1,6,28,29]">// -- Read the data from file to create the dogs!
@@ -624,7 +715,7 @@ void showLicense(int n) {
     text(detail[2], width-20, 50);
 }
 
-// -- Shows a single license:
+// -- Shows all licenses:
 void showLicenses() {
     String [] data = loadStrings("dogSoundLicenses.txt");
 
@@ -711,13 +802,15 @@ String [] soundFiles = {"mixkit-dog-barking-twice-1.wav", "mixkit-happy-puppy-ba
 
         <!-- Looking Down -->
 
-        <h3>4. Looking Down (and Around)</h3>
+        <h3>4. Looking Around (and Down)</h3>
 
-        <p>
-            In class, somebody asked what to do if they could not find 100 data items.<br/>
+            <img width="180" src="../denouement/img/guitarHero.IMG_1470.jpeg" style="float:right; padding: 0.5rem 2rem"/>
+
+            <p>
+            A few students have asked what to do if they could not find 100 data items.<br/>
             My response is an unashamed one - <i>learn to be more observant</i>.<br/>
             I probably said this in at least 100 words, which could have been the 100 words you used as data.<br/>
-            There are hundreds of things going on around you that you could observe, it's just about tuning in to the world.
+            There are hundreds of things going on around you that you could observe, it's just about tuning in to the world, being observant, and recording what you observe.
         </p>
         <p>
             I made a few suggestions :</p>
@@ -725,7 +818,7 @@ String [] soundFiles = {"mixkit-dog-barking-twice-1.wav", "mixkit-happy-puppy-ba
                 <li style="padding:0.5rem;">the sequence of buttons you click on a games controller: ❌⭕️🔺🟥❌⭕️🔺🟥❌❌❌❌⭕️⭕️⭕️, etc.</li>
                 <li style="padding:0.5rem;">the sequence of buttons you hit in <i>Guitar Hero</i> - and whether they were correct?<br/>
                 <i>Have a friend recording: 🟩🟥🟦🟨🟩🟥🟦🟨🟩🟥🟩🟥🟩🟥🟦🟨, etc.</i></li>
-                <li style="padding:0.5rem;">the colour or texture or material of the next 100 different floors that you find yourself walking on:<br/><i>Take a photo and think of the numeric and textual characteristics that yiu could capture.</i></li>
+                <li style="padding:0.5rem;">the colour or texture or material of the next 100 different floors that you find yourself walking on:<br/><i>Take a photo and think of the numeric and textual characteristics of the surfaces that you could capture.</i></li>
                 <li style="padding:0.5rem;">how the next 100 doors that you go through open: <i>pull</i>? <i>push</i>? <i>open</i>? <i>automatic</i>?</li>
                 </ul>
                 <p>Also ...</p>
@@ -756,7 +849,7 @@ String [] soundFiles = {"mixkit-dog-barking-twice-1.wav", "mixkit-happy-puppy-ba
 
         <h3>5. Fin</h3>
 
-        <p>Hopefully this gives you some ideas, and you may want to try to get the sketch working. 
+        <p>Hopefully this gives you some ideas, and you may want to try to get someof these sketch examples working. <br/>
                 However, the main intent here it to show you that we can combine programming concepts and data in ways that are inspired by, but differentiable from, existing efforts, to produce something interesting and original:</p>
                 <ul><li> <i>Combine</i>, <i>Adapt</i>, <i>Substitute</i>, <i>Modify</i></li></ul>
             <p>Have fun giving it a go!</p>
