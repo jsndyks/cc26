@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>cc26 : Art</title>
+	<title>cc26 : Denouement</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +39,19 @@
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
         <hr>
+
+        <h3>0. Creative Coding Questions</h3>
+
+        <img src="./img/qr.pollEv.gb.png" style="float:right; padding:0.5rem 2rem" width=150/>
+
+        <p>
+            Ask and upload questions on this poll, and we will try to get to some of them during class and subsequently.
+            </p>
+            <ul>
+                <li><a href="https://pollev.com/cc2026" target="_new">https://pollev.com/cc2026</a></li>
+            </ul>
+            <p>Be sure to try to ask questions that will be useful to other others... rather than questions that are specifically about you and your efforts. The scheduled lab classes are always the best places to get 1:1 support.</p>
+            <p>The poll will be available during the lecture and for a short while afterwards.</p>
 
         <!-- Noise -->
 
@@ -99,7 +112,7 @@ void draw() {
   if (mode ==0) {
     //-- single circle, only varies (with noise) in y:
     circle(width/2, y, 25);
-    //-- bkank out previous text:
+    //-- blank out previous text:
     fill(250);
     noStroke();
     //-- show noise value as text:
@@ -168,7 +181,7 @@ void setup () {
 
 void draw() {
   
-  float x = width * noise(frameCount*scaleFactor, 0);
+  float x = width  * noise(frameCount*scaleFactor, 0);
   float y = height * noise(0, frameCount*scaleFactor);
   
   circle(x,y,25); 
@@ -256,35 +269,73 @@ void draw() {
             </figure>
 
         <p>
-            Now let's have a think about it ... and let's do so using concepts and terminology introduced when we began considering aspects of <a href="../thinking/ccThinking.html">Computational Thinking</a>:
+            Now let's have a think about it, what we see, how it behaves, how it might work, how we might reconstruct it, and how we might apply it to a different challenge... for example the <a href="../dearData/ccDearData100.html">Dear Data 100</a> activity.</p>
+            
+            </p>Let's do so using concepts and terminology introduced when we began considering aspects of <a href="../thinking/ccThinking.html">Computational Thinking</a>:
         </p>
 
-        <ul>
-            <li class="spacedList"><strong><b>Abstraction</b>:</strong>
+        <ul style="padding:0.5rem 2rem">
+            <li class="spacedList"><strong><b>Abstraction</b>: general description</strong><br/>
                 The removal of the unnecessary details that describe a solution or a problem.<br/>
-                <i>Can you describe what is happening here in broad terms?</i><br/><br/>
+                <i>Can you describe what is happening here in broad terms?</i><br/>
+                <i>Can you describe what you see succinctly, generally, without focusing on the detail?</i>
+                <details style="padding:0.5rem 2rem">
+                    <summary>&raquo; Click for <b>Abstraction</b> ideas ...</summary>
+                    <p>Generative Art!</p>
+                    <p>A grid of related multi-component coloured shapes that change subtly over time</p>
+                </details>
             </li>
-            <li class="spacedList"><strong><b>Decomposition</b>:</strong> Break down a problem into a series of more easily solvable problems<br/>
-                <i>Can you describe what you need to be able to do to recreate something like this?</i><br/><br/>
+
+            <li class="spacedList"><strong><b>Decomposition</b>: breaking down</strong><br/>
+                Breaking a problem or description down into a series of more easily solvable components or steps<br/>
+                <i>Can you describe what you need to be able to do to recreate something like this?</i><br/>
+                <i>Can you break this complex thing down into some smaller solvable challenges?</i>
+                <details style="padding:0.5rem 2rem">
+                    <summary>&raquo; Click for <b>Decomposition</b> ideas ...</summary>
+                    <p>make shapes from triangles; colour them; position them; move the centre points;</p>
+                    <p>The complex becomes more solvable.</p>
+                </details>
             </li>
-            <li class="spacedList"><strong><b>Creativity</b>:</strong> The ability to think more widely about the nature of a problem or solution and to come up with new and original ideas.<br/>
-                <i>Can you think of ways in which these 'wobblers' could vary to carry information, and so depict (your?) data?<br/><br/></i>
+
+            <li class="spacedList"><strong>Pattern Matching: relating</strong><br/>
+                Applying the solution to one problem or class of problems to another.<br/>
+                <i>Can you think of capability or functionality that you have seen before or used elsewhere that will help you to solve this problem?</i><br/>
+                <i>Which Processing methods and coding constructs might be useful?</i><br/>
+                <details style="padding:0.5rem 2rem">
+                    <summary>&raquo; Click for <b>Pattern Matching</b> ideas ...</summary>
+                    <p>Looks like we might need to use <code>triangle()</code>, nested loops and perlin <code>noise()</code>.</p>
+                    <p><code>fill()</code> changes colours; maybe we need <code>class</code> for classes?</p>
+                </details>
             </li>
+
+            <li class="spacedList"><strong><b>Creativity</b>: adopting &amp; adapting</strong><br/>
+                The ability to think more widely about the nature of a problem or solution and to come up with new and original ideas.<br/>
+                <i>Can you think of ways in which these 'wobblers' could vary to carry information, and so depict (your?) data?</i><br/>
+                <i>How can you apply this pattern to a different challenge - <a href="../dearData/ccDearData100.html">Dear Data 100</a>?</i>
+                <details style="padding:0.5rem 2rem">
+                    <summary>&raquo; Click for <b>Creativity</b> ideas ...</summary>
+                    <p>colour for music genre; opacity for proportions; noisiness for genre variation; position for when recorded, when heard, etc.</p>
+                </details>
+           </li>
         </ul>
 
 
         <div class="coreTask">
             <h5>Sketch Thinking</h5>
-            <p>I want to get you thinking about three aspects of the sketch:</p>
-            <ol>
-                <li><b>Abstraction What Does it Do?</b> - in general terms, how would you fully, but briefly, describe what we have here?<br/>
+            <p>I want to get you thinking about four aspects of the sketch, as we try to understand it with a view to recreating it, and repurposing it for <a href="../dearData/ccDearData100.html">Dear Data 100</a>:</p>
+             <ol style="padding:0.5rem 2rem">
+                <li><b>Abstraction : What Is It? What Does It Do?</b> - in general terms, how would you fully, but briefly, describe what we have here?<br/>
                     <i>Can you come up with a compact but complete descriptipion?</i><br/><br/></li>
-                <li><b>Decomposition : How Does it Work?</b> - not in detail, but in general terms. <br/>
+                <li><b>Decomposition : What Is It Made up Of?</b> - describe the parts, break the thing that you are considering, the sketch, down into its components. <br/>
+                    <i>What are the small achievable parts of this thing that you will need to work on?</i><br/><br/></li>
+                <li><b>Pattern Matching : How Does it Work?</b> - what do you recognise here, are there aspects of this sketch that you've seen before in other contexts, can you explain how it is (or bits of it are) achieved?<br/>
                     <i>Which of the concepts that you have studied might be being used?</i><br/><br/></li>
                 <li><b>Creativity : How Could it Convey Information?</b> - a key theme in our <code>#CreativeCoding</code> efforts. <br/>
-                    <i>Which of the variations might we use to depict the data that we have collected?</i></li>
+                    <i>Which of the visual variations in this sketch might we use to depict the data that we have collected?</i></li>
             </ol>
         </div>
+
+        <p>We are deliberately <i>not</i> concerning ourselves with </p>
 
         <div class="codeTask">
             <h5>Wobbler Sketch</h5>
@@ -298,7 +349,7 @@ void draw() {
         </div>
 
         <p>
-            Hopefully this will give you a model that brings together some of the ideas that we have been focusing on :
+            Hopefully this will give you a model (or perhaps ma <i>pattern</i> that you can apply) that brings together some of the ideas that we have been focusing on :
         </p>
 
         <ul>
@@ -346,7 +397,7 @@ void draw() {
         <!-- <p>You can watch the <a href="https://moodle4.city.ac.uk/mod/url/view.php?id=836206">Creativity : Lecture</a> (<code>24:54 - 30:00</code>) to see how this all works, but basically...</p> -->
 
 
-        <p>In short, the sketch has <i>six tabs</i>, and you can download (copy and paste) the context of each tab in turn below to recreate the sketch.</p>
+        <p>In short, the sketch has <i>six tabs</i>, and you can download (copy and paste) the content of each tab in turn below to recreate the sketch.</p>
         <p>The first a tab containing the globals, <code>setup()</code> and <code>draw()</code>.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>dataDogs.pde</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -414,6 +465,7 @@ void draw() {
 }
 </pre></div>
 
+                                                                <p>&nbsp;</p>
             <p>A second tab contains the Dog class, with fields, a constructor and methods to <code>draw()</code> (canvas) and <code>print()</code> (console) characteristics of the object.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>Dog</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -593,6 +645,7 @@ class Dog {
 }
 </pre></div>
 
+            <p>&nbsp;</p>
             <p>I have an 'interaction' tab in which I define reactions to events - just <code>keyPressed()</code> in this case.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>interaction</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -628,7 +681,8 @@ void mousePressed() {
 }
 </pre></div>
 
-            <p>Here we read the data that describes the dogs from a '.csv' file - a text file of comma separated values.</p>
+            <p>&nbsp;</p>
+            <p>We have a tab containing code to read the data that describes the dogs from a '.csv' file - a text file of comma separated values.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>readData</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
                 <pre class="brush: processing; gutter: false; toolbar: false; highlight: [1,6,28,29]">// -- Read the data from file to create the dogs!
@@ -665,7 +719,7 @@ void readData() {
 </pre>
             </div>
 
-
+            <p>&nbsp;</p>
             <p>I put code that I have acquired from existing sources in a tab with the named author - '<i>Kornel Kisielewicz</i>' in this case - to make it absolutely clear of that this is not original code and to make it easy to find and confirm the original source.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>kornel kisielewicz</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -695,6 +749,7 @@ boolean pointInTriangle (PVector pt, PVector v1, PVector v2, PVector v3)
     return !(has_neg && has_pos);
 }</pre></div>
             
+            <p>&nbsp;</p>
             <p>I also separate out the code that involves licensing, just because this is an important emphasis in this example.</p>
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>showLicenses</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -731,6 +786,7 @@ void showLicenses() {
 }</pre>
             </div>
 
+            <p>&nbsp;</p>
             <p>Have a look at the code to get ideas about how to combine classes, sounds and interaction to depict data.</p>
             <p>If you want the code to work, then try using the arrangement shown below, with a tab for each code example.</p>
                             <!-- Creative Process -->
@@ -742,7 +798,8 @@ void showLicenses() {
                             </figure>
             <p>However, I have not provided the sound files, so you'll need to get some wild sounds of howling and barking, or use the example sounds that we provided in the <a href="../media/ccMedia.soundTest.html">Processing Sound Test</a> to hear anything.</p>
         
-            <p>Here is the data file. Change the data if you like, but be sure to put the file in the 'data' folder to make the sketch work. The file name must be correctly referenced in the first line of the <code>readData</code> method.</p>
+           <p>&nbsp;</p>
+           <p>Here is the data file. Change the data if you like, but be sure to put the file in the 'data' folder to make the sketch work. The file name must be correctly referenced in the first line of the <code>readData</code> method.</p>
 
             &nbsp;&nbsp;&raquo;&nbsp;&nbsp;Code : <code>./data/dogData.csv</code>&nbsp;&nbsp;<span><a href="#" class="link-show-code">Show code</a></span>
             <div class="prettyprint" style="display: none;">
@@ -760,6 +817,7 @@ Nell, 45, 220, 220, 240, 128, 22, true, 3, 2, 22
 </pre>
             </div>
 
+            <p>&nbsp;</p>
             <p>Here are the names, URLs and licenses of the files I used should you want to get hold of them.<br/>
             This file needs to go in the 'data' folder to make the sketch work.<br/>
             The first line of header information will be ignored.</p>
@@ -850,10 +908,14 @@ String [] soundFiles = {"mixkit-dog-barking-twice-1.wav", "mixkit-happy-puppy-ba
 
         <h3>5. Fin</h3>
 
-        <p>Hopefully this gives you some ideas, and you may want to try to get someof these sketch examples working. <br/>
-                However, the main intent here it to show you that we can combine programming concepts and data in ways that are inspired by, but differentiable from, existing efforts, to produce something interesting and original:</p>
-                <ul><li> <i>Combine</i>, <i>Adapt</i>, <i>Substitute</i>, <i>Modify</i></li></ul>
-            <p>Have fun giving it a go!</p>
+        <p>Hopefully this gives you some ideas, and you may want to try to get some ßof these sketch examples working. </p>
+        <p>Hopefully you can see that concepts introduced in our initial consideration of <a href="../thinking/ccThinking.html">Computational Thinking</a> can be applied usefully here.</p>
+        <p>And hopefully you will continue to develop your computational thinking as you make progress on your Computer Science journey, through your degree and beyond.</p>
+        <p>
+        However, the main intent here it to show you that we can combine programming concepts and data in ways that are inspired by, but differentiable from, existing efforts, to produce something interesting and original that enables us to engage with and represent the world in interesting ways, that may be informative, may be inspiring and are perhaps somewhat satisfying too:
+       </p>
+                <ul><li> <i>Combine</i>, <i>Adapt</i>, <i>Modify</i>, <i>Substitute</i>, <i>Put to Another Use</i>, <i>Eliminate</i></li></ul>
+        <p>Have fun giving it a go and coming up with creative ideas!</p>
 
             <hr class="hrInvisible"/>
 
